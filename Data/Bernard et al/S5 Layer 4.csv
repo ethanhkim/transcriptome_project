@@ -1,0 +1,256 @@
+﻿Primary Sequence Name,Sequence Description,Accession #,Affy Probe ID,Gene Symbol,"Correlation Coefficient to (100,0) Layer 4 High template"
+RADIL,Ras association and DIL domains,XM_001088178,MmugDNA.33008.1.S1_at,RADIL,0.76747038
+MmugDNA.17745.1.S1_at,gDNA.Hs.117956.0.A1  FEA=U133PSR  GEN=RORB  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 242385_at RAR-related orphan receptor B  REP_ORG=M. mulatta,gDNA.Hs.117956.0,MmugDNA.17745.1.S1_at,RORB,0.748615674
+MmugDNA.979.1.S1_at,"gDNA.g10947039  FEA=U133PSR  GEN=ANK1  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 205390_s_at ankyrin 1, erythrocytic     ankyrin 1, erythrocytic  REP_ORG=M. mulatta",YP_727363,MmugDNA.979.1.S1_at,ANK1,0.738442971
+FLRT3,fibronectin leucine rich transmembrane protein 3,XM_001084249,MmugDNA.35867.1.S1_at,FLRT3,0.737156092
+RASSF6,Ras association (RalGDS/AF-6) domain family member 6,XM_001103785,MmugDNA.35626.1.S1_at,RASSF6,0.736060605
+MmugDNA.7164.1.S1_at,"gDNA.Hs.184780.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 231040_at CDNA FLJ43172 fis, clone FCBBF3007242  REP_ORG=M. mulatta",gDNA.Hs.184780.0,MmugDNA.7164.1.S1_at,,0.729281434
+ST8SIA4,"ST8 alpha-N-acetyl-neuraminide alpha-2,8-sialyltransferase 4",XM_001097339,MmugDNA.32848.1.S1_at,ST8SIA4,0.721336953
+MmugDNA.26692.1.S1_at,gDNA.Hs.24901.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 244117_at Transcribed locus  REP_ORG=M. mulatta,gDNA.Hs.24901.0,MmugDNA.26692.1.S1_at,,0.713978157
+RUNX2,runt-related transcription factor 2,XM_001100961,MmugDNA.9398.1.S1_at,RUNX2,0.711576152
+LOC709901,similar to PDZ domain containing RING finger 3,XM_001098466,MmugDNA.8421.1.S1_at,PDZRN3,0.710095527
+MmugDNA.24683.1.S1_at,gDNA.Hs.293968.0.A1  FEA=U133PSR  GEN=LOC283666  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 226682_at hypothetical protein LOC283666  REP_ORG=M. mulatta,gDNA.Hs.293968.0,MmugDNA.24683.1.S1_at,LOC283666,0.697076556
+LOC711435,"similar to ATPase, Class V, type 10A",XM_001108767,MmugDNA.7735.1.S1_at,ATP10A,0.689104215
+LOC714749,similar to Rsb-66 protein,XM_001104509,MmugDNA.29288.1.S1_at,C9orf9,0.685545298
+LOC697272,similar to Parvalbumin alpha,XM_001085875,MmugDNA.23641.1.S1_at,PVALB,0.68548407
+PION,pigeon homolog (Drosophila),XM_001083448,MmugDNA.23336.1.S1_s_at,PION,0.683311538
+MXRA5,matrix-remodelling associated 5,XM_001086428,MmugDNA.12065.1.S1_at,MXRA5,0.68295606
+MmugDNA.32362.1.S1_at,gDNA.g4885446  FEA=U133PSR  GEN=MAFB  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 218559_s_at v-maf musculoaponeurotic fibrosarcoma oncogene homolog B (avian)  REP_ORG=M. mulatta,gDNA,MmugDNA.32362.1.S1_at,MAFB,0.682710366
+RASSF6,Ras association (RalGDS/AF-6) domain family member 6,XM_001103785,MmugDNA.35626.1.S1_s_at,RASSF6,0.679491597
+MmugDNA.27630.1.S1_at,gDNA.Hs2.112496.1.S1  FEA=U133PSR  GEN=LOC283392  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 1560698_a_at hypothetical protein LOC283392  REP_ORG=M. mulatta,XP_001790090,MmugDNA.27630.1.S1_at,LOC283392,0.67947216
+MmugDNA.2044.1.S1_at,gDNA.Hs.21606.0.A1  FEA=U133PSR  GEN=GPR161  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 230369_at G protein-coupled receptor 161  REP_ORG=M. mulatta,gDNA.Hs.21606.0,MmugDNA.2044.1.S1_at,GPR161,0.679052174
+LOC701571,hypothetical protein LOC701571,XM_001096888,MmugDNA.42492.1.S1_at,HUNK,0.675436587
+LOC703835,similar to Afamin precursor (Alpha-albumin) (Alpha-Alb),XM_001092161,MmugDNA.35868.1.S1_at,AFM,0.673340796
+MmugDNA.4977.1.S1_at,gDNA.Hs.72630.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 244130_at Transcribed locus  REP_ORG=M. mulatta,gDNA.Hs.72630.0,MmugDNA.4977.1.S1_at,,0.670490108
+CTTNBP2NL,CTTNBP2 N-terminal like,XM_001106929,MmuSTS.162.1.S1_at,HTR2A,0.660489956
+LOC711438,similar to retinol dehydrogenase 12 (all-trans and 9-cis),XM_001108235,MmugDNA.20906.1.S1_at,RDH12,0.659963532
+MmugDNA.480.1.S1_at,gDNA.Hs.50081.1.S1  FEA=U133PSR  GEN=KIAA1199  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 212942_s_at KIAA1199  REP_ORG=M. mulatta,gDNA.Hs.50081.1,MmugDNA.480.1.S1_at,KIAA1199,0.659194312
+LOC703310,similar to RAR-related orphan receptor B,XM_001098796,MmugDNA.24682.1.S1_at,RORB,0.658233992
+MmugDNA.40824.1.S1_at,gDNA.Hs.323304.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 242193_at Hypothetical gene supported by BX537900  REP_ORG=M. mulatta,gDNA.Hs.323304.0,MmugDNA.40824.1.S1_at,,0.655815628
+VAV3,vav 3 guanine nucleotide exchange factor,XM_001083213,MmugDNA.41882.1.S1_at,VAV3,0.653988101
+TIAM1,T-cell lymphoma invasion and metastasis 1,XM_001098107,MmugDNA.20387.1.S1_at,TIAM1,0.653930642
+DEPDC6,DEP domain containing 6,XM_001097652,MmugDNA.42925.1.S1_at,DEPDC6,0.652948251
+FAM20A,"similar to family with sequence similarity 20, member C",XM_001083623,MmugDNA.4219.1.S1_at,FAM20A,0.650554164
+MmugDNA.1017.1.S1_at,"gDNA.Hs.146274.0.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 229715_at CDNA FLJ41663 fis, clone FEBRA2027297  REP_ORG=M. mulatta",gDNA.Hs.146274.0,MmugDNA.1017.1.S1_at,,0.648148011
+MmugDNA.13898.1.S1_at,gDNA.Hs.120784.1.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 243947_s_at Transcribed locus  REP_ORG=M. mulatta,gDNA.Hs.120784.1,MmugDNA.13898.1.S1_at,,0.646249162
+MmugDNA.16358.1.S1_at,gDNA.Hs.105775.0.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 241653_x_at  REP_ORG=M. mulatta,gDNA.Hs.105775.0,MmugDNA.16358.1.S1_at,,0.646244892
+MmugDNA.41698.1.S1_at,"gDNA.Hs.197143.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 229121_at CDNA FLJ44441 fis, clone UTERU2020242  REP_ORG=M. mulatta",gDNA.Hs.197143.0,MmugDNA.41698.1.S1_at,,0.637717579
+MmugDNA.39200.1.S1_at,gDNA.Hs.43273.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 226773_at MRNA (clone ICRFp507I1077)  REP_ORG=M. mulatta,gDNA.Hs.43273.0,MmugDNA.39200.1.S1_at,,0.63655891
+LOC710841,similar to heterogeneous nuclear ribonucleoprotein L-like,XM_001109883,MmugDNA.22421.1.S1_at,,0.635458405
+VAV3,vav 3 guanine nucleotide exchange factor,XM_001083213,MmugDNA.17293.1.S1_s_at,VAV3,0.634574319
+TRPC3,"transient receptor potential cation channel, subfamily C, member 3",XR_012650,MmugDNA.19955.1.S1_at,TRPC3,0.633701515
+ST8SIA4,"ST8 alpha-N-acetyl-neuraminide alpha-2,8-sialyltransferase 4",XM_001097339,MmugDNA.33107.1.S1_at,ST8SIA4,0.633552114
+LOC716252,similar to oxysterol binding protein 2 isoform a,XR_013821,MmuSTS.3155.1.S1_at,OSBP2,0.633058822
+SPON1,"spondin 1, extracellular matrix protein",XM_001093336,MmugDNA.32812.1.S1_at,SPON1,0.632252014
+LOC707243,similar to phospholipase C-like 3,XR_013135,MmugDNA.9006.1.S1_at,PLCL3,0.631201713
+SLC38A1,"solute carrier family 38, member 1",XM_001094126,MmugDNA.38095.1.S1_at,SLC38A1,0.630348966
+LOC710159,similar to fibronectin type III domain containing 5,XM_001098747,MmugDNA.25525.1.S1_at,FNDC5,0.626102532
+MmugDNA.11459.1.S1_at,gDNA.Hs.50319.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 239291_at MRNA; cDNA DKFZp761C1418 (from clone DKFZp761C1418)  REP_ORG=M. mulatta,gDNA.Hs.50319.0,MmugDNA.11459.1.S1_at,,0.625105425
+PRDM1,"PR domain containing 1, with ZNF domain",XM_001087708,MmugDNA.39211.1.S1_at,PRDM1,0.62031788
+MmugDNA.4421.1.S1_at,gDNA.Hs.169487.0.S1  FEA=U133PSR  GEN=MAFB  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 222670_s_at v-maf musculoaponeurotic fibrosarcoma oncogene homolog B (avian)  REP_ORG=M. mulatta,gDNA.Hs.169487.0,MmugDNA.4421.1.S1_at,MAFB,0.619285561
+MmugDNA.7355.1.S1_at,"gDNA.Hs.124758.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 229771_at CDNA FLJ41153 fis, clone BRACE2038492  REP_ORG=M. mulatta",gDNA.Hs.124758.0,MmugDNA.7355.1.S1_at,,0.619032423
+DLG5,"discs, large homolog 5 (Drosophila)",XM_001092838,MmugDNA.24723.1.S1_at,DLG5,0.618316084
+LOC710904,similar to ankyrin 1 isoform 1,XM_001099591,MmugDNA.16146.1.S1_at,ANK1,0.61781242
+LOC707191,similar to Y73F8A.5,XM_001095622,MmugDNA.23806.1.S1_at,FLJ31340,0.615116488
+LOC695994,"similar to ATPase, Class I, type 8B, member 1",XR_010303,MmugDNA.35151.1.S1_at,,0.614999333
+MmugDNA.3987.1.S1_at,gDNA.Hs.217290.0.A1  FEA=U133PSR  GEN=GPR123  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 239221_at G protein-coupled receptor 123  REP_ORG=M. mulatta,gDNA.Hs.217290.0,MmugDNA.3987.1.S1_at,GPR123,0.613870988
+USP28,ubiquitin specific peptidase 28,XM_001085291,MmugDNA.17292.1.S1_at,CACNA1A,0.6136398
+MmugDNA.594.1.S1_at,gDNA.Hs.27280.0.A1  FEA=U133PSR  GEN=WWOX  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 237015_at WW domain containing oxidoreductase  REP_ORG=M. mulatta,gDNA.Hs.27280.0,MmugDNA.594.1.S1_at,WWOX,0.611525289
+LOC713374,similar to heparan sulfate D-glucosaminyl 3-O-sulfotransferase 1 precursor,XM_001098428,MmugDNA.17100.1.S1_at,HS3ST1,0.609282671
+LOC709353,"similar to pleckstrin homology-like domain, family B, member 2",XM_001097875,MmugDNA.37083.1.S1_at,PHLDB2,0.608468119
+MmugDNA.2228.1.S1_at,gDNA.Hs.50340.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 238661_at Hypothetical gene supported by BX537900  REP_ORG=M. mulatta,gDNA.Hs.50340.0,MmugDNA.2228.1.S1_at,,0.60776015
+NCOA3,nuclear receptor coactivator 3,XM_001101374,MmugDNA.32690.1.S1_at,NCOA3,0.605749645
+MmuSTS.3045.1.S1_at,"gi:47777016  DEF=PTPRT_1775 Rhesus macaque genomic DNA Macaca mulatta STS genomic clone MMA1775, sequence tagged site.  GEN=PTPRT  PROD=protein tyrosine phosphatase, receptor type, T  REP_ORG=M. mulatta",47777016,MmuSTS.3045.1.S1_at,PTPRT,0.603670332
+LOC716656,"similar to family with sequence similarity 19 (chemokine (C-C motif)-like), member A2",XM_001116668,MmugDNA.5445.1.S1_at,FAM19A2,0.601439323
+LOC704014,similar to RAR-related orphan receptor A isoform b,XM_001100971,MmugDNA.26193.1.S1_at,RORA,0.6012514
+RASSF6,Ras association (RalGDS/AF-6) domain family member 6,XM_001103611,MmuSTS.993.1.S1_at,RASSF6,0.599209308
+MmugDNA.23863.1.S1_at,gDNA.Hs.287499.0.S1  FEA=U133PSR  GEN=PDZRN3  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 233442_at PDZ domain containing RING finger 3  REP_ORG=M. mulatta,gDNA.Hs.287499.0,MmugDNA.23863.1.S1_at,PDZRN3,0.594458931
+GALR1,galanin receptor 1,XM_001086740,MmuSTS.4817.1.S1_at,GALR1,0.594362023
+AFP,alpha-fetoprotein,XM_001103873,MmugDNA.35871.1.S1_at,AFP,0.593266682
+PPP3CA,"protein phosphatase 3 (formerly 2B), catalytic subunit, alpha isoform",XM_001108447,MmugDNA.12216.1.S1_at,PPP3CA,0.592501341
+MmugDNA.12488.1.S1_at,gDNA.Hs.193700.0.S1  FEA=U133PSR  GEN=LIMS1  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 212687_at LIM and senescent cell antigen-like domains 1  REP_ORG=M. mulatta,gDNA.Hs.193700.0,MmugDNA.12488.1.S1_at,LIMS1,0.592187771
+MmugDNA.39148.1.S1_at,gDNA.Hs.57787.0.A1  FEA=U133PSR  GEN=MTAC2D1  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 234970_at membrane targeting (tandem) C2 domain containing 1  REP_ORG=M. mulatta,gDNA.Hs.57787.0,MmugDNA.39148.1.S1_at,MTAC2D1,0.591842936
+LOC704014,similar to RAR-related orphan receptor A isoform b,XM_001100971,MmugDNA.789.1.S1_at,RORA,0.591226144
+LOC710904,similar to ankyrin 1 isoform 1,XM_001099591,MmugDNA.1001.1.S1_s_at,ANK1,0.59113422
+NCOA3,nuclear receptor coactivator 3,XM_001101374,MmuSTS.1945.1.S1_at,NCOA3,0.590963536
+LOC707739,similar to serine/threonine protein kinase MASK,XM_001096161,MmugDNA.16902.1.S1_at,MST4,0.590766681
+LOC709025,similar to Olfactory receptor 7D2 (Olfactory receptor 19-4) (OR19-4) (HTPCRH03),XM_001095560,MmuSTS.2724.1.S1_at,OR7D2,0.590619583
+CAMTA1,calmodulin binding transcription activator 1,XM_001118241,MmugDNA.24721.1.S1_at,CAMTA1,0.58897374
+LOC723768,"similar to sulfotransferase family, cytosolic, 2B, member 1 isoform b",XM_001119811,MmugDNA.6260.1.S1_at,SULT2B1,0.587477074
+LOC715319,hypothetical protein LOC715319,XM_001113377,MmugDNA.12493.1.S1_at,,0.586200953
+GPR161,G protein-coupled receptor 161,XM_001091818,MmuSTS.2445.1.S1_at,GPR161,0.585225347
+LOC721716,"similar to phosphatidylinositol transfer protein, membrane-associated",XM_001117918,MmugDNA.31272.1.S1_at,PITPNM1,0.585224489
+LGI2,"leucine-rich repeat LGI family, member 2",XM_001082016,MmuSTS.1664.1.S1_at,LGI2,0.584396377
+LOC715548,similar to dehydrogenase/reductase (SDR family) member 3,XM_001105879,MmugDNA.5488.1.S1_at,DHRS3,0.583254064
+NCKIPSD,NCK interacting protein with SH3 domain,XM_001111898,MmugDNA.33737.1.S1_at,NCKIPSD,0.582605546
+PRPS2,phosphoribosyl pyrophosphate synthetase 2,XM_001116758,MmugDNA.22224.1.S1_at,,0.582424435
+PHF17,PHD finger protein 17,XM_001083157,MmugDNA.39973.1.S1_at,PHF17,0.581559505
+LOC710591,similar to Homeobox protein Nkx-3.1,XM_001106266,MmuSTS.1952.1.S1_at,NKX3-1,0.581405209
+MmugDNA.7279.1.S1_at,"gDNA.g9857401  FEA=U133PSR  GEN=RASD2  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 223634_at RASD family, member 2  REP_ORG=M. mulatta",NP_200198,MmugDNA.7279.1.S1_at,RASD2,0.578695341
+LOC696004,similar to glucocorticoid induced transcript 1,XR_010365,MmugDNA.42607.1.S1_at,GLCCI1,0.578664398
+SPON1,"spondin 1, extracellular matrix protein",XM_001093336,MmugDNA.7822.1.S1_at,SPON1,0.577942739
+CITED2,"similar to Cbp/p300-interacting transactivator, with Glu/Asp-rich carboxy-terminal",XM_001096152,MmuSTS.1868.1.S1_at,CITED2,0.577722332
+SPON1,"spondin 1, extracellular matrix protein",XM_001093336,MmuSTS.260.1.S1_at,SPON1,0.576736475
+KCNAB1,"gDNA.g762887  FEA=U133PSR  GEN=KCNAB1  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 210079_x_at potassium voltage-gated channel, shaker-related subfamily, beta member 1  REP_ORG=M. mulatta",AF424843,MmugDNA.14710.1.S1_at,KCNAB1,0.576538361
+JOSD1,Josephin domain containing 1,XM_001094854,MmugDNA.12658.1.S1_at,,0.574848442
+ASCL1,achaete-scute complex homolog 1 (Drosophila),XM_001094978,MmuSTS.3159.1.S1_at,ASCL1,0.571990416
+FSTL1,follistatin-like 1,XM_001110768,MmugDNA.40150.1.S1_at,,0.570816502
+KCNH8,"potassium voltage-gated channel, subfamily H (eag-related), member 8",XM_001087569,MmuSTS.2929.1.S1_at,KCNH8,0.57046037
+NFKBIA,"nuclear factor of kappa light polypeptide gene enhancer in B-cells inhibitor, alpha",XM_001087727,MmuSTS.356.1.S1_s_at,NFKBIA,0.570344283
+MmugDNA.41807.1.S1_at,gDNA.Hs.5233.0.A2  FEA=U133PSR  GEN=EIF4EBP2  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 224653_at Eukaryotic translation initiation factor 4E binding protein 2  REP_ORG=M. mulatta,gDNA.Hs.5233.0,MmugDNA.41807.1.S1_at,EIF4EBP2,0.570217605
+TANC1,"tetratricopeptide repeat, ankyrin repeat and coiled-coil containing 1",XM_001093114,MmugDNA.33429.1.S1_at,TANC1,0.570015495
+DKFZP564O0823,DKFZP564O0823 protein,XM_001101603,MmugDNA.31477.1.S1_at,DKFZP564O0823,0.569811381
+FLRT3,fibronectin leucine rich transmembrane protein 3,XM_001084249,MmugDNA.42347.1.S1_at,FLRT3,0.569380596
+ZMAT4,"similar to zinc finger, matrin type 4",XM_001096510,MmugDNA.11850.1.S1_at,ZMAT4,0.568951433
+LOC701085,similar to mitogen-activated protein kinase kinase kinase 13,XR_011769,MmugDNA.29220.1.S1_at,MAP3K13,0.568941226
+C1S,"complement component 1, s subcomponent",XM_001111384,MmuSTS.1398.1.S1_at,,0.566090644
+MmugDNA.23836.1.S1_at,"gDNA.Hs.93963.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 244184_at Transcribed locus, strongly similar to XP_518572.1 similar to brain-specific angiogenesis inhibitor 3 [Pan troglodytes]  REP_ORG=M. mulatta",gDNA.Hs.93963.0,MmugDNA.23836.1.S1_at,,0.565291294
+CROP,cisplatin resistance-associated overexpressed protein,XM_001099925,MmugDNA.33064.1.S1_at,CROP,0.565073859
+LOC708349,similar to Oxysterol-binding protein-related protein 6 (OSBP-related protein 6) (ORP-6),XR_011866,MmugDNA.6874.1.S1_at,OSBPL6,0.56477352
+FSTL1,follistatin-like 1,XM_001110729,MmugDNA.27004.1.S1_at,,0.563583632
+MmugDNA.26008.1.S1_at,gDNA.Hs.42179.0.A2  FEA=U133PSR  GEN=MSI2  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 225240_s_at musashi homolog 2 (Drosophila)  REP_ORG=M. mulatta,CB549187,MmugDNA.26008.1.S1_at,MSI2,0.562847137
+LOC709242,similar to phosphatidylethanolamine-binding protein 4,XR_013095,MmugDNA.22952.1.S1_at,PEBP4,0.56256867
+MmugDNA.10347.1.S1_at,"gDNA.g190699  FEA=U133PSR  GEN=RET  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 211421_s_at Ret proto-oncogene (multiple endocrine neoplasia and medullary thyroid carcinoma 1, Hirschsprung disease)  REP_ORG=M. mulatta",gDNA,MmugDNA.10347.1.S1_at,RET,0.561732272
+LOC699462,"similar to solute carrier family 20 (phosphate transporter), member 1",XM_001089151,MmugDNA.4791.1.S1_at,,0.560784183
+MmugDNA.41125.1.S1_at,"gDNA.Hs.5241.1.A1  FEA=U133PSR  GEN=MLLT6  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 224784_at myeloid lymphoid or mixed-lineage leukemia (trithorax homolog, Drosophila); translocated to, 6  REP_ORG=M. mulatta",gDNA.Hs.5241.1,MmugDNA.41125.1.S1_at,MLLT6,0.560411879
+CROP,cisplatin resistance-associated overexpressed protein,XM_001099925,MmugDNA.33064.1.S1_x_at,CROP,0.560354179
+LOC695264,similar to alpha-aminoadipate aminotransferase,XR_009988,MmugDNA.36251.1.S1_at,AADAT,0.560337821
+LOC722507,similar to neuronal calcium sensor-1,XM_001118646,MmugDNA.21501.1.S1_at,MSI2,0.559946285
+LPIN2,lipin 2,XM_001085578,MmugDNA.7806.1.S1_at,LPIN2,0.559386468
+LOC718529,similar to stromal antigen 1,XR_013939,MmugDNA.19455.1.S1_at,STAG1,0.559274317
+TRHDE,thyrotropin-releasing hormone degrading enzyme,XM_001109391,MmugDNA.86.1.S1_at,TRHDE,0.558373432
+LOC701759,similar to Transcription factor 7-like 2 (HMG box transcription factor 4) (T-cell-specific transcription factor 4) (TCF-4) (hTCF-4),XM_001090054,MmugDNA.14620.1.S1_at,TCF7L2,0.558349586
+FHOD1,formin homology 2 domain containing 1,XM_001089059,MmugDNA.42326.1.S1_at,FHOD1,0.55757466
+MmugDNA.5775.1.S1_at,gDNA.Hs.88316.0.A1  FEA=U133PSR  GEN=LOC146174  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 230721_at hypothetical protein LOC146174  REP_ORG=M. mulatta,gDNA.Hs.88316.0,MmugDNA.5775.1.S1_at,LOC146174,0.557325118
+ALDH1A3,"aldehyde dehydrogenase 1 family, member A3",XM_001083856,MmugDNA.38030.1.S1_at,LOC146174,0.556963059
+LOC706849,similar to MAX-interacting protein,XR_012602,MmugDNA.2083.1.S1_at,MGA,0.556409289
+LOC701759,Similar to Transcription factor 7-like 2 (HMG box transcription factor 4) (T-cell-specific transcription factor 4) (TCF-4) (hTCF-4),DQ148230,MmugDNA.39471.1.S1_s_at,TCF7L2,0.556352749
+LOC718318,similar to heparan sulfate D-glucosaminyl 3-O-sulfotransferase 3B1,XM_001114547,MmugDNA.22407.1.S1_at,HS3ST3B1,0.555780255
+KCNAB1,"potassium voltage-gated channel, shaker-related subfamily, beta member 1",XM_001104894,MmugDNA.34243.1.S1_at,KCNAB1,0.554451537
+MmugDNA.40211.1.S1_at,gDNA.Hs.7132.0.S1  FEA=U133PSR  GEN=KIAA0574  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 213997_at KIAA0574 protein  REP_ORG=M. mulatta,gDNA.Hs.7132.0,MmugDNA.40211.1.S1_at,KIAA0574,0.554377399
+MmugDNA.1031.1.S1_at,gDNA.Hs2.406946.1.S1  FEA=U133PSR  GEN=RPL4  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 1562440_at Ribosomal protein L4  REP_ORG=M. mulatta,gDNA.Hs2.406946.1,MmugDNA.1031.1.S1_at,RPL4,0.553605141
+MmugDNA.7145.1.S1_at,"gDNA.Hs.165337.1.A1  FEA=U133PSR  GEN=EIF2C2  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 235766_x_at Eukaryotic translation initiation factor 2C, 2  REP_ORG=M. mulatta",gDNA.Hs.165337.1,MmugDNA.7145.1.S1_at,EIF2C2,0.552056387
+LOC703567,hypothetical protein LOC703567,XM_001101233,MmugDNA.30318.1.S1_at,,0.551611764
+PPARGC1A,"peroxisome proliferator-activated receptor gamma, coactivator 1 alpha",XM_001105289,MmuSTS.1237.1.S1_at,PPARGC1A,0.551477215
+Mmu.357.1.S1_at,gb:CO646640  DB_XREF=gi:50568134  DB_XREF=ILLUMIGEN_MCQ_39441  CLONE=IBIUW:24926  TID=Mmu.357.1  CNT=1  FEA=EST  TIER=ConsEnd  STK=1  NOTE=sequence(s) clustered along genome  REP_ORG=M. mulatta,CO646640,Mmu.357.1.S1_at,,0.550874532
+ST8SIA4,"ST8 alpha-N-acetyl-neuraminide alpha-2,8-sialyltransferase 4",XM_001097339,MmuSTS.3985.1.S1_at,ST8SIA4,0.549072147
+PTEN,phosphatase and tensin homolog,XM_001102446,MmugDNA.14997.1.S1_at,PTEN,0.548580455
+LOC703060,similar to WD repeat domain 10 isoform 2,XR_011521,MmugDNA.7493.1.S1_at,WDR10,0.548578409
+CISH,cytokine inducible SH2-containing protein,XM_001097728,MmugDNA.521.1.S1_s_at,CISH,0.548162369
+LOC709276,similar to KIAA1900,XM_001097781,MmugDNA.2963.1.S1_at,KIAA1900,0.547609142
+CPNE9,copine family member IX,XM_001096444,MmugDNA.2072.1.S1_at,CPNE9,0.547330823
+LOC705831,similar to tolloid-like 1,XM_001101883,MmuSTS.932.1.S1_s_at,TLL1,0.547101983
+MmugDNA.28820.1.S1_at,gDNA.Hs.30484.0.A1  FEA=U133PSR  GEN=COLM  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 230360_at collomin  REP_ORG=M. mulatta,gDNA.Hs.30484.0,MmugDNA.28820.1.S1_at,COLM,0.546261928
+LOC706284,hypothetical protein LOC706284,XM_001095006,MmugDNA.5239.1.S1_at,,0.54617487
+LOC704166,similar to transmembrane protein 16E,XR_011243,MmugDNA.6553.1.S1_at,SLC17A6,0.544757449
+MmugDNA.15321.1.S1_at,gDNA.Hs.48919.0.S1  FEA=U133PSR  GEN=C9orf52  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 232000_at Chromosome 9 open reading frame 52  REP_ORG=M. mulatta,gDNA.Hs.48919.0,MmugDNA.15321.1.S1_at,C9orf52,0.54283486
+ARHGAP9,Rho GTPase activating protein 9,XM_001100524,MmugDNA.35645.1.S1_s_at,ARHGAP9,0.541797778
+KBTBD3,kelch repeat and BTB (POZ) domain containing 3,XM_001101948,MmugDNA.3748.1.S1_at,LOC112868,0.540651242
+LOC716986,similar to alpha 1 type XIII collagen isoform 5,XM_001108092,MmuSTS.1876.1.S1_at,COL13A1,0.540222825
+MmugDNA.41280.1.S1_at,gDNA.Hs.150580.1.A1  FEA=U133PSR  GEN=MAP4  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 212567_s_at microtubule-associated protein 4  REP_ORG=M. mulatta,gDNA.Hs.150580.1,MmugDNA.41280.1.S1_at,MAP4,0.540007823
+BARD1,BRCA1 associated RING domain 1,XM_001084623,MmuSTS.549.1.S1_at,BARD1,0.540005457
+LOC699884,gDNA.g9910363  FEA=U133PSR  GEN=ASPH  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 207284_s_at aspartate beta-hydroxylase  REP_ORG=M. mulatta,NP_115856,MmugDNA.16389.1.S1_at,ASPH,0.53918488
+RASSF4,Ras association (RalGDS/AF-6) domain family member 4,XM_001101245,MmugDNA.23080.1.S1_at,RASSF4,0.538820198
+LOC718143,similar to Tumor necrosis factor receptor superfamily member 19L precursor (Receptor expressed in lymphoid tissues),XM_001110447,MmugDNA.39392.1.S1_at,TNFRSF19L,0.538573728
+LOC700151,"similar to discoidin, CUB and LCCL domain containing 2",XR_010687,MmugDNA.7385.1.S1_at,DCBLD2,0.538380335
+C5H4orf27,chromosome 4 open reading frame 27 ortholog,XM_001083741,MmugDNA.30716.1.S1_at,C5H4orf27,0.538098653
+LOC710201,similar to polyhomeotic 2-like isoform a,XM_001107739,MmugDNA.26209.1.S1_at,PHC2,0.537106378
+Mmu.357.1.S1_x_at,gb:CO646640  DB_XREF=gi:50568134  DB_XREF=ILLUMIGEN_MCQ_39441  CLONE=IBIUW:24926  TID=Mmu.357.1  CNT=1  FEA=EST  TIER=ConsEnd  STK=1  NOTE=sequence(s) clustered along genome  REP_ORG=M. mulatta,CN801650,Mmu.357.1.S1_x_at,,0.536347386
+LOC717131,hypothetical protein LOC717131,XM_001108353,MmugDNA.35650.1.S1_s_at,LOC115294,0.535817519
+KCNA2,"potassium voltage-gated channel, shaker-related subfamily, member 2",XM_001101369,MmugDNA.36075.1.S1_at,KCNA2,0.535378168
+SLC6A6,"solute carrier family 6 (neurotransmitter transporter, taurine), member 6",XM_001092770,MmugDNA.3751.1.S1_at,LOC112868,0.534437472
+GPR161,G protein-coupled receptor 161,XM_001091818,MmugDNA.13359.1.S1_at,GPR161,0.534051517
+MmugDNA.25667.1.S1_at,gDNA.Hs.106635.0.S2  FEA=U133PSR  GEN=PIPPIN  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 209981_at RNA-binding protein pippin  REP_ORG=M. mulatta,gDNA.Hs.106635.0,MmugDNA.25667.1.S1_at,PIPPIN,0.533510054
+MmugDNA.14760.1.S1_at,"gDNA.Hs.59956.0.A1  FEA=U133PSR  GEN=GRM7  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 241049_at glutamate receptor, metabotropic 7  REP_ORG=M. mulatta",gDNA.Hs.59956.0,MmugDNA.14760.1.S1_at,GRM7,0.532732694
+HTR2A,5-hydroxytryptamine (serotonin) receptor 2A,S78209,MmugDNA.38977.1.S1_at,HTR2A,0.532712311
+LOC703608,"similar to RNA binding motif, single stranded interacting protein 1 isoform c",XM_001091917,MmugDNA.15037.1.S1_at,RBMS1,0.532431233
+MmugDNA.13958.1.S1_at,gDNA.Hs.99232.0.S1  FEA=U133PSR  GEN=LRCH1  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 214936_at Leucine-rich repeats and calponin homology (CH) domain containing 1  REP_ORG=M. mulatta,gDNA.Hs.99232.0,MmugDNA.13958.1.S1_at,LRCH1,0.531828616
+LOC701759,similar to Transcription factor 7-like 2 (HMG box transcription factor 4) (T-cell-specific transcription factor 4) (TCF-4) (hTCF-4),XM_001090054,MmugDNA.14619.1.S1_at,TCF7L2,0.530848596
+ARNTL,aryl hydrocarbon receptor nuclear translocator-like,XM_001094988,MmuSTS.3158.1.S1_at,ARNTL,0.530725994
+LIN7A,lin-7 homolog A (C. elegans),XM_001087299,MmugDNA.39970.1.S1_at,LIN7A,0.530659274
+LOC714759,similar to zinc finger protein 295,XM_001106639,MmuSTS.2630.1.S1_at,ZNF295,0.530223841
+LOC710363,similar to lysophosphatidic acid acyltransferase zeta,XM_001098972,MmugDNA.28117.1.S1_at,DKFZp586M1819,0.528387462
+TARDBP,TAR DNA binding protein,XM_001102660,MmugDNA.32410.1.S1_at,TARDBP,0.528247199
+NFKBIA,"nuclear factor of kappa light polypeptide gene enhancer in B-cells inhibitor, alpha",XM_001087727,MmugDNA.23424.1.S1_at,NFKBIA,0.528244762
+LOC711901,"similar to TBC1 domain family, member 16",XM_001109846,MmugDNA.22716.1.S1_at,TBC1D16,0.528144773
+ZNF684,zinc finger protein 684,XM_001084336,MmugDNA.20845.1.S1_at,ZNF684,0.527773572
+MmugDNA.28745.1.S1_at,gDNA.Hs.23964.1.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 212993_at MRNA; cDNA DKFZp667B1718 (from clone DKFZp667B1718)  REP_ORG=M. mulatta,EG705003,MmugDNA.28745.1.S1_at,,0.527280934
+LIN9,lin-9 homolog (C. elegans),XM_001091104,MmugDNA.7587.1.S1_at,MDH1,0.527094134
+CASKIN1,similar to AT-hook transcription factor,XM_001096711,MmugDNA.37840.1.S1_at,CASKIN1,0.526894338
+KLF12,Kruppel-like factor 12,XM_001084517,MmugDNA.7763.1.S1_at,KLF12,0.526827865
+LOC718339,similar to Immediate early response gene 5 protein,XR_013882,MmugDNA.13074.1.S1_at,IER5,0.526574587
+TRPC3,"transient receptor potential cation channel, subfamily C, member 3",XR_012650,MmugDNA.6643.1.S1_at,TRPC3,0.526328843
+LOC699462,"similar to solute carrier family 20 (phosphate transporter), member 1",XM_001089259,MmugDNA.16839.1.S1_at,,0.525990347
+MmugDNA.8801.1.S1_at,gDNA.Hs.12513.0.S1  FEA=U133PSR  GEN=LOC157627  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 214839_at hypothetical protein LOC157627  REP_ORG=M. mulatta,AY680490,MmugDNA.8801.1.S1_at,LOC157627,0.525689865
+MmugDNA.4753.1.S1_at,"gDNA.Hs.59962.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 243179_at CDNA FLJ33993 fis, clone DFNES2007757  REP_ORG=M. mulatta",gDNA.Hs.59962.0,MmugDNA.4753.1.S1_at,,0.525522281
+LOC719694,Similar to metalloprotease 1,CN643070,MmugDNA.32115.1.S1_at,,0.525224002
+MmugDNA.27026.1.S1_at,gDNA.Hs2.404144.1.S1  FEA=U133PSR  GEN=LENG10  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 1564776_at leukocyte receptor cluster (LRC) member 10  REP_ORG=M. mulatta,gDNA.Hs2.404144.1,MmugDNA.27026.1.S1_at,LENG10,0.525169883
+FOXP1,forkhead box P1,XM_001083827,MmugDNA.31335.1.S1_at,FOXP1,0.525046238
+MFI2,antigen p97 (melanoma associated) identified by monoclonal antibodies 133.2 and 96.5,XM_001096034,MmugDNA.24763.1.S1_at,LOC440995,0.525016821
+PHF17,PHD finger protein 17,XM_001083157,MmugDNA.39972.1.S1_at,PHF17,0.524964669
+NRG4,neuregulin 4,XM_001104381,MmugDNA.11489.1.S1_at,NRG4,0.524861028
+MmuSTS.2615.1.S1_at,"gi:60301221  DEF=EPB41 _7595 Rhesus macaque genomic DNA Macaca mulatta STS genomic clone MMA7595, sequence tagged site  REP_ORG=M. mulatta",60301221,MmuSTS.2615.1.S1_at,EPB41,0.523996217
+LOC713926,"similar to rhomboid, veinlet-like 3",XM_001112686,MmugDNA.23894.1.S1_at,RHBDL4,0.52387227
+MmugDNA.16584.1.S1_at,gDNA.Hs.306627.0.S1  FEA=U133PSR  GEN=SMYD2  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 233713_at SET and MYND domain containing 2  REP_ORG=M. mulatta,gDNA.Hs.306627.0,MmugDNA.16584.1.S1_at,SMYD2,0.523641212
+LOC722785,hypothetical protein LOC722785,XR_014805,MmugDNA.29232.1.S1_at,LOC126755,0.523136453
+LOC720692,"similar to calcium channel, alpha 1A subunit isoform 2",XM_001116376,MmugDNA.1122.1.S1_at,CACNA1A,0.522920194
+LOC701759,similar to Transcription factor 7-like 2 (HMG box transcription factor 4) (T-cell-specific transcription factor 4) (TCF-4) (hTCF-4),XM_001090054,MmugDNA.14618.1.S1_at,TCF7L2,0.522881052
+SLC13A3,solute carrier family 13 member 3,XR_012677,MmugDNA.37522.1.S1_at,SLC13A3,0.522543964
+LOC705831,similar to tolloid-like 1,XM_001101883,MmunewRS.874.1.S1_at,TLL1,0.521985885
+CTNND1,"catenin (cadherin-associated protein), delta 1",XM_001096864,MmugDNA.40674.1.S1_s_at,CTNND1,0.521797298
+LRRK1,leucine-rich repeat kinase 1,XM_001084079,MmuSTS.4540.1.S1_at,LRRK1,0.521119981
+LOC703752,similar to cryptochrome 1 (photolyase-like),XM_001100653,MmuSTS.3962.1.S1_at,CRY1,0.521118666
+LOC701890,gDNA.Hs.33922.0.S1  FEA=U133PSR  GEN=MGC9084  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 213528_at hypothetical protein MGC9084  REP_ORG=M. mulatta,XP_001096286,MmugDNA.4982.1.S1_at,MGC9084,0.521058801
+SMPX,"small muscle protein, X-linked",XM_001086790,MmugDNA.28443.1.S1_at,SMPX,0.52073223
+LOC708051,similar to CASK-interacting protein CIP98,XM_001096493,MmuSTS.1292.1.S1_at,DFNB31,0.520719024
+SF3A1,"splicing factor 3a, subunit 1, 120kDa",XM_001108788,MmugDNA.615.1.S1_s_at,SF3A1,0.520654015
+PTEN,phosphatase and tensin homolog,XM_001102446,MmuSTS.2051.1.S1_at,PTEN,0.520625445
+PANK1,pantothenate kinase 1,XM_001086909,MmuSTS.1089.1.S1_at,PANK1,0.520348361
+LOC722131,"similar to Complement C1r subcomponent precursor (Complement component 1, r subcomponent)",XR_014707,MmuSTS.793.1.S1_at,C1R,0.520326657
+MFAP3L,microfibrillar-associated protein 3-like,XM_001084068,MmugDNA.3209.1.S1_at,MFAP3L,0.5200599
+LOC715966,similar to Protein C6orf47 (Protein G4),XM_001112658,MmugDNA.18670.1.S1_s_at,C6orf47,0.519894393
+LOC697171,similar to Neuromedin U-25 precursor (NmU-25),XM_001085777,MmugDNA.15621.1.S1_at,NMU,0.519847809
+MmugDNA.11547.1.S1_at,gDNA.Hs.12926.0.A1  FEA=U133PSR  GEN=LOC146174  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 227351_at hypothetical protein LOC146174  REP_ORG=M. mulatta,gDNA.Hs.12926.0,MmugDNA.11547.1.S1_at,LOC146174,0.519479162
+MmugDNA.192.1.S1_at,gDNA.Hs2.271566.1.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 1559214_at  REP_ORG=M. mulatta,XP_855521,MmugDNA.192.1.S1_at,,0.519454033
+SLC38A1,"solute carrier family 38, member 1",XM_001094126,MmugDNA.38096.1.S1_s_at,SLC38A1,0.519077276
+SEPHS1,selenophosphate synthetase 1,XM_001086299,MmugDNA.23152.1.S1_at,SEPHS1,0.518507745
+MICAL3,"microtubule associated monoxygenase, calponin and LIM domain containing 3",XM_001103660,MmugDNA.25614.1.S1_at,MICAL3,0.518409154
+TSPAN9,gDNA.g13775195  FEA=U133PSR  GEN=PP1057  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 220968_s_at Ribosomal protein S27 (metallopanstimulin 1)     Ribosomal protein S27 (metallopanstimulin 1)  REP_ORG=M. mulatta,gDNA,MmugDNA.19049.1.S1_at,PP1057,0.518305769
+LOC707482,hypothetical protein LOC707482,XM_001104538,MmugDNA.18351.1.S1_at,C15orf27,0.518145084
+MmugDNA.23541.1.S1_at,gDNA.Hs.10198.0.A1  FEA=U133PSR  GEN=C3orf6  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 226713_at chromosome 3 open reading frame 6  REP_ORG=M. mulatta,gDNA.Hs.10198.0,MmugDNA.23541.1.S1_at,C3orf6,0.517922371
+CACNA2D2,"similar to calcium channel, voltage-dependent, alpha 2/delta subunit 2 isoform b",XM_001090735,MmuSTS.3280.1.S1_at,CACNA2D2,0.517613921
+CAMTA1,calmodulin binding transcription activator 1,XM_001118241,MmugDNA.22430.1.S1_at,CAMTA1,0.51760412
+MmugDNA.11096.1.S1_at,"gDNA.Hs2.349970.1.S2  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 1552726_at CDNA FLJ32967 fis, clone TESTI2008715  REP_ORG=M. mulatta",gDNA.Hs2.349970.1,MmugDNA.11096.1.S1_at,,0.517424866
+LOC714480,similar to ceramide kinase isoform a,XM_001111087,MmugDNA.42847.1.S1_s_at,CERK,0.517106036
+LOC712152,similar to ring finger protein 146,XM_001106643,MmugDNA.7669.1.S1_at,RNF146,0.516552366
+LOC700587,hypothetical protein LOC700587,XM_001093133,MmugDNA.25585.1.S1_at,,0.515843448
+LOC694629,similar to associated molecule with the SH3 domain of STAM (AMSH) like protein,XM_001083976,MmugDNA.36662.1.S1_at,AMSH-LP,0.515533761
+MmuSTS.3842.1.S1_at,"gi:62000601  DEF=STC1_8652 Rhesus macaque genomic DNA Macaca mulatta STS genomic clone MMA8652, sequence tagged site  REP_ORG=M. mulatta",62000601,MmuSTS.3842.1.S1_at,STC1,0.515237933
+ZNF561,zinc finger protein 561,DQ148184,MmugDNA.39324.1.S1_at,,0.514929426
+LOC696004,similar to glucocorticoid induced transcript 1,XR_010365,MmugDNA.1913.1.S1_at,GLCCI1,0.514694829
+MmugDNA.39803.1.S1_at,"gDNA.Hs.25560.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 229577_at Transcribed locus, weakly similar to XP_498467.1 hypothetical gene supported by NM_194304 [Homo sapiens]  REP_ORG=M. mulatta",gDNA.Hs.25560.0,MmugDNA.39803.1.S1_at,,0.513027761
+FOXN3,forkhead box N3,XM_001088315,MmugDNA.29945.1.S1_at,FOXN3,0.512499485
+PTEN,phosphatase and tensin homolog,XM_001102446,MmugDNA.10971.1.S1_at,PTEN,0.512339852
+LOC722000,similar to Tristetraproline (TTP) (Zinc finger protein 36 homolog) (Zfp-36) (TIS11A protein) (TIS11) (Growth factor-inducible nuclear protein NUP475) (G0/G1 switch regulatory protein 24),XR_014689,MmugDNA.37678.1.S1_at,KIAA1456,0.512113635
+LOC718705,hypothetical protein LOC718705,XR_013986,MmugDNA.15656.1.S1_at,IRF2BP2,0.511782846
+BCL2L11,BCL2-like 11 (apoptosis facilitator),XM_001086237,MmugDNA.43021.1.S1_at,BCL2L11,0.511688978
+MmugDNA.40976.1.S1_at,"gDNA.Hs.88605.0.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 232709_at CDNA FLJ13427 fis, clone PLACE1002477  REP_ORG=M. mulatta",gDNA.Hs.88605.0,MmugDNA.40976.1.S1_at,,0.510948443
+HNRPA1,gDNA.Hs.249495.7.S1  FEA=U133PSR  GEN=HNRPA1  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 214280_x_at heterogeneous nuclear ribonucleoprotein A1  REP_ORG=M. mulatta,XP_001170900,MmugDNA.12803.1.S1_s_at,HNRPA1,0.510634711
+MmugDNA.15342.1.S1_at,gDNA.Hs.63984.1.A1  FEA=U133PSR  GEN=LOC440823  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 227168_at hypothetical gene supported by AK098833  REP_ORG=M. mulatta,gDNA.Hs.63984.1,MmugDNA.15342.1.S1_at,LOC440823,0.508556363
+MmugDNA.4450.1.S1_at,gDNA.Hs.150033.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 237688_at Transcribed locus  REP_ORG=M. mulatta,gDNA.Hs.150033.0,MmugDNA.4450.1.S1_at,,0.508343288
+CTNND1,"catenin (cadherin-associated protein), delta 1",XM_001096864,MmugDNA.18141.1.S1_at,CTNND1,0.507451496
+NSMAF,neutral sphingomyelinase (N-SMase) activation associated factor,XM_001088417,MmugDNA.43246.1.S1_at,NSMAF,0.507256818
+CCDC136,coiled-coil domain containing 136,XM_001090156,MmugDNA.9008.1.S1_at,CCDC136,0.507178524
+MmugDNA.32508.1.S1_at,gDNA.Hs.201377.0.S2  FEA=U133PSR  GEN=ENTPD4  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 204076_at ectonucleoside triphosphate diphosphohydrolase 4  REP_ORG=M. mulatta,gDNA.Hs.201377.0,MmugDNA.32508.1.S1_at,ENTPD4,0.506587416
+LOC711788,similar to homolog of yeast ribosome biogenesis regulatory protein RRS1,XM_001100635,MmuSTS.3276.1.S1_at,RRS1,0.505530287
+LOC697805,similar to thymosin-like 8,XM_001086343,MmugDNA.40563.1.S1_at,MGC39900,0.504969086
+LOC712589,"similar to ATPase, Class VI, type 11A isoform b",XM_001101635,MmugDNA.32054.1.S1_at,ATP11A,0.504772857
+MmugDNA.24433.1.S1_at,"gDNA.Hs.24305.0.A1  FEA=U133PSR  GEN=PDE3A  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 228507_at Phosphodiesterase 3A, cGMP-inhibited  REP_ORG=M. mulatta",gDNA.Hs.24305.0,MmugDNA.24433.1.S1_at,PDE3A,0.504203046
+LOC714707,similar to uromodulin-like 1 isoform 2,XR_013296,MmugDNA.21539.1.S1_at,UMODL1,0.503658957
+MmugDNA.25557.1.S1_at,gDNA.Hs.83938.0.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 229111_at  REP_ORG=M. mulatta,gDNA.Hs.83938.0,MmugDNA.25557.1.S1_at,,0.503305368
+MmugDNA.32972.1.S1_at,"gDNA.Hs.33024.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 241365_at CDNA FLJ42259 fis, clone TKIDN2011289  REP_ORG=M. mulatta",gDNA.Hs.33024.0,MmugDNA.32972.1.S1_at,,0.502958542
+LOC703608,"similar to RNA binding motif, single stranded interacting protein 1 isoform c",XM_001091917,MmugDNA.27217.1.S1_s_at,RBMS1,0.50294328
+GAD2,glutamate decarboxylase 2,XM_001101800,MmugDNA.40703.1.S1_at,GAD2,0.501995602
+LOC708585,hypothetical protein LOC708585,XM_001097061,MmugDNA.32767.1.S1_at,C10orf59,0.50174069
+LOC710062,hypothetical protein LOC710062,XR_012155,MmugDNA.30046.1.S1_at,GABRD,0.501576505
+PGBD1,piggyBac transposable element derived 1,XM_001099547,MmugDNA.8545.1.S1_at,PGBD1,0.500141626

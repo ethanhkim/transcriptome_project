@@ -1,0 +1,34 @@
+Notes on He et al Data
+
+All Ensembl ID's were identical
+
+Constants for layers with regards to the 17 divisions:
+
+Macaque:
+L1: 1
+L2: 2, 3 (4/5)
+L3: (4/5) 6 (7)
+L4: (7/8/9/10)
+L5: (9/10) 11, 12, (13)
+L6: (13), 14, 15, 16
+White matter: 17
+
+Human:
+L1: 1
+L2: 2, 3 (4/5)
+L3: (4), 5, 6, (7)
+L4: ((6/7/8/9/10)
+L5: (10), 11, 12 (kinda)
+L6: (12), 13, 14, 15, 16
+White matter: 17
+
+Monkey:
+L1: 1
+L2: 2, 3 (4/5)
+L3: (4/5, 6, (7)
+L4: (7/8/9/10)
+L5: (8/9/10), 11, 12, 13
+L6: 14, 15, 16
+White matter: 17
+
+We can throw out S17
