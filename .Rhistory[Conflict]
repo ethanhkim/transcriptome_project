@@ -1,0 +1,512 @@
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+filter(He_Layer_Markers < 7) %<>%
+filter(Maynard_Layer_Markers < 7) %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_Layer_Markers_filtered %>%
+group_by(match) %>%
+summarize(n())
+Compared_gene_list <- intersect(He_Layer_markers$gene_symbol, Maynard_layer_enrichment$gene_symbol)
+He_Layer_Markers <- as_tibble(He_Layer_markers[He_Layer_markers$gene_symbol %in% Compared_gene_list,]) %>%
+arrange(factor(gene_symbol, levels = Compared_gene_list)) %>%
+distinct(gene_symbol, .keep_all = TRUE)
+Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_symbol %in% Compared_gene_list,]
+## Create tibble of layer markers ##
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+filter(Maynard_Layer_Markers < 7) %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_gene_list <- intersect(He_Layer_markers$gene_symbol, Maynard_layer_enrichment$gene_symbol)
+He_Layer_Markers <- as_tibble(He_Layer_markers[He_Layer_markers$gene_symbol %in% Compared_gene_list,]) %>%
+arrange(factor(gene_symbol, levels = Compared_gene_list)) %>%
+distinct(gene_symbol, .keep_all = TRUE)
+Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_symbol %in% Compared_gene_list,]
+## Create tibble of layer markers ##
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_gene_list <- intersect(He_Layer_markers$gene_symbol, Maynard_layer_enrichment$gene_symbol)
+He_Layer_Markers <- as_tibble(He_Layer_markers[He_Layer_markers$gene_symbol %in% Compared_gene_list,]) %>%
+arrange(factor(gene_symbol, levels = Compared_gene_list)) %>%
+distinct(gene_symbol, .keep_all = TRUE)
+Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_symbol %in% Compared_gene_list,]
+## Create tibble of layer markers ##
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+filter(Maynard_Layer_Markers < 7) %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_gene_list <- intersect(He_Layer_markers$gene_symbol, Maynard_layer_enrichment$gene_symbol)
+He_Layer_Markers <- as_tibble(He_Layer_markers[He_Layer_markers$gene_symbol %in% Compared_gene_list,]) %>%
+arrange(factor(gene_symbol, levels = Compared_gene_list)) %>%
+distinct(gene_symbol, .keep_all = TRUE)
+Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_symbol %in% Compared_gene_list,]
+## Create tibble of layer markers ##
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+filter(He_Layer_Markers < 7) %<>%
+filter(Maynard_Layer_Markers < 7) %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_Layer_Markers_filtered %>%
+group_by(Maynard_Layer_Markers) %>%
+summarize(n())
+Compared_gene_list <- intersect(He_Layer_markers$gene_symbol, Maynard_layer_enrichment$gene_symbol)
+He_Layer_Markers <- as_tibble(He_Layer_markers[He_Layer_markers$gene_symbol %in% Compared_gene_list,]) %>%
+arrange(factor(gene_symbol, levels = Compared_gene_list)) %>%
+distinct(gene_symbol, .keep_all = TRUE)
+Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_symbol %in% Compared_gene_list,]
+## Create tibble of layer markers ##
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_Layer_Markers_filtered %>%
+group_by(Maynard_Layer_Markers) %>%
+summarize(n())
+906 / 1791
+Compared_gene_list <- intersect(He_Layer_markers$gene_symbol, Maynard_layer_enrichment$gene_symbol)
+He_Layer_Markers <- as_tibble(He_Layer_markers[He_Layer_markers$gene_symbol %in% Compared_gene_list,]) %>%
+arrange(factor(gene_symbol, levels = Compared_gene_list)) %>%
+distinct(gene_symbol, .keep_all = TRUE)
+Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_symbol %in% Compared_gene_list,]
+## Create tibble of layer markers ##
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+filter(He_Layer_Markers < 7) %<>%
+filter(Maynard_Layer_Markers < 7) %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_Layer_Markers_filtered %>%
+group_by(match) %>%
+summarize(n())
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+filter(Maynard_Layer_Markers < 7) %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_Layer_Markers_filtered %>%
+group_by(match) %>%
+summarize(n())
+Compared_Layer_Markers_filtered %>%
+group_by(Maynard_Layer_Markers) %>%
+summarize(n())
+?mutate_if
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+mutate_if(Maynard_Layer_Markers == 7, 6)
+?mutate_across
+?if
+Compared_Layer_Markers_filtered %<>%
+mutate(Maynard_Layer_Markers = ifelse(
+test = Maynard_Layer_Markers == 7,
+yes = 6,
+no = Maynard_Layer_Markers
+))
+Compared_Layer_Markers_filtered %>%
+group_by(Maynard_Layer_Markers) %>%
+summarize(n())
+Compared_Layer_Markers <- tibble(
+gene_symbol = Compared_gene_list,
+He_Layer_Markers = He_Layer_Markers$layer_marker,
+Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker)
+## Re-format ##
+Compared_Layer_Markers %<>%
+mutate(He_Layer_Markers = gsub("L", "", He_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("Layer", "", Maynard_Layer_Markers)) %>%
+mutate(Maynard_Layer_Markers = gsub("WM", "7", Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
+na.exclude()
+Compared_Layer_Markers_filtered$He_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$He_Layer_Markers))
+Compared_Layer_Markers_filtered$Maynard_Layer_Markers <- as.numeric(as.character(Compared_Layer_Markers_filtered$Maynard_Layer_Markers))
+Compared_Layer_Markers_filtered %<>%
+mutate(Maynard_Layer_Markers = ifelse(
+test = Maynard_Layer_Markers == 7,
+yes = 6,
+no = Maynard_Layer_Markers
+)) %<>%
+mutate(match = ifelse(
+test = (abs(Maynard_Layer_Markers - He_Layer_Markers) < 2),
+yes = "YES",
+no = "NO"
+))
+Compared_Layer_Markers_filtered %>%
+group_by(match) %>%
+summarize(n())
+View(Zeng_layer3_gene_list)
+Zeng_layer1_gene_list
+View(Zeng_dataset)
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(magrittr)
+library(HGNChelper)
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+library(here)
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+View(Zeng_dataset)
+Zeng_dataset %<>%
+dplyr::select("Gene symbol", "Cortical marker (human)", "Level...20", "Pattern...21", "Level...22",
+"Pattern...23") %>%
+dplyr::rename(gene_symbol = "Gene symbol", cortical_marker_human = "Cortical marker (human)", V1_expression_level = "Level...20",
+V1_expression_pattern = "Pattern...21", V2_expression_level = "Level...22", V2_expression_pattern = "Pattern...23")
+#Separate by layer marker
+Zeng_dataset_expanded <- Zeng_dataset %>%
+mutate(cortical_marker_human = strsplit(as.character(cortical_marker_human), "[/+]|( or )")) %>%
+unnest(cortical_marker_human) %>%
+as_tibble()
+View(Zeng_dataset_expanded)
+Zeng_dataset_expanded %<>%
+mutate(cortical_marker_human = gsub("layer( )?","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("[?]","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("4c","4", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("5a","5", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("6b","6", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("([0-6])","layer \\1", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("VEC","vascular endothelial cell", cortical_marker_human))
+Zeng_dataset_cleaned <- Zeng_dataset_expanded %>%
+dplyr::filter(cortical_marker_human  != 'others' & cortical_marker_human != "laminar" | is.na(NA))
+check_ZengList <- checkGeneSymbols(Zeng_dataset_cleaned$gene_symbol, unmapped.as.na = TRUE, map = NULL,
+species = "human")
+#Update gene_symbol list
+Zeng_dataset_updated <- Zeng_dataset_cleaned
+Zeng_dataset_updated$gene_symbol <- check_ZengList$Suggested.Symbol
+#Remove alternative names
+Zeng_dataset_updated$gene_symbol<- gsub("///.*","", Zeng_dataset_updated$gene_symbol)
+#Remove rows with null values for gene_symbol
+Zeng_dataset_updated %<>%
+filter(!is.na(gene_symbol))
+Zeng_V1_V2_comparison <- Zeng_dataset_updated %>%
+mutate(Expression_comparison = ifelse(
+test = (V1_expression_level == V2_expression_level),
+yes = "SAME",
+no = "DIFFERENT"
+)) %>%
+mutate(Pattern_comparison = ifelse(
+test = (V1_expression_pattern == V2_expression_pattern),
+yes = "SAME",
+no = "DIFFERENT"
+))
+View(Zeng_V1_V2_comparison)
+View(Zeng_dataset)
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+Zeng_dataset %<>%
+dplyr::select("Gene symbol", "Cortical marker (human)", "h donor difference", "Level...20", "Pattern...21", "Level...22",
+"Pattern...23") %>%
+dplyr::rename(gene_symbol = "Gene symbol", cortical_marker_human = "Cortical marker (human)", V1_expression_level = "Level...20",
+V1_expression_pattern = "Pattern...21", V2_expression_level = "Level...22", V2_expression_pattern = "Pattern...23")
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+Zeng_dataset %<>%
+dplyr::select("Gene symbol", "Cortical marker (human)", "h donor difference", "Level...20", "Pattern...21", "Level...22",
+"Pattern...23") %>%
+dplyr::rename(gene_symbol = "Gene symbol", cortical_marker_human = "Cortical marker (human)", V1_expression_level = "Level...20",
+V1_expression_pattern = "Pattern...21", V2_expression_level = "Level...22", V2_expression_pattern = "Pattern...23")
+#Separate by layer marker
+Zeng_dataset_expanded <- Zeng_dataset %>%
+mutate(cortical_marker_human = strsplit(as.character(cortical_marker_human), "[/+]|( or )")) %>%
+unnest(cortical_marker_human) %>%
+as_tibble()
+#Assimilate layers
+Zeng_dataset_expanded %<>%
+mutate(cortical_marker_human = gsub("layer( )?","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("[?]","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("4c","4", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("5a","5", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("6b","6", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("([0-6])","layer \\1", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("VEC","vascular endothelial cell", cortical_marker_human))
+Zeng_dataset_cleaned <- Zeng_dataset_expanded %>%
+dplyr::filter(cortical_marker_human  != 'others' & cortical_marker_human != "laminar" | is.na(NA))
+#Check if gene_symbol list is updated
+check_ZengList <- checkGeneSymbols(Zeng_dataset_cleaned$gene_symbol, unmapped.as.na = TRUE, map = NULL,
+species = "human")
+#Update gene_symbol list
+Zeng_dataset_updated <- Zeng_dataset_cleaned
+Zeng_dataset_updated$gene_symbol <- check_ZengList$Suggested.Symbol
+#Remove alternative names
+Zeng_dataset_updated$gene_symbol<- gsub("///.*","", Zeng_dataset_updated$gene_symbol)
+#Remove rows with null values for gene_symbol
+Zeng_dataset_updated %<>%
+filter(!is.na(gene_symbol))
+Zeng_V1_V2_comparison <- Zeng_dataset_updated %>%
+mutate(Expression_comparison = ifelse(
+test = (V1_expression_level == V2_expression_level),
+yes = "SAME",
+no = "DIFFERENT"
+)) %>%
+mutate(Pattern_comparison = ifelse(
+test = (V1_expression_pattern == V2_expression_pattern),
+yes = "SAME",
+no = "DIFFERENT"
+))
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+Zeng_dataset %<>%
+dplyr::select("Gene symbol", "Cortical marker (human)", "h donor difference", "Level...20", "Pattern...21", "Level...22",
+"Pattern...23") %>%
+dplyr::rename(gene_symbol = "Gene symbol", cortical_marker_human = "Cortical marker (human)",
+h_donor_difference = "h donordifference", V1_expression_level = "Level...20",
+V1_expression_pattern = "Pattern...21", V2_expression_level = "Level...22", V2_expression_pattern = "Pattern...23")
+#Separate by layer marker
+Zeng_dataset_expanded <- Zeng_dataset %>%
+mutate(cortical_marker_human = strsplit(as.character(cortical_marker_human), "[/+]|( or )")) %>%
+unnest(cortical_marker_human) %>%
+as_tibble()
+#Assimilate layers
+Zeng_dataset_expanded %<>%
+mutate(cortical_marker_human = gsub("layer( )?","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("[?]","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("4c","4", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("5a","5", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("6b","6", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("([0-6])","layer \\1", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("VEC","vascular endothelial cell", cortical_marker_human))
+Zeng_dataset_cleaned <- Zeng_dataset_expanded %>%
+dplyr::filter(cortical_marker_human  != 'others' & cortical_marker_human != "laminar" | is.na(NA))
+#Check if gene_symbol list is updated
+check_ZengList <- checkGeneSymbols(Zeng_dataset_cleaned$gene_symbol, unmapped.as.na = TRUE, map = NULL,
+species = "human")
+#Update gene_symbol list
+Zeng_dataset_updated <- Zeng_dataset_cleaned
+Zeng_dataset_updated$gene_symbol <- check_ZengList$Suggested.Symbol
+#Remove alternative names
+Zeng_dataset_updated$gene_symbol<- gsub("///.*","", Zeng_dataset_updated$gene_symbol)
+#Remove rows with null values for gene_symbol
+Zeng_dataset_updated %<>%
+filter(!is.na(gene_symbol))
+Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
+Zeng_dataset %<>%
+dplyr::select("Gene symbol", "Cortical marker (human)", "h donor difference", "Level...20", "Pattern...21", "Level...22",
+"Pattern...23") %>%
+dplyr::rename(gene_symbol = "Gene symbol", cortical_marker_human = "Cortical marker (human)",
+h_donor_difference = "h donordifference", V1_expression_level = "Level...20",
+V1_expression_pattern = "Pattern...21", V2_expression_level = "Level...22", V2_expression_pattern = "Pattern...23")
+Zeng_dataset %<>%
+dplyr::select("Gene symbol", "Cortical marker (human)", "h donor difference", "Level...20", "Pattern...21", "Level...22",
+"Pattern...23") %>%
+dplyr::rename(gene_symbol = "Gene symbol", cortical_marker_human = "Cortical marker (human)",
+h_donor_difference = "h donor difference", V1_expression_level = "Level...20",
+V1_expression_pattern = "Pattern...21", V2_expression_level = "Level...22", V2_expression_pattern = "Pattern...23")
+#Separate by layer marker
+Zeng_dataset_expanded <- Zeng_dataset %>%
+mutate(cortical_marker_human = strsplit(as.character(cortical_marker_human), "[/+]|( or )")) %>%
+unnest(cortical_marker_human) %>%
+as_tibble()
+#Assimilate layers
+Zeng_dataset_expanded %<>%
+mutate(cortical_marker_human = gsub("layer( )?","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("[?]","", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("4c","4", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("5a","5", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("6b","6", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("([0-6])","layer \\1", cortical_marker_human)) %<>%
+mutate(cortical_marker_human = gsub("VEC","vascular endothelial cell", cortical_marker_human))
+Zeng_dataset_cleaned <- Zeng_dataset_expanded %>%
+dplyr::filter(cortical_marker_human  != 'others' & cortical_marker_human != "laminar" | is.na(NA))
+#Check if gene_symbol list is updated
+check_ZengList <- checkGeneSymbols(Zeng_dataset_cleaned$gene_symbol, unmapped.as.na = TRUE, map = NULL,
+species = "human")
+#Update gene_symbol list
+Zeng_dataset_updated <- Zeng_dataset_cleaned
+Zeng_dataset_updated$gene_symbol <- check_ZengList$Suggested.Symbol
+#Remove alternative names
+Zeng_dataset_updated$gene_symbol<- gsub("///.*","", Zeng_dataset_updated$gene_symbol)
+#Remove rows with null values for gene_symbol
+Zeng_dataset_updated %<>%
+filter(!is.na(gene_symbol))
+Zeng_h_donor_difference <- Zeng_dataset_updated %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE)
+View(Zeng_h_donor_difference)
+Zeng_h_donor_difference <- Zeng_V1_V2_comparison %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE)
+Zeng_V1_V2_comparison <- Zeng_dataset_updated %>%
+mutate(Expression_comparison = ifelse(
+test = (V1_expression_level == V2_expression_level),
+yes = "SAME",
+no = "DIFFERENT"
+)) %>%
+mutate(Pattern_comparison = ifelse(
+test = (V1_expression_pattern == V2_expression_pattern),
+yes = "SAME",
+no = "DIFFERENT"
+))
+Zeng_h_donor_difference <- Zeng_V1_V2_comparison %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE)
+count(distinct(Zeng_h_donor_difference$gene_symbol))
+count(unique(Zeng_h_donor_difference$gene_symbol))
+unique(Zeng_h_donor_difference$gene_symbol)
+rm(Zeng_h_donor_difference)
+Zeng_V1_V2_comparison %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE)
+Zeng_V1_V2_comparison %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE) %>%
+group_by(gene_symbol) %>%
+summarize()
+Zeng_V1_V2_comparison %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE) %>%
+group_by(gene_symbol) %>%
+summarize(n())
+Zeng_V1_V2_comparison %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE) %>%
+group_by(Expression_comparison) %>%
+summarize(n())
+Zeng_V1_V2_comparison %>%
+filter(h_donor_difference == "diff", .keep_all = TRUE) %>%
+group_by(Pattern_comparison) %>%
+summarize(n())
+Zeng_V1_V2_comparison %>%
+filter(Expression_comparison == "SAME", .keep_all = TRUE) %>%
+group_by(gene_symbol) %>%
+summarize()
+Zeng_V1_V2_comparison %>%
+filter(Expression_comparison == "DIFFERENT", .keep_all = TRUE) %>%
+group_by(gene_symbol) %>%
+summarize()
+Zeng_V1_V2_comparison %>%
+group_by(Expression_comparison) %>%
+summarize(n())
+Zeng_V1_V2_comparison %>%
+group_by(Pattern_comparison) %>%
+summarize(n())
+Zeng_V1_V2_comparison %>%
+filter(Expression_comparison == NA) %>%
+summarize(n())
+Zeng_V1_V2_comparison %>%
+filter(Expression_comparison == NA)
+Zeng_V1_V2_comparison %>%
+group_by(Expression_comparison) %>%
+summarize(n())
