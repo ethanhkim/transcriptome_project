@@ -9,6 +9,7 @@ library(annotate)
 library(GO.db)
 library(tmod)
 library(org.Hs.eg.db) 
+library(here)
 
 #Input parameters:
 
@@ -17,70 +18,37 @@ maxGOgroupSize <- 200
 minGOgroupSize <- 10
 methodToUse <- "AUC" #either "AUC" or "hyper" depending on AUC or hypergeometric test
 datasetToUse <- "Maynard" #either "Maynard" or "He" depending on if analyzing Maynard et al, or He et al data, respectively
-databaseToUse <- "Phenocarta" #to indicate that you want to use Phenocarta, or "DisGeNet" to indicate you want to use DisGeNet
+databaseToUse <- "DisGeNet" 
 goSource <- 'org.Hs.eg'
 
+
+# Adapted from Leon French - code to create gene sets from tmod using DisGeNet Disease Ontology annotations
+disgenet <- read_tsv(paste0(here("Data", "genelists", "DisGeNet", "curated_gene_disease_associations.tsv"))) 
+disgenet %<>% dplyr::select(symbol = geneSymbol, name = diseaseName, ID = diseaseId)
+disgenet %<>% filter(symbol %in% geneBackground)
+  
+geneLists <- group_by(disgenet, ID) %>% 
+  dplyr::summarise(name = paste(unique(name), collapse = ","), genes = unique(list(symbol)), size = dplyr::n()) %>% 
+  filter(size >= minGOgroupSize & size <= maxGOgroupSize) 
+namedLists <- geneLists$genes
+names(namedLists) <- geneLists$ID
+idToName <- data.frame(ID = geneLists$ID, Title = geneLists$name)
+geneSets <- makeTmod(modules = idToName, modules2genes = namedLists)
+geneSetsTable <- tmod2DataFrame(geneSets)
+  
+
 #Specifying layers is done within the script - find "Change per layer to examine:"
-
-
-#Create different geneBackground depending on the dataset specified
-if (datasetToUse == "Maynard") {
-  geneBackground <- Maynard_dataset_average %>%
-    dplyr::select(gene_symbol) %>%
-    pull ()
-  names(geneBackground) <- geneBackground
-  geneBackground <- sort(unique(names(as.list(geneBackground))))
-} else {
-  geneBackground <- He_DS1_Human_averaged %>%
-    dplyr::select(gene_symbol) %>%
-    pull ()
-  names(geneBackground) <- geneBackground
-  geneBackground <- sort(unique(names(as.list(geneBackground))))
-}
-
-
-# Adapted from Leon French
-if (databaseToUse == "Phenocarta") { #assumes taxon == "human"; guess column types from the whole dataset, basically
-  
-  phenocarta <- read_tsv(here("Data", "genelists", "AllPhenocartaAnnotations.tsv"), skip = 4, guess_max = 130000)
-  phenocarta$ID <- gsub("http://purl.obolibrary.org/obo/", "", phenocarta$`Phenotype URIs`)
-  phenocarta <- dplyr::filter(phenocarta, Taxon == "human") %>% dplyr::select(symbol = `Gene Symbol`, name = `Phenotype Names`, ID) %>% filter(symbol %in% geneBackground) %>% distinct()
-  geneLists <- phenocarta %>% group_by(ID) %>% summarize(name = paste(unique(name), collapse = ","), genes = unique(list(symbol)), size = dplyr::n()) %>% filter(size > 5 & size < 200) 
-  #distinct(geneLists)
-  namedLists <- geneLists$genes
-  names(namedLists) <- geneLists$ID
-  idToName <- data.frame(ID = geneLists$ID, Title = geneLists$name)
-  geneSets <- makeTmod(modules = idToName, modules2genes = namedLists)
-  geneSetsTable <- tmod2DataFrame(geneSets)
-  
-} else { #if databaseToUse == "DisGeNet
-  
-  disgenet <- read_tsv(paste0(here("Data", "genelists", "DisGeNet", "curated_gene_disease_associations.tsv"))) 
-  disgenet %<>% dplyr::select(symbol = geneSymbol, name = diseaseName, ID = diseaseId)
-  disgenet %<>% filter(symbol %in% geneBackground)
-  
-  geneLists <- group_by(disgenet, ID) %>% 
-    dplyr::summarise(name = paste(unique(name), collapse = ","), genes = unique(list(symbol)), size = dplyr::n()) %>% 
-    filter(size >= minGOgroupSize & size <= maxGOgroupSize) 
-  namedLists <- geneLists$genes
-  names(namedLists) <- geneLists$ID
-  idToName <- data.frame(ID = geneLists$ID, Title = geneLists$name)
-  geneSets <- makeTmod(modules = idToName, modules2genes = namedLists)
-  geneSetsTable <- tmod2DataFrame(geneSets)
-  
-}
-
 if (methodToUse == "AUC") {
   if (datasetToUse == "Maynard") {
     Maynard_genelist <- Maynard_dataset_average %>%
-      arrange(desc(Layer_3)) %>%  # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
+      arrange(desc(Layer_2)) %>% # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
       dplyr::select(gene_symbol) %>%
       pull()
     names(Maynard_genelist) <- Maynard_genelist 
     sortedGenes <- unique(names(as.list(Maynard_genelist)))
   } else { #if datasetToUse == "He"
     He_genelist <- He_DS1_Human_averaged %>%
-      arrange(desc(Layer_3)) %>% # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
+      arrange(desc(Layer_4)) %>% # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
       dplyr::select(gene_symbol) %>%
       pull()
     names(He_genelist) <- He_genelist 
@@ -90,7 +58,7 @@ if (methodToUse == "AUC") {
   #Creates a top and bottom 20 list of ontology definitions using AUC
   result <- tbl_df(tmodUtest(c(sortedGenes), mset=geneSets, qval = 1.01, filter = T))
   result %<>% rowwise() %>% mutate(P.Value = P.Value * 2) %>% ungroup() %>% mutate(adj.P.Val=p.adjust(P.Value, method="fdr")) #tmod runs one-sided tests
-  result %<>% rowwise() %>% mutate(aspect = Ontology(ID)) #add the source ontology (could be filterd for just biological process)
+  result %<>% rowwise() %>% mutate(aspect = Ontology(ID)) #add the source ontology (could be filtered for just biological process)
   
   #collapse genesets that have the exact same set of genes
   result %<>% rowwise() %>% mutate(genes = paste(sort(unlist(geneSets$MODULES2GENES[ID])), collapse = " "))
@@ -134,8 +102,8 @@ if (methodToUse == "AUC") {
 } else { #if method == "hyper"
   if (datasetToUse == "Maynard") {
     Maynard_genelist <- Maynard_dataset_average %>%
-      dplyr::select(gene_symbol, Layer_5_marker) %>% # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
-      filter(!is.na(Layer_5_marker)) %>% # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
+      dplyr::select(gene_symbol, Layer_1_marker) %>%
+      filter(!is.na(Layer_1_marker)) %>%
       dplyr::select(gene_symbol) %>%
       pull()
     names(Maynard_genelist) <- Maynard_genelist 
@@ -149,8 +117,8 @@ if (methodToUse == "AUC") {
     sortedGenes <- sort(unique(names(as.list(sortedGenes))))
   } else { #if datasetToUse == "He"
     He_genelist <- He_DS1_Human_averaged %>%
-      dplyr::select(gene_symbol, Layer_1_marker) %>% # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
-      filter(!is.na(Layer_1_marker)) %>% # Change per layer to examine: Layer_1, Layer_2, Layer_3, Layer_4, Layer_5, Layer_6
+      dplyr::select(gene_symbol, Layer_1_marker) %>%
+      filter(!is.na(Layer_1_marker)) %>%
       dplyr::select(gene_symbol) %>%
       pull()
     names(He_genelist) <- He_genelist 
@@ -163,6 +131,24 @@ if (methodToUse == "AUC") {
     names(sortedGenes) <- sortedGenes
     sortedGenes <- sort(unique(names(as.list(sortedGenes))))
   }
+  
+  
+  #Create different geneBackground depending on the dataset specified
+  if (datasetToUse == "Maynard") {
+    geneBackground <- Maynard_dataset_average %>%
+      dplyr::select(gene_symbol) %>%
+      pull ()
+    names(geneBackground) <- geneBackground
+    geneBackground <- sort(unique(names(as.list(geneBackground))))
+  } else {
+    geneBackground <- He_DS1_Human_averaged %>%
+      dplyr::select(gene_symbol) %>%
+      pull ()
+    names(geneBackground) <- geneBackground
+    geneBackground <- sort(unique(names(as.list(geneBackground))))
+  }
+  
+  
   #this just compares two lists and creates a top 20 list using a hypergeometric test
   result <- tbl_df(tmodHGtest(fg = hitListGenes, bg = sortedGenes, mset=geneSets, qval = 1.01, filter = T))
   
@@ -173,7 +159,3 @@ if (methodToUse == "AUC") {
   #print top 20 
   print(head(result %>% dplyr::select(-ID, -E, -rank), n=20))
 }
-
-
-
-
