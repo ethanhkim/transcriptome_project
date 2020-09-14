@@ -18,10 +18,16 @@ singlecellMatrix_url <- "https://idk-etl-prod-download-bucket.s3.amazonaws.com/a
 allen_singlecellMatrix <- download.file(singlecellMatrix_url, singlecellMatrix_dest)
 
 
+# Read in matrix metadata
+metadata <- fread(here("Data", "Allen", "singlecellMetadata.csv"), header = T) %>%
+  dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
+  as_tibble()
+
+region_label <- unique(metadata$region_label)
 
 # Function to read in Allen sc-RNAseq matrix and associated metadata separate the data into regions
 
-lengthen_allen_scRNAseq_data <- function() {
+separate_by_region <- function(region) {
   
   metadata <- fread(here("Data", "Allen", "singlecellMetadata.csv"), header = T) %>%
     dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
@@ -37,6 +43,7 @@ lengthen_allen_scRNAseq_data <- function() {
   matrix %<>%
     dplyr::select(sample_name, class_label, region_label, cortical_layer_label, everything()) %>%
     filter(outlier_call == FALSE) %>%
+    filter(region_label == region)
   metadata <- matrix %>%
     dplyr::select(sample_name:cortical_layer_label)
   matrix %<>%
@@ -53,28 +60,26 @@ lengthen_allen_scRNAseq_data <- function() {
   
 }
 
-# Refer to 2. Processing - Zeng et al data for Zeng data
-# Function to create layer markers from Zeng et al data
 
-Zeng_layer_marker <- function(Zeng_dataset, layer) {
-  
-  layer_markers <- Zeng_dataset %>%
-    dplyr::select(gene_symbol, marker_annotation) %>%
-    filter(marker_annotation == layer) %>%
-    distinct(gene_symbol) %>%
-    pull()
-  
-}
-
-Zeng_Layer1_markers <- Zeng_layer_marker(Zeng_dataset_long, "layer 1")
-Zeng_Layer2_markers <- Zeng_layer_marker(Zeng_dataset_long, "layer 2")
-Zeng_Layer3_markers <- Zeng_layer_marker(Zeng_dataset_long, "layer 3")
-Zeng_Layer4_markers <- Zeng_layer_marker(Zeng_dataset_long, "layer 4")
-Zeng_Layer5_markers <- Zeng_layer_marker(Zeng_dataset_long, "layer 5")
-Zeng_Layer6_markers <- Zeng_layer_marker(Zeng_dataset_long, "layer 6")
+A1C_matrix <- separate_by_region("A1C")
+MTG_matrix <- separate_by_region("MTG")
+V1C_matrix <- separate_by_region("V1C")
+CgG_matrix <- separate_by_region("CgG")
+M1lm_matrix <- separate_by_region("M1lm")
+M1ul_matrix <- separate_by_region("M1ul")
+S1ul_matrix <- separate_by_region("S1ul")
+S1lm_matrix <- separate_by_region("S1lm")
 
 
-allen_matrix_long <- lengthen_allen_scRNAseq_data()
+
+write.csv(A1C_matrix, here("Data", "Allen", "A1C_matrix.csv"))
+write.csv(MTG_matrix, here("Data", "Allen", "MTG_matrix.csv"))
+write.csv(V1C_matrix, here("Data", "Allen", "V1C_matrix.csv"))
+write.csv(CgG_matrix, here("Data", "Allen", "CgG_matrix.csv"))
+write.csv(M1lm_matrix, here("Data", "Allen", "M1lm_matrix.csv"))
+write.csv(M1ul_matrix, here("Data", "Allen", "M1ul_matrix.csv"))
+write.csv(S1ul_matrix, here("Data", "Allen", "S1ul_matrix.csv"))
+write.csv(S1lm_matrix, here("Data", "Allen", "S1lm_matrix.csv"))
 
 allen_singlecellMatrix_A1C <- lengthen_allen_scRNAseq_data("A1C")
 
