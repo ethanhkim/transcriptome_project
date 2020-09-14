@@ -16,7 +16,6 @@ singlecellMatrix_dest <- here("Data", "Allen", "singlecellMatrix.csv")
 singlecellMatrix_url <- "https://idk-etl-prod-download-bucket.s3.amazonaws.com/aibs_human_ctx_smart-seq/matrix.csv"
 allen_singlecellMatrix <- download.file(singlecellMatrix_url, singlecellMatrix_dest)
 
-
 # Function to read in Allen sc-RNAseq matrix and associated metadata separate the data into regions
 
 separate_by_region <- function(region) {
@@ -52,7 +51,10 @@ separate_by_region <- function(region) {
   
 }
 
+<<<<<<< HEAD
 # Separate into region-specific data in long-form
+=======
+>>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
 
 A1C_matrix <- separate_by_region("A1C")
 MTG_matrix <- separate_by_region("MTG")
@@ -63,7 +65,11 @@ M1ul_matrix <- separate_by_region("M1ul")
 S1ul_matrix <- separate_by_region("S1ul")
 S1lm_matrix <- separate_by_region("S1lm")
 
+<<<<<<< HEAD
 # Save region-specific long-form data in CSV for webapp
+=======
+
+>>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
 
 write.csv(A1C_matrix, here("Data", "Allen", "A1C_matrix.csv"))
 write.csv(MTG_matrix, here("Data", "Allen", "MTG_matrix.csv"))
@@ -73,4 +79,27 @@ write.csv(M1lm_matrix, here("Data", "Allen", "M1lm_matrix.csv"))
 write.csv(M1ul_matrix, here("Data", "Allen", "M1ul_matrix.csv"))
 write.csv(S1ul_matrix, here("Data", "Allen", "S1ul_matrix.csv"))
 write.csv(S1lm_matrix, here("Data", "Allen", "S1lm_matrix.csv"))
+<<<<<<< HEAD
+=======
+
+allen_singlecellMatrix_A1C <- lengthen_allen_scRNAseq_data("A1C")
+
+allen_singlecellMatrix_A1C_L1 <- allen_singlecellMatrix_A1C %>%
+  filter(gene %in% Zeng_Layer1_markers)
+
+
+allen_singlecellMatrix_A1C_L1 %>%
+  ggplot(aes(x = class_label, y = mean_exp_value, fill = gene)) +
+  geom_col(position = "dodge") +
+  facet_wrap( ~ cortical_layer_label)
+
+allen_singlecellMatrix_A1C %>%
+  ggplot(aes(x = cortical_layer_label, y = class_label, fill = mean_exp_value)) +
+  geom_tile() +
+  scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1)*max(abs(allen_singlecellMatrix_A1C$mean_exp_value))) +
+  scale_y_discrete(expand=c(0,0)) + scale_x_discrete(expand=c(0,0))
+
+
+
+>>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
 
