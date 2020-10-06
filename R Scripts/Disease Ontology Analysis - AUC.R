@@ -141,9 +141,11 @@ combined_table_Layer6 <- combine_pval_AUC_table(Maynard_AUC_table_Layer6, He_AUC
 
 
 #Summarize top 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
-print(head(filter(combined_table_Layer2, ((AUC_Maynard > 0.5 | AUC_He > 0.5) & adj_combined_p_value < 0.05)), n=20)) #insert combined tables
+print(head(filter(combined_table_Layer1, ((AUC_Maynard > 0.5 | AUC_He > 0.5) & adj_combined_p_value < 0.05)), n=20)) #insert combined tables
 
 
 #Summarize bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
 print(head(filter(combined_table_Layer2, ((AUC_Maynard < 0.5 | AUC_He < 0.5) & adj_combined_p_value < 0.05)), n=20)) #insert combined tables
+
+?fisher.method
 
