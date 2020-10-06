@@ -40,6 +40,7 @@ separate_by_region <- function(region) {
   matrix %<>%
     dplyr::select(-class_label, -region_label, -cortical_layer_label) %>%
     column_to_rownames(var = "sample_name") %>%
+    #set by gene, not for the whole dataset
     scale() %>%
     as.data.frame() %>%
     rownames_to_column(var = "sample_name") %>%
@@ -51,10 +52,8 @@ separate_by_region <- function(region) {
   
 }
 
-<<<<<<< HEAD
 # Separate into region-specific data in long-form
-=======
->>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
+
 
 A1C_matrix <- separate_by_region("A1C")
 MTG_matrix <- separate_by_region("MTG")
@@ -65,11 +64,9 @@ M1ul_matrix <- separate_by_region("M1ul")
 S1ul_matrix <- separate_by_region("S1ul")
 S1lm_matrix <- separate_by_region("S1lm")
 
-<<<<<<< HEAD
-# Save region-specific long-form data in CSV for webapp
-=======
 
->>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
+# Save region-specific long-form data in CSV for webapp
+
 
 write.csv(A1C_matrix, here("Data", "Allen", "A1C_matrix.csv"))
 write.csv(MTG_matrix, here("Data", "Allen", "MTG_matrix.csv"))
@@ -79,27 +76,102 @@ write.csv(M1lm_matrix, here("Data", "Allen", "M1lm_matrix.csv"))
 write.csv(M1ul_matrix, here("Data", "Allen", "M1ul_matrix.csv"))
 write.csv(S1ul_matrix, here("Data", "Allen", "S1ul_matrix.csv"))
 write.csv(S1lm_matrix, here("Data", "Allen", "S1lm_matrix.csv"))
-<<<<<<< HEAD
-=======
 
-allen_singlecellMatrix_A1C <- lengthen_allen_scRNAseq_data("A1C")
-
-allen_singlecellMatrix_A1C_L1 <- allen_singlecellMatrix_A1C %>%
-  filter(gene %in% Zeng_Layer1_markers)
-
-
-allen_singlecellMatrix_A1C_L1 %>%
-  ggplot(aes(x = class_label, y = mean_exp_value, fill = gene)) +
-  geom_col(position = "dodge") +
-  facet_wrap( ~ cortical_layer_label)
-
-allen_singlecellMatrix_A1C %>%
-  ggplot(aes(x = cortical_layer_label, y = class_label, fill = mean_exp_value)) +
-  geom_tile() +
-  scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1)*max(abs(allen_singlecellMatrix_A1C$mean_exp_value))) +
-  scale_y_discrete(expand=c(0,0)) + scale_x_discrete(expand=c(0,0))
+# Merge ul and lm regions together
 
 
 
->>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
+
+#read in CSV
+M1ul_matrix <- read.csv(here("Data", "Allen", "M1ul_matrix.csv")) %>%
+  select(-X) %>%
+  unite("gene_id", gene:cortical_layer_label, sep = ",") %>%
+  column_to_rownames(var = "gene_id")
+  
+
+M1lm_matrix <- read.csv(here("Data", "Allen", "M1lm_matrix.csv")) %>%
+  select(-X) %>%
+  unite("gene_id", gene:cortical_layer_label, sep = ",") %>%
+  column_to_rownames(var = "gene_id")
+
+M1_matrix <- M1ul_matrix %>%
+  add_column(median_exp_val_M1lm = M1lm_matrix$median_exp_value)
+M1_matrix$mean_exp <- rowMeans(M1_matrix[1:2], na.rm = T) 
+M1_matrix %<>%
+  select(mean_exp) %>%
+  rownames_to_column("labels") %>%
+  separate("labels", into = c("gene", "class_label", "region_label", "cortical_layer_label"), sep = ",") %>%
+  mutate(region_label = gsub("1ul", "1", region_label)) %>%
+  rename("expression" = mean_exp)
+
+
+#read in CSV
+S1ul_matrix <- read.csv(here("Data", "Allen", "S1ul_matrix.csv")) %>%
+  select(-X) %>%
+  unite("gene_id", gene:cortical_layer_label, sep = ",") %>%
+  column_to_rownames(var = "gene_id")
+
+
+S1lm_matrix <- read.csv(here("Data", "Allen", "S1lm_matrix.csv")) %>%
+  select(-X) %>%
+  unite("gene_id", gene:cortical_layer_label, sep = ",") %>%
+  column_to_rownames(var = "gene_id")
+
+S1_matrix <- S1ul_matrix %>%
+  add_column(median_exp_val_S1lm = S1lm_matrix$median_exp_value)
+S1_matrix$mean_exp <- rowMeans(S1_matrix[1:2], na.rm = T) 
+S1_matrix %<>%
+  select(mean_exp) %>%
+  rownames_to_column("labels") %>%
+  separate("labels", into = c("gene", "class_label", "region_label", "cortical_layer_label"), sep = ",") %>%
+  mutate(region_label = gsub("1ul", "1", region_label)) %>%
+  mutate_at(vars(mean_exp), ~replace(., is.nan(.), NA)) %>%
+  rename("expression" = mean_exp)
+
+write.csv(M1_matrix, here("Data", "Allen", "M1_matrix.csv")) 
+write.csv(S1_matrix, here("Data", "Allen", "S1_matrix.csv"))
+  
+
+A1C_matrix <- read.csv(here("Data", "Allen", "A1C_matrix.csv")) %>%
+  select(-X) %>%
+  rename("expression" = median_exp_value)
+MTG_matrix <- read.csv(here("Data", "Allen", "MTG_matrix.csv")) %>%
+  select(-X) %>%
+  rename("expression" = median_exp_value)
+V1C_matrix <- read.csv(here("Data", "Allen", "V1C_matrix.csv")) %>%
+  select(-X) %>%
+  rename("expression" = median_exp_value)
+CgG_matrix <- read.csv(here("Data", "Allen", "CgG_matrix.csv")) %>%
+  select(-X) %>%
+  rename("expression" = median_exp_value)
+
+
+merged_allen_scRNA_data_long <- rbind(A1C_matrix, MTG_matrix, V1C_matrix, CgG_matrix, S1_matrix, M1_matrix)
+merged_allen_scRNA_data_matrix <- merged_allen_scRNA_data_long %>%
+  pivot_wider(
+  names_from = cortical_layer_label,
+  values_from = expression
+) %>%
+  select(gene, class_label, region_label, L1, L2, L3, L4, L4ab, L5, L5a, L5b, L6, L6a, L6b, WM) %>%
+  rename(gene_symbol = gene) %>%
+  rowwise() %>%
+  mutate(L4 = mean(c(L4, L4ab), na.rm = T)) %>%
+  mutate(L5 = mean(c(L5, L5a, L5b), na.rm = T)) %>%
+  mutate(L6 = mean(c(L6, L6a, L6b), na.rm = T)) %>%
+  select(gene_symbol, class_label, region_label, L1, L2, L3, L4, L5, L6, WM) %>%
+  mutate_at(vars(contains("L")), ~replace(., is.nan(.), NA)) %>%
+  rename(Layer_1 = L1, Layer_2 = L2, Layer_3 = L3, Layer_4 = L4, Layer_5 = L5, Layer_6 = L6)
+
+write.csv(merged_allen_scRNA_data_long, here("Data", "Allen", "merged_Allen_scRNA_data_long.csv"))
+write.csv(merged_allen_scRNA_data_matrix, here("Data", "Allen", "merged_Allen_scRNA_data_matrix.csv"))
+save(merged_allen_scRNA_data_matrix, file = here("Data", "Allen", "merged_Allen_scRNA_data_matrix.Rdata"))
+save(MTG_matrix, file = here("Data", "Allen", "MTG_matrix.Rdata"))
+
+
+
+
+
+
+
+
 
