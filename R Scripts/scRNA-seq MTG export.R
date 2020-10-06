@@ -1,4 +1,4 @@
-library(moments)
+#Script to scale and export MTG scRNA-seq data from Allen
 
 scale_this <- function(x){
   (x - mean(x, na.rm=TRUE)) / sd(x, na.rm=TRUE)
@@ -21,7 +21,7 @@ matrix %<>%
   dplyr::select(sample_name, class_label, region_label, cortical_layer_label, everything()) %>%
   filter(outlier_call == FALSE) %>%
   filter(region_label == "MTG")
-  
+
 metadata <- matrix %>%
   dplyr::select(sample_name:cortical_layer_label)
 
@@ -50,15 +50,15 @@ test %>%
   scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1)*max(abs(test$median_exp_value))) +
   scale_y_discrete(expand=c(0,0)) + scale_x_discrete(expand=c(0,0))
 
-  group_by(class_label) %>%
+group_by(class_label) %>%
   group_by(gene) %>%
   scale_this()
-  dplyr::select(-class_label, -region_label, -cortical_layer_label) %>%
+dplyr::select(-class_label, -region_label, -cortical_layer_label) %>%
   column_to_rownames(var = "sample_name") %>%
   group_by(class_label) %>%
   group_by(gene) %>%
   scale_this()
-  scale() %>%
+scale() %>%
   as.data.frame() %>%
   rownames_to_column(var = "sample_name") %>%
   merge(metadata, by = "sample_name") %>%

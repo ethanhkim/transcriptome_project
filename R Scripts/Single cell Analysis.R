@@ -6,8 +6,7 @@ library(dplyr)
 library(tidyr)
 
 
-
-# Download Allen sc-RNAseq matrix and metadata
+# Download Allen sc-RNAseq matrix and metadata for CAMH SCC
 
 singlecellMetadata_dest <- here("Data", "Allen", "singlecellMetadata.csv")
 singlecellMetadata_url <- "https://idk-etl-prod-download-bucket.s3.amazonaws.com/aibs_human_ctx_smart-seq/metadata.csv"
@@ -17,7 +16,10 @@ singlecellMatrix_dest <- here("Data", "Allen", "singlecellMatrix.csv")
 singlecellMatrix_url <- "https://idk-etl-prod-download-bucket.s3.amazonaws.com/aibs_human_ctx_smart-seq/matrix.csv"
 allen_singlecellMatrix <- download.file(singlecellMatrix_url, singlecellMatrix_dest)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1936333483675149dafcbe0a15a472735421bf81
 # Function to read in Allen sc-RNAseq matrix and associated metadata separate the data into regions
 separate_by_region <- function(region) {
   
@@ -52,7 +54,15 @@ separate_by_region <- function(region) {
   
 }
 
+<<<<<<< HEAD
 #Separate by region
+=======
+<<<<<<< HEAD
+# Separate into region-specific data in long-form
+=======
+>>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
+
+>>>>>>> 1936333483675149dafcbe0a15a472735421bf81
 A1C_matrix <- separate_by_region("A1C")
 MTG_matrix <- separate_by_region("MTG")
 V1C_matrix <- separate_by_region("V1C")
@@ -62,7 +72,16 @@ M1ul_matrix <- separate_by_region("M1ul")
 S1ul_matrix <- separate_by_region("S1ul")
 S1lm_matrix <- separate_by_region("S1lm")
 
+<<<<<<< HEAD
 #Write matrices to csv
+=======
+<<<<<<< HEAD
+# Save region-specific long-form data in CSV for webapp
+=======
+
+>>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
+
+>>>>>>> 1936333483675149dafcbe0a15a472735421bf81
 write.csv(A1C_matrix, here("Data", "Allen", "A1C_matrix.csv"))
 write.csv(MTG_matrix, here("Data", "Allen", "MTG_matrix.csv"))
 write.csv(V1C_matrix, here("Data", "Allen", "V1C_matrix.csv"))
@@ -71,8 +90,11 @@ write.csv(M1lm_matrix, here("Data", "Allen", "M1lm_matrix.csv"))
 write.csv(M1ul_matrix, here("Data", "Allen", "M1ul_matrix.csv"))
 write.csv(S1ul_matrix, here("Data", "Allen", "S1ul_matrix.csv"))
 write.csv(S1lm_matrix, here("Data", "Allen", "S1lm_matrix.csv"))
+<<<<<<< HEAD
+=======
 
 
 
 
+>>>>>>> 0da6db4d7849688623b51264de08d0f96a5c98c6
 
