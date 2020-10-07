@@ -5,7 +5,7 @@ library(magrittr)
 library(dplyr)
 library(tidyr)
 
-
+## OUTDATED SCRIPT ##
 # Download Allen sc-RNAseq matrix and metadata for CAMH SCC
 
 singlecellMetadata_dest <- here("Data", "Allen", "singlecellMetadata.csv")
@@ -40,6 +40,7 @@ separate_by_region <- function(region) {
   
 }
 
+<<<<<<< HEAD
 metadata <- fread("/Users/ethankim/Desktop/transcriptome_project/Data/Allen/metadata.csv", header = T) %>%
   dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
   as_tibble()
@@ -141,5 +142,16 @@ save(MTG_matrix, file = here("Data", "Allen", "MTG_matrix.Rdata"))
 
 
 
+#Write matrices to csv
 
+# Save region-specific long-form data in CSV for webapp
+
+write.csv(A1C_matrix, here("Data", "Allen", "A1C_matrix.csv"))
+write.csv(MTG_matrix, here("Data", "Allen", "MTG_matrix.csv"))
+write.csv(V1C_matrix, here("Data", "Allen", "V1C_matrix.csv"))
+write.csv(CgG_matrix, here("Data", "Allen", "CgG_matrix.csv"))
+write.csv(M1lm_matrix, here("Data", "Allen", "M1lm_matrix.csv"))
+write.csv(M1ul_matrix, here("Data", "Allen", "M1ul_matrix.csv"))
+write.csv(S1ul_matrix, here("Data", "Allen", "S1ul_matrix.csv"))
+write.csv(S1lm_matrix, here("Data", "Allen", "S1lm_matrix.csv"))
 
