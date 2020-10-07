@@ -5,8 +5,8 @@ scale_this <- function(x){
 }
 
 region_specific_scRNA_df <- function(region) {
- 
-   metadata <- fread(here("Data", "Allen", "singlecellMetadata.csv"), header = T) %>%
+  
+  metadata <- fread(here("Data", "Allen", "singlecellMetadata.csv"), header = T) %>%
     dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
     as_tibble()
   matrix <- fread(here("Data", "Allen", "singlecellMatrix.csv"), header = T, integer64 = "numeric") %>%
@@ -26,7 +26,7 @@ region_specific_scRNA_df <- function(region) {
   
   allen_MTG_matrix <- matrix %>%
     filter(region_label == region)
-    gather("gene", "expression_value", -c("sample_name", "class_label", "region_label", "cortical_layer_label"))
+  gather("gene", "expression_value", -c("sample_name", "class_label", "region_label", "cortical_layer_label"))
 }
 
 scale_by_celltype <- function(MTG_data, cellType) {
