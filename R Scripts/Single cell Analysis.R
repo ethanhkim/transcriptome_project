@@ -16,14 +16,14 @@ singlecellMatrix_dest <- here("Data", "Allen", "singlecellMatrix.csv")
 singlecellMatrix_url <- "https://idk-etl-prod-download-bucket.s3.amazonaws.com/aibs_human_ctx_smart-seq/matrix.csv"
 allen_singlecellMatrix <- download.file(singlecellMatrix_url, singlecellMatrix_dest)
 
-# Function to read in Allen sc-RNAseq matrix and associated metadata separate the data into regions
 
+# Function to read in Allen sc-RNAseq matrix and associated metadata separate the data into regions
 separate_by_region <- function(region) {
   
-  metadata <- fread(here("Data", "Allen", "singlecellMetadata.csv"), header = T) %>%
+  metadata <- fread("/Users/ethankim/Desktop/transcriptome_project/Data/Allen/metadata.csv", header = T) %>%
     dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
     as_tibble()
-  matrix <- fread(here("Data", "Allen", "singlecellMatrix.csv"), header = T) %>%
+  matrix <- fread("/Users/ethankim/Desktop/transcriptome_project/Data/Allen/matrix.csv", header = T) %>%
     as_tibble()
   
   matrix$class_label <- metadata$class_label
@@ -35,49 +35,21 @@ separate_by_region <- function(region) {
     dplyr::select(sample_name, class_label, region_label, cortical_layer_label, everything()) %>%
     filter(outlier_call == FALSE) %>%
     filter(region_label == region)
-  metadata <- matrix %>%
-    dplyr::select(sample_name:cortical_layer_label)
-  matrix %<>%
-    dplyr::select(-class_label, -region_label, -cortical_layer_label) %>%
-    column_to_rownames(var = "sample_name") %>%
-    #set by gene, not for the whole dataset
-    scale() %>%
-    as.data.frame() %>%
-    rownames_to_column(var = "sample_name") %>%
-    merge(metadata, by = "sample_name") %>%
-    gather("gene", "expression_value", -c("sample_name", "class_label", "region_label", "cortical_layer_label")) %>%
-    dplyr::select(sample_name, gene, class_label, region_label, cortical_layer_label, expression_value) %>%
-    group_by(gene, class_label, region_label, cortical_layer_label) %>%
-    summarize(median_exp_value = median(expression_value))
+  
+  return(matrix)
   
 }
 
-# Separate into region-specific data in long-form
+metadata <- fread("/Users/ethankim/Desktop/transcriptome_project/Data/Allen/metadata.csv", header = T) %>%
+  dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
+  as_tibble()
+MTG_matrix <- fread("/Users/ethankim/Desktop/transcriptome_project/Data/Allen/matrix.csv", header = T) %>%
+  as_tibble()
 
 
-A1C_matrix <- separate_by_region("A1C")
+#Separate by region
 MTG_matrix <- separate_by_region("MTG")
-V1C_matrix <- separate_by_region("V1C")
-CgG_matrix <- separate_by_region("CgG")
-M1lm_matrix <- separate_by_region("M1lm")
-M1ul_matrix <- separate_by_region("M1ul")
-S1ul_matrix <- separate_by_region("S1ul")
-S1lm_matrix <- separate_by_region("S1lm")
 
-
-# Save region-specific long-form data in CSV for webapp
-
-
-write.csv(A1C_matrix, here("Data", "Allen", "A1C_matrix.csv"))
-write.csv(MTG_matrix, here("Data", "Allen", "MTG_matrix.csv"))
-write.csv(V1C_matrix, here("Data", "Allen", "V1C_matrix.csv"))
-write.csv(CgG_matrix, here("Data", "Allen", "CgG_matrix.csv"))
-write.csv(M1lm_matrix, here("Data", "Allen", "M1lm_matrix.csv"))
-write.csv(M1ul_matrix, here("Data", "Allen", "M1ul_matrix.csv"))
-write.csv(S1ul_matrix, here("Data", "Allen", "S1ul_matrix.csv"))
-write.csv(S1lm_matrix, here("Data", "Allen", "S1lm_matrix.csv"))
-
-# Merge ul and lm regions together
 
 
 
@@ -166,10 +138,6 @@ write.csv(merged_allen_scRNA_data_long, here("Data", "Allen", "merged_Allen_scRN
 write.csv(merged_allen_scRNA_data_matrix, here("Data", "Allen", "merged_Allen_scRNA_data_matrix.csv"))
 save(merged_allen_scRNA_data_matrix, file = here("Data", "Allen", "merged_Allen_scRNA_data_matrix.Rdata"))
 save(MTG_matrix, file = here("Data", "Allen", "MTG_matrix.Rdata"))
-
-
-
-
 
 
 
