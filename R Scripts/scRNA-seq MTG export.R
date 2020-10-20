@@ -42,7 +42,7 @@ scale_scRNA_region <- function(scRNA_data, cellType) {
   scaled_data <- scRNA_data %>%
     filter(class_label == cellType) %>%
     select(-class_label, -region_label, -sample_name) %>%
-    mutate(expression_log = log(expression_value) + 1) %>%
+    mutate(expression_log = log(expression_value + 1)) %>%
     group_by(gene, cortical_layer_label) %>%
     summarise(mean_expression = mean(expression_log)) %>%
     mutate(mean_expression_scaled = scale_this(mean_expression)) %>%
