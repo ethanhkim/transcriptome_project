@@ -42,15 +42,13 @@ scale_scRNA_region <- function(scRNA_data, cellType) {
   scaled_data <- scRNA_data %>%
     filter(class_label == cellType) %>%
     select(-class_label, -region_label, -sample_name) %>%
-    group_by(gene) %>%
-    mutate(expression_log = log(expression_value + 1)) %>%
-    ungroup() %>%
+    mutate(expression_log = log(expression_value) + 1) %>%
     group_by(gene, cortical_layer_label) %>%
-    summarise(median_expression = median(expression_log)) %>%
-    mutate(median_expression_log_scaled = scale_this(median_expression)) %>%
+    summarise(mean_expression = mean(expression_log)) %>%
+    mutate(mean_expression_scaled = scale_this(mean_expression)) %>%
     rename(gene_symbol = gene) %>%
     add_column(class_label = cellType) %>%
-    select(gene_symbol, class_label, cortical_layer_label, median_expression)
+    select(gene_symbol, class_label, cortical_layer_label, mean_expression_scaled)
 }
 
 MTG_matrix_scaled <- list()
@@ -58,12 +56,6 @@ for (i in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
   MTG_matrix_scaled[[i]] <- scale_scRNA_region(allen_MTG_matrix, i)
 }
 
-test <- MTG_matrix_scaled
-MTG_matrix_scaled %<>% flatten(.id = "cell_type")
-
-GABA_MTG <- scale_scRNA_region(allen_MTG_matrix, "GABAergic")
-GLUT_MTG <- scale_scRNA_region(allen_MTG_matrix, "Glutamatergic")
-GABA_MTG <- scale_scRNA_region(allen_MTG_matrix, "GABAergic")
 
 MTG_matrix_scaled <- rbind(MTG_matrix_scaled$GABAergic, MTG_matrix_scaled$Glutamatergic, MTG_matrix_scaled$`Non-neuronal`)
 
