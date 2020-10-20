@@ -56,6 +56,7 @@ for (i in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
   MTG_matrix_scaled[[i]] <- scale_scRNA_region(allen_MTG_matrix, i)
 }
 
+
 MTG_matrix_scaled <- rbind(MTG_matrix_scaled$GABAergic, MTG_matrix_scaled$Glutamatergic, MTG_matrix_scaled$`Non-neuronal`)
 
 save(MTG_matrix_scaled, file = here("Data", "Allen", "MTG_matrix_scaled_10_20.Rdata"))
