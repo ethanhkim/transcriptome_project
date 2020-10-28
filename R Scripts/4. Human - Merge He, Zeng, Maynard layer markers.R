@@ -1,6 +1,17 @@
-library(dplyr)
+## Script to merge He and Zeng et al data ##
 
-#Create merged data between human data
+##############################################################################################################
+
+# Load required libraries
+library(tidyverse)
+library(dplyr)
+library(magrittr)
+library(here)
+library(conflicted)
+
+# Set which package to prefer when running into conflict between packages
+conflict_prefer("slice", "dplyr")
+conflict_prefer("filter", "dplyr")
 
 #Create gene lists containing unique values
 
