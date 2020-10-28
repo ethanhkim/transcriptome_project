@@ -39,11 +39,15 @@ Maynard_layer_enrichment <- Maynard_modeling %>%
   mutate(layer_marker_label_WM = ifelse(test = (layer_marker == "WM"),
                                         yes = "WM",
                                         no = NA)) %>%
-  dplyr::select(-tstat, -fdr)
+  dplyr::select(-tstat, -fdr) 
 
 Maynard_dataset_average <- Maynard_dataset_average %>%
   arrange(gene_symbol) %>%
-  filter(gene_symbol %in% Maynard_layer_enrichment$gene_symbol) %>%
+  filter(gene_symbol %in% Maynard_layer_enrichment$gene_symbol)
+
+Maynard_layer_enrichment %<>% filter(gene_symbol %in% Maynard_dataset_average$gene_symbol)
+
+Maynard_dataset_average %<>%
   column_to_rownames(var = "gene_symbol") %>%
   t() %>%
   scale() %>%
