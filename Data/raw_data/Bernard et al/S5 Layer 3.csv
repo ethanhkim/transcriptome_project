@@ -1,0 +1,56 @@
+﻿Primary Sequence Name,Sequence Description,Accession #,Affy Probe ID,Gene Symbol,"Correlation Coefficient to (100,0) Layer 3 High template"
+MED8,mediator complex subunit 8,XM_001093895,MmugDNA.4056.1.S1_at,MED8,0.744563356
+CA10,carbonic anhydrase X,XM_001101771,MmuSTS.564.1.S1_at,CA10,0.691812173
+CA10,carbonic anhydrase X,XM_001101771,MmugDNA.16395.1.S1_at,CA10,0.680840094
+MmugDNA.40026.1.S1_at,gDNA.g3123849  FEA=U133PSR  GEN=PPAP2A  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 210946_at phosphatidic acid phosphatase type 2A  REP_ORG=M. mulatta,gDNA,MmugDNA.40026.1.S1_at,PPAP2A,0.672650632
+MED8,mediator complex subunit 8,XM_001093775,MmugDNA.41890.1.S1_at,MED8,0.670838569
+LOC716263,similar to centrosomal protein 70 kDa,XM_001114119,MmugDNA.28345.1.S1_at,Cep70,0.66748017
+LHFPL3,similar to lipoma HMGIC fusion partner,XM_001088047,MmugDNA.32328.1.S1_at,LHFPL3,0.659422423
+LOC711336,similar to olfactomedin 2,XM_001099531,MmugDNA.33876.1.S1_s_at,OLFM2,0.638370586
+TNNI3K,TNNI3 interacting kinase,XM_001097254,MmugDNA.37500.1.S1_at,TNNI3K,0.629153101
+LOC722683,similar to Kallikrein-7 precursor (hK7) (Stratum corneum chymotryptic enzyme) (hSCCE),XM_001118798,MmuSTS.4444.1.S1_at,KLK7,0.627938704
+LOC705810,"similar to calcium channel, voltage-dependent, alpha 2/delta 3 subunit",XM_001102142,MmunewRS.631.1.S1_at,CACNA2D3,0.61821806
+TNFSF13B,"tumor necrosis factor (ligand) superfamily, member 13b",XM_001082247,MmugDNA.31841.1.S1_at,TNFSF13B,0.615912443
+DBNDD1,dysbindin (dystrobrevin binding protein 1) domain containing 1,XM_001093357,MmugDNA.24492.1.S1_at,DBNDD1,0.609893083
+CD53,CD53 molecule,XM_001102018,MmuSTS.3532.1.S1_at,CD53,0.602195748
+BAIAP2L2,BAI1-associated protein 2-like 2,XM_001092303,MmugDNA.40078.1.S1_at,BAIAP2L2,0.601012423
+LOC710435,similar to CG7889-PA,XM_001099061,MmugDNA.18958.1.S1_at,LOC151194,0.596897412
+MYLK,myosin light chain kinase,XM_001113465,MmugDNA.38010.1.S1_at,MYLK,0.589896621
+PHLDA2,"pleckstrin homology-like domain, family A, member 2",XM_001094620,MmuSTS.1133.1.S1_at,PHLDA2,0.588978022
+LOC722040,similar to ubiquitin specific protease 43,XM_001118238,MmugDNA.29653.1.S1_at,LOC146845,0.581921702
+HSPB8,heat shock 22kDa protein 8,AY457046,MmugDNA.4113.1.S1_at,HSPB8,0.581653921
+MmugDNA.39622.1.S1_at,gDNA.Hs.193124.1.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 230085_at Transcribed locus  REP_ORG=M. mulatta,gDNA.Hs.193124.1,MmugDNA.39622.1.S1_at,,0.576406667
+LOC708967,similar to phosphodiesterase 4D interacting protein isoform 2,XM_001097460,MmuSTS.4214.1.S1_at,PDE4DIP,0.570211132
+TNFSF13B,"tumor necrosis factor (ligand) superfamily, member 13b",XM_001082119,MmugDNA.635.1.S1_at,TNFSF13B,0.562691097
+MmuSTS.1137.1.S1_at,"gi:51853994  DEF=PIN1_3073 Rhesus macaque genomic DNA Macaca mulatta STS genomic clone MMA3073, sequence tagged site.  GEN=PIN1  PROD=protein (peptidyl-prolyl cis trans isomerase) NIMA-interacting 1  REP_ORG=M. mulatta",DV769189,MmuSTS.1137.1.S1_at,PIN1,0.558513625
+MmugDNA.28149.1.S1_at,"gDNA.Hs.296031.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 228959_at CDNA clone IMAGE:5262734, partial cds  REP_ORG=M. mulatta",gDNA.Hs.296031.0,MmugDNA.28149.1.S1_at,,0.558275955
+LOC722040,similar to ubiquitin specific protease 43,XM_001118238,MmunewRS.46.1.S1_at,LOC146845,0.552458437
+MmugDNA.29760.1.S1_at,gDNA.Hs.125757.0.A1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 235931_at Transcribed locus  REP_ORG=M. mulatta,gDNA.Hs.125757.0,MmugDNA.29760.1.S1_at,,0.551818576
+RGS7,regulator of G-protein signaling 7,XM_001095180,MmuSTS.3163.1.S1_at,RGS7,0.548549351
+RAFTLIN,raft-linking protein,XM_001083771,MmuSTS.3238.1.S1_at,RAFTLIN,0.548237364
+LOC708608,hypothetical protein LOC708608,XM_001104735,MmugDNA.16554.1.S1_at,LOC399947,0.539470029
+LOC714997,similar to sulfiredoxin 1 homolog,XM_001112394,MmugDNA.24036.1.S1_s_at,C20orf139,0.535952079
+MmugDNA.30718.1.S1_at,"gDNA.Hs.24894.0.S1  FEA=U133PSR  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 233135_at Homo sapiens, clone IMAGE:5199801, mRNA  REP_ORG=M. mulatta",gDNA.Hs.24894.0,MmugDNA.30718.1.S1_at,,0.532613553
+RCAN2,regulator of calcineurin 2,XM_001101876,MmuSTS.1320.1.S1_at,RCAN2,0.529677435
+MYLK,myosin light chain kinase,XM_001113465,MmugDNA.37873.1.S1_at,MYLK,0.528575896
+LOC699458,hypothetical protein LOC699458,XM_001091247,MmugDNA.6512.1.S1_at,DNAPTP6,0.527905582
+FNDC4,fibronectin type III domain containing 4,XM_001090381,MmugDNA.26541.1.S1_at,FNDC4,0.527298148
+RTP1,receptor (chemosensory) transporter protein 1,XM_001103282,MmugDNA.38879.1.S1_at,RTP1,0.525295537
+LOC709116,similar to Probable ATP-dependent helicase LGP2 (Protein D11Lgp2 homolog),XM_001108799,MmuSTS.713.1.S1_x_at,LGP2,0.522849862
+MmugDNA.1099.1.S1_at,"gDNA.Hs.241284.0.A1  FEA=U133PSR  GEN=KLK7  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 239381_at kallikrein 7 (chymotryptic, stratum corneum)  REP_ORG=M. mulatta",gDNA.Hs.241284.0,MmugDNA.1099.1.S1_at,KLK7,0.522106824
+LOC693405,"similar to actin related protein 2/3 complex, subunit 5-like",XM_001082363,MmugDNA.23247.1.S1_at,ARPC5L,0.521390401
+MmugDNA.7192.1.S1_at,gDNA.Hs.179246.0.A1  FEA=U133PSR  GEN=TOM1L1  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 240261_at Target of myb1-like 1 (chicken)  REP_ORG=M. mulatta,gDNA.Hs.179246.0,MmugDNA.7192.1.S1_at,TOM1L1,0.520426126
+PTPN3,"protein tyrosine phosphatase, non-receptor type 3",XM_001107457,MmuSTS.3726.1.S1_at,PTPN3,0.519754069
+LOC722738,similar to F-box only protein 2,XR_014794,MmugDNA.14527.1.S1_at,FBXO2,0.51803577
+FAT3,FAT tumor suppressor homolog 3 (Drosophila),XM_001084587,MmugDNA.18001.1.S1_at,FAT3,0.517945549
+LOC708314,similar to histone deacetylase 9 isoform 3,XM_001104288,MmugDNA.21874.1.S1_at,HDAC9,0.517858172
+SRPK1,SFRS protein kinase 1,XM_001116721,MmugDNA.3436.1.S1_at,SRPK1,0.51742237
+LOC722583,Similar to phosphatidic acid phosphatase type 2A isoform 1,CK232645,MmugDNA.5074.1.S1_at,PPAP2A,0.513128682
+LOC719241,"similar to pyrin and HIN domain family, member 1 beta 1 isoform",XM_001117139,MmugDNA.15262.1.S1_at,RAPGEF5,0.510164307
+RIMS3,regulating synaptic membrane exocytosis 3,XM_001084240,MmugDNA.7772.1.S1_at,RIMS3,0.509490957
+BRP44,brain protein 44,XM_001091697,MmugDNA.31388.1.S1_s_at,DKFZP564B167,0.50722737
+LOC697448,similar to RAN binding protein 5,XM_001089501,MmugDNA.34806.1.S1_at,,0.50450038
+IYD,iodotyrosine deiodinase,XM_001098926,MmugDNA.31058.1.S1_at,ARL6,0.503932143
+CDK2AP1,cyclin-dependent kinase 2 associated protein 1,XM_001100820,MmugDNA.25572.1.S1_s_at,CDK2AP1,0.502002322
+MmugDNA.39567.1.S1_at,gDNA.Hs.27260.0.A1  FEA=U133PSR  GEN=LMO4  NOTE=Orthologous to HG-U133 Plus 2.0 target region  DEF=Orthologous to 229537_at LIM domain only 4  REP_ORG=M. mulatta,gDNA.Hs.27260.0,MmugDNA.39567.1.S1_at,LMO4,0.501911538
+MmuSTS.3784.1.S1_at,"gi:55167473  DEF=ADCYAP1 _4255 Rhesus macaque genomic DNA Macaca mulatta STS genomic clone MMA4255, sequence tagged site.  GEN=ADCYAP1  PROD=adenylate cyclase activating polypeptide 1 (pituitary)  REP_ORG=M. mulatta",55167473,MmuSTS.3784.1.S1_at,ADCYAP1,0.500564899
