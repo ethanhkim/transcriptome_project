@@ -63,12 +63,12 @@ scMatrix_logCPM <- normalize_AIBS(scMatrix, scMetadata)
 scMatrix_logCPM_MTG <- select_AIBS_region(scMatrix_logCPM, "MTG")
 
 
-MTG_matrix_scaled <- list()
+MTG_df_list <- list()
 for (i in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
   MTG_matrix_scaled[[i]] <- cellType_group(scMatrix_logCPM_MTG, i)
 }
 
-MTG_matrix_scaled <- rbind(MTG_matrix_scaled$GABAergic, MTG_matrix_scaled$Glutamatergic, MTG_matrix_scaled$`Non-neuronal`)
+MTG_df <- rbind(MTG_df_list$GABAergic, MTG_df_list$Glutamatergic, MTG_df_list$`Non-neuronal`)
 
 save(MTG_df, file = here("Data", "Allen", "MTG_df_01_21.Rdata"))
-write.csv(MTG_df, file = here("Data", "Allen", "MTG_df_01_21.Rdata"))
+write.csv(MTG_df, file = here("Data", "Allen", "MTG_df_01_21.csv"))
