@@ -45,21 +45,22 @@ He_DS1_Human <- He_DS1_Human %>%
 
 
 
-## DS2 ##
-DS2_Human <- read.table(here("Data", "He et al", "DS2_sectionRPKM_human.tsv"), stringsAsFactors = FALSE)
-DS2_Human$V1 <- gsub("\\.\\d+$", "", DS2_Human$V1)
-DS2_Human$gene_symbol <- mapIds(org.Hs.eg.db, keys = DS2_Human$V1, keytype = "ENSEMBL", column="SYMBOL")
+## DS2 not used in analysis ##
 
-DS2_Human <- DS2_Human %>%
-  rename(Ensembl_ID = "V1",
-         V1 = "V2", V2 = "V3", V3 = "V4", V4 = "V5", V5 = "V6", V6 = "V7", V7 = "V8",
-         V8 = "V9", V9 = "V10", V10 = "V11") 
+#DS2_Human <- read.table(here("Data", "He et al", "DS2_sectionRPKM_human.tsv"), stringsAsFactors = FALSE)
+#DS2_Human$V1 <- gsub("\\.\\d+$", "", DS2_Human$V1)
+#DS2_Human$gene_symbol <- mapIds(org.Hs.eg.db, keys = DS2_Human$V1, keytype = "ENSEMBL", column="SYMBOL")
 
-DS2_Human <- DS2_Human %>%
-  dplyr::select(-"Ensembl_ID") %>%
-  dplyr::select("gene_symbol", everything()) %>%
-  filter(!is.na(gene_symbol)) %>%
-  distinct(gene_symbol, .keep_all = TRUE)
+#DS2_Human <- DS2_Human %>%
+  #rename(Ensembl_ID = "V1",
+         #V1 = "V2", V2 = "V3", V3 = "V4", V4 = "V5", V5 = "V6", V6 = "V7", V7 = "V8",
+         #V8 = "V9", V9 = "V10", V10 = "V11") 
+
+#DS2_Human <- DS2_Human %>%
+  #dplyr::select(-"Ensembl_ID") %>%
+  #dplyr::select("gene_symbol", everything()) %>%
+  #filter(!is.na(gene_symbol)) %>%
+  #distinct(gene_symbol, .keep_all = TRUE)
 
 
 
