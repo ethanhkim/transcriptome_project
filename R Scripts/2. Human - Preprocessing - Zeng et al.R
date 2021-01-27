@@ -6,7 +6,6 @@ library(tidyverse)
 library(readxl)
 library(dplyr)
 library(magrittr)
-library(HGNChelper)
 library(here)
 library(mygene)
 
@@ -50,7 +49,7 @@ Zeng_dataset_expanded %<>%
   mutate(combined_annotation = gsub("layer", "", combined_annotation)) %>%
   mutate(combined_annotation = gsub("\\,", " ", combined_annotation)) %>%
   mutate(combined_annotation = gsub("\\/", "", combined_annotation)) %>%
-  mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation))
 
 Zeng_dataset_cleaned <- Zeng_dataset_expanded %>% 
   dplyr::filter(marker_annotation  != 'others' & marker_annotation != 'laminar' | is.na(NA))
@@ -74,11 +73,7 @@ Zeng_dataset_updated %<>% dplyr::select(-updated_symbol)
 Zeng_dataset_updated$entrez_id <- as.character(Zeng_dataset_updated$entrez_id)
 
 Zeng_dataset_long <- Zeng_dataset_updated %>%
-  pivot_longer(
-    cols = V1_pattern:Temporal_pattern,
-    names_to = "region",
-    values_to = "original_annotation"
-  ) %>%
+  gather("region", "original_annotation", V1_pattern:Temporal_pattern) %>%
   mutate(region = gsub("V1_pattern", "V1", region)) %>%
   mutate(region = gsub("V2_pattern", "V2", region)) %>%
   mutate(region = gsub("Temporal_pattern", "Temporal", region)) %>%
