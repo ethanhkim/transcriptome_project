@@ -10,7 +10,6 @@ library(tidyverse)
 library(readxl)
 library(dplyr)
 library(magrittr)
-library(HGNChelper)
 library(here)
 library(mygene)
 library(conflicted)
@@ -48,7 +47,27 @@ Zeng_dataset_expanded %<>%
   mutate(marker_annotation = gsub("5a","5", marker_annotation)) %<>% 
   mutate(marker_annotation = gsub("6b","6", marker_annotation)) %<>% 
   mutate(marker_annotation = gsub("([0-6])","layer \\1", marker_annotation)) %<>% 
+<<<<<<< HEAD
+  mutate(marker_annotation = gsub("VEC","vascular endothelial cell", marker_annotation)) %>%
+  mutate(combined_annotation = paste(V1_pattern, V2_pattern, Temporal_pattern)) %>%
+  mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("layers", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("NA", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("sparse to none", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("scattered", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("\\+", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("sparse", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("\\(", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("\\)", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("\\?", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("layer", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("\\,", " ", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("\\/", "", combined_annotation)) %>%
+  mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation))
+=======
   mutate(marker_annotation = gsub("VEC","vascular endothelial cell", marker_annotation))
+>>>>>>> 9b7014f11337bede82686e58a2c5bf92796ff66c
 
 Zeng_dataset_cleaned <- Zeng_dataset_expanded %>% 
   filter(marker_annotation  != 'others' & marker_annotation != 'laminar' | is.na(NA))
@@ -73,11 +92,7 @@ Zeng_dataset_updated %<>% dplyr::select(-updated_symbol)
 Zeng_dataset_updated$entrez_id <- as.character(Zeng_dataset_updated$entrez_id)
 
 Zeng_dataset_long <- Zeng_dataset_updated %>%
-  pivot_longer(
-    cols = V1_pattern:Temporal_pattern,
-    names_to = "region",
-    values_to = "original_annotation"
-  ) %>%
+  gather("region", "original_annotation", V1_pattern:Temporal_pattern) %>%
   mutate(region = gsub("V1_pattern", "V1", region)) %>%
   mutate(region = gsub("V2_pattern", "V2", region)) %>%
   mutate(region = gsub("Temporal_pattern", "Temporal", region)) %>%
