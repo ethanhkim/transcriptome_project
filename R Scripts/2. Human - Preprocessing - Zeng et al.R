@@ -22,7 +22,7 @@ conflict_prefer("filter", "dplyr")
 conflict_prefer("paste", "base")
 
 # Path to the Zeng et al dataset
-Zeng_Path <- here("Data", "Zeng et al", "Table S2.xlsx") # insert your own file directory
+Zeng_Path <- here("Data", "raw_data", "Zeng et al", "Table S2.xlsx") # insert your own file directory
 
 # Read in Zeng et al dataset from xlsx file
 Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
