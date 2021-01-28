@@ -65,7 +65,7 @@ scMatrix_logCPM_MTG <- select_AIBS_region(scMatrix_logCPM, "MTG")
 
 MTG_df_list <- list()
 for (i in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
-  MTG_matrix_scaled[[i]] <- cellType_group(scMatrix_logCPM_MTG, i)
+  MTG_df_list[[i]] <- cellType_group(scMatrix_logCPM_MTG, i)
 }
 
 MTG_df <- rbind(MTG_df_list$GABAergic, MTG_df_list$Glutamatergic, MTG_df_list$`Non-neuronal`)
