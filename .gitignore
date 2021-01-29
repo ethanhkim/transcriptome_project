@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=r
 
 ### MacOS specific files ###
-*/.DS_Store
+.DS_Store
 
 ### R ###
 # History files
