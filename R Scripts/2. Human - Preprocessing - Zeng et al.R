@@ -47,7 +47,6 @@ Zeng_dataset_expanded %<>%
   mutate(marker_annotation = gsub("5a","5", marker_annotation)) %<>% 
   mutate(marker_annotation = gsub("6b","6", marker_annotation)) %<>% 
   mutate(marker_annotation = gsub("([0-6])","layer \\1", marker_annotation)) %<>% 
-<<<<<<< HEAD
   mutate(marker_annotation = gsub("VEC","vascular endothelial cell", marker_annotation)) %>%
   mutate(combined_annotation = paste(V1_pattern, V2_pattern, Temporal_pattern)) %>%
   mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation)) %>%
@@ -65,9 +64,8 @@ Zeng_dataset_expanded %<>%
   mutate(combined_annotation = gsub("\\,", " ", combined_annotation)) %>%
   mutate(combined_annotation = gsub("\\/", "", combined_annotation)) %>%
   mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation))
-=======
   mutate(marker_annotation = gsub("VEC","vascular endothelial cell", marker_annotation))
->>>>>>> 9b7014f11337bede82686e58a2c5bf92796ff66c
+
 
 Zeng_dataset_cleaned <- Zeng_dataset_expanded %>% 
   filter(marker_annotation  != 'others' & marker_annotation != 'laminar' | is.na(NA))

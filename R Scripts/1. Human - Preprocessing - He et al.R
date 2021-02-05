@@ -10,7 +10,7 @@ library(dplyr)
 library(HGNChelper)
 
 ## DS1 ##
-He_DS1_Human <- read.table(here("Data", "He et al", "tab.average_RPKM_section_human.tsv"))
+He_DS1_Human <- read.table(here("Data", "raw_data", "He et al", "tab.average_RPKM_section_human.tsv"), header = T)
 
 #Truncate the version numbers on ENSEMBL ID
 He_DS1_Human$V1 <- gsub("\\.\\d+$", "", He_DS1_Human$V1)
