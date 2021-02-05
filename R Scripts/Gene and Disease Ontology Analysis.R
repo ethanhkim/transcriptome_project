@@ -14,6 +14,9 @@ library(dplyr)
 library(tibble)
 library(metaseqR)
 library(conflicted)
+library(rvest)
+library(httr)
+
 
 # Set preferred packages
 conflict_prefer("paste", "base")
@@ -23,6 +26,7 @@ conflict_prefer("select", "dplyr")
 conflict_prefer("arrange", "dplyr")
 conflict_prefer("rename", "dplyr")
 conflict_prefer("strsplit", "base")
+conflict_prefer("content", "httr")
 
 # Load in datasets
 load(here("Data", "processed_data", "Allen", "MTG_matrix_scaled.Rdata"))
@@ -43,7 +47,7 @@ create_geneBackground <- function(source_data) {
 }
 
 # Create geneSetsTable for analysis using DisGeNet Disease Ontology annotations
-geneSets_tmod <- function(dataset_geneBackground) {
+geneSets_tmod_DO <- function(dataset_geneBackground) {
   disgenet <- read_tsv(paste0(here("Data", "genelists", "DisGeNet", "curated_gene_disease_associations.tsv"))) 
   disgenet %<>% dplyr::select(symbol = geneSymbol, name = diseaseName, ID = diseaseId)
   disgenet %<>% filter(symbol %in% dataset_geneBackground)
@@ -53,12 +57,12 @@ geneSets_tmod <- function(dataset_geneBackground) {
   namedLists <- geneLists$genes
   names(namedLists) <- geneLists$ID
   idToName <- data.frame(ID = geneLists$ID, Title = geneLists$name)
-  geneSets <- makeTmod(modules = idToName, modules2genes = namedLists)
-  
+  geneSetsDO <- makeTmod(modules = idToName, modules2genes = namedLists)
+  return(geneSetsDO)
 }
 
-# Select Gene Ontology group
-select_gene_ontology_group <- function(AUC_genelist) {
+# Create geneSetsTable for analysis for Gene Ontology annotations
+geneSets_tmod_GO <- function(dataset_geneBackground) {
   if (exists("geneSetsGO") && length(geneSetsGO$MODULES2GENES) > 1000 ) { #assume it's already loaded - needs a fix to see if the variable is declared
   } else {
     go_object <- as.list(org.Hs.egGO2ALLEGS)
@@ -80,7 +84,7 @@ select_gene_ontology_group <- function(AUC_genelist) {
       geneIDs <- unique(unlist(goGroup, use.names=F))  #discard evidence codes
       genesymbols <- unique(getSYMBOL(geneIDs, data=goSource))
       
-      genesymbols <- intersect(genesymbols, AUC_genelist) #get size after intersecting with our full gene set
+      genesymbols <- intersect(genesymbols, dataset_geneBackground) #get size after intersecting with our full gene set
       if (!(length(genesymbols) >= minGOgroupSize & length(genesymbols) <= maxGOgroupSize)) next();
       
       modules2genes[goGroupName] <- list(genesymbols)
@@ -88,6 +92,7 @@ select_gene_ontology_group <- function(AUC_genelist) {
     }
     geneSetsGO <- makeTmod(modules = tmodNames, modules2genes = modules2genes)
   }
+  return(geneSetsGO)
 }
 
 # Function to generate an ordered list of genes arranged by descending order in 
@@ -174,13 +179,13 @@ combine_pval_AUC_table <- function(Maynard_table, He_table, MTG_table = NULL) {
       column_to_rownames(var = "MainTitle") %>%
       rename(P.Value_Allen = P.Value, AUC_Allen = AUC, N1_Allen = N1, adj.P.Val_Allen = adj.P.Val, ID_Allen = ID, aspect_Allen = aspect,
              otherNames_Allen = otherNames, rank_Allen = rank) %>%
-      dplyr::select(contains("P.value"), contains("AUC")) %>%
+      dplyr::select(contains("P.value"), contains("AUC"), contains("ID")) %>%
       filter(P.Value_He <= 1) %>%
       filter(P.Value_Maynard <= 1) %>%
       filter(P.Value_Allen <= 1)
   }
   
-  p_value_fisher <- fisher.method(combined_table, method = c("fisher"))
+  p_value_fisher <- fisher.method(combined_table %>% select(P.Value_Maynard:P.Value_Allen), method = c("fisher"))
   #adjust the p-value using fdr
   p_value_fisher$adj_p_fdr <- p.adjust(p_value_fisher$p.value, method = "fdr")
   
@@ -194,6 +199,7 @@ combine_pval_AUC_table <- function(Maynard_table, He_table, MTG_table = NULL) {
   return(combined_table)
 }
 
+# Combine the AUC tables using combine_pval_AUC_table function
 combined_AUC_table_fn <- function(Maynard_AUC_table, He_AUC_table, Allen_AUC_table, layer_range = c(1:6)) {
   combined_AUC_table_list <- list()
   for (i in layer_range) {
@@ -201,6 +207,157 @@ combined_AUC_table_fn <- function(Maynard_AUC_table, He_AUC_table, Allen_AUC_tab
   }
   return(combined_AUC_table_list)
 }
+
+# Function to take geneBackground, geneSets, genelist dataframe and create AUC value table
+dataset_AUC_summary <- function(source_dataset, ontology, geneBackground) {
+  geneBackground <- create_geneBackground(source_dataset)
+  if (ontology == "disease") {
+    geneSets <- geneSets_tmod_DO(geneBackground)
+  } else {
+    geneSets <- geneSets_tmod_GO(geneBackground)
+  }
+  AUC_genelist_df <- AUC_genelist_fn(source_dataset)
+  AUC_table_list <- AUC_table_list_fn(AUC_genelist_df, geneSets)
+  return(AUC_table_list)
+}
+
+# Create ReviGO table
+extract_GO_and_pvalue <- function(table, number_of_terms, layer_range = c(1:6)) {
+  
+  reviGO_table_list_up <- list()
+  reviGO_table_list_down <- list()
+  for (i in layer_range) {
+    reviGO_table_list_up[[i]] <- table[[i]] %>%
+      filter((AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      # Filter for adj but send raw 
+      select(ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "positive", layer = i) 
+  }
+  for (i in layer_range) {
+    reviGO_table_list_down[[i]] <- table[[i]] %>%
+      filter((AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      select(ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "negative", layer = i)
+  }
+  reviGO_table_list_up <- do.call(rbind, reviGO_table_list_up)
+  reviGO_table_list_down <- do.call(rbind, reviGO_table_list_down)
+  
+  reviGO_table_total_list <- rbind(reviGO_table_list_up, reviGO_table_list_down)
+  return(reviGO_table_total_list) 
+}
+
+# Create DO table for top 20 and bottom 20 DO terms
+extract_DO_and_pvalue <- function(table, number_of_terms, layer_range = c(1:6)) {
+  DO_table_list_up <- list()
+  DO_table_list_down <- list()
+  for (i in layer_range) {
+    DO_table_list_up[[i]] <- table[[i]] %>%
+      filter(((AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      # Filter for adj but send raw 
+      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "positive", layer = i) 
+  }
+  for (i in layer_range) {
+    DO_table_list_down[[i]] <- table[[i]] %>%
+      filter(((AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      # Filter for adj but send raw 
+      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "negative", layer = i) 
+  }
+  DO_table_list_up <- do.call(rbind, DO_table_list_up)
+  DO_table_list_down <- do.call(rbind, DO_table_list_down)
+  
+  DO_table_total_list <- rbind(DO_table_list_up, DO_table_list_down)
+  return(DO_table_total_list) 
+}
+
+# Create GO table for top 20 and bottom 20 GO terms
+extract_DO_and_pvalue <- function(table, number_of_terms, layer_range = c(1:6)) {
+  DO_table_list_up <- list()
+  DO_table_list_down <- list()
+  for (i in layer_range) {
+    DO_table_list_up[[i]] <- table[[i]] %>%
+      filter(((AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      # Filter for adj but send raw 
+      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "positive", layer = i) 
+  }
+  for (i in layer_range) {
+    DO_table_list_down[[i]] <- table[[i]] %>%
+      filter(((AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      # Filter for adj but send raw 
+      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "negative", layer = i) 
+  }
+  DO_table_list_up <- do.call(rbind, DO_table_list_up)
+  DO_table_list_down <- do.call(rbind, DO_table_list_down)
+  
+  DO_table_total_list <- rbind(DO_table_list_up, DO_table_list_down)
+  return(DO_table_total_list) 
+}
+
+# From Leon French - code to run ReviGO on localized table
+run_revigo <- function(goID_and_pvalue_table, layer_number, gene_direction) {
+  
+  goID_and_pvalue_table %<>%
+    filter(layer == layer_number) %>%
+    filter(direction == gene_direction) %>%
+    select(ID, combined_p_value)
+  
+  Sys.sleep(.5) #delay half a second to prevent overloading revigo
+  if(ncol(goID_and_pvalue_table) != 2 ) stop('Input data frame is not two columns wide, should be go ID and p-value only (eg. GO:0009268 1e-14)')
+  url <- "http://revigo.irb.hr/revigo.jsp"
+  fd <- list(
+    submit ="submitToRevigo",
+    goList  = format_tsv(goID_and_pvalue_table, col_names = F),
+    #goList  = "GO:0006614	2.139547041149198e-33
+    #GO:0006613	6.532814810756933e-33",
+    #goList  = "GO:0006613 1e-14
+    #GO:0006614 1e-14",
+    cutoff = "0.70",
+    isPValue = "yes",
+    whatIsBetter = "higher",
+    goSizes = "0", #0 representing "whole UniProt (default)", alternatives are "Homo sapiens"= 9606 or another NCBI species code
+    measure = "SIMREL" 
+  )
+  h1 <- handle('') #reset the handle
+  resp <- POST(url, body=fd, encode="form",  handle=h1) #use verbose() for checking
+  
+  #for debugging
+  #html(content(resp, as = "text"))
+  #write(content(resp, as = "text"), "/Users/lfrench/Downloads/z.txt")
+  #write(content(resp, as = "text"), "/Users/lfrench/Downloads/z.html")
+  
+  #clean up of the table
+  extracted_data_frame <- html_table(content(resp))[[1]]
+  extracted_data_frame <- extracted_data_frame[-1,]
+  colnames(extracted_data_frame) <- extracted_data_frame[1,]
+  extracted_data_frame <- extracted_data_frame[-1,]
+  extracted_data_frame %<>% as_tibble()
+  extracted_data_frame %<>% mutate(frequency = gsub(" %", "", frequency))
+  extracted_data_frame %<>% type.convert()
+  extracted_data_frame %<>% add_column(layer = layer_number, direction = gene_direction)
+}
+
+
 
 ################################################################################
 
@@ -210,96 +367,119 @@ combined_AUC_table_fn <- function(Maynard_AUC_table, He_AUC_table, Allen_AUC_tab
 maxGOgroupSize <- 200
 minGOgroupSize <- 10
 goSource <- 'org.Hs.eg'
-ontology <- "gene"
+ontology_type <- "disease" # input either "gene" or "disease" depending on if wanting to analyze gene/disease ontology
 
-if (ontology == "disease") {
-  # Set up Maynard data
-  Maynard_geneBackground <- create_geneBackground(Maynard_dataset_average)
-  Maynard_geneSets <- geneSets_tmod(Maynard_geneBackground)
-  # Create dataframe of genelist
-  Maynard_AUC_genelist_df <- AUC_genelist_fn(Maynard_dataset_average)
-  # Create tables of AUC values
-  Maynard_AUC_table_list <- AUC_table_list_fn(Maynard_AUC_genelist_df, Maynard_geneSets)
+# Genesets
+Maynard_background <- create_geneBackground(Maynard_dataset_average)
+DO_geneset <- geneSets_tmod(Maynard_background)
+GO_geneset <- geneSets_tmod_GO(Maynard_background)
+
+# Create list of tables of AUC values for DO groups for Maynard
+Maynard_AUC_table_list <- dataset_AUC_summary(Maynard_dataset_average, ontology_type)
+# Create list of tables of AUC values for DO groups for He
+He_AUC_table_list <- dataset_AUC_summary(He_DS1_Human_averaged, ontology_type)
+
+# Widen and separate scRNA-seq data by cell type
+MTG_matrix_wide <- widen_scRNA_seq(MTG_matrix_scaled)
   
-  # Set up He data
-  He_geneBackground <- create_geneBackground(He_DS1_Human_averaged)
-  He_geneSets <- geneSets_tmod(He_geneBackground)
-  # Create dataframe of genelist
-  He_AUC_genelist_df <- AUC_genelist_fn(He_DS1_Human_averaged)
-  # Create tables of AUC values
-  He_AUC_table_list <- AUC_table_list_fn(He_AUC_genelist_df, He_geneSets)
-  
-  # Widen and separate scRNA-seq data by cell type
-  MTG_matrix_wide <- widen_scRNA_seq(MTG_matrix_scaled)
-  
-  # Create dataframes of genelists for each single cell dataset
-  MTG_GABA_geneBackground <- create_geneBackground(MTG_matrix_wide$data[[1]])
-  MTG_GABA_geneSets <- geneSets_tmod(MTG_GABA_geneBackground)
-  MTG_GABA_AUC_genelist_df <- AUC_genelist_fn(MTG_matrix_wide$data[[1]])
-  MTG_GABA_AUC_table_list <- AUC_table_list_fn(MTG_GABA_AUC_genelist_df, MTG_GABA_geneSets)
-  
-  MTG_GLUT_geneBackground <- create_geneBackground(MTG_matrix_wide$data[[2]])
-  MTG_GLUT_geneSets <- geneSets_tmod(MTG_GLUT_geneBackground)
-  MTG_GLUT_AUC_genelist_df <- AUC_genelist_fn(MTG_matrix_wide$data[[2]])
-  MTG_GLUT_AUC_table_list <- AUC_table_list_fn(MTG_GLUT_AUC_genelist_df, MTG_GLUT_geneSets)
-  
-  MTG_NONN_geneBackground <- create_geneBackground(MTG_matrix_wide$data[[3]])
-  MTG_NONN_geneSets <- geneSets_tmod(MTG_NONN_geneBackground)
-  MTG_NONN_AUC_genelist_df <- AUC_genelist_fn(MTG_matrix_wide$data[[3]])
-  MTG_NONN_AUC_table_list <- AUC_table_list_fn(MTG_NONN_AUC_genelist_df, MTG_NONN_geneSets)
-} else if (ontology == "gene") {
-  # Set up Maynard data
-  Maynard_geneBackground <- create_geneBackground(Maynard_dataset_average)
-  Maynard_geneSets <-  select_gene_ontology_group(Maynard_geneBackground)
-  # Create dataframe of genelist
-  Maynard_AUC_genelist_df <- AUC_genelist_fn(Maynard_dataset_average)
-  # Create tables of AUC values
-  Maynard_AUC_table_list <- AUC_table_list_fn(Maynard_AUC_genelist_df, Maynard_geneSets)
-  
-  # Set up He data
-  He_geneBackground <- create_geneBackground(He_DS1_Human_averaged)
-  He_geneSets <-  select_gene_ontology_group(He_geneBackground)
-  # Create dataframe of genelist
-  He_AUC_genelist_df <- AUC_genelist_fn(He_DS1_Human_averaged)
-  # Create tables of AUC values
-  He_AUC_table_list <- AUC_table_list_fn(He_AUC_genelist_df, He_geneSets)
-  
-  # Widen and separate scRNA-seq data by cell type
-  MTG_matrix_wide <- widen_scRNA_seq(MTG_matrix_scaled)
-  
-  # Create dataframes of genelists for each single cell dataset
-  MTG_GABA_geneBackground <- create_geneBackground(MTG_matrix_wide$data[[1]])
-  MTG_GABA_geneSets <- select_gene_ontology_group(MTG_GABA_geneBackground)
-  MTG_GABA_AUC_genelist_df <- AUC_genelist_fn(MTG_matrix_wide$data[[1]])
-  MTG_GABA_AUC_table_list <- AUC_table_list_fn(MTG_GABA_AUC_genelist_df, MTG_GABA_geneSets)
-  
-  MTG_GLUT_geneBackground <- create_geneBackground(MTG_matrix_wide$data[[2]])
-  MTG_GLUT_geneSets <- select_gene_ontology_group(MTG_GLUT_geneBackground)
-  MTG_GLUT_AUC_genelist_df <- AUC_genelist_fn(MTG_matrix_wide$data[[2]])
-  MTG_GLUT_AUC_table_list <- AUC_table_list_fn(MTG_GLUT_AUC_genelist_df, MTG_GLUT_geneSets)
-  
-  MTG_NONN_geneBackground <- create_geneBackground(MTG_matrix_wide$data[[3]])
-  MTG_NONN_geneSets <- select_gene_ontology_group(MTG_NONN_geneBackground)
-  MTG_NONN_AUC_genelist_df <- AUC_genelist_fn(MTG_matrix_wide$data[[3]])
-  MTG_NONN_AUC_table_list <- AUC_table_list_fn(MTG_NONN_AUC_genelist_df, MTG_NONN_geneSets)
+# Create dataframes of genelists for each single cell dataset
+Allen_GABA_AUC_table_list <- dataset_AUC_summary(MTG_matrix_wide$data[[1]], ontology_type)
+Allen_GLUT_AUC_table_list <- dataset_AUC_summary(MTG_matrix_wide$data[[2]], ontology_type)
+Allen_NONN_AUC_table_list <- dataset_AUC_summary(MTG_matrix_wide$data[[3]], ontology_type)
+
+# Combined tables of p-values for both He, Maynard and Allen data
+combined_GABA_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, Allen_GABA_AUC_table_list)
+combined_GLUT_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, Allen_GLUT_AUC_table_list)
+combined_NONN_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, Allen_NONN_AUC_table_list)
+
+# Gene Ontology tables
+GO_GABA_AUC_table <- combined_GABA_AUC_table_list
+GO_GLUT_AUC_table <- combined_GLUT_AUC_table_list
+GO_NONN_AUC_table <- combined_NONN_AUC_table_list
+
+
+
+ReviGO_GABA_list_up <- list()
+for (i in 1:6) {
+  ReviGO_GABA_list_up[[i]] <- run_revigo(ReviGO_GABA, i, "positive")
 }
 
+ReviGO_GABA_list_down <- list()
+for (i in 1:6) {
+  ReviGO_GABA_list_down[[i]] <- run_revigo(ReviGO_GABA, i, "negative")
+}
 
-#Combined tables of p-values for both He, Maynard and Allen data
-combined_GABA_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, MTG_GABA_AUC_table_list)
-combined_GLUT_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, MTG_GLUT_AUC_table_list)
-combined_NONN_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, MTG_NONN_AUC_table_list)
+ReviGO_GABA_up <- do.call(rbind, ReviGO_GABA_list_up)
+ReviGO_GABA_down <- do.call(rbind, ReviGO_GABA_list_down)
+ReviGO_GABA_complete <- rbind(ReviGO_GABA_up, ReviGO_GABA_down)
+
+ReviGO_GLUT_list_up <- list()
+for (i in 1:6) {
+  ReviGO_GLUT_list_up[[i]] <- run_revigo(ReviGO_GLUT, i, "positive")
+}
+ReviGO_GLUT_list_down <- list()
+for (i in 1:6) {
+  ReviGO_GLUT_list_down[[i]] <- run_revigo(ReviGO_GLUT, i, "negative")
+}
+
+ReviGO_GLUT_up <- do.call(rbind, ReviGO_GLUT_list_up)
+ReviGO_GLUT_down <- do.call(rbind, ReviGO_GLUT_list_down)
+ReviGO_GLUT_complete <- rbind(ReviGO_GLUT_up, ReviGO_GLUT_down)
+
+ReviGO_NONN_list_up <- list()
+for (i in 1:6) {
+  ReviGO_NONN_list_up[[i]] <- run_revigo(ReviGO_NONN, i, "positive")
+}
+ReviGO_NONN_list_down <- list()
+for (i in 1:6) {
+  ReviGO_NONN_list_down[[i]] <- run_revigo(ReviGO_NONN, i, "negative")
+}
+
+ReviGO_NONN_up <- do.call(rbind, ReviGO_NONN_list_up)
+ReviGO_NONN_down <- do.call(rbind, ReviGO_NONN_list_down)
+ReviGO_NONN_complete <- rbind(ReviGO_NONN_up, ReviGO_NONN_down)
 
 
-#Summarize top 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
-print(head(filter(combined_GABA_AUC_table_list[[2]], (( (AUC_Maynard > 0.5) | (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05)), n=20)) #insert combined tables
+DO_GABA <- extract_DO_and_pvalue(combined_GABA_AUC_table_list, 20) %>%
+  add_column(cell_type = "GABA")
+DO_GLUT <- extract_DO_and_pvalue(combined_GLUT_AUC_table_list, 20) %>%
+  add_column(cell_type = "GLUT")
+DO_NONN <- extract_DO_and_pvalue(combined_NONN_AUC_table_list, 20) %>%
+  add_column(cell_type = "NONN")
+
+common_DO_layer <- rbind(DO_GABA, DO_GLUT, DO_NONN)
+View(common_DO_layer %>%
+  filter(layer == 2 & direction == "positive" & rank < 20) %>%
+  group_by(ID) %>%
+  filter(n()>1))
+
+GO_GABA <- extract_DO_and_pvalue(GO_GABA_AUC_table, 20) %>%
+  add_column(cell_type = "GABA")
+GO_GLUT <- extract_DO_and_pvalue(GO_GLUT_AUC_table, 20) %>%
+  add_column(cell_type = "GLUT")
+GO_NONN <- extract_DO_and_pvalue(GO_NONN_AUC_table, 20) %>%
+  add_column(cell_type = "NONN")
+
+common_GO_layer <- rbind(GO_GABA, GO_GLUT, GO_NONN)
+View(common_GO_layer %>%
+       filter(layer == 1 & direction == "positive", rank < 20) %>%
+       group_by(ID) %>%
+       filter(n()>1))
+  
 
 
+#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
+print(head(filter(combined_NONN_AUC_table_list[[2]], (( (AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20)) #insert combined tables
 #Summarize bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
-print(head(filter(combined_NONN_AUC_table_list[[2]], ((AUC_Maynard < 0.5 | AUC_He < 0.5 | (AUC_Allen < 0.5) ) & adj_combined_p_value < 0.05/3)), n=20)) #insert combined tables
+print(head(filter(combined_GLUT_AUC_table_list[[2]], (( (AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20)) #insert combined tables
 
 
-# Save .txt file of genes in "Mood Disorders" for gene ontology
+#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
+print(head(filter(GO_GABA_AUC_table[[3]], (( (AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20)) #insert combined tables
+#Summarize bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
+print(head(filter(GO_NONN_AUC_table[[2]], (( (AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20))
+
+ # Save .txt file of genes in "Mood Disorders" for gene ontology
 #mood_disorders_genelist <- geneSetsTable %>% filter(Title == "Mood Disorders") %>% pull(feature_id)
 #mood_disorder_genelist <- unlist(strsplit(mood_disorder_genelist, ","))
 #write.table(mood_disorder_genelist, file = here("Data", "genelists", "DO_mood.disorders.txt"), row.names = F, col.names = F, quote = F)
@@ -314,3 +494,7 @@ print(head(filter(combined_NONN_AUC_table_list[[2]], ((AUC_Maynard < 0.5 | AUC_H
 #cocaine_related_disorders_genelist <- unlist(strsplit(cocaine_related_disorders_genelist, ","))
 #write.table(cocaine_related_disorders_genelist, file = here("Data", "genelists", "DO_cocaine.related.disorders.txt"), row.names = F, col.names = F, quote = F)
 
+ReviGO_GABA[1]
+
+
+# SRP9 gene - look at allen brain mouse atlas and Zeng images 
