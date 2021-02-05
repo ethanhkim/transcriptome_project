@@ -73,6 +73,13 @@ Maynard_logCPM_averaged <- as.data.frame(do.call(rbind, Maynard_mean_col_list)) 
   t() %>% as.data.frame() %>%
   rownames_to_column(var = 'gene_symbol')
 
+# Write Maynard normalized data
+
+save(Maynard_logCPM_averaged, file = here("Data", "processed_data", 
+                                          "Maynard_logCPM_averaged.Rdata"))
+write.csv(Maynard_logCPM_averaged, file = here("Data", "processed_Data", 
+                                               "Maynard_logCPM_averaged.csv"))
+
 
 ## He et al Normalization ##
 
