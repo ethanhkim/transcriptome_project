@@ -3,42 +3,55 @@
 library(dplyr)
 library(tidyverse)
 library(magrittr)
+library(conflicted)
+library(vegan)
+
+# Set conflicts
+conflict_prefer('intersect', 'dplyr')
+
+# Create common genelist between Maynard and He
+He_genelist <- unique(He_DS1_averaged_by_layer$gene_symbol)
+Maynard_genelist <- unique(Maynard_logCPM_averaged$gene_symbol)
+common_genelist <- intersect(He_genelist, Maynard_genelist)
 
 
-#Function to create transposed dataset
-
-transpose_Maynard_dataset <- function(x) {
-  as.data.frame(x) %>%
-    filter(gene_symbol %in% Maynard_common_gene_list) %>%
-    slice(match(common_gene_list, gene_symbol)) %>%
+# Create transposed dataframe
+transpose_df <- function(df, genelist) {
+  df %<>%
+    as.data.frame() %>%
+    filter(gene_symbol %in% genelist) %>%
+    slice(match(genelist, gene_symbol)) %>%
     column_to_rownames(var = "gene_symbol") %>%
     t()
+  return(df)
 }
 
-Maynard_dataset_average_transposed <- transpose_Maynard_dataset(Maynard_dataset_average)
-Maynard_dataset_transposed <- transpose_Maynard_dataset(Maynard_dataset)
+# Use non-averaged He and Maynard data
+
+Maynard_transposed <- transpose_df(Maynard_logCPM_averaged, common_genelist)
+He_transposed <- transpose_df(He_DS1_averaged_by_layer, common_genelist)
+
+# Run Mantel tests
+
+mantel_test <- function(df_1, df_2, no_of_permutations = 999) {
   
-# Create correlation matrices
+  df1_cor <- cor(df_1, df_1, method = "pearson", 
+                 use = "complete.obs")
+  df2_cor <- cor(df_2, df_2, method = "pearson", 
+                 use = "complete.obs")
+  
+  mantel_test_result <- mantel(df1_cor, df2_cor,
+                               method = "spearman",
+                               permutations = no_of_permutations,
+                               na.rm = T)
+  
+  return(mantel_test_result)
+}
 
-He_values_matrix <- cor(He_values_transposed, He_values_transposed, method = "pearson")
-Maynard_values_matrix <- cor(Maynard_dataset_transposed, Maynard_dataset_transposed, method = "pearson")
-
-results <- mantel(He_values_matrix, Maynard_values_matrix, method = "spearman", permutations = 999) %>%
-  print()
-
-Mantel_test_result_statistic <- results$statistic
+He_Maynard_mantel <- mantel_test(He_transposed, Maynard_transposed, 1)
 
 
-df1 <- Maynard_dataset_average 
-df2 <- He_DS1_averaged_by_layer
-
-df1_df2_genelist <- intersect(df1$gene_symbol, df2$gene_symbol)
-
-df1 %<>%
-  filter(gene_symbol %in% df1_df2_genelist) %<>%
-  arrange(gene_symbol) %<>%
-  column_to_rownames(var = "gene_symbol") %<>%
-  t()
+testlist <- 
 
 df2 %<>%
   filter(gene_symbol %in% df1_df2_genelist) %<>%
