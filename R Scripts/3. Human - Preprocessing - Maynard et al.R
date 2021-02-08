@@ -103,16 +103,3 @@ rm(Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Mayna
 #  dplyr::select("gene_symbol", contains("151676"))
 
 
-
-
-## Filter dataset by common genes
-#Maynard_filtered_dataset <- Maynard_dataset %>%
-#  filter(gene_symbol %in% Maynard_common_gene_list)
-
-## Remove duplicate rows of genes
-#duplicated(Maynard_filtered_dataset$gene_symbol) %>%
-#  which() %>%
-#  print()
-
-#Maynard_filtered_dataset %<>%
-#  dplyr::slice(-265, -785)
