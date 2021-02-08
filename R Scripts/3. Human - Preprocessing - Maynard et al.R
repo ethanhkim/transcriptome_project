@@ -10,11 +10,7 @@ Maynard_dataset <- as_tibble(sce_layer@assays@data@listData$logcounts)
 Maynard_ensembl_list <- sce_layer@rowRanges@ranges@NAMES
 Maynard_dataset$Ensembl_ID <- Maynard_ensembl_list
 
-# Write raw layer-level dataset for Maynard
-# unable to install spatialLIBD on SCC.
 
-write.csv(Maynard_dataset, here('Data', 'raw_data', 'Maynard et al',
-                                'layer_level_data.csv'))
 
 #Change Ensembl ID to gene symbol
 Maynard_dataset$gene_symbol <- mapIds(org.Hs.eg.db, keys = Maynard_dataset$Ensembl_ID, keytype = "ENSEMBL", column="SYMBOL")
@@ -23,6 +19,13 @@ Maynard_dataset <- Maynard_dataset %>%
   dplyr::select("gene_symbol", everything()) %>%
   filter(!is.na(gene_symbol)) %>%
   distinct(gene_symbol, .keep_all = TRUE)
+
+# Write raw layer-level dataset for Maynard
+# unable to install spatialLIBD on SCC.
+
+write.csv(Maynard_dataset, here('Data', 'raw_data', 'Maynard et al',
+                                'layer_level_data.csv'),
+          row.names = FALSE)
 
 ## Separate by layers and add average column
 Maynard_dataset_Layer1 <- Maynard_dataset %>%
