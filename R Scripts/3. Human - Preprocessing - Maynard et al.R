@@ -3,11 +3,18 @@
 library(spatialLIBD)
 library(tidyverse)
 library(org.Hs.eg.db)
+library(here)
 
 sce_layer <- fetch_data(type = "sce_layer")
 Maynard_dataset <- as_tibble(sce_layer@assays@data@listData$logcounts)
 Maynard_ensembl_list <- sce_layer@rowRanges@ranges@NAMES
 Maynard_dataset$Ensembl_ID <- Maynard_ensembl_list
+
+# Write raw layer-level dataset for Maynard
+# unable to install spatialLIBD on SCC.
+
+write.csv(Maynard_dataset, here('Data', 'raw_data', 'Maynard et al',
+                                'layer_level_data.csv'))
 
 #Change Ensembl ID to gene symbol
 Maynard_dataset$gene_symbol <- mapIds(org.Hs.eg.db, keys = Maynard_dataset$Ensembl_ID, keytype = "ENSEMBL", column="SYMBOL")
@@ -62,6 +69,8 @@ Maynard_dataset_average <- tibble(
   Layer_6 = Maynard_dataset_Layer6$dataset_mean,
   WM = Maynard_dataset_WM$dataset_mean,
 )
+
+write.csv()
 
 # Clean up workspace
 rm(Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Maynard_dataset_Layer4, Maynard_dataset_Layer5,
