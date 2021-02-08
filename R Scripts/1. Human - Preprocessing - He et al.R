@@ -8,19 +8,30 @@ library(here)
 library(readxl)
 library(dplyr)
 library(HGNChelper)
+library(conflicted)
+
+# Set conflicts
+conflict_prefer('filter', 'dplyr')
+conflict_prefer('rename', 'dplyr')
+conflict_prefer('select', 'dplyr')
 
 ## DS1 ##
-He_DS1_Human <- read.table(here("Data", "raw_data", "He et al", "tab.average_RPKM_section_human.tsv"), header = T)
+He_DS1_Human <- read.table(here("Data", "raw_data", "He et al", 
+                                "tab.average_RPKM_section_human.tsv"), 
+                           header = T)
 
 #Truncate the version numbers on ENSEMBL ID
-He_DS1_Human$V1 <- gsub("\\.\\d+$", "", He_DS1_Human$V1)
+He_DS1_Human$ENSEMBL_ID <- gsub("\\.\\d+$", "", He_DS1_Human$ENSEMBL_ID)
 
 #Change ENSEMBL ID to Gene symbol
-He_DS1_Human$gene_symbol <- mapIds(org.Hs.eg.db, keys = He_DS1_Human$V1, keytype = "ENSEMBL", column="SYMBOL")
+He_DS1_Human$gene_symbol <- mapIds(org.Hs.eg.db, 
+                                   keys = He_DS1_Human$ENSEMBL_ID, 
+                                   keytype = "ENSEMBL", column="SYMBOL")
 
 #Check if genes are updated
-check_HeList <- checkGeneSymbols(He_DS1_Human$gene_symbol, unmapped.as.na = TRUE, map = NULL, 
-                                   species = "human")
+check_HeList <- checkGeneSymbols(He_DS1_Human$gene_symbol, 
+                                 unmapped.as.na = TRUE, map = NULL, 
+                                 species = "human")
 
 #Update gene_symbol list
 He_DS1_Human <- He_DS1_Human %>%
@@ -30,15 +41,13 @@ He_DS1_Human <- He_DS1_Human %>%
 
 #Rename
 He_DS1_Human <- He_DS1_Human %>%
-  dplyr::rename(Ensembl_ID = "V1",
-         V1 = "V2", V2 = "V3", V3 = "V4", V4 = "V5", V5 = "V6", V6 = "V7", V7 = "V8",
-         V8 = "V9", V9 = "V10", V10 = "V11", V11 = "V12", V12 = "V13", V13 = "V14", 
-         V14 = "V15", V15 = "V16", V16 = "V17", V17 = "V18") 
+  rename_at(vars(contains('X')), funs(sub('X', 'S', .))) %>%
+  rename(Ensembl_ID = 'ENSEMBL_ID')
 
 #Remove unnecessary columns, rows and reorder so gene_symbol is at the front
 He_DS1_Human <- He_DS1_Human %>%
-  dplyr::select(-"Ensembl_ID") %>%
-  dplyr::select("gene_symbol", everything()) %>%
+  select(-"Ensembl_ID") %>%
+  select("gene_symbol", everything()) %>%
   filter(!is.na(gene_symbol)) %>%
   #Remove duplicates
   distinct(gene_symbol, .keep_all = TRUE)
