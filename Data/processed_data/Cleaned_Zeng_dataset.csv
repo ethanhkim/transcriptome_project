@@ -1,0 +1,1367 @@
+gene_symbol,entrez_id,marker_annotation,expression_level,V1_pattern,V2_pattern,Temporal_pattern
+A2M,2,vascular endothelial cell,+++++,VEC,VEC,NA
+AANAT,15,NA,++,ubiquitous,ubiquitous,NA
+AATF,26574,NA,++,ubiquitous,ubiquitous,NA
+ABAT,18,interneuron,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ABAT,18,interneuron,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ABAT,18,others,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ABAT,18,others,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ABCD1,215,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ACAN,176,NA,+,sparse to none,sparse to none,sparse to none
+ASIC2,40,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ACE,1636,NA,+,sparse to none,sparse to none,sparse to none
+ACHE,43,NA,++++,"ubiquitous(3,4,5/6)","ubiquitous(3,5,6)","ubiquitous(3,5,6)"
+ACTB,60,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+ACTN2,88,NA,+++,"layer 2/3,4C,5/6","layer 2/3,5,6",NA
+ADAM23,8745,NA,+++++,"ubiquitous(2/3,6)",ubiquitous(3),NA
+ADAMTS8,11095,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ADAMTSL5,339366,NA,+,ubiquitous,ubiquitous,ubiquitous
+ADCY1,107,NA,+++,ubiquitous(6),ubiquitous,NA
+ADCY2,108,NA,+++,ubiquitous(6),ubiquitous,ubiquitous
+ADCYAP1,116,NA,++,"scattered(2/3,6?)","scattered(2/3,6?)","scattered(2/3,6?)"
+ADM,133,interneuron,++++,sparse,sparse,sparse
+ADM,133,interneuron,++++,sparse,sparse,sparse
+ADM,133,vascular endothelial cell,++++,sparse,sparse,sparse
+ADM,133,vascular endothelial cell,++++,sparse,sparse,sparse
+ADORA1,134,NA,+++,"layer 2/3,4C,5/6",ubiquitous,NA
+ADORA2A,135,NA,++,ubiquitous,ubiquitous,ubiquitous
+ADORA3,140,NA,-,none,none,NA
+ADRA1A,148,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte
+ADRA1D,146,NA,+,ubiquitous,ubiquitous,ubiquitous
+ADRA2A,150,layer 6,+++,layer 6+,ubiquitous(6),ubiquitous(6)
+ADRA2B,151,NA,+,ubiquitous,ubiquitous,ubiquitous
+ADRB2,154,NA,+,ubiquitous,ubiquitous,NA
+GRK2,156,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+GRK3,157,NA,++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+AFAP1,60312,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+AGAP1,116987,NA,++++,ubiquitous,ubiquitous,NA
+AGRN,375790,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+AGTR1,185,NA,-,none,none,none
+AGTR2,186,NA,-,none,none,NA
+AHI1,54806,NA,++++,"ubiquitous(2/3,5/6)",ubiquitous,NA
+AKR1C2,1646,layer 6,++++,layer 6,layer 6,NA
+AKR1C3,8644,layer 6,++,layer 6,layer 6,layer 6
+AKT1,207,NA,++++,ubiquitous,ubiquitous,NA
+ALDH5A1,7915,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ALDOC,230,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+AMMECR1,9949,NA,+,ubiquitous,ubiquitous,NA
+AMPH,273,NA,++++,ubiquitous,ubiquitous,ubiquitous
+ANKHD1,54882,NA,+++,ubiquitous,ubiquitous,NA
+ANKRD34B,340120,NA,-,none,none,none
+ANXA1,301,layer 6,++++,layer 6,layer 6,layer 6
+APBA1,320,NA,+++,ubiquitous,ubiquitous,ubiquitous
+APBB2,323,NA,+++,scattered+ubiquitous,ubiquitous(3),ubiquitous(3)
+APLNR,187,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiquitous
+APLP1,333,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+APLP2,334,NA,+++++,ubiquitous,ubiquitous,NA
+APOC1,341,NA,+,ubiquitous,ubiquitous,NA
+APOL1,8542,NA,+++,ubiquitous,ubiquitous,NA
+APOL2,23780,NA,+++,ubiquitous(2/3),ubiquitous(3),ubiquitous(3)
+APOL4,80832,NA,-,none,none,NA
+APP,351,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+ARC,23237,NA,+++++,"scattered+ubiquitous(2/3,4C,5/6)",scattered+ubiquitous,scattered+ubiquitous
+ARFGEF2,10564,NA,+++,scattered,scattered,scattered
+ARHGEF10,9639,NA,++,"scattered,oligodendrocyte","scattered,oligodendrocyte","scattered,oligodendrocyte"
+ARHGEF6,9459,NA,++,scattered,scattered,scattered
+ARHGEF9,23229,NA,+++,ubiquitous,ubiquitous,NA
+ARL4C,10123,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ARNTL2,56938,NA,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ASL,435,NA,+++,ubiquitous,ubiquitous,NA
+ASPM,259266,NA,-,none,none,NA
+ZFHX3,463,NA,+,ubiquitous(6),ubiquitous(6),ubiquitous(6)
+ATF4,468,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,NA
+ATF5,22809,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,NA
+ATF7IP,55729,NA,+++,ubiquitous,ubiquitous,NA
+ATP10A,57194,NA,+++,scattered+VEC,scattered+VEC,scattered+VEC
+ATP1A2,477,astrocyte,++++,scattered+glial,scattered+glial,NA
+ATP1A3,478,NA,+++++,scattered+ubiquitous(6),scattered+ubiquitous,scattered+ubiquitous
+ATP2A2,488,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ATP2B4,493,layer 2,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 2,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 2,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 3,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 3,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 3,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 6,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 6,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP2B4,493,layer 6,+++,"layer 2/3,5/6","layer 2/3,5,6",NA
+ATP6AP2,10159,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+ATP8B1,5205,NA,++++,ubiquitous(6),ubiquitous(6),NA
+ATR,545,NA,++,scattered+ubiquitous,scattered+ubiquitous,NA
+ATRX,546,NA,+++,ubiquitous,ubiquitous,ubiquitous
+AUTS2,26053,NA,++,ubiquitous(4C/5),ubiquitous(5),ubiquitous(5)
+AVPR1A,552,NA,-,none,none,none
+AVPR1B,553,NA,+,ubiquitous,ubiquitous,ubiquitous
+AVPR2,554,NA,+,ubiquitous,ubiquitous,NA
+B3GALT2,8707,layer 5,++++,layer 5/6,layer(5)6,layer(5)6
+B3GALT2,8707,layer 5,++++,layer 5/6,layer(5)6,layer(5)6
+B3GALT2,8707,layer 6,++++,layer 5/6,layer(5)6,layer(5)6
+B3GALT2,8707,layer 6,++++,layer 5/6,layer(5)6,layer(5)6
+BACE2,25825,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+BAD,572,NA,++,ubiquitous,ubiquitous,ubiquitous
+BAX,581,NA,++,ubiquitous,ubiquitous,NA
+BCAN,63827,astrocyte,++++,scattered,scattered,scattered
+BCHE,590,NA,+,sparse to none,sparse to none,sparse to none
+BCL2,596,NA,+,ubiquitous,ubiquitous,NA
+BCL2L1,598,NA,++++,ubiquitous,ubiquitous,NA
+BCL6,604,NA,+++++,sparse(5)+ubiquitous,sparse(5)+ubiquitous,sparse(5)+ubiquitous
+BCOR,54880,NA,++++,ubiquitous,ubiquitous,NA
+BDNF,627,NA,+++++,"scattered(2/3,6)","scattered(2/3,6)","scattered(2/3,6)"
+BEND5,79656,layer 3,+++,"layer 2/3,4C,5/6",ubiquitous,"layer 2/3, 5"
+BEND5,79656,layer 3,+++,"layer 2/3,4C,5/6",ubiquitous,"layer 2/3, 5"
+BEND5,79656,layer 5,+++,"layer 2/3,4C,5/6",ubiquitous,"layer 2/3, 5"
+BEND5,79656,layer 5,+++,"layer 2/3,4C,5/6",ubiquitous,"layer 2/3, 5"
+BLMH,642,NA,++,ubiquitous,ubiquitous,NA
+BRCA1,672,NA,+,ubiquitous,ubiquitous,NA
+BRD7,29117,NA,++,ubiquitous,ubiquitous,NA
+BSN,8927,NA,++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+BTBD11,121551,interneuron,++++,scattered,scattered,scattered
+BTN2A1,11120,NA,++,ubiquitous,ubiquitous,NA
+C11orf87,399947,NA,++++,"scattered+ubiquitous(2/3,4C,5/6)",scattered+ubiquitous,scattered+ubiquitous
+C1QL2,165257,layer 2,+++,ubiquitous(2),ubiquitous(2),ubiquitous(2)
+C1QL2,165257,layer 2,+++,ubiquitous(2),ubiquitous(2),ubiquitous(2)
+C1QL2,165257,layer 3,+++,ubiquitous(2),ubiquitous(2),ubiquitous(2)
+C1QL2,165257,layer 3,+++,ubiquitous(2),ubiquitous(2),ubiquitous(2)
+LAMP5,24141,layer 2,+++++,layer 2/3+scattered,"layer 2,3+scattered",layer 2/3+scattered
+LAMP5,24141,layer 2,+++++,layer 2/3+scattered,"layer 2,3+scattered",layer 2/3+scattered
+LAMP5,24141,layer 3,+++++,layer 2/3+scattered,"layer 2,3+scattered",layer 2/3+scattered
+LAMP5,24141,layer 3,+++++,layer 2/3+scattered,"layer 2,3+scattered",layer 2/3+scattered
+YBEY,54059,NA,+++,ubiquitous,ubiquitous,NA
+NDNF,79625,interneuron,+++++,layer 1,layer 1,layer 1
+NDNF,79625,interneuron,+++++,layer 1,layer 1,layer 1
+NDNF,79625,layer 1,+++++,layer 1,layer 1,layer 1
+NDNF,79625,layer 1,+++++,layer 1,layer 1,layer 1
+COA1,55744,NA,+++,scattered+ubiquitous,ubiquitous,NA
+RBIS,401466,NA,+,ubiquitous,ubiquitous,NA
+CA2,760,oligodendrocyte,+++++,"scattered,oligodendrocyte","scattered,oligodendrocyte","scattered,oligodendrocyte"
+CA3,761,NA,-,none,none,NA
+CACNA1B,774,NA,+++,"layer 2/3,6",ubiquitous,NA
+CACNA1C,775,NA,+++,ubiquitous,ubiquitous,NA
+CACNA1D,776,NA,+++,ubiquitous,ubiquitous,NA
+CACNA1E,777,layer 2,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 2,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 2,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 3,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 3,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 3,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 6,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 6,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1E,777,layer 6,+++,"layer 2/3,6","layer 2/3,6","layer 2/3,6"
+CACNA1F,778,NA,++,scattered,scattered,NA
+CACNA1G,8913,NA,+++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+CACNA1I,8911,NA,+++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+CACNA1S,779,NA,+,ubiquitous,ubiquitous,NA
+CACNA2D1,781,NA,++,ubiquitous,ubiquitous,ubiquitous
+CACNA2D2,9254,interneuron,++++,scattered,scattered,scattered
+CACNA2D3,55799,NA,+++,ubiquitous,ubiquitous,ubiquitous
+CACNA2D4,93589,NA,+,ubiquitous,ubiquitous,NA
+CACNB1,782,NA,+++,ubiquitous,ubiquitous,NA
+CACNB3,784,NA,++++,ubiquitous,ubiquitous,ubiquitous
+CACNB4,785,NA,+++,ubiquitous,ubiquitous,ubiquitous
+CACNG1,786,NA,-,none,none,NA
+CACNG2,10369,NA,+++,ubiquitous,ubiquitous,NA
+CACNG3,10368,NA,++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+CACNG4,27092,NA,+,ubiquitous,ubiquitous,ubiquitous
+CACNG5,27091,layer 4,++,layer 4C,ubiquitous,ubiquitous
+CACNG6,59285,NA,+++++,ubiquitous,ubiquitous,NA
+CACNG7,59284,NA,+++,ubiquitous,ubiquitous,ubiquitous
+CACNG8,59283,NA,++++,ubiquitous,ubiquitous,ubiquitous
+CADPS2,93664,NA,+++++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+CALB1,793,interneuron,++++,scattered(2/3),scattered(2/3),scattered(2/3)
+CALB1,793,interneuron,++++,scattered(2/3),scattered(2/3),scattered(2/3)
+CALB1,793,layer 2,++++,scattered(2/3),scattered(2/3),scattered(2/3)
+CALB1,793,layer 2,++++,scattered(2/3),scattered(2/3),scattered(2/3)
+CALB2,794,interneuron,+++++,scattered(2/3),scattered(2/3),scattered(2/3)
+CALY,50632,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+CAMK2A,815,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+CAMK4,814,NA,+++,"layer 2/3,6",ubiquitous(6),ubiquitous(6)
+CAMKK2,10645,NA,+++++,"ubiquitous(2/3,5/6)",ubiquitous,ubiquitous
+CARTPT,9607,layer 2,++++,layer 2(/3)+sparse(6),layer 2(/3),layer 2(/3)
+CARTPT,9607,layer 2,++++,layer 2(/3)+sparse(6),layer 2(/3),layer 2(/3)
+CARTPT,9607,layer 3,++++,layer 2(/3)+sparse(6),layer 2(/3),layer 2(/3)
+CARTPT,9607,layer 3,++++,layer 2(/3)+sparse(6),layer 2(/3),layer 2(/3)
+CASP1,834,NA,+,ubiquitous,ubiquitous,NA
+CASP3,836,NA,+,ubiquitous,ubiquitous,NA
+CASP7,840,NA,-,none,none,NA
+CASP8,841,NA,+,ubiquitous,ubiquitous,NA
+CBLN2,147381,layer 2,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 2,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 2,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 3,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 3,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 3,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 6,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 6,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CBLN2,147381,layer 6,++++,"layer 2/3,(5)/6","layer 2/3,6","layer 2/3,6"
+CC2D1A,54862,NA,+++++,ubiquitous,ubiquitous,NA
+CCDC141,285025,NA,-,none,none,none
+CCK,885,layer 2,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 2,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 2,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 2,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 3,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 3,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 3,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 3,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 5,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 5,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 5,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 5,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 6,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 6,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 6,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCK,885,layer 6,+++++,"layer 1,2/3,5/6","layer 1,2/3,5,6","layer 1,2/3,5,6"
+CCKAR,886,NA,+++,scattered,scattered,scattered
+CCKBR,887,NA,++,ubiquitous,ubiquitous,ubiquitous
+CDH13,1012,interneuron,+++++,scattered,scattered,scattered
+CDH13,1012,interneuron,+++++,scattered,scattered,scattered
+CDH13,1012,layer 2,+++++,scattered,scattered,scattered
+CDH13,1012,layer 2,+++++,scattered,scattered,scattered
+CDH24,64403,layer 6,++++,layer 6,layer 6,layer 6
+CDH7,1005,interneuron,+++,scattered,scattered,scattered
+CDK5,1020,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+CDK5R1,8851,NA,++++,"ubiquitous(2/3,5/6)","ubiquitous(2/3,5,6)","ubiquitous(2/3,5,6)"
+CDK5R2,8941,NA,++++,ubiquitous,ubiquitous,NA
+CDK5RAP1,51654,NA,+++,ubiquitous,ubiquitous,NA
+CDK5RAP2,55755,NA,+++,scattered,scattered,NA
+CDK5RAP3,80279,NA,+++++,ubiquitous,ubiquitous,NA
+CDKL5,6792,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+CENPJ,55835,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+CEP290,80184,NA,++,ubiquitous,ubiquitous,NA
+CERK,64781,interneuron,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+CFC1,55997,NA,++++,ubiquitous,ubiquitous,NA
+CFTR,1080,NA,+,ubiquitous,ubiquitous,NA
+CHEK1,1111,NA,-,none,none,NA
+CHRM1,1128,NA,+++,ubiquitous,ubiquitous,ubiquitous
+CHRM2,1129,NA,++++,"layer 4C,(5/6)",scattered(5/6),scattered(5/6)
+CHRM3,1131,NA,+++,"layer 2/3,4C,5/6","layer 2/3,5,6","layer 2/3,5,6"
+CHRM4,1132,NA,++++,ubiquitous,ubiquitous,NA
+CHRM5,1133,NA,+,ubiquitous,ubiquitous,ubiquitous
+CHRNA10,57053,NA,-,none,none,NA
+CHRNA3,1136,layer 4,+++,layer 4C,sparse to none,sparse to none
+CHRNA4,1137,NA,+++,"ubiquitous(5,6)",ubiquitous,ubiquitous
+CHRNA5,1138,NA,++,sparse,sparse,sparse
+CHRNA6,8973,NA,+,sparse to none,ubiquitous,layer 2/3
+CHRNA7,1139,interneuron,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,interneuron,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,interneuron,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,layer 1,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,layer 1,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,layer 1,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,layer 2,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,layer 2,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA7,1139,layer 2,+++,sparse(1)+layer 2/3,sparse(1)+layer 2/3,sparse(1)+layer 2/3
+CHRNA9,55584,NA,-,none,none,none
+CHRNB2,1141,NA,++,ubiquitous,ubiquitous,ubiquitous
+CHRNB3,1142,NA,++,sparse,sparse,sparse
+CHRNB4,1143,NA,++,ubiquitous,ubiquitous,NA
+CHRND,1144,NA,-,none,none,none
+CHRNE,1145,NA,-,none,none,none
+CHRNG,1146,NA,-,none,none,none
+CIT,11113,NA,++++,ubiquitous,ubiquitous,ubiquitous
+CLCA1,1179,NA,-,none,none,none
+CLCA2,9635,NA,-,none,none,none
+CLCA3P,9629,NA,-,none,none,NA
+CLCA4,22802,NA,-,none,none,NA
+CLCN1,1180,NA,+,ubiquitous,ubiquitous,NA
+CLCN2,1181,NA,++++,scattered,scattered,scattered
+CLCN3,1182,NA,+++,ubiquitous,ubiquitous,NA
+CLCN4,1183,NA,+++,ubiquitous,ubiquitous,NA
+CLCN5,1184,NA,-,none,none,none
+CLCN6,1185,NA,++,ubiquitous,ubiquitous,NA
+CLCN7,1186,NA,+++,ubiquitous,ubiquitous,NA
+CLCNKA,1187,NA,-,none,none,NA
+CLCNKB,1188,NA,+,ubiquitous,ubiquitous,NA
+CLDN5,7122,vascular endothelial cell,+++++,VEC,VEC,VEC
+CLIC1,1192,NA,+++,scattered+VEC,scattered+VEC,scattered+VEC
+CLIC2,1193,NA,-,none,none,NA
+CLIC3,9022,NA,+++++,ubiquitous,ubiquitous,NA
+CLIC4,25932,NA,+,sparse to none,sparse to none,sparse to none
+CLIC5,53405,NA,+,sparse to none,sparse to none,sparse to none
+CLIC6,54102,NA,-,none,none,none
+CLN8,2055,NA,+,ubiquitous,ubiquitous,NA
+CLNS1A,1207,NA,+,ubiquitous,ubiquitous,ubiquitous
+CLOCK,9575,NA,++,ubiquitous,ubiquitous,ubiquitous
+CNGA1,1259,NA,-,none,none,NA
+CNGA2,1260,NA,-,none,none,NA
+CNGA4,1262,NA,-,none,none,NA
+CNGB3,54714,NA,-,none,none,NA
+CNP,1267,oligodendrocyte,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte
+CNR1,1268,interneuron,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,interneuron,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,interneuron,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,interneuron,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 1,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 1,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 1,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 1,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 2,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 2,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 2,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 2,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 6,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 6,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 6,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNR1,1268,layer 6,+++++,"scattered(1,2+)","scattered(1,2+)","scattered(1,2+)"
+CNTNAP2,26047,NA,++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+CNTNAP4,85445,interneuron,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous (4)
+CNTNAP4,85445,interneuron,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous (4)
+CNTNAP4,85445,laminar,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous (4)
+CNTNAP4,85445,laminar,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous (4)
+COL12A1,1303,NA,+++,"scattered(2/3,5/6)",scattered,scattered
+COL24A1,255631,layer 2,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 2,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 2,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 2,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 3,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 3,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 3,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 3,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 5,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 5,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 5,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 5,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 6,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 6,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 6,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL24A1,255631,layer 6,++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+COL5A1,1289,NA,++++,"ubiquitous(2/3,6)",ubiquitous,ubiquitous
+COL6A1,1291,layer 3,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 3,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 3,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 3,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 4,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 4,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 4,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 4,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 5,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 5,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 5,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 5,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 6,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 6,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 6,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL6A1,1291,layer 6,++++,ubiquitous,"ubiquitous(3,4)","ubiquitous(3,4)"
+COL9A3,1299,NA,+++,scattered,scattered,scattered
+COMT,1312,NA,+++,ubiquitous,ubiquitous,NA
+CORT,1325,interneuron,++++,sparse,sparse,sparse (6b)
+COX6A2,1339,NA,++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+COX8A,1351,NA,++++,scattered+ubiquitous,scattered+ubiquitous,NA
+CPLX3,594855,interneuron,++++,"scattered(1,6)",scattered,scattered
+CPNE7,27132,interneuron,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,interneuron,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,interneuron,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,layer 5,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,layer 5,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,layer 5,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,layer 6,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,layer 6,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPNE7,27132,layer 6,++++,layer 4C+scattered(5/6),"layer 4+scattered(5,6)","layer 4+scattered(5,6)"
+CPOX,1371,NA,+++,ubiquitous,ubiquitous,NA
+CRBN,51185,NA,+++,ubiquitous,ubiquitous,NA
+CREB1,1385,NA,++,ubiquitous,ubiquitous,NA
+CRH,1392,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiqutous
+CRHBP,1393,interneuron,+++,scattered,scattered,scattered
+CRHR1,1394,NA,+++,"ubiquitous(2/3,4)",ubiquitous(2/3/4),ubiquitous(2/3/4)
+CRHR2,1395,NA,++++,"layer(3),4+scattered","scattered(3,4)","scattered(3,4)"
+CRYM,1428,layer 2,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 2,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 2,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 2,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 3,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 3,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 3,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 3,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 5,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 5,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 5,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 5,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 6,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 6,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 6,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CRYM,1428,layer 6,+++++,"layer 2/3,5/6","layer 2/3,5/6","layer 2/3,5/6"
+CSMD1,64478,NA,+++,ubiquitous,ubiquitous,NA
+CSNK1D,1453,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+CSRP1,1465,oligodendrocyte,++++,scattered+oligodendrocyte,scattered+oligodendrocyte,scattered+oligodendrocyte
+CST3,1471,astrocyte,+++++,scattered+glial,scattered+glial,scattered+glial
+CSTB,1476,NA,++,ubiquitous,ubiquitous,ubiquitous
+CCN2,1490,layer 6,+++++,layer 6(b)+scattered,layer 6(b)+scattered,"layer 6(b)+scattered (2,3)"
+CTNNB1,1499,NA,+++,"layer 2/3,4C,5/6","ubiquitous(3d,4)","ubiquitous(3d,4)"
+CTNND2,1501,NA,+++,ubiquitous,ubiquitous,NA
+CTSB,1508,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+CUX1,1523,NA,++++,"layer 2/3,4,6","layer 2/3,6","layer 2/3,6"
+CUX2,23316,layer 2,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 2,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 2,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 3,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 3,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 3,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 4,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 4,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CUX2,23316,layer 4,++++,"layer 2/3,4",layer 2/3(4),layer 2/3(4)
+CXCL12,6387,NA,-,none,none,none
+CXCL14,9547,layer 1,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,layer 1,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,layer 1,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,layer 1,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,layer 2,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,layer 2,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,layer 2,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,layer 2,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,interneuron,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,interneuron,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,interneuron,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,interneuron,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,astrocyte,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,astrocyte,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,astrocyte,+++++,scattered(1),scattered(1),scattered(1)
+CXCL14,9547,astrocyte,+++++,scattered(1),scattered(1),scattered(1)
+CYP26B1,56603,NA,+++,"layer 2/3,(4C),5/6",ubiquitous(4),ubiquitous(4)
+CYP39A1,51302,NA,-,none,layer 3d,layer 3d
+CCN1,3491,layer 6,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,layer 6,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,layer 6,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,interneuron,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,interneuron,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,interneuron,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,astrocyte,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,astrocyte,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+CCN1,3491,astrocyte,+++++,"sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)","sparse+layer 6(2/3,5)"
+DAO,1610,NA,+,ubiquitous,ubiquitous,NA
+DAOA,267012,NA,-,none,none,NA
+DBH,1621,NA,+,ubiquitous,ubiquitous,ubiquitous
+DBN1,1627,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+DCX,1641,NA,-,none,none,NA
+DDC,1644,NA,+,ubiquitous,ubiquitous,ubiquitous
+DDIT4L,115265,NA,-,none,none,none
+DDT,1652,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+DDX11,1663,NA,++++,ubiquitous,ubiquitous,NA
+DECR1,1666,NA,+,ubiquitous,ubiquitous,ubiquitous
+DEPTOR,64798,NA,++,scattered,scattered,scattered
+WHRN,25861,NA,++,ubiquitous,ubiquitous,ubiquitous
+DHCR7,1717,NA,++,ubiquitous,ubiquitous,NA
+DHX9,1660,NA,+++,ubiquitous,ubiquitous,NA
+DISC1,27185,layer 1,-,none,layer 1+,NA
+DKC1,1736,NA,++,ubiquitous,ubiquitous,NA
+DKK3,27122,NA,+++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(2/3,5/6)","ubiquitous(2/3,5/6)"
+DLEC1,9940,NA,+,ubiquitous,ubiquitous,NA
+DLG1,1739,NA,++++,ubiquitous,ubiquitous,NA
+DLG2,1740,NA,+++,"ubiquitous(2/3,5/6)",ubiquitous,ubiquitous
+DLG3,1741,NA,+++,"ubiquitous(2/3,5/6)",ubiquitous,ubiquitous
+DLG4,1742,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+DLG5,9231,NA,++++,ubiquitous(4C),ubiquitous(4),NA
+DLGAP1,9229,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+DLGAP2,9228,NA,++++,ubiquitous,ubiquitous,ubiquitous
+DLX1,1745,interneuron,+++,scattered,scattered,scattered
+DLX5,1749,NA,++,ubiquitous,ubiquitous,ubiquitous
+DPP6,1804,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+DRD1,1812,NA,+++,"layer 2,6","layer 2,6","layer 2,6"
+DRD3,1814,NA,-,none,none,none
+DRD5,1816,NA,+,layer 5/6,"layer 5,6",NA
+DSG1,1828,NA,-,none,none,NA
+DTNA,1837,NA,++++,"scattered+ubiquitous(2/3,4C,5/6)",scattered+ubiquitous,scattered+ubiquitous
+DTNBP1,84062,NA,+,ubiquitous,ubiquitous,ubiquitous
+DVL1,1855,NA,+++,ubiquitous,ubiquitous,NA
+DYM,54808,NA,+++,ubiquitous,ubiquitous,NA
+DYNC1I2,1781,NA,++++,ubiquitous,ubiquitous,NA
+DNAAF4,161582,NA,-,none,none,NA
+ECE2,9718,NA,+++,scattered(2/3),scattered(2/3),scattered(2/3)
+EDNRA,1909,NA,++,scattered,scattered,NA
+EDNRB,1910,NA,+,ubiquitous,ubiquitous,ubiquitous
+EN2,2020,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+ENC1,8507,NA,+++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(2/3,5/6)","ubiquitous(2/3,5/6)"
+ENDOD1,23052,NA,+++,scattered+oligodendrocyte,scattered+oligodendrocyte,scattered+oligodendrocyte
+EPHA6,285220,NA,+++,"scattered(2/3,5/6)",scattered,scattered
+ERBB3,2065,NA,+++++,ubiquitous,ubiquitous,NA
+ERBB4,2066,interneuron,+++++,scattered,scattered,scattered
+ERCC2,2068,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+ERCC3,2071,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+ERCC5,2073,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+ESCO2,157570,NA,+++++,ubiquitous,ubiquitous,NA
+ESR1,2099,NA,-,none,none,none
+ESR2,2100,NA,-,none,none,none
+ETV1,2115,layer 5,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+ETV1,2115,layer 5,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+ETV1,2115,layer 6,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+ETV1,2115,layer 6,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+EXT1,2131,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous,NA
+EYA4,2070,astrocyte,+++,layer 4C+scattered,scattered,scattered
+EYA4,2070,astrocyte,+++,layer 4C+scattered,scattered,scattered
+EYA4,2070,interneuron,+++,layer 4C+scattered,scattered,scattered
+EYA4,2070,interneuron,+++,layer 4C+scattered,scattered,scattered
+FABP7,2173,NA,-,none,none,none
+FAM111A,63901,NA,-,none,none,NA
+FAM111B,374393,NA,-,none,none,NA
+FAM20A,54757,NA,-,none,none,none
+FAM3C,10447,layer 5,++++,"layer 2/3,4C,5/6",ubiquitous(5s),ubiquitous(5s)
+TENT5A,55603,interneuron,++++,scattered,scattered,scattered
+FEZ1,9638,NA,+++++,ubiquitous,ubiquitous,NA
+FGD1,2245,NA,++,ubiquitous,ubiquitous,NA
+FGF1,2246,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+FGF14,2259,NA,++,scattered+ubiquitous,scattered+ubiquitous,NA
+FGF2,2247,NA,+,sparse to none,sparse to none,NA
+FGF9,2254,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+FGFR1,2260,NA,++++,scattered(5/6),scattered(5/6),scattered(5/6)
+FGFR2,2263,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+FMR1,2332,NA,++,ubiquitous,ubiquitous,NA
+FOXP2,93986,layer 6,+++,layer 6,"layer 4,5,6","layer 4,5,6"
+FRA10AC1,118924,NA,++,ubiquitous,ubiquitous,NA
+FST,10468,NA,-,none,none,none
+FTSJ1,24140,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+FXYD6,53826,layer 2,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 2,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 2,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 2,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 3,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 3,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 3,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 3,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 5,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 5,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 5,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 5,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 6,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 6,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 6,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FXYD6,53826,layer 6,+++++,"layer 23/,5/6","ubquitous(5,6)",ubquitous
+FYN,2534,NA,++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GABARAP,11337,NA,+++,scattered+ubiquitous,ubiquitous,ubiquitous
+GABARAPL1,23710,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GABARAPL2,11345,NA,+++,scattered+ubiquitous,ubiquitous,NA
+GABBR1,2550,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,NA
+GABBR2,9568,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GABRA1,2554,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GABRA2,2555,NA,+,sparse to none,sparse to none,sparse to none
+GABRA3,2556,NA,++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+GABRA4,2557,NA,+++,ubiquitous,ubiquitous,ubiquitous
+GABRA5,2558,layer 5,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 5,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 5,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 6,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 6,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 6,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 6,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 6,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA5,2558,layer 6,+++++,"layer 5,6,6b","layer 5,6,6b","layer 5,6,6b"
+GABRA6,2559,NA,-,none,sparse to none,sparse to none
+GABRB1,2560,NA,++,"ubiquitous(2/3,6)","ubiquitous(2/3,6)","ubiquitous(2/3,6)"
+GABRB2,2561,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GABRB3,2562,NA,+++,ubiquitous,ubiquitous,ubiquitous
+GABRD,2563,NA,+++++,"scattered+ubiquitous(2/3,4)",scattered+ubiquitous(2/3),NA
+GABRE,2564,NA,-,none,none,"scattered (5,6)"
+GABRG1,2565,NA,+,sparse to none,layer 4,layer 4
+GABRG2,2566,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GABRG3,2567,NA,+++,"scattered+ubiquitous(4C,5/6)",scattered+ubiquitous,scattered+ubiquitous
+GABRP,2568,NA,-,none,none,none
+GABRQ,55879,NA,-,none,none,none
+GABRR1,2569,NA,-,none,none,none
+GABRR2,2570,NA,-,none,none,none
+GABRR3,200959,NA,-,none,none,NA
+GAD1,2571,interneuron,+++++,scattered,scattered,scattered
+GAD2,2572,interneuron,+++++,scattered,scattered,scattered
+GALR2,8811,NA,+,ubiquitous,ubiquitous,ubiquitous
+GAP43,2596,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+GDI1,2664,NA,+++++,ubiquitous,ubiquitous,NA
+GFAP,2670,oligodendrocyte,++++,scattered+oligodendrocyte,scattered+oligodendrocyte,scattered+oligodendrocyte
+GIPR,2696,NA,+,ubiquitous,ubiquitous,NA
+GJA1,2697,astrocyte,++++,scattered+glial,scattered+glial,scattered+glial
+GLO1,2739,NA,++,ubiquitous,ubiquitous,ubiquitous
+GLRA1,2741,NA,+++,sparse,sparse,sparse
+GLRA2,2742,NA,+,sparse to none,sparse to none,sparse to none
+GLRA3,8001,layer 2,+++,"layer(2/3),4C",ubiquitous(2/3),ubiquitous(2/3)
+GLRB,2743,NA,++++,ubiquitous,ubiquitous,ubiquitous
+GLUD2,2747,NA,+,ubiquitous,ubiquitous,NA
+GM2A,2760,NA,++,ubiquitous,ubiquitous,ubiquitous
+GMPR,2766,NA,-,none,sparse to none,sparse to none
+GNB4,59345,NA,+,sparse to none,sparse to none,sparse to none
+GNG7,2788,NA,+++,ubiquitous(6),ubiquitous,ubiquitous(6)
+GNRHR,2798,NA,+,ubiquitous,ubiquitous,NA
+GOSR1,9527,NA,++,ubiquitous,ubiquitous,NA
+GPHN,10243,NA,++,ubiquitous,ubiquitous,ubiquitous
+GPR101,83550,NA,+,ubiquitous,ubiquitous,ubiquitous
+ADGRF5,221395,NA,++,scattered+VEC?,scattered+VEC?,scattered+VEC?
+GPR12,2835,NA,++,layer 4C,ubiquitous,ubiquitous
+GPR156,165829,NA,+,ubiquitous,ubiquitous,ubiquitous
+GPR161,23432,NA,++,"ubiquitous(2/3,6)",ubiquitous,ubiquitous
+GPR173,54328,NA,+,sparse to none,sparse to none,sparse to none
+GPR176,11245,NA,++,scattered,scattered,scattered
+GPR19,2842,NA,+,ubiquitous,ubiquitous,NA
+GPR22,2845,NA,+,ubiquitous,ubiquitous,NA
+GPR3,2827,NA,+,sparse to none,sparse to none,sparse to none
+GPR37,2861,NA,++++,scattered,scattered,scattered
+GPR50,9248,NA,+,sparse to none,sparse to none,sparse to none
+ADGRG1,9289,astrocyte,+++,scattered+astrocyte,scattered+astrocyte,scattered+astrocyte
+GPR6,2830,NA,+,ubiquitous,ubiquitous,ubiquitous
+GPR78,27201,NA,++++,sparse(6b),sparse(6b),NA
+GPR83,10888,NA,++,scattered,scattered,scattered
+GPR85,54329,NA,+++,scattered+VEC,scattered+VEC,scattered+VEC
+GPR88,54112,NA,-,none,none,none
+ADGRV1,84059,astrocyte,++++,"layer 1+scattered(2/3,6)","layer 1+scattered(2/3,6)","layer 1+scattered(2/3,6)"
+GPRIN3,285513,NA,-,none,none,none
+GRB2,2885,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous,NA
+GRIA1,2890,NA,++++,"layer 5/6,(2/3)+scattered","layer 5/6,(2/3)+scattered","layer 5/6,(2/3)+scattered"
+GRIA2,2891,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+GRIA3,2892,NA,+++++,"layer 2/3,4C,5/6","ubiquitous(2/3,5/6)","ubiquitous(2/3,5/6)"
+GRIA4,2893,NA,++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GRID1,2894,NA,++,ubiquitous,ubiquitous,ubiquitous
+GRID2,2895,NA,+,sparse to none,sparse to none,sparse to none
+GRIK1,2897,interneuron,+++++,scattered,scattered,scattered
+GRIK2,2898,NA,++++,"scattered+2/3,4C,5/6","scattered+2/3,5,6","scattered+2/3,5,6"
+GRIK3,2899,NA,++++,scattered+layer 5/6,"scattered+layer(5),6","scattered+layer(5),6"
+GRIK4,2900,layer 4,++++,"layer 4C,6,(2)","ubiquitous(2,6)","ubiquitous(2,6)"
+GRIK4,2900,layer 4,++++,"layer 4C,6,(2)","ubiquitous(2,6)","ubiquitous(2,6)"
+GRIK4,2900,layer 6,++++,"layer 4C,6,(2)","ubiquitous(2,6)","ubiquitous(2,6)"
+GRIK4,2900,layer 6,++++,"layer 4C,6,(2)","ubiquitous(2,6)","ubiquitous(2,6)"
+GRIK5,2901,NA,+++,ubiquitous,ubiquitous,ubiquitous
+GRIN1,2902,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+GRIN2A,2903,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+GRIN2B,2904,NA,+++,ubiquitous,ubiquitous,ubiquitous
+GRIN2C,2905,NA,+++,layer 4C+scattered,ubiquitous,NA
+GRIN2D,2906,NA,++++,ubiquitous,ubiquitous,ubiquitous
+GRIN3A,116443,interneuron,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,interneuron,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,interneuron,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,layer 5,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,layer 5,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,layer 5,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,layer 6,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,layer 6,++++,scattered,scattered,"scattered(5,6)"
+GRIN3A,116443,layer 6,++++,scattered,scattered,"scattered(5,6)"
+GRIN3B,116444,NA,+,ubiquitous,ubiquitous,ubiquitous
+GRINA,2907,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+POLR2M,81488,NA,++,ubiquitous,ubiquitous,ubiquitous
+GRIP1,23426,NA,+++,scattered,scattered,scattered
+GRIP2,80852,NA,++++,scattered,scattered,scattered
+GRM1,2911,NA,+++,"scattered+layer 2/3,5/6","scattered+layer 2/3,5,6","scattered+layer 2/3,5,6"
+GRM2,2912,NA,++,"scattered(2/3,5/6)","scattered(2/3,5/6)","scattered(2,3)"
+GRM3,2913,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+GRM4,2914,NA,+++,"layer 4C,(6)+scattered",scattered,scattered
+GRM6,2916,NA,-,none,none,NA
+GRM7,2917,NA,+++,"layer 2,3,4","layer 2,3,4",NA
+GRM8,2918,NA,+,sparse to none,sparse to none,sparse to none
+GRPR,2925,NA,+,sparse to none,sparse to none,NA
+GSG1L,146395,layer 2,++,layer 6(2/3),layer 6(2/3),layer 6(2/3)
+GSG1L,146395,layer 2,++,layer 6(2/3),layer 6(2/3),layer 6(2/3)
+GSG1L,146395,layer 3,++,layer 6(2/3),layer 6(2/3),layer 6(2/3)
+GSG1L,146395,layer 3,++,layer 6(2/3),layer 6(2/3),layer 6(2/3)
+GSK3B,2932,NA,++++,scattered+ubiquitous,scattered+ubiquitous,NA
+GSN,2934,oligodendrocyte,+++++,oligodendrocyte,oligodendrocyte,oligodendrocyte
+GTF2H2C,728340,NA,+++,ubiquitous,ubiquitous,NA
+GTF2I,2969,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+GXYLT2,727936,NA,+,ubiquitous,ubiquitous,ubiquitous
+HAPLN1,1404,NA,+,ubiquitous,ubiquitous,ubiquitous
+HBD,3045,vascular endothelial cell,+++++,VEC,VEC,VEC
+HCN1,348980,NA,++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+HCN2,610,NA,++++,scattered,scattered,scattered
+HCN3,57657,NA,-,none,none,NA
+HCN4,10021,NA,+++++,ubiquitous,ubiquitous,NA
+HCRTR1,3061,NA,+++,scattered,scattered,scattered + layer 3
+HCRTR2,3062,NA,++,ubiquitous(6),ubiquitous(6),ubiquitous(6)
+HOMER1,9456,NA,++++,"layer(2/3),5/6",ubiquitous,ubiquitous
+HPSE,10855,NA,++,scattered(4C),sparse,sparse
+HRH1,3269,NA,-,none,none,none
+HRH4,59340,NA,-,none,none,NA
+HSD11B1,3290,NA,+++,scattered,scattered,scattered
+HSPG2,3339,NA,+++,ubiquitous(4C),scattered,NA
+HTR1A,3350,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous(2/3),ubiquitous(2/3)
+HTR1B,3351,NA,+++,layer 4C+,ubiquitous(3),ubiquitous
+HTR1D,3352,NA,+,ubiquitous,ubiquitous,NA
+HTR1E,3354,NA,++,ubiquitous,ubiquitous,NA
+HTR1F,3355,NA,++,"ubiquitous(2/3,4C,5/6)",ubiquitous,NA
+HTR2A,3356,NA,++++,ubiquitous(4C),ubiquitous,NA
+HTR2B,3357,NA,-,none,none,none
+HTR2C,3358,layer 5,+++,sparse(5),layer 5,layer 5
+HTR3A,3359,NA,+,ubiquitous,ubiquitous,ubiquitous
+HTR4,3360,NA,-,none,none,none
+HTR5A,3361,NA,+,ubiquitous,ubiquitous,NA
+HTR6,3362,NA,+++,ubiquitous,ubiquitous,NA
+HTR7,3363,NA,+,ubiquitous,ubiquitous,NA
+HTRA2,27429,NA,++,ubiquitous,ubiquitous,NA
+ID2,3398,NA,+++++,"layer (2/3,4C),5/6","ubiquitous(5,6)","ubiquitous(5,6)"
+IGBP1,3476,NA,+,ubiquitous,ubiquitous,NA
+IGF1,3479,NA,++,scattered,scattered,NA
+IGFBP4,3487,NA,+,ubiquitous,ubiquitous,ubiquitous (2)
+IGFN1,91156,NA,+,ubiquitous,ubiquitous,sparse to none
+IGSF11,152404,layer 2,++++,scattered+layer 2/3,scattered,scattered
+IGSF11,152404,layer 2,++++,scattered+layer 2/3,scattered,scattered
+IGSF11,152404,layer 3,++++,scattered+layer 2/3,scattered,scattered
+IGSF11,152404,layer 3,++++,scattered+layer 2/3,scattered,scattered
+IGSF21,84966,NA,+++,"ubiquitous(2/3,5/6)","ubiquitous(2/3,6)","ubiquitous(2/3,6)"
+IL1B,3553,NA,-,none,none,NA
+IL1RAPL1,11141,NA,+++,ubiquitous,ubiquitous,NA
+INPP1,3628,NA,+++,ubiquitous,ubiquitous,ubiquitous
+INPP4B,8821,layer 1,+++,ubquitous(3)+layer 1,ubquitous(3/4)+layer 1,scattered+layer 1
+INSR,3643,NA,++,ubiquitous,ubiquitous,NA
+ITGA5,3678,NA,+,scattered,scattered,scattered
+ITPR2,3709,NA,+++,scattered,scattered,NA
+ITSN1,6453,NA,+++,ubiquitous,ubiquitous,ubiquitous
+JRK,8629,NA,++,scattered+ubiquitous,scattered+ubiquitous,NA
+KCNA1,3736,layer 3,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 3,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 3,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 5,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 5,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 5,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 6,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 6,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA1,3736,layer 6,++++,layer 5/6+scattered(3/4),"layer 3,5/6","layer 3,5/6"
+KCNA10,3744,NA,-,none,none,NA
+KCNA2,3737,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+KCNA3,3738,NA,+,ubiquitous,ubiquitous,NA
+KCNA4,3739,NA,++,ubiquitous,ubiquitous,NA
+KCNA5,3741,NA,+,sparse to none,sparse to none,NA
+KCNA6,3742,NA,++,"layer 4C,5/6","ubiquitous(5,6)","ubiquitous(5,6)"
+KCNA7,3743,NA,+,ubiquitous,ubiquitous,NA
+KCNAB1,7881,interneuron,+++++,scattered,scattered+layer 4,scattered+layer 4
+KCNAB2,8514,NA,+++++,scattered+ubiquitous,ubiquitous,ubiquitous
+KCNAB3,9196,NA,+++++,scattered+ubiquitous(4C),scattered+ubiquitous(4),scattered+ubiquitous(4)
+KCNB1,3745,NA,++++,ubiquitous,ubiquitous,ubiquitous
+KCNB2,9312,NA,++,ubiquitous,ubiquitous,ubiquitous
+KCNC1,3746,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+KCNC2,3747,interneuron,++++,"scattered,4C",scattered,scattered
+KCNC3,3748,NA,+++++,scattered+ubiquitous,layer 3(5/6),scattered+ubiquitous
+KCNC4,3749,NA,++,ubiquitous,ubiquitous,ubiquitous
+KCND1,3750,NA,++++,ubiquitous,ubiquitous,NA
+KCND2,3751,NA,-,none,none,none
+KCND3,3752,NA,++,ubiquitous,ubiquitous,ubiquitous
+KCNE1,3753,NA,-,none,none,NA
+KCNE2,9992,NA,-,none,none,none
+KCNE3,10008,NA,+,sparse to none,sparse to none,sparse to none
+KCNE4,23704,NA,-,none,none,none
+KCNF1,3754,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+KCNG3,170850,NA,-,none,none,none
+KCNG4,93107,NA,++,ubiquitous,ubiquitous,ubiquitous
+KCNH1,3756,NA,+++,ubiquitous(2/3),ubiquitous(2/3),ubiquitous(2/3)
+KCNH2,3757,NA,++,scattered,scattered,NA
+KCNH3,23416,NA,++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+KCNH4,23415,layer 2,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 2,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 2,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 3,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 3,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 3,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 6,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 6,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH4,23415,layer 6,+++,"layer 2/3,6","ubiquitous(2/3,(6))",NA
+KCNH5,27133,NA,+++,"layer 2/3,6","layer 2/3,6",NA
+KCNH6,81033,NA,+,sparse to none,sparse to none,NA
+KCNH7,90134,NA,++,ubiquitous,ubiquitous,ubiquitous
+KCNH8,131096,NA,+++,layer 4C,scattered,scattered
+KCNIP1,30820,interneuron,++++,scattered+layer 4,scattered,scattered (5)
+KCNIP1,30820,interneuron,++++,scattered+layer 4,scattered,scattered (5)
+KCNIP1,30820,layer 4,++++,scattered+layer 4,scattered,scattered (5)
+KCNIP1,30820,layer 4,++++,scattered+layer 4,scattered,scattered (5)
+KCNIP2,30819,interneuron,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,interneuron,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,interneuron,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,layer 2,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,layer 2,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,layer 2,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,layer 3,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,layer 3,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP2,30819,layer 3,+++++,"scattered+layer 2/3,4C,6",scattered+layer 2,NA
+KCNIP3,30818,NA,++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+KCNJ1,3758,NA,-,none,none,NA
+KCNJ10,3766,NA,+++,scattered,scattered,NA
+KCNJ11,3767,NA,++,ubiquitous,ubiquitous,NA
+KCNJ12,3768,NA,+++,scattered,scattered,scattered
+KCNJ13,3769,NA,-,none,none,NA
+KCNJ14,3770,NA,-,none,none,none
+KCNJ15,3772,NA,-,none,none,none
+KCNJ16,3773,NA,-,none,none,none
+KCNJ2,3759,NA,+,ubiquitous,ubiquitous,ubiquitous
+KCNJ3,3760,NA,++++,ubiquitous,ubiquitous,ubiquitous
+KCNJ4,3761,NA,+++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+KCNJ5,3762,NA,++,sparse,sparse,sparse
+KCNJ6,3763,NA,+++,ubiquitous,ubiquitous,ubiquitous
+KCNJ8,3764,NA,-,none,ubiquitous,ubiquitous
+KCNK1,3775,NA,+++++,"scattered+2/3,4C,5/6",scattered+ubiquitous,scattered+ubiquitous
+KCNK10,54207,NA,+,ubiquitous,ubiquitous,NA
+KCNK13,56659,NA,++,ubiquitous,ubiquitous,ubiquitous
+KCNK15,60598,NA,+,ubiquitous,ubiquitous,NA
+KCNK16,83795,NA,+,ubiquitous,ubiquitous,NA
+KCNK17,89822,NA,-,none,none,NA
+KCNK18,338567,NA,-,none,none,NA
+KCNK2,3776,layer 5,++,"layer 4C,5/6","layer 5,6","layer 5,6"
+KCNK2,3776,layer 5,++,"layer 4C,5/6","layer 5,6","layer 5,6"
+KCNK2,3776,layer 6,++,"layer 4C,5/6","layer 5,6","layer 5,6"
+KCNK2,3776,layer 6,++,"layer 4C,5/6","layer 5,6","layer 5,6"
+KCNK3,3777,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+KCNK4,50801,NA,++,ubiquitous,ubiquitous,NA
+KCNK5,8645,NA,++,ubiquitous,ubiquitous,NA
+KCNK6,9424,NA,+++++,ubiquitous,ubiquitous,NA
+KCNK7,10089,NA,-,none,none,NA
+KCNK9,51305,NA,++,ubiquitous(6),ubiquitous,NA
+KCNMB1,3779,NA,+,ubiquitous,ubiquitous,NA
+KCNMB2,10242,NA,-,none,none,NA
+KCNMB3,27094,NA,+,ubiquitous,ubiquitous,NA
+KCNMB4,27345,NA,+++,"ubiquitous(4C,5/6)","ubiquitous(5,6)","ubiquitous(5,6)"
+KCNN1,3780,NA,++,ubiquitous,ubiquitous,NA
+KCNN2,3781,NA,+++,sparse(5)+ubiquitous,sparse+ubiquitous,sparse+ubiquitous
+KCNN3,3782,NA,-,none,none,NA
+KCNN4,3783,NA,+,sparse to none,sparse to none,sparse to none
+KCNQ1,3784,NA,++,ubiquitous,ubiquitous,NA
+KCNQ2,3785,NA,++++,ubiquitous,ubiquitous,NA
+KCNQ3,3786,NA,+++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+KCNQ4,9132,NA,+,ubiquitous,ubiquitous,ubiquitous
+KCNQ5,56479,NA,+++,"layer (2/3),4C,5/6","layer(2/)3,5,6","layer(2/)3,5,6"
+KCNS2,3788,NA,++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+KCNS3,3790,interneuron,+++,scattered,scattered,scattered
+KCNT1,57582,NA,+++++,ubiquitous,ubiquitous,NA
+KCNT2,343450,NA,-,none,none,NA
+KCNV1,27012,NA,+++,"layer 2/3,4C,5/6","layer 2/3,5,6",NA
+KCNV2,169522,NA,+,ubiquitous,ubiquitous,ubiquitous
+KCTD12,115207,interneuron,++++,sparse,sparse,sparse
+KCTD4,386618,NA,++,scattered,scattered,scattered
+KDM5C,8242,NA,++++,ubiquitous,ubiquitous,NA
+MINAR1,23251,NA,+,ubiquitous,ubiquitous,ubiquitous
+CEMIP,57214,interneuron,+++,scattered+layer 4C,scattered,scattered
+KIFBP,26128,NA,++++,ubiquitous,ubiquitous,NA
+FAM214A,56204,NA,+++,ubiquitous,ubiquitous,ubiquitous
+TRMT9B,57604,layer 4,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 4,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 4,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 5,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 5,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 5,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 6,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 6,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+TRMT9B,57604,layer 6,++++,"ubiquitous(2/3,4C,5/6)","ubiquitous(4,5,6)","ubiquitous(4,5,6)"
+KIT,3815,interneuron,+++++,scattered,scattered,scattered
+KLK6,5653,NA,++++,"scattered(5/6,deep)","scattered(5/6,deep)","scattered(5/6,deep)"
+KRT80,144501,NA,++,scattered,scattered,scattered
+KRT9,3857,NA,+,sparse to none,sparse to none,sparse to none
+L1CAM,3897,NA,++++,ubiquitous,ubiquitous,ubiquitous
+LARGE1,9215,NA,++++,"layer 2/3,4C,5/6",ubiquitous(6),ubiquitous(6)
+LAYN,143903,NA,+,ubiquitous,ubiquitous,ubiquitous
+LDLR,3949,NA,++,ubiquitous,ubiquitous,ubiquitous
+LEPR,3953,NA,+++,scattered,scattered,scattered
+LGALS1,3956,layer 3,++++,scattered+layer 5/6,"layer 3,5/6","layer 3,5/6"
+LGALS1,3956,layer 3,++++,scattered+layer 5/6,"layer 3,5/6","layer 3,5/6"
+LGALS1,3956,layer 5,++++,scattered+layer 5/6,"layer 3,5/6","layer 3,5/6"
+LGALS1,3956,layer 5,++++,scattered+layer 5/6,"layer 3,5/6","layer 3,5/6"
+LGI1,9211,NA,+++,"ubiquitous(4c,6)",ubiquitous(6),ubiquitous
+LGI2,55203,interneuron,++++,scattered,scattered,scattered
+LGI3,203190,NA,+++++,"scattered(3,5)+ubiquitous","scattered(3,5)+ubiquitous","scattered(3,5)+ubiquitous"
+LGR4,55366,NA,-,none,none,NA
+LGR5,8549,NA,-,none,none,none
+LGR6,59352,NA,+,ubiquitous(6),ubiquitous(6),NA
+LHX1,3975,NA,+,ubiquitous,ubiquitous,ubiquitous
+LHX6,26468,interneuron,+++,scattered,scattered,scattered
+LIG4,3981,NA,+,ubiquitous,ubiquitous,NA
+LSP1P5,645166,NA,+++,"ubiquitous(2/3,5/6)","ubiquitous(2/3,5/6)",NA
+LOC727820,727820,NA,+++,ubiquitous,ubiquitous,NA
+LOC727983,727983,NA,++,ubiquitous,ubiquitous,NA
+ARHGEF34P,728377,NA,+++,ubiquitous,ubiquitous,NA
+LRP1,4035,NA,++++,ubiquitous,ubiquitous,NA
+LRP2,4036,NA,++,sparse,sparse,NA
+LRP8,7804,NA,++++,scattered,scattered,scattered
+LRRC1,55227,NA,+,ubiquitous,ubiquitous,ubiquitous
+LRRC15,131578,NA,++,ubiquitous,ubiquitous,NA
+LRRK2,120892,NA,+++,layer 4C+scattered(2/3),scattered(2/3),NA
+LRRN3,54674,NA,+++,"ubiquitous(2/3,6)",ubiquitous,ubiquitous
+LSAMP,4045,NA,++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+LXN,56925,NA,++,sparse(6),sparse(6),sparse(6)
+LYNX1,66004,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+LYPD1,116372,interneuron,++++,"scattered(2/3,5/6)","scattered(2/3,5,6)","scattered(2/3,5,6)"
+LYPD6,130574,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+MAD1L1,8379,NA,++,ubiquitous,ubiquitous,ubiquitous
+MAFB,9935,interneuron,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+MAOA,4128,NA,NA,N/A,sparse to none,sparse to none
+MAOB,4129,NA,++++,layer 5/6,"ubiquitous(5,6)","ubiquitous(5,6)"
+MAP1A,4130,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+MAPK1,5594,NA,++++,"ubiquitous(2/3,5/6)","ubiquitous(2/3,5,6)",NA
+MAPK10,5602,NA,+++++,ubiquitous,ubiquitous,NA
+MAPT,4137,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+MARCKSL1,65108,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+MBP,4155,oligodendrocyte,+++++,oligodendrocyte,oligodendrocyte,oligodendrocyte
+MC1R,4157,NA,+,ubiquitous,ubiquitous,NA
+MC2R,4158,NA,-,none,none,NA
+MC3R,4159,NA,-,none,none,none
+MC5R,4161,NA,+,ubiquitous,ubiquitous,NA
+MCHR1,2847,NA,++,ubiquitous,ubiquitous,ubiquitous
+MCHR2,84539,NA,+++,"ubiquitous(2/3,5/6)","ubiquitous(2,3,6)",NA
+MCM7,4176,NA,++,ubiquitous,ubiquitous,NA
+MCPH1,79648,NA,++,ubiquitous,ubiquitous,NA
+MECP2,4204,NA,++++,ubiquitous,ubiquitous,ubiquitous
+MEPCE,56257,NA,++++,ubiquitous,ubiquitous,NA
+MET,4233,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte
+MFGE8,4240,layer 3,+++,scattered,layer 3,layer 3
+MME,4311,NA,++,layer 6,ubiquitous,ubiquitous
+MOBP,4336,oligodendrocyte,+++++,oligodendrocyte,oligodendrocyte,NA
+MOG,4340,oligodendrocyte,+++++,"scattered,oligodendrocyte","scattered,oligodendrocyte",NA
+MPDZ,8777,NA,++,ubiquitous,ubiquitous,NA
+MTDH,92140,NA,+++,ubiquitous,ubiquitous,NA
+MYBPC1,4604,interneuron,+++,scattered(5/6),"scattered(5,6)","scattered(5,6)"
+MYL4,4635,NA,++,ubiquitous,ubiquitous,ubiquitous
+NAIP,4671,NA,+++,ubiquitous,ubiquitous,NA
+NBN,4683,NA,+++,ubiquitous,ubiquitous,NA
+NBPF14,25832,NA,++++,ubiquitous,ubiquitous,NA
+NBPF3,84224,NA,++++,ubiquitous,ubiquitous,NA
+NCAM1,4684,NA,+++++,ubiquitous,ubiquitous,NA
+NCAN,1463,NA,++++,ubiquitous(1),ubiquitous(1),NA
+NDE1,54820,NA,++++,"scattered,oligodendrocyte","scattered,oligodendrocyte","scattered,oligodendrocyte"
+NDEL1,81565,NA,++++,ubiquitous,ubiquitous,ubiquitous
+NEFH,4744,NA,+++++,scattered+ubiquitous,layer 3+scattered,layer 3+scattered
+NEFL,4747,NA,+++++,scattered+ubiquitous,ubiquitous,ubiquitous
+NEFM,4741,NA,+++++,"scattered+ubiquitous(2/3,6)+glial","scattered+ubiquitous(2/3,5/6)+glial","scattered+ubiquitous(2/3,5/6)+glial"
+NEK2,4751,NA,-,none,none,none
+NETO2,81831,NA,+,sparse to none,sparse to none,sparse to none
+NGF,4803,NA,+,ubiquitous,ubiquitous,ubiquitous
+NGFR,4804,NA,+,sparse to none,sparse to none,sparse to none
+NHEJ1,79840,NA,+,ubiquitous,ubiquitous,NA
+NLGN1,22871,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous,NA
+NLGN2,57555,NA,+++,ubiquitous,ubiquitous,NA
+NLGN3,54413,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+NLGN4X,57502,NA,++,ubiquitous,ubiquitous,NA
+NMB,4828,NA,++++,ubiquitous,ubiquitous,ubiquitous
+NNAT,4826,NA,+++++,"ubquitous(2/3,(4C),5/6)","ubquitous(2,3,5,6)","ubquitous(2,3,5,6)"
+NOS1,4842,interneuron,+++++,sparse+scattered,sparse+scattered,sparse+scattered
+CCN3,4856,NA,+,ubiquitous,ubiquitous,"layer 5 + scattered (3,6)"
+NPAS1,4861,interneuron,+++,scattered,scattered,NA
+NPAS3,64067,interneuron,+++,scattered,scattered,NA
+NPAS3,64067,interneuron,+++,scattered,scattered,NA
+NPAS3,64067,astrocyte,+++,scattered,scattered,NA
+NPAS3,64067,astrocyte,+++,scattered,scattered,NA
+NPBWR2,2832,NA,+,ubiquitous,ubiquitous,NA
+NPIPB3,23117,NA,+++++,ubiquitous,ubiquitous,NA
+NPR3,4883,NA,+++,sparse,sparse,sparse
+NPSR1,387129,NA,-,none,none,none
+NPVF,64111,NA,-,none,none,none
+NPY,4852,interneuron,+++++,sparse,sparse,sparse
+NPY1R,4886,NA,+++,"layer 6(2/3,5)","layer 2(/3),5,6","layer 2(/3),5,6"
+NPY2R,4887,layer 6,+++,layer 6,none,NA
+NPY5R,4889,NA,+,ubiquitous,ubiquitous,NA
+NR2F2,7026,NA,++,scattered,scattered,sparse to none
+NR3C1,2908,NA,++++,"ubiquitous(2/3,5/6)",ubiquitous,ubiquitous
+NR4A2,4929,layer 6,+++++,layer 6(b),layer 6(b),layer 6(b)
+NR4A2,4929,layer 6,+++++,layer 6(b),layer 6(b),layer 6(b)
+NR4A2,4929,layer 6,+++++,layer 6(b),layer 6(b),layer 6(b)
+NR4A2,4929,layer 6,+++++,layer 6(b),layer 6(b),layer 6(b)
+NRCAM,4897,NA,+++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+NRG1,3084,NA,+,ubiquitous,ubiquitous,ubiquitous
+NRIP3,56675,interneuron,++++,scattered,scattered,scattered
+NRXN1,9378,NA,+++,ubiquitous(5/6),ubiquitous,ubiquitous
+NTF3,4908,NA,-,none,none,none
+NTNG2,84628,layer 6,+++++,"layer 6(4C,5)",layer 6,layer 6
+NTRK2,4915,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+NTRK3,4916,NA,++++,"ubiquitous(2/3,5/6)",ubiquitous,ubiquitous
+NTS,4922,NA,-,none,none,none
+NTSR2,23620,NA,+,ubiquitous,ubiquitous,NA
+NUDT4,11163,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte
+NXPH1,30010,interneuron,+++,scattered,scattered,scattered
+OMG,4974,NA,++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+OPHN1,4983,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+OPRD1,4985,NA,+,scattered+ubiquitous,scattered+ubiquitous,NA
+OPRK1,4986,layer 6,+++,layer 6+scattered,layer 6+scattered,layer 6+scattered
+OPRL1,4987,NA,++,ubiquitous,ubiquitous,ubiquitous
+OPRM1,4988,NA,+,sparse to none,sparse to none,"layer 3,5 + ubiquitous"
+OXT,5020,NA,-,none,none,NA
+OXTR,5021,NA,+,ubiquitous,ubiquitous,ubiquitous
+PAFAH1B1,5048,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+PAIP1,10605,NA,+++,ubiquitous,ubiquitous,NA
+PAK2,5062,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+PAK3,5063,NA,+++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+PRKN,5071,NA,+++,ubiquitous,ubiquitous,ubiquitous
+PARK7,11315,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,NA
+PARM1,25849,NA,+++++,"scattered+ubiquitous(2/3,4C)",scattered+ubiquitous(4),scattered+ubiquitous(4)
+PAX6,5080,NA,++,scattered,scattered,scattered
+PCDH17,27253,layer 6,++++,layer 6,layer 6,"layer 6+2,3"
+PCDH18,54510,interneuron,+++,scattered,scattered,scattered
+PCDH20,64881,layer 5,++,layer 5/6+scattered,scattered(6),Layer 4/6 + scattered
+PCDH20,64881,layer 5,++,layer 5/6+scattered,scattered(6),Layer 4/6 + scattered
+PCDH20,64881,layer 6,++,layer 5/6+scattered,scattered(6),Layer 4/6 + scattered
+PCDH20,64881,layer 6,++,layer 5/6+scattered,scattered(6),Layer 4/6 + scattered
+PCDHA6,56142,NA,++,scattered+ubiquitous,scattered+ubiquitous,NA
+PCNT,5116,NA,+++++,ubiquitous(6),ubiquitous,ubiquitous
+PCP4,5121,layer 5,+++++,"layer 4C(4),5/6","layer 5,6(3)","layer 5,6(3)"
+PCP4,5121,layer 5,+++++,"layer 4C(4),5/6","layer 5,6(3)","layer 5,6(3)"
+PCP4,5121,layer 6,+++++,"layer 4C(4),5/6","layer 5,6(3)","layer 5,6(3)"
+PCP4,5121,layer 6,+++++,"layer 4C(4),5/6","layer 5,6(3)","layer 5,6(3)"
+PDE10A,10846,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+PDE1A,5136,layer 5,++++,"layer 4C,5/6","layer 5,6","layer 5,6"
+PDE1A,5136,layer 5,++++,"layer 4C,5/6","layer 5,6","layer 5,6"
+PDE1A,5136,layer 6,++++,"layer 4C,5/6","layer 5,6","layer 5,6"
+PDE1A,5136,layer 6,++++,"layer 4C,5/6","layer 5,6","layer 5,6"
+PDE4B,5142,NA,+++,ubiquitous,ubiquitous,ubiquitous
+PDE4DIP,9659,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+PDE5A,8654,NA,+,ubiquitous,ubiquitous,ubiquitous
+PDHX,8050,NA,+++,ubiquitous,ubiquitous,NA
+PDLIM5,10611,NA,+,ubiquitous,ubiquitous,NA
+PDYN,5173,interneuron,++++,layer 4C+scattered,ubiquitous(4/5s?),ubiquitous(4/5s?)
+PDYN,5173,interneuron,++++,layer 4C+scattered,ubiquitous(4/5s?),ubiquitous(4/5s?)
+PDYN,5173,layer 4,++++,layer 4C+scattered,ubiquitous(4/5s?),ubiquitous(4/5s?)
+PDYN,5173,layer 4,++++,layer 4C+scattered,ubiquitous(4/5s?),ubiquitous(4/5s?)
+PEG3,5178,NA,+++++,ubiquitous,ubiquitous,NA
+PENK,5179,layer 2,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 2,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 2,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 3,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 3,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 3,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 6,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 6,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PENK,5179,layer 6,+++++,"layer 2/3,6+scattered",layer 2/3+sparse(6),layer 2/3+sparse(6)
+PHF8,23133,NA,+++,ubiquitous,ubiquitous,NA
+PHGDH,26227,NA,NA,N/A,ubiquitous,NA
+PIK3CB,5291,NA,+++,"ubiquitous(2/3,5/6)",ubiquitous,NA
+PIK3CG,5294,NA,-,none,none,NA
+PINK1,65018,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,NA
+PLAU,5328,NA,+,ubiquitous,ubiquitous,NA
+PLAUR,5329,NA,++,ubiquitous,ubiquitous,NA
+PLTP,5360,vascular endothelial cell,++,scattered+VEC,scattered+VEC,scattered+VEC
+PLXNA2,5362,NA,++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+PLXND1,23129,NA,+++,"ubiquitous(2/3,4)","ubiquitous(2,3,4)","ubiquitous(2,3,4)"
+PMCH,5367,NA,-,none,none,NA
+PNOC,5368,interneuron,++++,scattered,scattered,scattered
+POM121,9883,NA,+++++,ubiquitous,ubiquitous,NA
+POMT1,10585,NA,++++,ubiquitous,ubiquitous,NA
+PLPP3,8613,astrocyte,++++,"scattered(1,2/3,5/6)+glial","scattered(1,2/3,5/6)+glial","scattered(1,2/3,5/6)+glial"
+PPP1R1B,84152,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+PPP3CA,5530,NA,+++++,"ubiquitous(2/3,(4C,6))",ubiquitous,ubiquitous
+PPP3CB,5532,NA,+++,"ubiquitous(2/3,4C,5/6)","ubiquitous(2/3,5/6)",NA
+PPP3CC,5533,NA,+,ubiquitous,ubiquitous,NA
+PQBP1,10084,NA,+++,ubiquitous,ubiquitous,ubiquitous
+PRKCB,5579,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+PRKCG,5582,NA,++++,"layer 2,5/6","layer 2,5,6",ubiquitous
+PRLH,51052,NA,++++,ubiquitous,ubiquitous,NA
+PRLHR,2834,NA,++,scattered,scattered,scattered
+PRODH,5625,astrocyte,+++++,scattered,scattered,NA
+PRSS12,8492,layer 3,++,"sparse(3,4)","sparse(3,4)","layer 3,4 + scattered(2)"
+PRSS12,8492,layer 3,++,"sparse(3,4)","sparse(3,4)","layer 3,4 + scattered(2)"
+PRSS12,8492,layer 4,++,"sparse(3,4)","sparse(3,4)","layer 3,4 + scattered(2)"
+PRSS12,8492,layer 4,++,"sparse(3,4)","sparse(3,4)","layer 3,4 + scattered(2)"
+PRSS23,11098,NA,+,sparse to none,sparse to none,sparse to none
+PSEN1,5663,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+PSEN2,5664,NA,++,ubiquitous,ubiquitous,NA
+PTEN,5728,NA,+++,"ubiquitous(4C,6)",ubiquitous(4),NA
+PTGS2,5743,NA,+++,"scattered(2/3,6)","scattered(2/3,6)","scattered(2/3,6)"
+PTHLH,5744,interneuron,++++,scattered,scattered,scattered
+PVALB,5816,interneuron,+++++,scattered,scattered,scattered
+NECTIN3,25945,layer 2,+++,ubiquitous(2/3),ubiquitous(2/3),ubiquitous(2/3)
+NECTIN3,25945,layer 2,+++,ubiquitous(2/3),ubiquitous(2/3),ubiquitous(2/3)
+NECTIN3,25945,layer 3,+++,ubiquitous(2/3),ubiquitous(2/3),ubiquitous(2/3)
+NECTIN3,25945,layer 3,+++,ubiquitous(2/3),ubiquitous(2/3),ubiquitous(2/3)
+QDPR,5860,oligodendrocyte,+++++,scattered+ubiquitous+oligodendrocyte,scattered+ubiquitous+oligodendrocyte,scattered+ubiquitous+oligodendrocyte
+QRFPR,84109,NA,-,none,sparse to none,sparse to none
+RAB3B,5865,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte
+RAB3C,115827,NA,++++,"scattered+ubiquitous(2/3,4C,5/6)",scattered+ubiquitous,scattered+ubiquitous
+RAB3GAP1,22930,NA,+++,"ubiquitous(2/3,6)",ubiquitous,NA
+RAB3IP,117177,NA,+++,scattered,scattered,scattered
+RAB6A,5870,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+RANBP9,10048,NA,+++,ubiquitous,ubiquitous,NA
+RAPGEF4,11069,NA,++++,"scattered+ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+RASGRF2,5924,layer 2,++++,layer 2/3+scattered,layer 2/3+scattered,layer 2/3+scattered
+RASGRF2,5924,layer 2,++++,layer 2/3+scattered,layer 2/3+scattered,layer 2/3+scattered
+RASGRF2,5924,layer 3,++++,layer 2/3+scattered,layer 2/3+scattered,layer 2/3+scattered
+RASGRF2,5924,layer 3,++++,layer 2/3+scattered,layer 2/3+scattered,layer 2/3+scattered
+RASSF7,8045,NA,+++,ubiquitous,ubiquitous,NA
+RELN,5649,interneuron,+++++,layer 1+scattered,layer 1+scattered,"layer 1 + scattered, layer 5 low, layer 4 up"
+RELN,5649,interneuron,+++++,layer 1+scattered,layer 1+scattered,"layer 1 + scattered, layer 5 low, layer 4 up"
+RELN,5649,layer 1,+++++,layer 1+scattered,layer 1+scattered,"layer 1 + scattered, layer 5 low, layer 4 up"
+RELN,5649,layer 1,+++++,layer 1+scattered,layer 1+scattered,"layer 1 + scattered, layer 5 low, layer 4 up"
+REST,5978,NA,+,ubiquitous,ubiquitous,NA
+RGS10,6001,NA,+,ubiquitous,ubiquitous,sparse to none
+RGS4,5999,NA,+++++,"layer 2/3,5/6","layer 2/3,5,6","layer 2/3,5,6"
+RNASEH2A,10535,NA,+,ubiquitous,ubiquitous,NA
+RNASEH2B,79621,NA,-,none,none,NA
+RNASEH2C,84153,NA,+,ubiquitous,ubiquitous,ubiquitous
+RND2,8153,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+RNF144B,255488,interneuron,+++,scattered,scattered,scattered
+ROCK1,6093,NA,++,ubiquitous,ubiquitous,NA
+RORB,6096,layer 4,++++,"layer 3,4,5","layer 3,4,5","layer 3,4,5"
+RPRM,56475,layer 5,++++,"ubiquitous(4C,5/6)","ubiquitous(5,6)","ubiquitous(5,6)"
+RPRM,56475,layer 5,++++,"ubiquitous(4C,5/6)","ubiquitous(5,6)","ubiquitous(5,6)"
+RPRM,56475,layer 6,++++,"ubiquitous(4C,5/6)","ubiquitous(5,6)","ubiquitous(5,6)"
+RPRM,56475,layer 6,++++,"ubiquitous(4C,5/6)","ubiquitous(5,6)","ubiquitous(5,6)"
+RPS6KA3,6197,NA,+,ubiquitous,ubiquitous,ubiquitous
+RRP8,23378,NA,++,ubiquitous,ubiquitous,NA
+RSPO1,284654,NA,++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+RTN4,57142,NA,+++++,"ubiquitous(2/3,5/6)",ubiquitous,ubiquitous
+RTN4R,65078,NA,++++,ubiquitous,ubiquitous,ubiquitous
+RXFP1,59350,layer 5,++++,layer 5/6(4C),"layer 5,6","layer 5,6"
+RXFP1,59350,layer 5,++++,layer 5/6(4C),"layer 5,6","layer 5,6"
+RXFP1,59350,layer 6,++++,layer 5/6(4C),"layer 5,6","layer 5,6"
+RXFP1,59350,layer 6,++++,layer 5/6(4C),"layer 5,6","layer 5,6"
+RXFP3,51289,NA,+,ubiquitous,ubiquitous,NA
+RXFP4,339403,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+S100A10,6281,NA,+,ubiquitous,ubiquitous,ubiquitous
+S100B,6285,oligodendrocyte,+++++,"scattered(5/6),oligodendrocyte","scattered(5/6),oligodendrocyte","scattered(5/6),oligodendrocyte"
+SCN10A,6336,NA,-,none,none,NA
+SCN11A,11280,NA,+,ubiquitous,ubiquitous,NA
+SCN1A,6323,NA,+++++,ubiquitous,"ubiquitous(3,(5,6))","ubiquitous(3,(5,6))"
+SCN1B,6324,NA,+++++,scattered+ubiquitous,ubiquitous(3),NA
+SCN2A,6326,NA,+++,"layer 2/3,4C,5/6",ubiquitous,NA
+SCN2B,6327,NA,++++,ubiquitous,ubiquitous,NA
+SCN3A,6328,NA,-,none,none,NA
+SCN3B,55800,layer 2,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 2,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 2,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 3,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 3,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 3,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 6,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 6,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN3B,55800,layer 6,++++,"layer 2/3,6","layer 2/3,6",ubiquitous
+SCN4A,6329,NA,++,ubiquitous,ubiquitous,NA
+SCN4B,6330,layer 3,+++++,"layer 3,4,5","layer 3,5","layer 3,5"
+SCN4B,6330,layer 3,+++++,"layer 3,4,5","layer 3,5","layer 3,5"
+SCN4B,6330,layer 5,+++++,"layer 3,4,5","layer 3,5","layer 3,5"
+SCN4B,6330,layer 5,+++++,"layer 3,4,5","layer 3,5","layer 3,5"
+SCN5A,6331,NA,+,ubiquitous,ubiquitous,ubiquitous
+SCN7A,6332,NA,-,none,none,NA
+SCN8A,6334,NA,+++,ubiquitous,ubiquitous,NA
+SCN9A,6335,NA,-,none,none,NA
+SCNN1A,6337,NA,+,ubiquitous,ubiquitous,ubiquitous
+SCNN1B,6338,NA,-,none,none,NA
+SCNN1D,6339,NA,++++,ubiquitous,ubiquitous,NA
+SCNN1G,6340,NA,+,ubiquitous,ubiquitous,ubiquitous
+SCRT1,83482,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+SDK1,221935,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+SEMA3C,10512,interneuron,+++,"layer 2/3,6","layer 2/3,6",layer 6 + scattered (2/3)
+SEMA3C,10512,interneuron,+++,"layer 2/3,6","layer 2/3,6",layer 6 + scattered (2/3)
+SEMA3C,10512,layer 6,+++,"layer 2/3,6","layer 2/3,6",layer 6 + scattered (2/3)
+SEMA3C,10512,layer 6,+++,"layer 2/3,6","layer 2/3,6",layer 6 + scattered (2/3)
+SEMA3F,6405,NA,+,ubiquitous,ubiquitous,ubiquitous
+SEMA4G,57715,NA,++,scattered,scattered,scattered
+SEMA5B,54437,NA,+++,"scattered(2/3,5,6)","scattered(2/3,5,6)","scattered(2/3,5,6)"
+SERF1A,8293,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+SGK1,6446,NA,++,scattered+ubiquitous,scattered+ubiquitous,NA
+SLA,6503,NA,+,ubiquitous,ubiquitous,ubiquitous
+SLC17A7,57030,NA,+++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+SLC17A8,246213,NA,++++,sparse or scattered(5/6),sparse or scattered(5/6),sparse or scattered(5/6)
+SLC18A1,6570,NA,+,sparse to none,sparse to none,sparse to none
+SLC18A2,6571,NA,+,ubiquitous,ubiquitous,ubiquitous
+SLC18A3,6572,NA,+,ubiquitous,ubiquitous,ubiquitous
+SLC1A1,6505,NA,+++,"ubiquitous(2/3,6)",ubiquitous,ubiquitous
+SLC1A2,6506,astrocyte,+++++,scattered+glial,scattered+glial,scattered+glial
+SLC1A3,6507,astrocyte,++++,scattered+glial,scattered+glial,NA
+SLC1A4,6509,NA,++,ubiquitous,ubiquitous,NA
+SLC1A5,6510,NA,++,ubiquitous,ubiquitous,NA
+SLC1A6,6511,NA,++,ubiquitous,ubiquitous,NA
+SLC1A7,6512,NA,+,ubiquitous,ubiquitous,NA
+SLC20A1,6574,NA,++++,ubiquitous,ubiquitous,ubiquitous
+SLC23A3,151295,NA,+,sparse to none,sparse to none,NA
+SLC24A3,57419,NA,+++,scattered,scattered,scattered
+SLC25A22,79751,NA,++++,ubiquitous,ubiquitous,ubiquitous
+SLC2A1,6513,vascular endothelial cell,++++,VEC,VEC,VEC
+SLC32A1,140679,interneuron,+++++,scattered,scattered,scattered
+SLC6A1,6529,interneuron,+++++,scattered,scattered,scattered
+SLC6A11,6538,NA,++,scattered,scattered,scattered
+SLC6A12,6539,interneuron,++++,scattered,scattered,NA
+SLC6A13,6540,interneuron,++++,scattered,scattered,NA
+SLC6A14,11254,NA,-,none,none,NA
+SLC6A2,6530,NA,-,none,none,none
+SLC6A3,6531,NA,+,sparse to none,sparse to none,sparse to none
+SLC6A4,6532,NA,-,none,none,none
+SLC6A7,6534,NA,++++,ubquitous,ubquitous,ubquitous
+SLC6A8,6535,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+GUSBP14,11039,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+SMAD1,4086,NA,-,none,none,NA
+SMS,6611,NA,++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+SNAP23,8773,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+SNAP25,6616,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+SNAP29,9342,NA,++,ubiquitous,ubiquitous,NA
+SNAP91,9892,NA,++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+SNAPIN,23557,NA,++,ubiquitous,ubiquitous,NA
+SNCA,6622,NA,+++++,"layer 2/3,(4C),5/6","ubiquitous(5,6)","ubiquitous(5,6)"
+SNCAIP,9627,NA,+++,layer 4C+scattered,scattered+ubiquitous,NA
+SNCB,6620,NA,+++++,ubiquitous,ubiquitous,NA
+SNCG,6623,layer 3,+++++,scattered,"scattered(3,5/6+)","scattered(3,5/6+)"
+SNCG,6623,layer 3,+++++,scattered,"scattered(3,5/6+)","scattered(3,5/6+)"
+SNCG,6623,layer 5,+++++,scattered,"scattered(3,5/6+)","scattered(3,5/6+)"
+SNCG,6623,layer 5,+++++,scattered,"scattered(3,5/6+)","scattered(3,5/6+)"
+SNPH,9751,NA,++++,scattered+ubiquitous,scattered+ubiquitous,NA
+SNTA1,6640,NA,++,ubiquitous,ubiquitous,NA
+SNTB1,6641,layer 6,+++,layer 6,sparse 6,sparse 6
+SNTB2,6645,NA,+++,"layer 2/3,6","layer 2/3,6",NA
+SNTG1,54212,NA,+++,scattered,scattered,NA
+SNTG2,54221,NA,-,none,none,NA
+SNX3,8724,NA,++++,ubiquitous,ubiquitous,NA
+SOD1,6647,NA,+++++,scattered+ubiquitous,ubiquitous,ubiquitous
+SORL1,6653,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+SPARC,6678,NA,+++,scattered+VEC,scattered+VEC,scattered+VEC
+SPP1,6696,oligodendrocyte,+++++,"scattered,oligodendrocyte","scattered,oligodendrocyte","scattered,oligodendrocyte"
+SPTBN4,57731,NA,++++,ubiquitous,ubiquitous,NA
+SPTLC1,10558,NA,++,ubiquitous,ubiquitous,NA
+SRP9,6726,NA,-,none,none,NA
+SST,6750,interneuron,+++++,"scattered(2/3,5/6)",scattered,scattered
+SSTR1,6751,NA,++,ubiquitous(4C),"ubiquitous(2,6)",NA
+SSTR3,6753,NA,+++,ubiquitous,ubiquitous,NA
+SSTR4,6754,NA,-,none,none,none
+STARD8,9754,NA,+,scattered,scattered,scattered
+STEAP2,261729,NA,+++,ubiquitous,ubiquitous,ubiquitous
+STRN,6801,NA,+,ubiquitous,ubiquitous,ubiquitous
+STX10,8677,NA,++,ubiquitous,ubiquitous,NA
+STX11,8676,NA,++,ubiquitous,ubiquitous,NA
+STX12,23673,NA,++,ubiquitous,ubiquitous,ubiquitous
+STX16,8675,NA,++++,ubiquitous,ubiquitous,NA
+STX17,55014,NA,+,ubiquitous,ubiquitous,NA
+STX18,53407,NA,++,ubiquitous,ubiquitous,NA
+STX19,415117,NA,-,none,none,NA
+STX1B,112755,NA,+++++,ubiquitous,ubiquitous,NA
+STX2,2054,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+STX3,6809,NA,+++,ubiquitous,ubiquitous,ubiquitous
+STX4,6810,NA,++,ubiquitous,ubiquitous,NA
+STX5,6811,NA,+++,ubiquitous,ubiquitous,NA
+STX6,10228,NA,+++,ubiquitous,ubiquitous,NA
+STX7,8417,NA,++,ubiquitous,ubiquitous,NA
+STX8,9482,NA,++,ubiquitous,ubiquitous,NA
+STXBP1,6812,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+STXBP2,6813,NA,-,none,none,none
+STXBP4,252983,NA,-,none,none,NA
+STXBP5,134957,NA,+++,ubiquitous(5/6),ubiquitous,NA
+STXBP6,29091,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+SULF1,23213,interneuron,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,interneuron,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,interneuron,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,layer 4,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,layer 4,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,layer 4,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,layer 5,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,layer 5,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SULF1,23213,layer 5,++++,"scattered(4,5/6)","scattered(4,5/6)","scattered(4,5/6)"
+SV2A,9900,NA,+++++,scattered+ubiquitous,scattered+ubiquitous,NA
+SV2B,9899,NA,+++++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+SV2C,22987,layer 3,++++,scattered(2/3/4),layer 3+scattered,layer 3+scattered
+SYN1,6853,NA,+++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+SYN2,6854,NA,+++++,"scattered+ubiquitous(2/3,4C,5,6)","ubiquitous(5,6)","ubiquitous(5,6)"
+SYN3,8224,NA,+++,"layer 2/3(4C,6)",layer 2/3(6),layer 2/3(6)
+SYNE1,23345,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+SYNGAP1,8831,NA,++++,"ubiquitous(2/3,4C,6)",ubiquitous,NA
+SYNGR1,9145,NA,+++,ubiquitous,ubiquitous,NA
+SYNGR2,9144,NA,+,ubiquitous,ubiquitous,NA
+SYNGR3,9143,NA,+++,ubiquitous,ubiquitous,ubiquitous
+SYNGR4,23546,NA,+,ubiquitous,ubiquitous,NA
+SYNJ1,8867,NA,+++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+SYNJ2,8871,NA,++++,ubiquitous(6),ubiquitous(6),ubiquitous(6)
+SYNPO2,171024,NA,+++,ubiquitous(6),ubiquitous(6),ubiquitous(6)
+SYNPR,132204,interneuron,++++,layer 6+scattered,layer 6+scattered,layer 6+scattered
+SYNPR,132204,interneuron,++++,layer 6+scattered,layer 6+scattered,layer 6+scattered
+SYNPR,132204,layer 6,++++,layer 6+scattered,layer 6+scattered,layer 6+scattered
+SYNPR,132204,layer 6,++++,layer 6+scattered,layer 6+scattered,layer 6+scattered
+SYP,6855,NA,+++++,scattered+ubiquitous,ubiquitous,NA
+SYPL1,6856,NA,++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte
+SYPL2,284612,NA,+,ubiquitous,ubiquitous,NA
+SYT1,6857,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+SYT10,341359,layer 6,++,sparse(6),sparse(6),sparse(6)
+SYT11,23208,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+SYT12,91683,NA,+++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+SYT13,57586,NA,++++,"ubiquitous(2/3,4C)","ubiquitous(2,3,4)","ubiquitous(2,3,4)"
+SYT14,255928,NA,++,ubiquitous,ubiquitous,NA
+SYT15,83849,NA,+++,ubiquitous+VEC?,ubiquitous+VEC?,NA
+SYT16,83851,NA,++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+SYT17,51760,layer 2,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 2,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 2,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 3,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 3,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 3,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 5,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 5,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT17,51760,layer 5,+++,"layer 2/3,5/6",ubiquitous(5),ubiquitous(5)
+SYT2,127833,layer 3,+++++,"layer 2,3,4+scattered(5)",layer 3(5),layer 3(5)
+SYT2,127833,layer 3,+++++,"layer 2,3,4+scattered(5)",layer 3(5),layer 3(5)
+SYT2,127833,layer 5,+++++,"layer 2,3,4+scattered(5)",layer 3(5),layer 3(5)
+SYT2,127833,layer 5,+++++,"layer 2,3,4+scattered(5)",layer 3(5),layer 3(5)
+SYT3,84258,NA,++,ubiquitous,ubiquitous,ubiquitous
+SYT4,6860,NA,++++,"layer(2/3,4C),6","ubiquitous(3,5/6)","ubiquitous(3,5/6)"
+SYT5,6861,NA,++++,"layer(2/3,4C),6",ubiquitous,ubiquitous
+SYT6,148281,layer 6,+++++,layer 6,layer 6,layer 6
+SYT7,9066,NA,+++++,"ubiquitous(2/3,4C,5/6)",ubiquitous,ubiquitous
+SYT9,143425,NA,-,none,none,none
+SYTL1,84958,NA,+,ubiquitous,ubiquitous,NA
+SYTL2,54843,NA,++,"layer 2/3,4C,5/6",ubiquitous,ubiquitous
+SYTL4,94121,NA,+,sparse to none,sparse to none,sparse to none
+TAAR6,319100,NA,-,none,none,NA
+TAC1,6863,interneuron,++++,scattered,scattered,scattered
+TAC3,6866,interneuron,++++,scattered,scattered,scattered
+TACR1,6869,NA,++++,scattered,scattered,scattered+ubiquitous
+TACR2,6865,NA,-,none,none,NA
+TACR3,6870,NA,-,none,none,none
+TAP1,6890,NA,+,sparse to none,sparse to none,NA
+TAP2,6891,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+TDO2,6999,NA,-,none,none,none
+TF,7018,NA,+++++,ubiquitous+oligodendrocyte,ubiquitous+oligodendrocyte,NA
+TGFB1,7040,NA,++++,ubiquitous,ubiquitous,ubiquitous
+TH,7054,interneuron,+++++,sparse(6),sparse(6),sparse(6)
+TH,7054,interneuron,+++++,sparse(6),sparse(6),sparse(6)
+TH,7054,layer 6,+++++,sparse(6),sparse(6),sparse(6)
+TH,7054,layer 6,+++++,sparse(6),sparse(6),sparse(6)
+THBS2,7058,NA,+++,scattered,scattered,scattered
+THSD7B,80731,NA,+++,sparse,sparse,sparse
+TIAM1,7074,NA,+++,"ubiquitous(2/3,4)","ubiquitous(2/3,4)","ubiquitous(2/3,4)"
+NKX2-1,7080,NA,+,sparse to none,sparse to none,sparse to none
+TLE4,7091,layer 6,++++,layer 6,layer 6,layer 6
+TM6SF1,53346,NA,++,scattered,scattered,scattered
+TMEM145,284339,NA,++++,ubiquitous,ubiquitous,ubiquitous
+TMEM150C,441027,NA,+,ubiquitous,ubiquitous,ubiquitous
+TMEM163,81615,layer 3,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 3,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 3,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 5,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 5,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 5,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 6,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 6,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM163,81615,layer 6,++,"layer(2/3),5/6","layer 3,5,6",ubiquitous
+TMEM200A,114801,NA,+,ubiquitous,ubiquitous,ubiquitous
+TMEM215,401498,layer 4,+++,layer 4C,sparse to none,sparse to none
+TNF,7124,NA,+,ubiquitous,ubiquitous,NA
+TNFAIP8L3,388121,interneuron,+++,sparse+layer 4C,sparse,sparse
+TNMD,64102,NA,-,none,none,none
+TNNC1,7134,NA,-,none,none,none
+TNNT1,7138,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+TOX,9760,layer 5,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+TOX,9760,layer 5,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+TOX,9760,layer 6,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+TOX,9760,layer 6,++,"layer 4C,5/6","layer 4,5,6","layer 4,5,6"
+TPBG,7162,layer 3,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 3,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 3,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 5,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 5,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 5,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 6,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 6,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPBG,7162,layer 6,+++,"layer 2/3,5/6","layer 3,(4,6)","layer 4,(3,6)"
+TPH1,7166,NA,-,none,none,NA
+TPH2,121278,NA,-,none,none,none
+TRH,7200,NA,+++,ubiquitous,ubiquitous,ubiquitous
+TRHR,7201,NA,+,ubiquitous,ubiquitous,ubiquitous
+TRIB2,28951,layer 5,++++,"ubiquitous(4C,5)","ubiquitous(4,5)","ubiquitous(4,5)"
+TRPC4,7223,NA,++,scattered,scattered,scattered
+TRPC6,7225,NA,++,scattered(5/6),"scattered(5,6)","scattered(5,6)"
+TRPM6,140803,NA,+,sparse to none,sparse to none,sparse to none
+TSC1,7248,NA,+++,ubiquitous,ubiquitous,NA
+TSC2,7249,NA,++++,ubiquitous,ubiquitous,ubiquitous
+TSPAN8,7103,NA,-,none,none,NA
+TTR,7276,NA,++,ubiquitous,ubiquitous,NA
+TUT1,64852,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+UBASH3B,84959,interneuron,+++,scattered,scattered,scattered
+UBE3A,7337,NA,+++,ubiquitous,ubiquitous,ubiquitous
+UCHL1,7345,NA,+++++,ubiquitous,ubiquitous,ubiquitous
+USP10,9100,NA,++,ubiquitous,ubiquitous,NA
+VAMP1,6843,NA,+++++,scattered+ubiquitous,scattered(3)+ubiquitous,scattered(3)+ubiquitous
+VAMP2,6844,NA,++++,ubiquitous,ubiquitous,ubiquitous
+VAMP3,9341,NA,+,sparse to none,sparse to none,NA
+VAMP4,8674,NA,+,ubiquitous,ubiquitous,NA
+VAMP8,8673,NA,+,sparse to none,sparse to none,NA
+VAPA,9218,NA,++,ubiquitous,ubiquitous,NA
+VAT1L,57687,layer 5,+++++,sparse(5),sparse(5),sparse(5)
+VIP,7432,interneuron,++++,scattered,scattered,scattered
+VIPR1,7433,NA,++++,"layer (2/3,4C),6",ubiquitous,NA
+VIPR2,7434,NA,+++,"layer 3,4(4C)",layer 3,layer 3
+VLDLR,7436,NA,+++,scattered+ubiquitous,scattered+ubiquitous,scattered+ubiquitous
+VRK3,51231,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+WFS1,7466,layer 2,+++,scattered(2),scattered(2),scattered(2)
+WNK1,65125,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+WNT2,7472,NA,+,ubiquitous,ubiquitous,NA
+XBP1,7494,NA,++,ubiquitous,ubiquitous,ubiquitous
+YJEFN3,374887,interneuron,+++++,sparse+scattered,sparse+scattered,sparse+scattered
+ZDHHC15,158866,NA,+,ubiquitous,ubiquitous,NA
+ZEB2,9839,NA,+++,scattered,scattered,scattered
+ZNF197,10168,NA,++,ubiquitous,ubiquitous,NA
+ZNF41,7592,NA,+++,scattered+ubiquitous,scattered+ubiquitous,NA
+ZNF674,641339,NA,+,ubiquitous,ubiquitous,NA
+ZNRF4,148066,NA,-,none,none,NA
