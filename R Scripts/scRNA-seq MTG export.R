@@ -36,6 +36,8 @@ region_specific_scRNA_df <- function(region) {
     gather("gene", "expression_value", -c("sample_name", "class_label", "region_label", "cortical_layer_label"))
 }
 
+
+
 allen_MTG_matrix <- region_specific_scRNA_df("MTG")
 
 scale_scRNA_region <- function(scRNA_data, cellType) {
