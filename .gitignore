@@ -12,6 +12,7 @@
 
 # Session Data files
 .RData
+.RDataTmp
 .RDataTmp1
 .RDataTmp2
 
