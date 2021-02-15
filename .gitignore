@@ -57,3 +57,4 @@ vignettes/*.pdf
 
 Data/Allen/singlecellMatrix.csv
 Data/Allen/singlecellMetadata.csv
+Data/raw_data/Maynard et al/*filtered
