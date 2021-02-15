@@ -149,7 +149,7 @@ separate_by_cell_type <- function(AIBS_MTG_df, cell_type) {
   return(df)
 }
 
-# Read in processed csv
+# Read in processed csv, produced from scRNA-seq CPM script
 
 AIBS_MTG <- fread(here('Data', 'Allen', 'MTG_df_01_21.csv')) %>%
   # remove col number column
