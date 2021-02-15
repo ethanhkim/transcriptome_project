@@ -12,6 +12,8 @@
 
 # Session Data files
 .RData
+.RDataTmp1
+.RDataTmp2
 
 # User-specific files
 .Ruserdata
