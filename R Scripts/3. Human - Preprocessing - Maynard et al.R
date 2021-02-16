@@ -73,8 +73,6 @@ Maynard_dataset_average <- tibble(
   WM = Maynard_dataset_WM$dataset_mean,
 )
 
-write.csv()
-
 # Clean up workspace
 rm(Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Maynard_dataset_Layer4, Maynard_dataset_Layer5,
    Maynard_dataset_Layer6, Maynard_dataset_WM)

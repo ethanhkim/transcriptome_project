@@ -3,6 +3,7 @@
 
 ### MacOS specific files ###
 .DS_Store
+**/Icon?
 
 ### R ###
 # History files
@@ -11,6 +12,9 @@
 
 # Session Data files
 .RData
+.RDataTmp
+.RDataTmp1
+.RDataTmp2
 
 # User-specific files
 .Ruserdata
@@ -48,7 +52,13 @@ vignettes/*.pdf
 ### R.Bookdown Stack ###
 # R package: bookdown caching files
 /*_files/
-  
+
 # End of https://www.toptal.com/developers/gitignore/api/r
-Icon
-]
+
+
+# Project specific files
+
+Data/Allen/singlecellMatrix.csv
+Data/Allen/singlecellMetadata.csv
+
+

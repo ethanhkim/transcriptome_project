@@ -133,4 +133,8 @@ combined_table_Layer2 <- combine_pval_AUC_table(Maynard_AUC_table_Layer2, He_AUC
 combined_table_Layer3 <- combine_pval_AUC_table(Maynard_AUC_table_Layer3, He_AUC_table_Layer3)
 combined_table_Layer4 <- combine_pval_AUC_table(Maynard_AUC_table_Layer4, He_AUC_table_Layer4)
 combined_table_Layer5 <- combine_pval_AUC_table(Maynard_AUC_table_Layer5, He_AUC_table_Layer5)
+<<<<<<< HEAD
 combined_table_Layer6 <- combine_pval_AUC_table(Maynard_AUC_table_Layer6, He_AUC_table_Layer6)
+=======
+combined_table_Layer6 <- combine_pval_AUC_table(Maynard_AUC_table_Layer6, He_AUC_table_Layer6)
+>>>>>>> 13fd7d34a52f651b0b4f84a24be84618b1b31004

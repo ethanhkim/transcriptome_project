@@ -1,5 +1,6 @@
 library(tidyverse)
 library(here)
+<<<<<<< HEAD
 library(data.table)
 library(magrittr)
 library(dplyr)
@@ -155,3 +156,10 @@ write.csv(M1ul_matrix, here("Data", "Allen", "M1ul_matrix.csv"))
 write.csv(S1ul_matrix, here("Data", "Allen", "S1ul_matrix.csv"))
 write.csv(S1lm_matrix, here("Data", "Allen", "S1lm_matrix.csv"))
 
+=======
+
+allen_singlecellMetadata <- read_csv(here("Data", "Allen", "metadata.csv"))
+View(allen_singlecellMetadata)
+
+unique(allen_singlecellMetadata$cortical_layer_color)
+>>>>>>> 13fd7d34a52f651b0b4f84a24be84618b1b31004
