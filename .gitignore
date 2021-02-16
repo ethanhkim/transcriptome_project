@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by https://www.toptal.com/developers/gitignore/api/r
 # Edit at https://www.toptal.com/developers/gitignore?templates=r
 
@@ -62,3 +63,9 @@ Data/Allen/singlecellMatrix.csv
 Data/Allen/singlecellMetadata.csv
 
 
+=======
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+>>>>>>> 13fd7d34a52f651b0b4f84a24be84618b1b31004
