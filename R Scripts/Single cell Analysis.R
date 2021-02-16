@@ -40,7 +40,7 @@ separate_by_region <- function(region) {
   
 }
 
-<<<<<<< HEAD
+
 metadata <- fread("/Users/ethankim/Desktop/transcriptome_project/Data/Allen/metadata.csv", header = T) %>%
   dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
   as_tibble()

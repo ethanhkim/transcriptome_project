@@ -49,3 +49,4 @@ Mantel_test_result_statistic <- results$statistic
 # Mantel statistic r between DS1 and DS2: 0.26
 # Low similarity; not  using DS2 for further analyses (also found to be the case in the original paper)
 # where DS2 was only referenced in 2 figures in the entire paper
+

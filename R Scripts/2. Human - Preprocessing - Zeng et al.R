@@ -29,9 +29,9 @@ Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1)
 # Select columns to use and rename columns
 Zeng_dataset %<>% 
   select("Gene symbol", "Entrez Gene ID", "Cortical marker (human)", "Level...20", "Pattern...21",
-                "Pattern...23", "Pattern...25") %>% 
+         "Pattern...23", "Pattern...25") %>% 
   rename(gene_symbol = "Gene symbol", entrez_id = "Entrez Gene ID", marker_annotation = "Cortical marker (human)", 
-                expression_level = "Level...20", V1_pattern = "Pattern...21", V2_pattern = "Pattern...23", Temporal_pattern = "Pattern...25")
+         expression_level = "Level...20", V1_pattern = "Pattern...21", V2_pattern = "Pattern...23", Temporal_pattern = "Pattern...25")
 
 # Separate by layer marker
 Zeng_dataset_expanded <- Zeng_dataset %>% 
@@ -64,7 +64,7 @@ Zeng_dataset_expanded %<>%
   mutate(combined_annotation = gsub("\\,", " ", combined_annotation)) %>%
   mutate(combined_annotation = gsub("\\/", "", combined_annotation)) %>%
   mutate(combined_annotation = gsub("ubiquitous", "", combined_annotation))
-  mutate(marker_annotation = gsub("VEC","vascular endothelial cell", marker_annotation))
+mutate(marker_annotation = gsub("VEC","vascular endothelial cell", marker_annotation))
 
 
 Zeng_dataset_cleaned <- Zeng_dataset_expanded %>% 
