@@ -3,6 +3,10 @@
 
 ### MacOS specific files ###
 .DS_Store
+<<<<<<< HEAD
+=======
+**/Icon?
+>>>>>>> ec361f9ef70abd13a78bc178bb3f36951c54a147
 
 ### R ###
 # History files
@@ -11,6 +15,12 @@
 
 # Session Data files
 .RData
+<<<<<<< HEAD
+=======
+.RDataTmp
+.RDataTmp1
+.RDataTmp2
+>>>>>>> ec361f9ef70abd13a78bc178bb3f36951c54a147
 
 # User-specific files
 .Ruserdata
@@ -48,7 +58,19 @@ vignettes/*.pdf
 ### R.Bookdown Stack ###
 # R package: bookdown caching files
 /*_files/
+<<<<<<< HEAD
   
 # End of https://www.toptal.com/developers/gitignore/api/r
 Icon
 ]
+=======
+
+# End of https://www.toptal.com/developers/gitignore/api/r
+
+
+# Project specific files
+
+Data/Allen/singlecellMatrix.csv
+Data/Allen/singlecellMetadata.csv
+Data/raw_data/Maynard et al/*filtered
+>>>>>>> ec361f9ef70abd13a78bc178bb3f36951c54a147
