@@ -1,9 +1,9 @@
 # Load necessary libraries #
 
 
-#if (!requireNamespace("BiocManager", quietly = TRUE))
-  #install.packages("BiocManager")
-#BiocManager::install("LieberInstitute/spatialLIBD")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("LieberInstitute/spatialLIBD")
 library(spatialLIBD)
 library(tidyverse)
 library(org.Hs.eg.db)

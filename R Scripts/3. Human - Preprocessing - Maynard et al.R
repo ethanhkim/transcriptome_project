@@ -73,7 +73,6 @@ Maynard_dataset_average <- tibble(
   WM = Maynard_dataset_WM$dataset_mean,
 )
 
-<<<<<<< HEAD:R Scripts/3. Human - Preprocessing - Maynard et al.R
 write.csv()
 
 # Clean up workspace
@@ -120,36 +119,3 @@ rm(Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Mayna
 
 #Maynard_filtered_dataset %<>%
 #  dplyr::slice(-265, -785)
-=======
-# Clean up workspace
-rm(Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Maynard_dataset_Layer4, Maynard_dataset_Layer5,
-   Maynard_dataset_Layer6, Maynard_dataset_WM)
-
-## Separate by sample ID
-#Maynard_151507 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151507"))
-#Maynard_151508 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151508"))
-#Maynard_151509 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151509"))
-#Maynard_151510 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151510"))
-#Maynard_151669 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151669"))
-#Maynard_151670 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151670"))
-#Maynard_151671 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151671"))
-#Maynard_151672 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151672"))
-#Maynard_151673 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151673"))
-#Maynard_151674 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151674"))
-#Maynard_151675 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151675"))
-#Maynard_151676 <- Maynard_dataset %>%
-#  dplyr::select("gene_symbol", contains("151676"))
-
-
->>>>>>> ec361f9ef70abd13a78bc178bb3f36951c54a147:R Scripts/3. Preprocessing - Maynard et al.R
