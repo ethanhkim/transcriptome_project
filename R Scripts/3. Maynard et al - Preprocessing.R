@@ -71,6 +71,8 @@ Maynard_dataset_average <- tibble(
   WM = Maynard_dataset_WM$dataset_mean,
 )
 
+write.csv()
+
 # Clean up workspace
 rm(Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Maynard_dataset_Layer4, Maynard_dataset_Layer5,
    Maynard_dataset_Layer6, Maynard_dataset_WM)
@@ -103,3 +105,20 @@ rm(Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Mayna
 #Maynard_151676 <- Maynard_dataset %>%
 #  dplyr::select("gene_symbol", contains("151676"))
 
+<<<<<<< HEAD:R Scripts/3. Maynard et al - Preprocessing.R
+=======
+
+
+
+## Filter dataset by common genes
+#Maynard_filtered_dataset <- Maynard_dataset %>%
+#  filter(gene_symbol %in% Maynard_common_gene_list)
+
+## Remove duplicate rows of genes
+#duplicated(Maynard_filtered_dataset$gene_symbol) %>%
+#  which() %>%
+#  print()
+
+#Maynard_filtered_dataset %<>%
+#  dplyr::slice(-265, -785)
+>>>>>>> 2e2742751ab4f6a2146adcafc4748f231c20ba94:R Scripts/3. Human - Preprocessing - Maynard et al.R
