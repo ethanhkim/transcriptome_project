@@ -1,9 +1,9 @@
 # Load necessary libraries #
 
 
-#if (!requireNamespace("BiocManager", quietly = TRUE))
-  #install.packages("BiocManager")
-#BiocManager::install("LieberInstitute/spatialLIBD")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("LieberInstitute/spatialLIBD")
 library(spatialLIBD)
 library(tidyverse)
 library(org.Hs.eg.db)
@@ -149,7 +149,11 @@ separate_by_cell_type <- function(AIBS_MTG_df, cell_type) {
   return(df)
 }
 
+<<<<<<< HEAD
+# Read in processed csv
+=======
 # Read in processed csv, produced from scRNA-seq CPM script
+>>>>>>> ec361f9ef70abd13a78bc178bb3f36951c54a147
 
 AIBS_MTG <- fread(here('Data', 'Allen', 'MTG_df_01_21.csv')) %>%
   # remove col number column

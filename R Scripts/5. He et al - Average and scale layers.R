@@ -61,6 +61,9 @@ He_DS1_averaged_by_layer <- tibble(
 ## Cleanup workspace
 rm(He_Layer1_averaged, He_Layer2_averaged, He_Layer3_averaged, He_Layer4_averaged, He_Layer5_averaged, He_Layer6_averaged, He_WM_averaged)
 
+
+### OUTDATED ###
+
 ## Scale Layers ##
 
 #He_values_scaled <- He_values %>%
@@ -82,6 +85,4 @@ rm(He_Layer1_averaged, He_Layer2_averaged, He_Layer3_averaged, He_Layer4_average
 #  dplyr::select(-"gene_symbol") %>%
 #  t() %>%
 #  as_tibble()
-
-
 
