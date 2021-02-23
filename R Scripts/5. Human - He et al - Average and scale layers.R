@@ -54,7 +54,7 @@ He_DS1_averaged_by_layer <- tibble(
   Layer_4 = He_Layer4_averaged$wt.mean,
   Layer_5 = He_Layer5_averaged$wt.mean,
   Layer_6 = He_Layer6_averaged$mean,
-  Layer_7 = He_WM_averaged$S17
+  WM = He_WM_averaged$S17
 )
 
 

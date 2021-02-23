@@ -1,6 +1,16 @@
 ## Export data to Webapp ##
 
+conflict_prefer("slice", "dplyr")
+
 #Maynard layer enrichment code
+modeling_results <- fetch_data(type = "modeling_results")
+Maynard_modeling <- as_tibble(modeling_results$enrichment) %>%
+  distinct(gene, .keep_all = TRUE) %>%
+  dplyr::rename(tstat_WM = "t_stat_WM", tstat_Layer1 = "t_stat_Layer1", tstat_Layer2 = "t_stat_Layer2", tstat_Layer3 = "t_stat_Layer3",
+                tstat_Layer4 = "t_stat_Layer4", tstat_Layer5 = "t_stat_Layer5", tstat_Layer6 = "t_stat_Layer6", gene_symbol = "gene") %>%
+  dplyr::select(-"ensembl", -starts_with("p")) %>%
+  filter(gene_symbol %in% Maynard_dataset_average$gene_symbol)
+
 Maynard_layer_enrichment <- Maynard_modeling %>%
   pivot_longer(
     cols = -gene_symbol,
@@ -41,13 +51,13 @@ Maynard_layer_enrichment <- Maynard_modeling %>%
                                         no = NA)) %>%
   dplyr::select(-tstat, -fdr) 
 
-Maynard_dataset_average <- Maynard_dataset_average %>%
+Maynard_dataset_average %<>% 
   arrange(gene_symbol) %>%
   filter(gene_symbol %in% Maynard_layer_enrichment$gene_symbol)
 
 Maynard_layer_enrichment %<>% filter(gene_symbol %in% Maynard_dataset_average$gene_symbol)
 
-Maynard_dataset_average %<>%
+Maynard_dataset_average %<>% 
   column_to_rownames(var = "gene_symbol") %>%
   t() %>%
   scale() %>%
@@ -73,7 +83,7 @@ He_DS1_averaged_by_layer_export <- He_DS1_averaged_by_layer %>%
   rownames_to_column(var = "gene_symbol")
 
 ## He Layer markers ##
-He_LM_Path <- here("Data", "He et al", "Supplementary Table 2.xlsx")
+He_LM_Path <- here("Data", "raw_data", "He et al", "Supplementary Table 2.xlsx")
 He_Layer_markers <- read_xlsx(path = He_LM_Path) %>%
   dplyr::select("Gene symbol", "Layer marker in human") %>%
   mutate_at(vars("Layer marker in human"), na_if, "No") %>%
@@ -111,14 +121,18 @@ He_DS1_Human_averaged <-  merge(x = He_DS1_averaged_by_layer_export, y = He_Laye
   rename(marker_label = "layer_marker_label", WM = "Layer_WM") %>%
   dplyr::select(-"layer_marker")
 
+# Create objects with naming schema
+
+Maynard_averaged <- Maynard_dataset_average
+He_DS1_averaged <- He_DS1_Human_averaged
 
 
-write_csv(He_DS1_Human_averaged, './R Scripts/export_data/He_DS1_Human_averaged.csv')
-save(He_DS1_Human_averaged, file = './R Scripts/export_data/He_DS1_Human_averaged.Rdata')
+write_csv(He_DS1_averaged, './R Scripts/export_data/He_DS1_averaged.csv')
+save(He_DS1_averaged, file = './R Scripts/export_data/He_DS1_averaged.Rdata')
 
 
-write_csv(Maynard_dataset_average, './R Scripts/export_data/Maynard_dataset_average.csv')
-save(Maynard_dataset_average, file = './R Scripts/export_data/Maynard_dataset_average.Rdata')
+write_csv(Maynard_averaged, './R Scripts/export_data/Maynard_averaged.csv')
+save(Maynard_averaged, file = './R Scripts/export_data/Maynard_averaged.Rdata')
 
                                        
   

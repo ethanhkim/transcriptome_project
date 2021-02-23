@@ -28,7 +28,7 @@ Zeng_Layer_markers <- Zeng_dataset %>%
   na_if("")
 
 ## He Layer markers ##
-He_LM_Path <- here("Data", "He et al", "Supplementary Table 2.xlsx")
+He_LM_Path <- here("Data", "raw_data", "He et al", "Supplementary Table 2.xlsx")
 He_Layer_markers <- read_xlsx(path = He_LM_Path) %>%
   dplyr::select("Gene symbol", "Layer marker in human") %>%
   mutate_at(vars("Layer marker in human"), na_if, "No") %>%
@@ -96,7 +96,7 @@ Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_
 Compared_Layer_Markers <- tibble(
   gene_symbol = Compared_gene_list,
   He_Layer_Markers = He_Layer_Markers$layer_marker,
-  Zeng_Layer_Markers = Zeng_Layer_Markers$layer_marker,
+  Zeng_Layer_Markers = Zeng_Layer_Markers$marker_annotation,
   Maynard_Layer_Markers = Maynard_Layer_Markers$layer_marker) 
 
 ## Re-format ##
@@ -156,7 +156,6 @@ Compared_gene_list_He_Maynard <- intersect(He_Layer_markers$gene_symbol, Maynard
 He_Layer_Markers <- as_tibble(He_Layer_markers[He_Layer_markers$gene_symbol %in% Compared_gene_list,]) %>%
   arrange(factor(gene_symbol, levels = Compared_gene_list))
 Maynard_Layer_Markers <- Maynard_layer_enrichment[Maynard_layer_enrichment$gene_symbol %in% Compared_gene_list,]
-
 
 
 Compared_Layer_Markers_filtered <- Compared_Layer_Markers %>%
