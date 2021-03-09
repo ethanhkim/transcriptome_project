@@ -1,45 +1,43 @@
 ## Add WM NaN values to MTG data
-AIBS_MTG_df <- read.csv(here("Data", "Allen", "MTG_df_01_21.csv")) %>%
-  dplyr::select(-X, -X1)
 
-# Filter by cell type
-filter_by_cell_type <- function(AIBS_df, cell_type) {
-  df <- AIBS_df
+AIBS_MTG_df <- fread(here("Data", "Allen", "MTG_df_01_21.csv")) %>%
+  select(-V1, -X1)
+
+add_NaN_to_AIBS <- function(AIBS_MTG_df, cell_type) {
   
-  df %<>%
-    filter(class_label == cell_type)
+  df <- AIBS_MTG_df %>%
+    filter(class_label == cell_type) %>%
+    pivot_wider(names_from = cortical_layer_label,
+                values_from = mean_expression,
+                values_fn = list)
   
-  return(df)
+  listcol_to_col <- function(column) {
+    mutated_col <- do.call(rbind.data.frame, column) %>%
+      pull(var = 1)
+    return(mutated_col)
+  }
+  
+  mutated_df <- data.frame(df[1:2], 
+                   sapply(df[3:8], listcol_to_col)) %>%
+    add_column(WM = NaN) %>%
+    pivot_longer(cols = L1:WM,
+                 names_to = "cortical_layer_label",
+                 values_to = "mean_expression")
+  
+  return(mutated_df)
 }
 
-# Z-score and add NaN to each filtered df
-add_nan <- function(filtered_df) {
-  df <- filtered_df
-  
-  df %<>% pivot_longer(names_from = cortical_layer_label,
-                       values_from = mean_expression) %>%
-    add_column
+
+AIBS_MTG_cell_type <- list()
+for (i in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
+  AIBS_MTG_cell_type[[i]] <- add_NaN_to_AIBS(AIBS_MTG_df, i)
 }
 
-test <- AIBS_MTG_df %>%
-  filter(class_label == "GABAergic")
+AIBS_logCPM_dataset <- rbind(AIBS_MTG_cell_type$GABAergic, 
+                      AIBS_MTG_cell_type$Glutamatergic, 
+                      AIBS_MTG_cell_type$`Non-neuronal`)
 
-AIBS_MTG_GABA <- AIBS_MTG_df %>%
-  filter_by_cell_type(cell_type = "GABAergic") %>%
-  pivot_wider(names_from = cortical_layer_label,
-              values_from = mean_expression)
+save(AIBS_logCPM_dataset, file = here("Data", "processed_data", "AIBS_logCPM_dataset.Rdata"))
 
-test <- AIBS_MTG_df %>%
-  filter_by_cell_type(cell_type = "GABAergic") %>%
-  spread(cortical_layer_label, mean_expression)
-AIBS_MTG_GLUT <- AIBS_MTG_df %>%
-  filter_by_cell_type(cell_type = "Glutamatergic")
-AIBS_MTG_NONN <- AIBS_MTG_df %>%
-  filter_by_cell_type(cell_type = "Non-neuronal")
 
-AIBS_MTG_df %<>% pivot_wider(names_from = cortical_layer_label,
-                             values_from = mean_expression)
-  dplyr::select(-cortical_layer_label) %>%
-  add_column(WM = NaN) %>%
-  pivot_longer(cols = L1:WM, names_to = 'test', values_to = 'mean-expression')
   
