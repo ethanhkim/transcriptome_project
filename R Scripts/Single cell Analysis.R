@@ -16,6 +16,9 @@ singlecellMatrix_dest <- here("Data", "Allen", "singlecellMatrix.csv")
 singlecellMatrix_url <- "https://idk-etl-prod-download-bucket.s3.amazonaws.com/aibs_human_ctx_smart-seq/matrix.csv"
 allen_singlecellMatrix <- download.file(singlecellMatrix_url, singlecellMatrix_dest)
 
+rm(singlecellMetadata_dest, singlecellMetadata_url,
+   singlecellMatrix_dest, singlecellMatrix_url)
+
 
 # Function to read in Allen sc-RNAseq matrix and associated metadata separate the data into regions
 separate_by_region <- function(region) {
@@ -40,11 +43,7 @@ separate_by_region <- function(region) {
   
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> ec361f9ef70abd13a78bc178bb3f36951c54a147
 metadata <- fread("/Users/ethankim/Desktop/transcriptome_project/Data/Allen/metadata.csv", header = T) %>%
   dplyr::select(sample_name, class_label, subclass_label, region_label, cortical_layer_label, outlier_call) %>%
   as_tibble()
