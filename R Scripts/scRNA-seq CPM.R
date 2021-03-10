@@ -145,13 +145,6 @@ rm(V1C)
 CgG <- select_AIBS_region(AIBS_CPM, "CgG")
 CgG_df <- create_region_df(CgG)
 CgG_df$region_label <- "CgG"
-CgG_df %<>%
-  group_by(gene_symbol, cortical_layer_label) %>%
-  summarize(mean_exp = mean(log_mean_expression)) %>%
-  spread(cortical_layer_label, mean_exp) %>%
-  mutate(L5 = (L5a+L5b)/2) %>%
-  add_column(L3 = 0, L4 = 0) %>%
-  select(gene_symbol, L1, L2, L3, L4, L5, L6)
 rm(CgG)
 
 # Remove CPM dataframe

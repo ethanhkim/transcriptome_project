@@ -68,8 +68,4 @@ df1_test <- df[upper.tri(df1_df2_cor)]
 
 head(df1_df2_cor)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ec361f9ef70abd13a78bc178bb3f36951c54a147
   
