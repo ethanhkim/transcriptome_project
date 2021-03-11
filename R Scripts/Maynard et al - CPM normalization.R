@@ -27,13 +27,27 @@ sce_layer <- fetch_data(type = "sce_layer")
 Maynard_dataset <- sce_layer@assays@data@listData$counts %>%
   as_tibble(rownames=NA)
 # Get gene Ensembl ID
-Maynard_ensembl_list <- sce_layer@rowRanges@ranges@NAMES
-# Convert Ensembl to HGNC, filter out non-viable symbols
-Maynard_dataset$gene_symbol <- mapIds(org.Hs.eg.db, 
-                                      keys = Maynard_ensembl_list, keytype = "ENSEMBL", column="SYMBOL")
-Maynard_dataset %<>%
-  select(gene_symbol, everything()) %>% filter(!is.na(gene_symbol)) %>%
-  distinct(gene_symbol, .keep_all = TRUE)
+Maynard_dataset$ensembl_gene_id <- sce_layer@rowRanges@ranges@NAMES
+# Convert ensembl ID to gene symbol
+mart <- useMart("ENSEMBL_MART_ENSEMBL")
+mart <- useDataset("hsapiens_gene_ensembl", mart)
+
+annotLookup <- getBM(
+  mart=mart,
+  attributes=c("ensembl_transcript_id", "ensembl_gene_id",
+               "gene_biotype", "external_gene_name"),
+  filter="ensembl_gene_id",
+  values=sce_layer@rowRanges@ranges@NAMES,
+  uniqueRows=TRUE)
+
+maynard_genelist <- annotLookup %>%
+  select(external_gene_name, ensembl_gene_id) %>%
+  rename(gene_symbol = external_gene_name)
+
+Maynard_dataset %<>% inner_join(maynard_genelist, by = "ensembl_gene_id") %>%
+  select(gene_symbol, everything()) %>%
+  select(-ensembl_gene_id) %>%
+  distinct(gene_symbol, .keep_all = T) 
 
 # Select only individuals with all cortical layers (n = 2)
 Maynard_dataset_subset <- Maynard_dataset %>%
@@ -85,7 +99,7 @@ Maynard_CPM_dataset <- Maynard_dataset_averaged %>%
 # Clean up workspace
 rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
    Maynard_mean_col_list, label, Maynard_ensembl_list,
-   create_mean_col, sce_layer)
+   create_mean_col, sce_layer, mart, maynard_genelist, annotLookup)
 
 # Write normalized data as .Rdata
 save(Maynard_logCPM_dataset, file = here("Data", "processed_data", 
