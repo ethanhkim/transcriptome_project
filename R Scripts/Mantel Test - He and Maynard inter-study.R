@@ -1,71 +1,78 @@
 ## Create transposed Maynard datasets
 
 library(dplyr)
-library(tidyverse)
 library(magrittr)
 library(conflicted)
 library(vegan)
+library(here)
+library(vegan)
+library(parallel)
+library(WGCNA)
 
 # Set conflicts
 conflict_prefer('intersect', 'dplyr')
+conflict_prefer("filter", "dplyr")
+conflict_prefer("slice", "dplyr")
 
-# Create common genelist between Maynard and He
-He_genelist <- unique(He_DS1_averaged_by_layer$gene_symbol)
-Maynard_genelist <- unique(Maynard_logCPM_averaged$gene_symbol)
-common_genelist <- intersect(He_genelist, Maynard_genelist)
-
-
-# Create transposed dataframe
-transpose_df <- function(df, genelist) {
-  df %<>%
-    as.data.frame() %>%
-    filter(gene_symbol %in% genelist) %>%
-    slice(match(genelist, gene_symbol)) %>%
-    column_to_rownames(var = "gene_symbol") %>%
-    t()
-  return(df)
+# Function to perform Mantel testing
+mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
+  # Create common gene list between Maynard and He
+  create_common_genelist <- function(He_df, Maynard_df) {
+    
+    if ((isFALSE(duplicated(He_df))) == 
+        (isFALSE(duplicated(Maynard_df)))) {
+      
+      common_genelist <- intersect(He_df$gene_symbol, 
+                                   Maynard_df$gene_symbol)
+    }
+    return(common_genelist)
+  }
+  
+  # Create transposed dataframe
+  transpose_df <- function(df, genelist) {
+    df %<>%
+      as.data.frame() %>%
+      filter(gene_symbol %in% genelist) %>%
+      slice(match(genelist, gene_symbol)) %>%
+      column_to_rownames(var = "gene_symbol") %>%
+      t()
+    return(df)
+  }
+  
+  # Make common genelist
+  common_genelist <- create_common_genelist(He_df,
+                                            Maynard_df)
+  
+  # Transpose data
+  He_transposed <- transpose_df(He_df, common_genelist)
+  Maynard_transposed <- transpose_df(Maynard_df, common_genelist)
+  
+  # Create correlation matrices
+  He_corr_matrix <- WGCNA::cor(He_transposed, method = "pearson",
+                               use = "all.obs", nThreads = 12)
+  Maynard_corr_matrix <- WGCNA::cor(Maynard_transposed, method = "pearson",
+                                    use = "all.obs", nThreads = 12)
+  
+  mantel(He_corr_matrix, Maynard_corr_matrix, 
+         permutations = no_of_perm,
+         parallel = 12, na.rm = T)
 }
 
-# Use non-averaged He and Maynard data
-
-Maynard_transposed <- transpose_df(Maynard_logCPM_averaged, common_genelist)
-He_transposed <- transpose_df(He_DS1_averaged_by_layer, common_genelist)
-
-# Run Mantel tests
-
-mantel_test <- function(df_1, df_2, no_of_permutations = 999) {
-  
-  df1_cor <- cor(df_1, df_1, method = "pearson", 
-                 use = "complete.obs")
-  df2_cor <- cor(df_2, df_2, method = "pearson", 
-                 use = "complete.obs")
-  
-  mantel_test_result <- mantel(df1_cor, df2_cor,
-                               method = "spearman",
-                               permutations = no_of_permutations,
-                               na.rm = T)
-  
-  return(mantel_test_result)
-}
-
-He_Maynard_mantel <- mantel_test(He_transposed, Maynard_transposed, 1)
+# Load in data
+load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
 
 
-testlist <- 
+## Mantel tests ##
 
-df2 %<>%
-  filter(gene_symbol %in% df1_df2_genelist) %<>%
-  arrange(gene_symbol) %<>%
-  column_to_rownames(var = "gene_symbol") %<>%
-  t()
+# Old non-logCPM averaged data for He and Maynard
+mantel_test(He_DS1_averaged_by_layer, Maynard_dataset_average)
+# He logCPM vs old Maynard
+mantel_test(He_DS1_logCPM_dataset, Maynard_dataset_average)
+# old He vs Maynard logCPM
+mantel_test(He_DS1_averaged_by_layer, Maynard_logCPM_dataset)
+# He logCPM vs Maynard logCPM
+mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset, no_of_perm = 1000)
 
-df1_df2_cor <- cor(df1, df2, method = "pearson") 
-
-df1_df2_cor <- df1_df2_cor %>%
-  lower.tri(diag = TRUE) %>%
-  as_tibble()
-df1_test <- df[upper.tri(df1_df2_cor)]
-
-head(df1_df2_cor)
 
   
