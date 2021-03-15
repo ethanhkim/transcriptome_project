@@ -1,4 +1,4 @@
-## Mantel tests between old bulk-tissue vs. logCPM normalized bulk-tissue ##
+## Create transposed Maynard datasets ##
 
 library(dplyr)
 library(magrittr)
@@ -7,21 +7,6 @@ library(vegan) # Package for mantel test
 library(here)
 library(parallel) # Parallelize Mantel and WGCNA corr()
 library(WGCNA) # Faster corr() than base
-
-# Set conflicts
-conflict_prefer('intersect', 'dplyr')
-conflict_prefer("filter", "dplyr")
-conflict_prefer("slice", "dplyr")
-
-# Load in data #
-
-# Old bulk-tissue
-load(here("Data", "processed_data", "He_DS1_averaged_by_layer.Rdata"))
-load(here("Data", "processed_data", "Maynard_dataset_average.Rdata"))
-# logCPM bulk-tissue
-load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
-load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
-
 
 # Set conflicts
 conflict_prefer('intersect', 'dplyr')
@@ -71,3 +56,34 @@ mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
          permutations = no_of_perm,
          parallel = 12, na.rm = T)
 }
+
+# Load in data
+load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "He_DS1_CPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_CPM_dataset.Rdata"))
+
+
+## Mantel tests b/w He and Maynard ##
+
+# Non-logCPM data
+# Mantel r: 0.4079
+mantel_test(He_DS1_averaged_by_layer, Maynard_dataset_average)
+
+# He logCPM vs Maynard non-logCPM
+# Mantel r: 0.4392
+mantel_test(He_DS1_logCPM_dataset, Maynard_dataset_average)
+
+# He non-logCPM vs Maynard logCPM
+# Mantel r: 0.4646
+mantel_test(He_DS1_averaged_by_layer, Maynard_logCPM_dataset)
+
+# He logCPM vs Maynard logCPM
+# Mantel r: 0.501, p < 0.001
+mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset)
+
+# He CPM vs Maynard CPM - does the score get better or worse?
+# Mantel r: 0.4954; marginally worse but not by much
+mantel_test(He_DS1_CPM_dataset, Maynard_CPM_dataset)
+
+

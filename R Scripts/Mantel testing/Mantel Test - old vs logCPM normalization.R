@@ -1,6 +1,7 @@
-## Create transposed Maynard datasets ##
+## Mantel tests between old bulk-tissue vs. logCPM normalized bulk-tissue ##
 
 library(dplyr)
+library(tibble)
 library(magrittr)
 library(conflicted) # Easily manage conflicting libraries
 library(vegan) # Package for mantel test
@@ -14,15 +15,15 @@ conflict_prefer("filter", "dplyr")
 conflict_prefer("slice", "dplyr")
 
 # Function to perform Mantel testing
-mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
+mantel_test <- function(df_1, df_2, no_of_perm = 1) {
   # Create common gene list between Maynard and He
-  create_common_genelist <- function(He_df, Maynard_df) {
+  create_common_genelist <- function(df_1, df_2) {
     
-    if ((isFALSE(duplicated(He_df))) == 
-        (isFALSE(duplicated(Maynard_df)))) {
+    if ((isFALSE(duplicated(df_1))) == 
+        (isFALSE(duplicated(df_2)))) {
       
-      common_genelist <- intersect(He_df$gene_symbol, 
-                                   Maynard_df$gene_symbol)
+      common_genelist <- intersect(df_1$gene_symbol, 
+                                   df_2$gene_symbol)
     }
     return(common_genelist)
   }
@@ -39,12 +40,12 @@ mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
   }
   
   # Make common genelist
-  common_genelist <- create_common_genelist(He_df,
-                                            Maynard_df)
+  common_genelist <- create_common_genelist(df_1,
+                                            df_2)
   
   # Transpose data
-  He_transposed <- transpose_df(He_df, common_genelist)
-  Maynard_transposed <- transpose_df(Maynard_df, common_genelist)
+  He_transposed <- transpose_df(df_1, common_genelist)
+  Maynard_transposed <- transpose_df(df_2, common_genelist)
   
   # Create correlation matrices
   He_corr_matrix <- WGCNA::cor(He_transposed, method = "pearson",
@@ -57,29 +58,22 @@ mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
          parallel = 12, na.rm = T)
 }
 
-# Load in data
+# Load in data #
+
+# Old bulk-tissue
+load(here("Data", "processed_data", "He_DS1_averaged_by_layer.Rdata"))
+load(here("Data", "processed_data", "Maynard_dataset_average.Rdata"))
+# logCPM bulk-tissue
 load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
 load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
-load(here("Data", "processed_data", "He_DS1_CPM_dataset.Rdata"))
-load(here("Data", "processed_data", "Maynard_CPM_dataset.Rdata"))
+
+# old He average vs. logCPM
+# Mantel r: 0.6446
+mantel_test(He_DS1_averaged_by_layer, He_DS1_logCPM_dataset)
+# old Maynard average vs. logCPM
+# Mantel r: 0.8379
+mantel_test(Maynard_dataset_average, Maynard_logCPM_dataset)
 
 
-## Mantel tests b/w He and Maynard ##
-
-# Non-logCPM data
-# Mantel r: 0.4104
-mantel_test(He_DS1_averaged_by_layer, Maynard_dataset_average)
-# He logCPM vs Maynard non-logCPM
-# Mantel r: 0.4414
-mantel_test(He_DS1_logCPM_dataset, Maynard_dataset_average)
-# He non-logCPM vs Maynard logCPM
-# Mantel r: 0.4646
-mantel_test(He_DS1_averaged_by_layer, Maynard_logCPM_dataset)
-# He logCPM vs Maynard logCPM
-# Mantel r: 0.5052, p < 0.001
-mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset)
-# He CPM vs Maynard CPM - does the score get better or worse?
-# Mantel r: 0.4974; marginally worse but not by much
-mantel_test(He_DS1_CPM_dataset, Maynard_CPM_dataset)
-
-
+# Conclusion: looks like the old and new datasets are quite similar.
+# Should be safe to use this data in the webapp.
