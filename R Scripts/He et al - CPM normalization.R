@@ -46,30 +46,30 @@ He_DS1_matrix %<>%
     ) %>% as.data.frame()
 
 # Average across slices for participants
-He_DS1_matrix_avg_slice <- data.frame(matrix(NA, ncol = 59453, nrow = 1)[-1,])
-for (mean_col in c("S01", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10",
+He_DS1_matrix_slice_sum <- data.frame(matrix(NA, ncol = 59453, nrow = 1)[-1,])
+for (slice in c("S01", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10",
                    "S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18")) {
-  He_DS1_matrix_avg_slice[mean_col,] <- rowMeans(select(He_DS1_matrix, contains(mean_col)), na.rm = T)
+  He_DS1_matrix_slice_sum[slice,] <- rowSums(select(He_DS1_matrix, contains(slice)), na.rm = T)
 }
 rm(mean_col)
 
 # Sanity check - did it average correctly? Check using S01-containing columns
-#test <- He_DS1_matrix %>% select(gene_symbol, contains("S01")) %>%
-#  column_to_rownames(var = "gene_symbol") 
-#test %<>%
-#  mutate(mean = rowMeans(select(test, contains("S01")), na.rm = T)) %>%
-#  select(mean)
+test <- He_DS1_matrix %>% select(gene_symbol, contains("S01")) %>%
+  column_to_rownames(var = "gene_symbol") 
+test %<>%
+  mutate(count = rowSums(select(test, contains("S01")), na.rm = T)) %>%
+  select(count)
 # Select first row - should be the product of rowMeans of S01
-#test2 <- He_DS1_matrix_avg_slice[1,] %>%
-#  t() %>%
-#  as_tibble()
+test2 <- He_DS1_matrix_slice_sum[1,] %>%
+  t() %>%
+  as_tibble()
 # Check to see if all numbers in vector are equal
-#all(test == test2)
+all(test == test2)
 # Passes. Remove test items
-#rm(list = c("test", "test2"))
+rm(list = c("test", "test2"))
 
 # Create layer representations from He et al figure
-He_DS1_transposed <- He_DS1_matrix_avg_slice %>% 
+He_DS1_transposed <- He_DS1_matrix_slice_sum %>% 
   t() %>% as_tibble() %>% 
   # Add back in gene symbol column
   add_column(gene_symbol = He_DS1_matrix$gene_symbol) %>%
@@ -80,45 +80,46 @@ He_DS1_transposed <- He_DS1_matrix_avg_slice %>%
   mutate(S9_weighted = S9 * 0.5)
 
 # Function to create a weighted average column
-wt_avg_col_fn <- function(transposed_df, cols_to_avg) {
+wt_sum_col_fn <- function(transposed_df, cols_to_sum) {
   df <- transposed_df
   # Create wt.mean column - averages across columns
-  avg_col <- df %>%
-    select(all_of(cols_to_avg)) %>%
+  sum_col <- df %>%
+    select(all_of(cols_to_sum)) %>%
     data.table::transpose() %>%
-    colMeans()
+    colSums()
   # Remove name attributes
-  names(avg_col) <- NULL
-  return(avg_col)
+  names(sum_col) <- NULL
+  return(sum_col)
 }
 
 # Create averaged He et al. tibble from the scaled values. Don't include gene_symbol
 # as it needs to go through CPM normalization (requires no rownames)
-He_DS1_avg_layer <- tibble(
+He_DS1_sum_layer <- tibble(
   Layer_1 = He_DS1_transposed$S1,
-  Layer_2 = wt_avg_col_fn(He_DS1_transposed, c("S2", "S3", "S4_weighted")),
-  Layer_3 = wt_avg_col_fn(He_DS1_transposed, c("S4_weighted", "S5", "S6")),
-  Layer_4 = wt_avg_col_fn(He_DS1_transposed, c("S7", "S8", "S9_weighted")),
-  Layer_5 = wt_avg_col_fn(He_DS1_transposed, c("S9_weighted", "S10", "S11", "S12")),
-  Layer_6 = wt_avg_col_fn(He_DS1_transposed, c("S13","S14", "S15", "S16")),
+  Layer_2 = wt_sum_col_fn(He_DS1_transposed, c("S2", "S3", "S4_weighted")),
+  Layer_3 = wt_sum_col_fn(He_DS1_transposed, c("S4_weighted", "S5", "S6")),
+  Layer_4 = wt_sum_col_fn(He_DS1_transposed, c("S7", "S8", "S9_weighted")),
+  Layer_5 = wt_sum_col_fn(He_DS1_transposed, c("S9_weighted", "S10", "S11", "S12")),
+  Layer_6 = wt_sum_col_fn(He_DS1_transposed, c("S13","S14", "S15", "S16")),
   WM = He_DS1_transposed$S17
 )
 
 # CPM normalize with log = T
-He_DS1_logCPM_dataset <- He_DS1_avg_layer %>%
+He_DS1_logCPM_dataset <- He_DS1_sum_layer %>%
   cpm(log = T) %>% as.data.frame() %>%
   add_column(gene_symbol = He_DS1_matrix$gene_symbol) %>%
   select(gene_symbol, everything())
 
 # CPM normalize without log
-He_DS1_CPM_dataset <- He_DS1_avg_layer %>%
+He_DS1_CPM_dataset <- He_DS1_sum_layer %>%
   cpm() %>% as.data.frame() %>%
   add_column(gene_symbol = He_DS1_matrix$gene_symbol) %>%
   select(gene_symbol, everything())
 
 # Clean up remaining DS1 data
-rm(He_DS1_matrix, He_DS1_avg_layer, He_DS1_transposed,
-   He_DS1_matrix_avg_slice, He_count_matrix, wt_avg_col_fn)
+rm(He_DS1_matrix, He_DS1_sum_layer, He_DS1_transposed,
+   He_DS1_matrix_slice_sum, He_count_matrix, wt_sum_col_fn,
+   slice, WM)
 
 # Write normalized data as .Rdata
 save(He_DS1_logCPM_dataset, file = here("Data", "processed_data", 

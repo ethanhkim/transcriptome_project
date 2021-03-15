@@ -7,6 +7,7 @@ library(spatialLIBD)
 library(data.table)
 library(org.Hs.eg.db)
 library(dplyr)
+library(tibble)
 library(magrittr)
 library(stringr)
 library(conflicted)
@@ -42,24 +43,24 @@ Maynard_dataset_subset <- Maynard_dataset %>%
   column_to_rownames(var = "gene_symbol")
 
 # Function to create columns of mean values across individuals for Maynard
-create_mean_col <- function(Maynard_normalized_subset, layer_label) {
-  df <- Maynard_normalized_subset
+create_sum_col <- function(Maynard_subset, layer_label) {
+  df <- Maynard_subset
   layer <- layer_label
   
   df %<>% select(contains(layer)) %>%
-    mutate(mean = rowMeans(.)) %>%
-    pull(mean)
+    mutate(countSum = rowSums(.)) %>%
+    pull(countSum)
   
   return(df)
 }
 
 # Create list of mean columns
-Maynard_mean_col_list <- list()
+Maynard_sum_col_list <- list()
 for (label in c("Layer1", "Layer2", "Layer3", "Layer4", "Layer5", "Layer6", "WM")) {
-  Maynard_mean_col_list[[label]] <- create_mean_col(Maynard_dataset_subset, label)
+  Maynard_sum_col_list[[label]] <- create_sum_col(Maynard_dataset_subset, label)
 }
 # Bind list and convert to dataframe
-Maynard_dataset_averaged <- as.data.frame(do.call(rbind, Maynard_mean_col_list)) %>%
+Maynard_dataset_averaged <- as.data.frame(do.call(rbind, Maynard_sum_col_list)) %>%
   t() %>% as.data.frame() %>%
   rownames_to_column(var = 'gene_symbol') %>%
   rename(Layer_1 = Layer1, Layer_2 = Layer2, Layer_3 = Layer3, Layer_4 = Layer4, 
@@ -73,28 +74,17 @@ Maynard_logCPM_dataset <- Maynard_dataset_averaged %>%
   add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
   select(gene_symbol, everything())
 
-# Normalize Maynard UMI counts with CPM, log = T
-Maynard_CPM_dataset <- Maynard_dataset_averaged %>%
-  # Remove gene_symbol column for cpm()
-  select(-gene_symbol) %>% cpm() %>%
-  as.data.frame() %>%
-  add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
-  select(gene_symbol, everything())
-
 # Clean up workspace
 rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
-   Maynard_mean_col_list, label, Maynard_ensembl_list,
-   create_mean_col, sce_layer, mart, maynard_genelist, annotLookup)
+   Maynard_sum_col_list, label, Maynard_ensembl_list,
+   create_sum_col, sce_layer)
 
 # Write normalized data as .Rdata
 save(Maynard_logCPM_dataset, file = here("Data", "processed_data", 
                                          "Maynard_logCPM_dataset.Rdata"))
-save(Maynard_CPM_dataset, file = here("Data", "processed_data", 
-                                      "Maynard_CPM_dataset.Rdata"))
 
 # Write normalized data as .csv
 write.csv(Maynard_logCPM_dataset, file = here("Data", "processed_Data", 
                                                "Maynard_logCPM_dataset.csv"))
-write.csv(Maynard_CPM_dataset, file = here("Data", "processed_Data", 
-                                           "Maynard_CPM_dataset.csv"))
+
 
