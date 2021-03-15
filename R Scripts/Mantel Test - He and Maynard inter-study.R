@@ -1,13 +1,12 @@
-## Create transposed Maynard datasets
+## Create transposed Maynard datasets ##
 
 library(dplyr)
 library(magrittr)
-library(conflicted)
-library(vegan)
+library(conflicted) # Easily manage conflicting libraries
+library(vegan) # Package for mantel test
 library(here)
-library(vegan)
-library(parallel)
-library(WGCNA)
+library(parallel) # Parallelize Mantel and WGCNA corr()
+library(WGCNA) # Faster corr() than base
 
 # Set conflicts
 conflict_prefer('intersect', 'dplyr')
@@ -61,18 +60,26 @@ mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
 # Load in data
 load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
 load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "He_DS1_CPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_CPM_dataset.Rdata"))
 
 
-## Mantel tests ##
+## Mantel tests b/w He and Maynard ##
 
-# Old non-logCPM averaged data for He and Maynard
+# Non-logCPM data
+# Mantel r: 0.4104
 mantel_test(He_DS1_averaged_by_layer, Maynard_dataset_average)
-# He logCPM vs old Maynard
+# He logCPM vs Maynard non-logCPM
+# Mantel r: 0.4414
 mantel_test(He_DS1_logCPM_dataset, Maynard_dataset_average)
-# old He vs Maynard logCPM
+# He non-logCPM vs Maynard logCPM
+# Mantel r: 0.4646
 mantel_test(He_DS1_averaged_by_layer, Maynard_logCPM_dataset)
 # He logCPM vs Maynard logCPM
-mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset, no_of_perm = 1000)
+# Mantel r: 0.5052, p < 0.001
+mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset)
+# He CPM vs Maynard CPM - does the score get better or worse?
+# Mantel r: 0.4974; marginally worse but not by much
+mantel_test(He_DS1_CPM_dataset, Maynard_CPM_dataset)
 
 
-  
