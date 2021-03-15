@@ -59,8 +59,11 @@ He_DS1_averaged_by_layer <- tibble(
 
 
 ## Cleanup workspace
-rm(He_Layer1_averaged, He_Layer2_averaged, He_Layer3_averaged, He_Layer4_averaged, He_Layer5_averaged, He_Layer6_averaged, He_WM_averaged)
+rm(He_Layer1_averaged, He_Layer2_averaged, He_Layer3_averaged, He_Layer4_averaged, 
+   He_Layer5_averaged, He_Layer6_averaged, He_WM_averaged, He_DS1_Human)
 
+save(He_DS1_averaged_by_layer, 
+     file = here("Data", "processed_data", "He_DS1_averaged_by_layer.Rdata"))
 
 ### OUTDATED ###
 

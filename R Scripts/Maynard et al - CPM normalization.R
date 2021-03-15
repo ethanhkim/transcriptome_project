@@ -74,6 +74,14 @@ Maynard_logCPM_dataset <- Maynard_dataset_averaged %>%
   add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
   select(gene_symbol, everything())
 
+# Normalize Maynard UMI counts with CPM
+Maynard_CPM_dataset <- Maynard_dataset_averaged %>%
+  # Remove gene_symbol column for cpm()
+  select(-gene_symbol) %>% cpm() %>%
+  as.data.frame() %>%
+  add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
+  select(gene_symbol, everything())
+
 # Clean up workspace
 rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
    Maynard_sum_col_list, label, Maynard_ensembl_list,
@@ -82,9 +90,13 @@ rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
 # Write normalized data as .Rdata
 save(Maynard_logCPM_dataset, file = here("Data", "processed_data", 
                                          "Maynard_logCPM_dataset.Rdata"))
+save(Maynard_CPM_dataset, file = here("Data", "processed_data", 
+                                      "Maynard_CPM_dataset.Rdata"))
 
 # Write normalized data as .csv
 write.csv(Maynard_logCPM_dataset, file = here("Data", "processed_Data", 
                                                "Maynard_logCPM_dataset.csv"))
+write.csv(Maynard_CPM_dataset, file = here("Data", "processed_Data", 
+                                           "Maynard_CPM_dataset.csv"))
 
 

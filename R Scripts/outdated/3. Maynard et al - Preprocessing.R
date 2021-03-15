@@ -75,6 +75,10 @@ Maynard_dataset_average <- tibble(
 rm(Maynard_dataset, Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_dataset_Layer3, Maynard_dataset_Layer4, Maynard_dataset_Layer5,
    Maynard_dataset_Layer6, Maynard_dataset_WM)
 
+# Save data
+save(Maynard_dataset_average, file = here("Data", "processed_data", 
+                                          "Maynard_dataset_average.Rdata"))
+
 
 ## Separate by sample ID
 #Maynard_151507 <- Maynard_dataset %>%
@@ -102,9 +106,6 @@ rm(Maynard_dataset, Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_data
 #Maynard_151676 <- Maynard_dataset %>%
 #  dplyr::select("gene_symbol", contains("151676"))
 
-<<<<<<< HEAD:R Scripts/3. Maynard et al - Preprocessing.R
-=======
-
 
 
 ## Filter dataset by common genes
@@ -118,4 +119,4 @@ rm(Maynard_dataset, Maynard_dataset_Layer1, Maynard_dataset_Layer2, Maynard_data
 
 #Maynard_filtered_dataset %<>%
 #  dplyr::slice(-265, -785)
->>>>>>> 2e2742751ab4f6a2146adcafc4748f231c20ba94:R Scripts/3. Human - Preprocessing - Maynard et al.R
+
