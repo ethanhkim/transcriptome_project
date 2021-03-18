@@ -99,7 +99,9 @@ cpm_normalize <- function(summed_count_matrix) {
   df$gene_symbol <- NULL
   df$class_label <- NULL
   # logCPM normalize and add back in gene and cell type labels
-  df %<>% cpm(log = T) %>% as.data.frame() %>%
+  df %<>% 
+    mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+    cpm(log = T, prior.count = 1) %>% as.data.frame() %>%
     add_column(gene_symbol = df_gene_symbol,
                class_label = df_class_label) %>%
     select(class_label, gene_symbol, everything())
@@ -127,8 +129,16 @@ MTG <- AIBS_cleaned_df %>%
 rm(AIBS_cleaned_df)
 
 MTG_sum_count <- sum_gene_count(MTG)
-MTG_logCPM_dataset <- cpm_normalize(MTG_sum_count) 
-MTG_logCPM_dataset %<>% add_column(WM = NA)
+MTG_logCPM_dataset <- MTG_sum_count %>%
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class") %>%
+  cpm(log = T) %>% as.data.frame() %>%
+  rownames_to_column(var = "gene_class") %>%
+  filter_at(vars(-gene_class), all_vars(. > .1)) %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  add_column(WM = NA)
 
 # Save logCPM data
 save(MTG_logCPM_dataset, file = here("Data", "processed_data", "MTG_logCPM_dataset.Rdata"))
