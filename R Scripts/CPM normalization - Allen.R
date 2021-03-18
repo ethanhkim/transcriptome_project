@@ -127,7 +127,8 @@ MTG <- AIBS_cleaned_df %>%
 rm(AIBS_cleaned_df)
 
 MTG_sum_count <- sum_gene_count(MTG)
-MTG_logCPM_dataset <- cpm_normalize(MTG_sum_count)
+MTG_logCPM_dataset <- cpm_normalize(MTG_sum_count) 
+MTG_logCPM_dataset %<>% add_column(WM = NA)
 
 # Save logCPM data
 save(MTG_logCPM_dataset, file = here("Data", "processed_data", "MTG_logCPM_dataset.Rdata"))

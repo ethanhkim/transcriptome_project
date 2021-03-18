@@ -4,6 +4,7 @@
 library(edgeR)
 library(data.table)
 library(dplyr)
+library(stringr)
 library(here)
 
 # Read in raw count matrix
@@ -51,7 +52,7 @@ for (slice in c("S01", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10",
                    "S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18")) {
   He_DS1_matrix_slice_sum[slice,] <- rowSums(select(He_DS1_matrix, contains(slice)), na.rm = T)
 }
-rm(mean_col)
+rm(slice)
 
 # Sanity check - did it average correctly? Check using S01-containing columns
 test <- He_DS1_matrix %>% select(gene_symbol, contains("S01")) %>%
@@ -95,25 +96,38 @@ wt_sum_col_fn <- function(transposed_df, cols_to_sum) {
 # Create averaged He et al. tibble from the scaled values. Don't include gene_symbol
 # as it needs to go through CPM normalization (requires no rownames)
 He_DS1_sum_layer <- tibble(
-  Layer_1 = He_DS1_transposed$S1,
-  Layer_2 = wt_sum_col_fn(He_DS1_transposed, c("S2", "S3", "S4_weighted")),
-  Layer_3 = wt_sum_col_fn(He_DS1_transposed, c("S4_weighted", "S5", "S6")),
-  Layer_4 = wt_sum_col_fn(He_DS1_transposed, c("S7", "S8", "S9_weighted")),
-  Layer_5 = wt_sum_col_fn(He_DS1_transposed, c("S9_weighted", "S10", "S11", "S12")),
-  Layer_6 = wt_sum_col_fn(He_DS1_transposed, c("S13","S14", "S15", "S16")),
+  gene_symbol = He_DS1_transposed$gene_symbol,
+  L1 = He_DS1_transposed$S1,
+  L2 = wt_sum_col_fn(He_DS1_transposed, c("S2", "S3", "S4_weighted")),
+  L3 = wt_sum_col_fn(He_DS1_transposed, c("S4_weighted", "S5", "S6")),
+  L4 = wt_sum_col_fn(He_DS1_transposed, c("S7", "S8", "S9_weighted")),
+  L5 = wt_sum_col_fn(He_DS1_transposed, c("S9_weighted", "S10", "S11", "S12")),
+  L6 = wt_sum_col_fn(He_DS1_transposed, c("S13","S14", "S15", "S16")),
   WM = He_DS1_transposed$S17
 )
 
+# Calculate median and filter for median_count > 15
+He_DS1_sum_layer %<>%
+  rowwise() %>%
+  mutate(median_count = median(c(L1, L2, L3, L4, L5, L6, WM))) %>%
+  filter(median_count > 15) %>% select(-median_count)
+
+gene_column <- He_DS1_sum_layer$gene_symbol
+
 # CPM normalize with log = T
 He_DS1_logCPM_dataset <- He_DS1_sum_layer %>%
-  cpm(log = T) %>% as.data.frame() %>%
-  add_column(gene_symbol = He_DS1_matrix$gene_symbol) %>%
+  select(-gene_symbol) %>%
+  # Add +1 to remove 0's for log transformation
+  mutate(across(where(is.numeric), ~. +1)) %>%
+  cpm(log = T, prior.count = 1) %>% as.data.frame() %>%
+  add_column(gene_symbol = gene_column) %>%
   select(gene_symbol, everything())
 
 # CPM normalize without log
 He_DS1_CPM_dataset <- He_DS1_sum_layer %>%
+  select(-gene_symbol) %>%
   cpm() %>% as.data.frame() %>%
-  add_column(gene_symbol = He_DS1_matrix$gene_symbol) %>%
+  add_column(gene_symbol = gene_column) %>%
   select(gene_symbol, everything())
 
 # Clean up remaining DS1 data

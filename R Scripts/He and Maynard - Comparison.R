@@ -1,31 +1,47 @@
-# More comparions
+# Create correlation diagonal values for He vs. Maynard
 
+# Load libraries
 library(tidyverse)
 library(magrittr)
+library(WGCNA)
+library(conflicted)
 
-He_Maynard_common_gene_list <- intersect(He_DS1_averaged_by_layer$gene_symbol, Maynard_dataset_average$gene_symbol)
-testlist <- c("GAD1", "CCK", "GRIN1")
+# Set conflicts
+conflict_prefer("cor", "WGCNA")
 
-He_cormatrix <- He_DS1_averaged_by_layer %>%
-  filter(gene_symbol %in% testlist) %>%
+# Load data
+load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
+
+# Create vector of genes commom between studies
+common_genelist <- intersect(He_DS1_logCPM_dataset$gene_symbol, 
+                             Maynard_logCPM_dataset$gene_symbol)
+
+He_cormatrix <- He_DS1_logCPM_dataset %>%
+  filter(gene_symbol %in% common_genelist) %>%
   arrange(gene_symbol) %>%
   column_to_rownames(var = "gene_symbol") %>%
   t()
 
-Maynard_cormatrix <- Maynard_dataset_average %>%
-  select(gene_symbol:WM) %>%
-  filter(gene_symbol %in% testlist) %>%
+Maynard_cormatrix <- Maynard_logCPM_dataset %>%
+  filter(gene_symbol %in% common_genelist) %>%
+  arrange(gene_symbol) %>%
   column_to_rownames(var = "gene_symbol") %>%
   t()
 
-He_Maynard_cormatrix <- cor(He_cormatrix, Maynard_cormatrix, method = "pearson") 
-He_Maynard_diag <- diag(He_Maynard_cormatrix, names = TRUE)
+He_Maynard_cormatrix <- cor(He_cormatrix, Maynard_cormatrix, 
+                            method = "pearson",
+                            nThreads = 12) 
 
-He_Maynard_vector <- format(round(He_Maynard_diag, 2), nsmall = 2) %>%
-  as_tibble(.name_repair = "unique") %>%
-  pull(var = 1) %>%
-  as.numeric() %>%
-  mean() 
+He_Maynard_gene_correlation <- diag(He_Maynard_cormatrix)
+
+# Save all gene-to-gene correlation vector
+save(He_Maynard_gene_correlation, 
+     file = here("Data", "processed_data", "He_Maynard_gene_correlation.Rdata"))
+
+# Clean workspace
+rm(He_Maynard_cormatrix, Maynard_cormatrix, He_cormatrix, 
+   common_genelist)
 
 hist(He_Maynard_diag)
 
