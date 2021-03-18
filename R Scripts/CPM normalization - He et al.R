@@ -106,29 +106,18 @@ He_DS1_sum_layer <- tibble(
   WM = He_DS1_transposed$S17
 )
 
-# Calculate median and filter for median_count > 15
-He_DS1_sum_layer %<>%
-  rowwise() %>%
-  mutate(median_count = median(c(L1, L2, L3, L4, L5, L6, WM))) %>%
-  filter(median_count > 15) %>% select(-median_count)
-
-gene_column <- He_DS1_sum_layer$gene_symbol
-
 # CPM normalize with log = T
 He_DS1_logCPM_dataset <- He_DS1_sum_layer %>%
-  select(-gene_symbol) %>%
+  # Remove gene_symbol column for cpm()
+  select(-gene_symbol) %>% 
   # Add +1 to remove 0's for log transformation
   mutate(across(where(is.numeric), ~. +1)) %>%
-  cpm(log = T, prior.count = 1) %>% as.data.frame() %>%
-  add_column(gene_symbol = gene_column) %>%
-  select(gene_symbol, everything())
-
-# CPM normalize without log
-He_DS1_CPM_dataset <- He_DS1_sum_layer %>%
-  select(-gene_symbol) %>%
-  cpm() %>% as.data.frame() %>%
-  add_column(gene_symbol = gene_column) %>%
-  select(gene_symbol, everything())
+  # CPM normalize with log = T
+  cpm(log = T) %>% as.data.frame() %>%
+  # Add back in gene symbols
+  add_column(gene_symbol = He_DS1_sum_layer$gene_symbol) %>%
+  # Filter for CPM > .1 across all layers
+  filter_at(vars(-gene_symbol), all_vars(. > .1))
 
 # Clean up remaining DS1 data
 rm(He_DS1_matrix, He_DS1_sum_layer, He_DS1_transposed,
@@ -138,12 +127,8 @@ rm(He_DS1_matrix, He_DS1_sum_layer, He_DS1_transposed,
 # Write normalized data as .Rdata
 save(He_DS1_logCPM_dataset, file = here("Data", "processed_data", 
                                          "He_DS1_logCPM_dataset.Rdata"))
-save(He_DS1_CPM_dataset, file = here("Data", "processed_data", 
-                                      "He_DS1_CPM_dataset.Rdata"))
 
 # Write normalized data as .csv
 write.csv(He_DS1_logCPM_dataset, file = here("Data", "processed_Data", 
                                               "He_DS1_logCPM_dataset.csv"))
-write.csv(He_DS1_CPM_dataset, file = here("Data", "processed_Data", 
-                                           "He_DS1_CPM_dataset.csv"))
 

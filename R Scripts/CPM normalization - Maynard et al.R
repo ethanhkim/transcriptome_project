@@ -63,24 +63,21 @@ for (label in c("Layer1", "Layer2", "Layer3", "Layer4", "Layer5", "Layer6", "WM"
 Maynard_dataset_averaged <- as.data.frame(do.call(rbind, Maynard_sum_col_list)) %>%
   t() %>% as.data.frame() %>%
   rownames_to_column(var = 'gene_symbol') %>%
-  rename(Layer_1 = Layer1, Layer_2 = Layer2, Layer_3 = Layer3, Layer_4 = Layer4, 
-         Layer_5 = Layer5, Layer_6 = Layer6)
+  rename(L1 = Layer1, L2 = Layer2, L3 = Layer3, L4 = Layer4, L5 = Layer5, 
+         L6 = Layer6)
 
 # Normalize Maynard UMI counts with CPM, log = T
 Maynard_logCPM_dataset <- Maynard_dataset_averaged %>%
   # Remove gene_symbol column for cpm()
-  select(-gene_symbol) %>% cpm(log = T) %>%
-  as.data.frame() %>%
+  select(-gene_symbol) %>% 
+  # Add +1 to remove 0's for log transformation
+  mutate(across(where(is.numeric), ~. +1)) %>%
+  # CPM normalize with log = T
+  cpm(log = T) %>% as.data.frame() %>%
+  # Add back in gene symbols
   add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
-  select(gene_symbol, everything())
-
-# Normalize Maynard UMI counts with CPM
-Maynard_CPM_dataset <- Maynard_dataset_averaged %>%
-  # Remove gene_symbol column for cpm()
-  select(-gene_symbol) %>% cpm() %>%
-  as.data.frame() %>%
-  add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
-  select(gene_symbol, everything())
+  # Filter for CPM > .1 across all layers
+  filter_at(vars(-gene_symbol), all_vars(. > .1))
 
 # Clean up workspace
 rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
@@ -90,13 +87,9 @@ rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
 # Write normalized data as .Rdata
 save(Maynard_logCPM_dataset, file = here("Data", "processed_data", 
                                          "Maynard_logCPM_dataset.Rdata"))
-save(Maynard_CPM_dataset, file = here("Data", "processed_data", 
-                                      "Maynard_CPM_dataset.Rdata"))
 
 # Write normalized data as .csv
 write.csv(Maynard_logCPM_dataset, file = here("Data", "processed_Data", 
                                                "Maynard_logCPM_dataset.csv"))
-write.csv(Maynard_CPM_dataset, file = here("Data", "processed_Data", 
-                                           "Maynard_CPM_dataset.csv"))
 
 
