@@ -51,10 +51,68 @@ Maynard_layer_markers <- as_tibble(modeling_results$enrichment) %>%
   mutate(layer_marker = str_replace(layer_marker, "WM", "7")) %>%
   distinct(gene_symbol, .keep_all = T)
 
+## Zeng (Allen) layer markers ##
+
+Zeng_Path <- here("Data", "raw_data", "Zeng et al", "Table S2.xlsx")
+Zeng_dataset <- read_xlsx(path = Zeng_Path, sheet = "Final1000New", skip=1) %>%
+  select("Gene symbol", "Entrez Gene ID", "Cortical marker (human)", "Level...20", "Pattern...21",
+         "Pattern...23", "Pattern...25") %>% 
+  rename(gene_symbol = "Gene symbol", entrez_id = "Entrez Gene ID", marker_annotation = "Cortical marker (human)", 
+         expression_level = "Level...20", V1_pattern = "Pattern...21", V2_pattern = "Pattern...23", Temporal_pattern = "Pattern...25")
+
+Zeng_marker_annotation <- Zeng_dataset %>%
+  dplyr::select("gene_symbol", "marker_annotation") %>%
+  rename(layer_marker_Zeng = "marker_annotation") %>%
+  mutate(layer_marker_Zeng = gsub("layer", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("interneuron", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("astrocyte", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("astrocyte?", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("laminar", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub(" ", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("VEC", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("or", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("others", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("\\+", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("oligodendrocyte", "", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("5a", "5", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("6b", "6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("4c", "4", layer_marker_Zeng)) %>%
+  na_if("") %>%
+  mutate(layer_marker_Zeng = gsub("\\?", NA, layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("\\/1", "1", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("1\\/2\\/\\/", "1\\/2", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("\\/2\\/3", "2\\/3", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("34\\/5\\/6", "3\\/4\\/5\\/6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("\\/2\\/3", "2\\/3", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("6\\/\\/", "6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("6\\/6", "6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("2\\/3\\/5\\/6", "2,3,5,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("3\\/4\\/5\\/6", "3,4,5,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("3\\/5\\/6", "3,5,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("2\\/3\\/6", "2,3,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("2\\/3\\/4", "2,3,4", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("2\\/3\\/5", "2,3,5", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("4\\/5\\/6", "3,5,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("1\\/2\\/6", "1,2,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("\\/5\\/6", "5,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("\\/4\\/5", "4,5", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("5\\/6", "5,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("3\\/5", "3,5", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("2\\/3", "2,3", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("1\\/2", "1,2", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("4\\/6", "4,6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("3\\/4", "3,4", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("/2", "2", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("/4", "4", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("/6", "6", layer_marker_Zeng)) %>%
+  mutate(layer_marker_Zeng = gsub("\\/", NA, layer_marker_Zeng))
+
 # Create lookup table for all layer markers
 layer_marker_table <- left_join(Maynard_layer_markers, He_layer_markers, by = "gene_symbol") %>%
   rename(He = layer_marker.x) %>%
   rename(Maynard = layer_marker.y)
+layer_marker_table %<>% left_join(Zeng_marker_annotation, by = "gene_symbol") %>%
+  rename(Zeng = layer_marker_Zeng)
 
 # Export lookup table
 save(layer_marker_table, file = here("Data", "processed_data", "layer_marker_table.Rdata"))
