@@ -140,6 +140,9 @@ MTG_logCPM_dataset <- MTG_sum_count %>%
            sep = "_") %>%
   add_column(WM = NA)
 
+# Save MTG data summed at the layers (pre-logCPM)
+save(MTG_sum_count, file = here("Data", "processed_data", "MTG_sum_count.Rdata"))
+
 # Save logCPM data
 save(MTG_logCPM_dataset, file = here("Data", "processed_data", "MTG_logCPM_dataset.Rdata"))
 write.csv(MTG_logCPM_dataset, file = here("Data", "processed_data", "MTG_logCPM_dataset.csv"))
