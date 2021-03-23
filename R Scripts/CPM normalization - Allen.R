@@ -129,20 +129,25 @@ MTG <- AIBS_cleaned_df %>%
 rm(AIBS_cleaned_df)
 
 MTG_sum_count <- sum_gene_count(MTG)
-MTG_logCPM_dataset <- MTG_sum_count %>%
+
+if (getwd() == "/Users/ethankim/Google Drive/Desk_Laptop/U of T/Grad School/French Lab/transcriptome_project") {
+  load(here("Data", "processed_data", "MTG_sum_count.Rdata"))
+}
+
+Allen_logCPM_dataset <- MTG_sum_count %>%
   mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
   unite(gene_class, c("gene_symbol", "class_label")) %>%
   column_to_rownames(var = "gene_class") %>%
   cpm(log = T) %>% as.data.frame() %>%
   rownames_to_column(var = "gene_class") %>%
-  filter_at(vars(-gene_class), all_vars(. > .1)) %>%
   separate(gene_class, into = c("gene_symbol", "class_label"),
            sep = "_") %>%
   add_column(WM = NA)
+  filter_at(vars(-gene_symbol, -class_label), all_vars(. > .1)) %>%
+  
 
 # Save MTG data summed at the layers (pre-logCPM)
 save(MTG_sum_count, file = here("Data", "processed_data", "MTG_sum_count.Rdata"))
 
 # Save logCPM data
-save(MTG_logCPM_dataset, file = here("Data", "processed_data", "MTG_logCPM_dataset.Rdata"))
-write.csv(MTG_logCPM_dataset, file = here("Data", "processed_data", "MTG_logCPM_dataset.csv"))
+save(Allen_logCPM_dataset, file = here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))

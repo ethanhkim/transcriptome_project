@@ -79,6 +79,8 @@ Maynard_logCPM_dataset <- Maynard_dataset_averaged %>%
   # Filter for CPM > .1 across all layers
   filter_at(vars(-gene_symbol), all_vars(. > .1))
 
+# Normalize Maynard UMI counts with CPM, log = T 
+
 # Clean up workspace
 rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
    Maynard_sum_col_list, label, Maynard_ensembl_list,
