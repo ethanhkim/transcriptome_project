@@ -38,7 +38,8 @@ Maynard_dataset %<>%
 
 # Write layer-level data for working on SCC
 write.csv(Maynard_dataset, file = here("Data", "raw_data", "Maynard et al", 
-                                              "layer_level_data.csv"))
+                                       "layer_level_data.csv"))
+
 
 # Select only individuals with all cortical layers (n = 2)
 Maynard_dataset_subset <- Maynard_dataset %>%
