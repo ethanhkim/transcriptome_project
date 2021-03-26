@@ -33,7 +33,8 @@ Maynard_dataset$gene_symbol <- mapIds(org.Hs.eg.db,
                                       keys = Maynard_ensembl_list, keytype = "ENSEMBL", column="SYMBOL")
 Maynard_dataset %<>%
   select(gene_symbol, everything()) %>% filter(!is.na(gene_symbol)) %>%
-  distinct(gene_symbol, .keep_all = TRUE)
+  group_by(gene_symbol) %>%
+  summarise(across(.fns = mean))
 
 # Select only individuals with all cortical layers (n = 2)
 Maynard_dataset_subset <- Maynard_dataset %>%
@@ -75,9 +76,24 @@ Maynard_logCPM_dataset <- Maynard_dataset_averaged %>%
   # CPM normalize with log = T
   cpm(log = T) %>% as.data.frame() %>%
   # Add back in gene symbols
-  add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
-  # Filter for CPM > .1 across all layers
-  filter_at(vars(-gene_symbol), all_vars(. > .1))
+  add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol)
+
+Maynard_logCPM_filtered_dataset <- Maynard_dataset_averaged %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6", "WM"), ~. +1) %>%
+  column_to_rownames(var = "gene_symbol") %>%
+  cpm() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "gene_symbol") %>%
+  # Filter out samples of CPM < 0.1
+  filter_at(vars(-gene_symbol), all_vars(. > .1)) %>%
+  column_to_rownames(var = "gene_symbol")
+names <- rownames(Maynard_logCPM_filtered_dataset)
+Maynard_logCPM_filtered_dataset %<>%
+  # Take log2 of CPM
+  map_df(log2) %>%
+  add_column(gene_symbol = names) %>%
+  select(gene_symbol, L1, L2, L3, L4, L5, L6, WM)
 
 # Normalize Maynard UMI counts with CPM, log = T 
 
@@ -89,6 +105,8 @@ rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
 # Write normalized data as .Rdata
 save(Maynard_logCPM_dataset, file = here("Data", "processed_data", 
                                          "Maynard_logCPM_dataset.Rdata"))
+save(Maynard_logCPM_filtered_dataset, file = here("Data", "processed_data", 
+                                         "Maynard_logCPM_filtered_dataset.Rdata"))
 
 # Write normalized data as .csv
 write.csv(Maynard_logCPM_dataset, file = here("Data", "processed_Data", 

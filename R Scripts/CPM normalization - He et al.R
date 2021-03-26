@@ -4,6 +4,7 @@
 library(edgeR)
 library(data.table)
 library(dplyr)
+library(purrr)
 library(stringr)
 library(here)
 
@@ -115,9 +116,27 @@ He_DS1_logCPM_dataset <- He_DS1_sum_layer %>%
   # CPM normalize with log = T
   cpm(log = T) %>% as.data.frame() %>%
   # Add back in gene symbols
-  add_column(gene_symbol = He_DS1_sum_layer$gene_symbol) %>%
-  # Filter for CPM > .1 across all layers
-  filter_at(vars(-gene_symbol), all_vars(. > .1))
+  add_column(gene_symbol = He_DS1_sum_layer$gene_symbol)
+
+# CPM normalize, filter out CPM < 0.1
+He_DS1_logCPM_filtered_dataset <- He_DS1_sum_layer %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6", "WM"), ~. +1) %>%
+  column_to_rownames(var = "gene_symbol") %>%
+  cpm() %>%
+  as.data.frame() %>%
+  # Retain gene symbols, as filter removes rownames
+  rownames_to_column(var = "gene_symbol") %>%
+  # Filter out samples of CPM < 0.1
+  filter_at(vars(-gene_symbol), all_vars(. > .1)) %>%
+  column_to_rownames(var = "gene_symbol")
+names <- rownames(He_DS1_logCPM_filtered_dataset)
+He_DS1_logCPM_filtered_dataset %<>%
+  # Take log2 of CPM
+  map_df(log2) %>%
+  add_column(gene_symbol = names) %>%
+  select(gene_symbol, L1, L2, L3, L4, L5, L6, WM)
+
 
 # Clean up remaining DS1 data
 rm(He_DS1_matrix, He_DS1_sum_layer, He_DS1_transposed,
@@ -127,6 +146,8 @@ rm(He_DS1_matrix, He_DS1_sum_layer, He_DS1_transposed,
 # Write normalized data as .Rdata
 save(He_DS1_logCPM_dataset, file = here("Data", "processed_data", 
                                          "He_DS1_logCPM_dataset.Rdata"))
+save(He_DS1_logCPM_filtered_dataset, file = here("Data", "processed_data",
+                                                 "He_DS1_logCPM_filtered_dataset.Rdata"))
 
 # Write normalized data as .csv
 write.csv(He_DS1_logCPM_dataset, file = here("Data", "processed_Data", 
