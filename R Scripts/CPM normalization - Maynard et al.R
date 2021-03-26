@@ -36,6 +36,10 @@ Maynard_dataset %<>%
   group_by(gene_symbol) %>%
   summarise(across(.fns = mean))
 
+# Write layer-level data for working on SCC
+write.csv(Maynard_dataset, file = here("Data", "raw_data", "Maynard et al", 
+                                              "layer_level_data.csv"))
+
 # Select only individuals with all cortical layers (n = 2)
 Maynard_dataset_subset <- Maynard_dataset %>%
   select("gene_symbol", contains('151507'), contains('151508'), contains('151509'),
