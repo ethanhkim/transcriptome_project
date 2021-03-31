@@ -1,76 +1,54 @@
 ## Mantel tests for between scRNA-seq data ##
 
-# Load required libraries
+# Load libraries
 library(dplyr)
-library(tidyr)
-library(data.table)
-library(here)
 library(magrittr)
-library(edgeR)
-library(conflicted)
-library(tibble)
-library(vegan)
-library(parallel)
-library(WGCNA)
+library(conflicted) # Easily manage conflicting libraries
+library(vegan) # Package for mantel test
+library(here)
+library(parallel) # Parallelize Mantel and WGCNA corr()
+library(WGCNA) # Faster corr() than base
 
-# Declare conflicts
+# Set conflicts
+conflict_prefer('intersect', 'dplyr')
 conflict_prefer("filter", "dplyr")
+conflict_prefer("slice", "dplyr")
 
 # Load AIBS_logCPM data
-load(here("Data", "processed_data", "AIBS_logCPM.RData"))
+load(here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
 
-# Separate by region and convert long to wide
-separate_by_region <- function(all_regions_df, region) {
+# Source mantel test function
+source(here("R Scripts", "Mantel testing", "mantel_test.R"))
+
+# Function to separate by cell type
+separate_by_type <- function(AIBS_logCPM_data, cell_type) {
   
-  df <- all_regions_df
+  df <- AIBS_logCPM_data
   
-  region_df <- df %>%
-    filter(region_label == region) %>%
-    spread(cortical_layer_label, log_mean_expression) %>%
-    unite(metadata, c("gene_symbol", "region_label",
-                      "class_label")) %>%
-    column_to_rownames(var = "metadata")
+  cell_type_df <- df %>%
+    filter(class_label == cell_type) %>%
+    select(-class_label)
   
-  return(region_df)
+  return(cell_type_df)
 }
 
 # Create list of tibbles of all regions in layer(col) by gene(row) format
-all_regions <- list()
-for (region in unique(AIBS_logCPM$region_label)) {
-  all_regions[[region]] <- separate_by_region(AIBS_logCPM, region)
-}
-
-# Function for mantel testing
-mantel_test <- function(df_1, df_2, no_of_permutations = 999) {
-  
-  df1 <- df_1 %>% t()
-  df2 <- df_2 %>% t()
-  
-  df1_cor <- WGCNA::cor(df_1, df_1, method = "pearson", 
-                 use = "all.obs", nThreads = 12)
-  df2_cor <- cor(df_2, df_2, method = "pearson", 
-                 use = "all.obs", nThreads = 12)
-  
-  mantel_test_result <- mantel(df1_cor, df2_cor,
-                               method = "spearman",
-                               permutations = no_of_permutations,
-                               na.rm = T,
-                               parallel = 12)
-  
-  return(mantel_test_result)
+AIBS_cell_type <- list()
+for (cell_type in unique(Allen_logCPM_dataset$class_label)) {
+  AIBS_cell_type[[cell_type]] <- separate_by_type(Allen_logCPM_dataset, cell_type)
 }
 
 
-# L1, L2, L3, L4, L5, L6a, L6b
-S1_regions <- colnames(all_regions$S1lm)
-# L1, L2, L3, L5, L6
-M1_regions <- colnames(all_regions$M1lm)
-# L1, L2, L3, L4, L5, L6a, L6b, WM
-A1C_regions <- colnames(all_regions$A1C)
-# L1, L2, L3, L4ab, L4c, L5, L6a, L6b
-V1C_regions <- colnames(all_regions$V1C)
-# L1, L2, L3, L4, L5, L6
-MTG_regions <- colnames(all_regions$MTG)
-# L1, L2, L5a, L5b, L6
-CgG_regions <- colnames(all_regions$CgG)
+# Mantel tests between cell types ----
 
+# GABAergic vs. Glutamatergic
+# Mantel r: -0.1077, p < 0.001, n = 30,744
+mantel_test(AIBS_cell_type$GABAergic, AIBS_cell_type$Glutamatergic)
+
+# He logCPM vs Allen logCPM - Glutamatergic
+# Mantel r: -0.1295, p < 0.001, n = 30,744
+mantel_test(AIBS_cell_type$GABAergic, AIBS_cell_type$Glutamatergic)
+
+# He logCPM vs Allen logCPM - Non-neuronal
+# Mantel r: 0.09004, p < 0.001, n = 30,744
+mantel_test(AIBS_cell_type$GABAergic, AIBS_cell_type$Glutamatergic)
