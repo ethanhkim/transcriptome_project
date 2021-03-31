@@ -134,8 +134,12 @@ names <- rownames(He_DS1_logCPM_filtered_dataset)
 He_DS1_logCPM_filtered_dataset %<>%
   # Take log2 of CPM
   map_df(log2) %>%
+  select(L1, L2, L3, L4, L5, L6, WM) %>%
+  # Take z-score (for app)
+  t() %>% scale() %>% t() %>% 
+  as.data.frame() %>%
   add_column(gene_symbol = names) %>%
-  select(gene_symbol, L1, L2, L3, L4, L5, L6, WM)
+  select(gene_symbol, everything())
 
 
 # Clean up remaining DS1 data

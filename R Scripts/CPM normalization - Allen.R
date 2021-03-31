@@ -152,6 +152,10 @@ names <- rownames(Allen_logCPM_filtered_dataset)
 Allen_logCPM_filtered_dataset %<>%
   # Take log2 of CPM
   map_df(log2) %>%
+  select(L1, L2, L3, L4, L5, L6) %>%
+  # Take z-score (for app)
+  t() %>% scale() %>% t() %>% 
+  as.data.frame() %>%
   add_column(gene_class = names, WM = NA) %>%
   separate(gene_class, into = c("gene_symbol", "class_label"),
            sep = "_") %>%

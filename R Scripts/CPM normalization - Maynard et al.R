@@ -8,6 +8,7 @@ library(data.table)
 library(org.Hs.eg.db)
 library(dplyr)
 library(tibble)
+library(purrr)
 library(magrittr)
 library(stringr)
 library(conflicted)
@@ -97,8 +98,12 @@ names <- rownames(Maynard_logCPM_filtered_dataset)
 Maynard_logCPM_filtered_dataset %<>%
   # Take log2 of CPM
   map_df(log2) %>%
+  select(L1, L2, L3, L4, L5, L6, WM) %>%
+  # Take z-score (for app)
+  t() %>% scale() %>% t() %>% 
+  as.data.frame() %>%
   add_column(gene_symbol = names) %>%
-  select(gene_symbol, L1, L2, L3, L4, L5, L6, WM)
+  select(gene_symbol, everything())
 
 # Normalize Maynard UMI counts with CPM, log = T 
 
