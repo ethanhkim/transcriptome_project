@@ -1,3 +1,5 @@
+## Allen vs. Maynard vs. He ##
+
 ## Create transposed Maynard datasets ##
 
 library(dplyr)
@@ -14,15 +16,15 @@ conflict_prefer("filter", "dplyr")
 conflict_prefer("slice", "dplyr")
 
 # Function to perform Mantel testing
-mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
+mantel_test <- function(df_1, df_2, no_of_perm = 1) {
   # Create common gene list between Maynard and He
-  create_common_genelist <- function(He_df, Maynard_df) {
+  create_common_genelist <- function(df_1, df_2) {
     
-    if ((isFALSE(duplicated(He_df))) == 
-        (isFALSE(duplicated(Maynard_df)))) {
+    if ((isFALSE(duplicated(df_1))) == 
+        (isFALSE(duplicated(df_2)))) {
       
-      common_genelist <- intersect(He_df$gene_symbol, 
-                                   Maynard_df$gene_symbol)
+      common_genelist <- intersect(df_1$gene_symbol, 
+                                   df_2$gene_symbol)
     }
     return(common_genelist)
   }
@@ -39,22 +41,21 @@ mantel_test <- function(He_df, Maynard_df, no_of_perm = 1) {
   }
   
   # Make common genelist
-  common_genelist <- create_common_genelist(He_df,
-                                            Maynard_df)
+  common_genelist <- create_common_genelist(df_1, df_2)
   
   print(length(common_genelist))
   
   # Transpose data
-  He_transposed <- transpose_df(He_df, common_genelist)
-  Maynard_transposed <- transpose_df(Maynard_df, common_genelist)
+  df_1_transposed <- transpose_df(df_1, common_genelist)
+  df_2_transposed <- transpose_df(df_2, common_genelist)
   
   # Create correlation matrices
-  He_corr_matrix <- WGCNA::cor(He_transposed, method = "pearson",
-                               use = "all.obs", nThreads = 12)
-  Maynard_corr_matrix <- WGCNA::cor(Maynard_transposed, method = "pearson",
-                                    use = "all.obs", nThreads = 12)
+  df_1_corr_matrix <- WGCNA::cor(df_1_transposed, method = "pearson",
+                               use = "pairwise.complete.obs", nThreads = 12)
+  df_2_corr_matrix <- WGCNA::cor(df_2_transposed, method = "pearson",
+                                    use = "pairwise.complete.obs", nThreads = 12)
   
-  mantel(He_corr_matrix, Maynard_corr_matrix, 
+  mantel(df_1_corr_matrix, df_2_corr_matrix, 
          permutations = no_of_perm,
          parallel = 12, na.rm = T)
 }
@@ -64,31 +65,42 @@ load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
 load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
 load(here("Data", "processed_data", "He_DS1_logCPM_filtered_dataset.Rdata"))
 load(here("Data", "processed_data", "Maynard_logCPM_filtered_dataset.Rdata"))
+load(here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
+
+# Zeng markers
 load(here("Data", "processed_data", "Zeng_dataset_long.Rdata"))
 Zeng_marker_genes <- unique(Zeng_dataset_long$gene_symbol)
 
+# Cell-type specific AIBS
+Allen_GABA <- Allen_logCPM_dataset %>%
+  filter(class_label == "GABAergic") %>%
+  select(-class_label)
+Allen_GLUT <- Allen_logCPM_dataset %>%
+  filter(class_label == "Glutamatergic") %>%
+  select(-class_label)
+Allen_NONN <- Allen_logCPM_dataset %>%
+  filter(class_label == "Non-neuronal") %>%
+  select(-class_label)
 
-## Mantel tests b/w He and Maynard ##
-
-# Non-logCPM data
-# Mantel r: 0.4079
-mantel_test(He_DS1_averaged_by_layer, Maynard_dataset_average)
-
-# He logCPM vs Maynard non-logCPM
-# Mantel r: 0.4392
-mantel_test(He_DS1_logCPM_dataset, Maynard_dataset_average)
-
-# He non-logCPM vs Maynard logCPM
-# Mantel r: 0.4646
-mantel_test(He_DS1_averaged_by_layer, Maynard_logCPM_dataset)
+## Mantel tests b/w He, Maynard, Allen ##
 
 # He logCPM vs Maynard logCPM
-# Mantel r: 0.501, p < 0.001
+# Mantel r: 0.5166, p < 0.001, n = 18,206
 mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset)
 
-# He CPM vs Maynard CPM - does the score get better or worse?
-# Mantel r: 0.4954; marginally worse but not by much
-mantel_test(He_DS1_CPM_dataset, Maynard_CPM_dataset)
+# He logCPM vs Allen logCPM - GABAergic
+# Mantel r: 0.5166, p < 0.001, n = 30,744
+mantel_test(He_DS1_logCPM_dataset, Allen_GABA)
+
+# He logCPM vs Allen logCPM - Glutamatergic
+# Mantel r: 0.5166, p < 0.001, n = 30,744
+mantel_test(He_DS1_logCPM_dataset, Allen_GLUT)
+
+# He logCPM vs Allen logCPM - Non-neuronal
+# Mantel r: 0.5166, p < 0.001, n = 30,744
+mantel_test(He_DS1_logCPM_dataset, Allen_NONN)
+
 
 # He logCPM vs Maynard logCPM filtered for CPM > 0.1
 # Mantel r: 0.5731
@@ -111,6 +123,3 @@ Maynard_Zeng_subset_filtered <- Maynard_logCPM_filtered_dataset %>%
 # He logCPM vs Maynard logCPM - subset by Zeng
 # Mantel r: 0.683, p < 0.001
 mantel_test(He_Zeng_subset_filtered, Maynard_Zeng_subset_filtered)
-
-
-
