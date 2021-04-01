@@ -3,6 +3,7 @@
 # Load libraries
 library(dplyr)
 library(magrittr)
+library(tibble)
 library(conflicted) # Easily manage conflicting libraries
 library(vegan) # Package for mantel test
 library(here)
@@ -29,6 +30,12 @@ load(here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
 load(here("Data", "processed_data", "Zeng_dataset_long.Rdata"))
 Zeng_marker_genes <- unique(Zeng_dataset_long$gene_symbol)
 
+# Remove WM from He and Maynard
+He_DS1_logCPM_dataset %<>% select(-WM)
+He_DS1_logCPM_filtered_dataset %<>% select(-WM)
+Maynard_logCPM_dataset %<>% select(-WM)
+Maynard_logCPM_filtered_dataset %<>% select(-WM)
+
 # Subset He and Maynard by Zeng markers
 He_Zeng <- He_DS1_logCPM_dataset %>%
   filter(gene_symbol %in% Zeng_marker_genes)
@@ -36,40 +43,30 @@ Maynard_Zeng <- Maynard_logCPM_dataset %>%
   filter(gene_symbol %in% Zeng_marker_genes)
 
 # Cell-type specific AIBS
-Allen_GABA <- Allen_logCPM_dataset %>%
-  filter(class_label == "GABAergic") %>%
-  select(-class_label)
-Allen_GLUT <- Allen_logCPM_dataset %>%
-  filter(class_label == "Glutamatergic") %>%
-  select(-class_label)
-Allen_NONN <- Allen_logCPM_dataset %>%
-  filter(class_label == "Non-neuronal") %>%
-  select(-class_label)
+Allen_cell_type_df <- list()
+for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
+  Allen_cell_type_df[[type]] <- Allen_logCPM_dataset %>%
+    filter(class_label == type) %>%
+    select(-class_label, -WM)
+}
 
 # Cell-type specific AIBS - filtered for CPM > 0.1
-Allen_GABA_filtered <- Allen_logCPM_filtered_dataset %>%
-  filter(class_label == "GABAergic") %>%
-  select(-class_label)
-Allen_GLUT_filtered <- Allen_logCPM_filtered_dataset %>%
-  filter(class_label == "Glutamatergic") %>%
-  select(-class_label)
-Allen_NONN_filtered <- Allen_logCPM_filtered_dataset %>%
-  filter(class_label == "Non-neuronal") %>%
-  select(-class_label)
+Allen_cell_type_filtered_df <- list()
+for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
+  Allen_cell_type_filtered_df[[type]] <- Allen_logCPM_filtered_dataset %>%
+    filter(class_label == type) %>%
+    select(-class_label, -WM)
+}
 
 # Cell-type specific AIBS - filtered for Zeng
-Allen_GABA_Zeng <- Allen_logCPM_dataset %>%
-  filter(class_label == "GABAergic") %>%
-  filter(gene_symbol %in% Zeng_marker_genes) %>%
-  select(-class_label)
-Allen_GLUT_Zeng <- Allen_logCPM_dataset %>%
-  filter(class_label == "Glutamatergic") %>%
-  filter(gene_symbol %in% Zeng_marker_genes) %>%
-  select(-class_label)
-Allen_NONN_Zeng <- Allen_logCPM_dataset %>%
-  filter(class_label == "Non-neuronal") %>%
-  filter(gene_symbol %in% Zeng_marker_genes) %>%
-  select(-class_label)
+Allen_cell_type_Zeng <- list()
+for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
+  Allen_cell_type_Zeng[[type]] <- Allen_logCPM_dataset %>%
+    filter(class_label == type) %>%
+    filter(gene_symbol %in% Zeng_marker_genes) %>%
+    select(-class_label, -WM)
+}
+
 
 # Mantel tests b/w He, Maynard, Allen ----
 
@@ -77,11 +74,15 @@ Allen_NONN_Zeng <- Allen_logCPM_dataset %>%
 
 # He logCPM vs Allen logCPM - GABAergic
 # Mantel r: -0.1077, p < 0.001, n = 30,744
-He_AIBS_GABA <- mantel_test(He_DS1_logCPM_dataset, Allen_GABA)
+He_AIBS_logCPM <- list()
+for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
+  He_AIBS_logCPM[[type]] <- mantel_test(He_DS1_logCPM_dataset,
+                                        Allen_cell_type_df[[type]])
+}
 
 # He logCPM vs Allen logCPM - Glutamatergic
 # Mantel r: -0.1295, p < 0.001, n = 30,744
-He_AIBS_GLUT <- mantel_test(He_DS1_logCPM_dataset, Allen_GLUT)
+He_AIBS_GLUT <- mantel_test(He_DS1_logCPM_dataset, Allen_cell_type_df$GABAergic)
 
 # He logCPM vs Allen logCPM - Non-neuronal
 # Mantel r: 0.09004, p < 0.001, n = 30,744
@@ -115,7 +116,7 @@ mantel_test(He_Zeng, Allen_GABA_Zeng)
 mantel_test(He_Zeng, Allen_GLUT_Zeng)
 
 # He vs. Allen - Non-neuronal
-# Mantel r: -0.07922, p < 0.001, n = 975
+# Mantel r: 0.07922, p < 0.001, n = 975
 mantel_test(He_Zeng, Allen_NONN_Zeng)
 
 
@@ -165,5 +166,5 @@ mantel_test(Maynard_Zeng, Allen_GLUT_Zeng)
 # Mantel r: 0.06274, p < 0.001, n = 929
 Maynard_AIBS_Zeng_NONN <- mantel_test(Maynard_Zeng, Allen_NONN_Zeng)
 
-
+mantel_test(Maynard_logCPM_dataset, He_DS1_logCPM_dataset)
 

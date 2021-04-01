@@ -83,7 +83,7 @@ mantel_test(He_DS1_logCPM_dataset, Maynard_dataset_average)
 mantel_test(He_DS1_averaged_by_layer, Maynard_logCPM_dataset)
 
 # He logCPM vs Maynard logCPM
-# Mantel r: 0.501, p < 0.001
+# Mantel r: 0.5166, p < 0.001
 mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset)
 
 # He CPM vs Maynard CPM - does the score get better or worse?
