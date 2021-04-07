@@ -208,3 +208,4 @@ write.csv(MTG_sum_aggregate_count,
 save(Allen_logCPM_dataset, file = here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
 save(Allen_logCPM_filtered_dataset, 
      file = here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
+save(Allen_gene_logCPM_dataset, file = here("Data", "processed_data", "Allen_gene_logCPM_dataset.Rdata"))
