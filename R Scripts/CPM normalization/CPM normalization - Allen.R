@@ -44,8 +44,7 @@ if (getwd() == "/external/mgmt3/genome/scratch/Neuroinformatics/ekim/transcripto
 
 # Functions to use #
 
-# Create AIBS data with merged metadata and remove
-# outliers
+# Create AIBS data with merged metadata and remove outliers ----
 clean_AIBS_data <- function(AIBS_countMatrix, AIBS_metadata) {
   metadata <- AIBS_metadata
   matrix <- AIBS_countMatrix
@@ -62,10 +61,11 @@ clean_AIBS_data <- function(AIBS_countMatrix, AIBS_metadata) {
 }
 
 # Summarize gene counts by layer and cell-type
-sum_gene_count <- function(region_separated_df) {
+sum_gene_count <- function(region_separated_df, aggregate_level) {
   
   df <- region_separated_df
   
+  # Lengthen dataframe
   df %<>%
     select(sample_name, class_label, cortical_layer_label,
            external_donor_name_label, everything()) %>%
@@ -76,69 +76,76 @@ sum_gene_count <- function(region_separated_df) {
                                  "external_donor_name_label"),
                      variable.factor = FALSE,
                      variable.name = "gene_symbol",
-                     value.name = "count") %>%
-    # Group by layer, cell type (class_label) and gene 
-    group_by(cortical_layer_label, class_label,
-             gene_symbol) %>%
-    # Sum up all gene counts at a layer and cell type level
-    summarize(countSum = sum(count)) %>%
-    # Widen dataframe to gene (row) by layer (column)
-    spread(cortical_layer_label, countSum)
+                     value.name = "count")
   
+  # If aggregating at the gene level:
+  if (aggregate_level == "gene") {
+    df %<>% group_by(cortical_layer_label, gene_symbol) %>%
+      # Sum up all gene counts at a layer and gene level
+      summarize(countSum = sum(count)) %>%
+      # Widen dataframe to gene (row) by layer (column)
+      spread(cortical_layer_label, countSum)
+  } else if (aggregate_level == "cell_type") {
+    df %<>%
+      # Group by layer, cell type (class_label) and gene 
+      group_by(cortical_layer_label, class_label,
+               gene_symbol) %>%
+      # Sum up all gene counts at a layer and cell type level
+      summarize(countSum = sum(count)) %>%
+      # Widen dataframe to gene (row) by layer (column)
+      spread(cortical_layer_label, countSum)
+  }
+    
   return(df)
 }
 
-# Read in data and metadata
+# Read in data and metadata ----
 AIBS_metadata <- fread(here("Data", "raw_data", "Allen", 
                             "singlecellMetadata.csv"), header = T) %>%
-  select(sample_name, external_donor_name_label, class_label, subclass_label, region_label, 
-         cortical_layer_label, outlier_call) %>%
+  select(sample_name, external_donor_name_label, class_label, 
+         subclass_label, region_label, cortical_layer_label, 
+         outlier_call) %>%
   as_tibble()
 AIBS_matrix <- fread(here("Data", "raw_data", "Allen",
                           "singlecellMatrix.csv"), header = T)
 
-# Create cleaned dataframe and remove source data
+# Create cleaned dataframe and remove source data ----
 AIBS_cleaned_df <- clean_AIBS_data(AIBS_matrix, AIBS_metadata)
 rm(AIBS_matrix, AIBS_metadata)
 
-# Separate by region (MTG)
+# Separate by region (MTG) ----
 MTG <- AIBS_cleaned_df %>%
   filter(region_label == "MTG") %>%
   select(-region_label)
 rm(AIBS_cleaned_df)
 
-MTG_sum_count <- sum_gene_count(MTG)
+# Aggregate MTG data ----
+## Aggregate at layer level across each cell types
+MTG_cell_type_sum_count <- sum_gene_count(MTG, "cell_type")
+## Aggregate at layer level across all cell types
+MTG_gene_sum_count <- sum_gene_count(MTG, "gene")
 
+# Write aggregate data as .csv
+if (getwd() == "/external/mgmt3/genome/scratch/Neuroinformatics/ekim/transcriptome_project") {
+  write.csv(MTG_cell_type_sum_count, 
+            file = here("Data", "raw_data", "Allen", "MTG_cell_type_sum_count.csv"))
+  write.csv(MTG_gene_sum_count, 
+            file = here("Data", "raw_data", "Allen", "MTG_gene_sum_count.csv"))
+}
 
-# Aggregate at gene level across all cell types
-MTG_sum_aggregate_count <- MTG %>%
-  select(sample_name, class_label, cortical_layer_label,
-         external_donor_name_label, everything()) %>%
-  data.table::melt(id.vars = c("sample_name", "class_label", 
-                               "cortical_layer_label",
-                               "external_donor_name_label"),
-                   variable.factor = FALSE,
-                   variable.name = "gene_symbol",
-                   value.name = "count") %>%
-  group_by(cortical_layer_label, gene_symbol) %>%
-  # Sum up all gene counts at a layer and cell type level
-  summarize(countSum = sum(count)) %>%
-  # Widen dataframe to gene (row) by layer (column)
-  spread(cortical_layer_label, countSum)
 
 # Load data aggregated at cell type AND gene level
 if (getwd() == "/Users/ethankim/Google Drive/Desk_Laptop/U of T/Grad School/French Lab/transcriptome_project") {
-  MTG_sum_count <- fread(here("Data", "processed_data", "MTG_sum_count.csv")) %>%
+  MTG_cell_type_sum_count <- fread(here("Data", "raw_data", "Allen", "MTG_cell_type_sum_count.csv")) %>%
+    select(-V1)
+  MTG_gene_sum_count <- fread(here("Data", "raw_data", "Allen", "MTG_gene_sum_count.csv")) %>%
     select(-V1)
 }
 
-# Load data aggregated at only gene level
-if (getwd() == "/Users/ethankim/Google Drive/Desk_Laptop/U of T/Grad School/French Lab/transcriptome_project") {
-  MTG_sum_aggregate_count <- fread(here("Data", "processed_data", "MTG_sum_aggregate_count.csv")) %>%
-    select(-V1)
-}
+## CPM normalize gene-level aggregate data ----
 
-Allen_gene_logCPM_dataset <- MTG_sum_aggregate_count %>%
+# Non-filtered data:
+Allen_gene_logCPM_dataset <- MTG_gene_sum_count %>%
   # Remove gene_symbol column for cpm()
   select(-gene_symbol) %>% 
   # Add +1 to remove 0's for log transformation
@@ -146,11 +153,34 @@ Allen_gene_logCPM_dataset <- MTG_sum_aggregate_count %>%
   # CPM normalize with log = T
   cpm(log = T) %>% as.data.frame() %>%
   # Add back in gene symbols
-  add_column(gene_symbol = MTG_sum_aggregate_count$gene_symbol,
+  add_column(gene_symbol = MTG_gene_sum_count$gene_symbol,
              WM = NA)
 
+# Filtered data: CPM > 0.1
+Allen_gene_logCPM_filtered_dataset <- MTG_gene_sum_count %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+  column_to_rownames(var = "gene_symbol") %>%
+  cpm() %>%
+  as.data.frame() %>%
+  # Retain gene symbols, as filter removes rownames
+  rownames_to_column(var = "gene_symbol") %>%
+  # Filter out samples of CPM < 0.1
+  filter_at(vars(-gene_symbol), all_vars(. > .1)) %>%
+  column_to_rownames(var = "gene_symbol")
+names <- rownames(Allen_gene_logCPM_filtered_dataset)
+Allen_gene_logCPM_filtered_dataset %<>%
+  # Take log2 of CPM
+  map_df(log2) %>%
+  select(L1, L2, L3, L4, L5, L6) %>%
+  as.data.frame() %>%
+  add_column(gene_symbol = names) %>%
+  select(gene_symbol, everything())
+
+## CPM normalize cell-type-level aggregate data ----
+
 # Non-filtered data:
-Allen_logCPM_dataset <- MTG_sum_count %>%
+Allen_logCPM_dataset <- MTG_cell_type_sum_count %>%
   # Add one to counts to avoid taking cpm of 0
   mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
   unite(gene_class, c("gene_symbol", "class_label")) %>%
@@ -163,9 +193,8 @@ Allen_logCPM_dataset <- MTG_sum_count %>%
   add_column(WM = NA) %>%
   select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
 
-
 # Filtered data: CPM > 0.1
-Allen_logCPM_filtered_dataset <- MTG_sum_count %>%
+Allen_logCPM_filtered_dataset <- MTG_cell_type_sum_count %>%
   # Add one to counts to avoid taking cpm of 0
   mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
   unite(gene_class, c("gene_symbol", "class_label")) %>%
@@ -193,18 +222,10 @@ Allen_logCPM_filtered_dataset %<>%
   select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
 
 
-
-# Save MTG data summed at the layers (pre-logCPM)
-save(MTG_sum_count, file = here("Data", "processed_data", "MTG_sum_count.Rdata"))
-write.csv(MTG_sum_count, file = here("Data", "processed_data", "MTG_sum_count.csv"))
-
-# Save MTG data summed at the gene (pre-logCPM)
-save(MTG_sum_aggregate_count, 
-     file = here("Data", "processed_data", "MTG_sum_aggregate_count.Rdata"))
-write.csv(MTG_sum_aggregate_count, 
-          file = here("Data", "processed_data", "MTG_sum_aggregate_count.csv"))
-
-# Save logCPM data
+# Save logCPM data ----
+save(Allen_gene_logCPM_dataset, file = here("Data", "processed_data", "Allen_gene_logCPM_dataset"))
+save(Allen_gene_logCPM_filtered_dataset, 
+     file = here("Data", "processed_data", "Allen_gene_logCPM_filtered_dataset"))
 save(Allen_logCPM_dataset, file = here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
 save(Allen_logCPM_filtered_dataset, 
      file = here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
