@@ -126,10 +126,28 @@ MTG_sum_aggregate_count <- MTG %>%
   # Widen dataframe to gene (row) by layer (column)
   spread(cortical_layer_label, countSum)
 
+# Load data aggregated at cell type AND gene level
 if (getwd() == "/Users/ethankim/Google Drive/Desk_Laptop/U of T/Grad School/French Lab/transcriptome_project") {
   MTG_sum_count <- fread(here("Data", "processed_data", "MTG_sum_count.csv")) %>%
     select(-V1)
 }
+
+# Load data aggregated at only gene level
+if (getwd() == "/Users/ethankim/Google Drive/Desk_Laptop/U of T/Grad School/French Lab/transcriptome_project") {
+  MTG_sum_aggregate_count <- fread(here("Data", "processed_data", "MTG_sum_aggregate_count.csv")) %>%
+    select(-V1)
+}
+
+Allen_gene_logCPM_dataset <- MTG_sum_aggregate_count %>%
+  # Remove gene_symbol column for cpm()
+  select(-gene_symbol) %>% 
+  # Add +1 to remove 0's for log transformation
+  mutate(across(where(is.numeric), ~. +1)) %>%
+  # CPM normalize with log = T
+  cpm(log = T) %>% as.data.frame() %>%
+  # Add back in gene symbols
+  add_column(gene_symbol = MTG_sum_aggregate_count$gene_symbol,
+             WM = NA)
 
 # Non-filtered data:
 Allen_logCPM_dataset <- MTG_sum_count %>%
