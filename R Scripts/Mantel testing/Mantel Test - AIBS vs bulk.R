@@ -73,7 +73,8 @@ for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
 
 # Mantel tests b/w He, Maynard, Allen ----
 
-## He et al vs. Allen ## ---- 
+
+## He et al vs. Allen ---- 
 
 ## He logCPM vs Allen logCPM ----
 # GABAergic -     Mantel r: -0.1194, p < 0.001, n = 30,744
@@ -112,6 +113,10 @@ for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
 for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
   print(He_AIBS_Zeng[[type]]$statistic)
 }
+
+## He et al. vs Allen - aggregated at gene level for AIBS
+
+mantel_test(He_DS1_logCPM_dataset, Allen_gene_logCPM_dataset)
 
 
 ## Maynard et al vs. Allen ## ----
