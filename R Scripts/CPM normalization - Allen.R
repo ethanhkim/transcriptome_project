@@ -109,6 +109,23 @@ rm(AIBS_cleaned_df)
 
 MTG_sum_count <- sum_gene_count(MTG)
 
+
+# Aggregate at gene level across all cell types
+MTG_sum_aggregate_count <- MTG %>%
+  select(sample_name, class_label, cortical_layer_label,
+         external_donor_name_label, everything()) %>%
+  data.table::melt(id.vars = c("sample_name", "class_label", 
+                               "cortical_layer_label",
+                               "external_donor_name_label"),
+                   variable.factor = FALSE,
+                   variable.name = "gene_symbol",
+                   value.name = "count") %>%
+  group_by(cortical_layer_label, gene_symbol) %>%
+  # Sum up all gene counts at a layer and cell type level
+  summarize(countSum = sum(count)) %>%
+  # Widen dataframe to gene (row) by layer (column)
+  spread(cortical_layer_label, countSum)
+
 if (getwd() == "/Users/ethankim/Google Drive/Desk_Laptop/U of T/Grad School/French Lab/transcriptome_project") {
   MTG_sum_count <- fread(here("Data", "processed_data", "MTG_sum_count.csv")) %>%
     select(-V1)
@@ -119,9 +136,7 @@ Allen_logCPM_dataset <- MTG_sum_count %>%
   # Add one to counts to avoid taking cpm of 0
   mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
   unite(gene_class, c("gene_symbol", "class_label")) %>%
-  column_to_rownames(var = "gene_class")
-start_time <- Sys.time()
-Allen_logCPM_dataset %<>%
+  column_to_rownames(var = "gene_class") %>%
   cpm(log = T, prior.count = 1) %>%
   as.data.frame() %>%
   rownames_to_column(var = "gene_class") %>%
@@ -129,9 +144,7 @@ Allen_logCPM_dataset %<>%
            sep = "_") %>%
   add_column(WM = NA) %>%
   select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
-end_time <- Sys.time()
-end_time - start_time
-  
+
 
 # Filtered data: CPM > 0.1
 Allen_logCPM_filtered_dataset <- MTG_sum_count %>%
@@ -166,6 +179,12 @@ Allen_logCPM_filtered_dataset %<>%
 # Save MTG data summed at the layers (pre-logCPM)
 save(MTG_sum_count, file = here("Data", "processed_data", "MTG_sum_count.Rdata"))
 write.csv(MTG_sum_count, file = here("Data", "processed_data", "MTG_sum_count.csv"))
+
+# Save MTG data summed at the gene (pre-logCPM)
+save(MTG_sum_aggregate_count, 
+     file = here("Data", "processed_data", "MTG_sum_aggregate_count.Rdata"))
+write.csv(MTG_sum_aggregate_count, 
+          file = here("Data", "processed_data", "MTG_sum_aggregate_count.csv"))
 
 # Save logCPM data
 save(Allen_logCPM_dataset, file = here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
