@@ -43,16 +43,4 @@ save(He_Maynard_gene_correlation,
 rm(He_Maynard_cormatrix, Maynard_cormatrix, He_cormatrix, 
    common_genelist)
 
-hist(He_Maynard_diag)
-
-test <- ecdf(He_Maynard_diag)
-test(0.79)
-
-quantile(He_Maynard_diag, probs = c(0, 0.25, 0.5, 0.75, 1), na.rm = TRUE)
-
-He_Maynard_vector <- He_Maynard_cormatrix %>%
-  pull(var = 1) %>%
-  as.numeric()
-He_Maynard_vector <- format(round(He_Maynard_vector, 2), nsmall = 2) %>%
-  as_tibble()
 
