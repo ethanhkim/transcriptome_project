@@ -116,7 +116,8 @@ He_DS1_logCPM_dataset <- He_DS1_sum_layer %>%
   # CPM normalize with log = T
   cpm(log = T) %>% as.data.frame() %>%
   # Add back in gene symbols
-  add_column(gene_symbol = He_DS1_sum_layer$gene_symbol)
+  add_column(gene_symbol = He_DS1_sum_layer$gene_symbol) %>%
+  select(gene_symbol, everything())
 
 # CPM normalize, filter out CPM < 0.1
 He_DS1_logCPM_filtered_dataset <- He_DS1_sum_layer %>%
