@@ -68,21 +68,21 @@ load(here("Data", "processed_data", "Zeng_dataset_long.Rdata"))
 Zeng_marker_genes <- unique(Zeng_dataset_long$gene_symbol)
 
 
-## Mantel tests b/w He and Maynard ##
+## Mantel tests b/w He and Maynard ----
 
 # Non-logCPM data
 # Mantel r: 0.4079
 mantel_test(He_DS1_averaged_by_layer, Maynard_dataset_average)
 
-# He logCPM vs Maynard non-logCPM
+# He logCPM vs Maynard non-logCPM ----
 # Mantel r: 0.4392
 mantel_test(He_DS1_logCPM_dataset, Maynard_dataset_average)
 
-# He non-logCPM vs Maynard logCPM
+# He non-logCPM vs Maynard logCPM ----
 # Mantel r: 0.4646
 mantel_test(He_DS1_averaged_by_layer, Maynard_logCPM_dataset)
 
-# He logCPM vs Maynard logCPM
+# He logCPM vs Maynard logCPM ----
 # Mantel r: 0.5166, p < 0.001
 mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset)
 
@@ -111,6 +111,8 @@ Maynard_Zeng_subset_filtered <- Maynard_logCPM_filtered_dataset %>%
 # He logCPM vs Maynard logCPM - subset by Zeng
 # Mantel r: 0.683, p < 0.001
 mantel_test(He_Zeng_subset_filtered, Maynard_Zeng_subset_filtered)
+
+
 
 
 

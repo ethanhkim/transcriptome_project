@@ -17,6 +17,7 @@ library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("select", "dplyr")
 conflict_prefer("transpose", "data.table")
+conflict_prefer("cpm", "edgeR")
 
 # If working on SCC ----
 if (getwd() == "/external/mgmt3/genome/scratch/Neuroinformatics/ekim/transcriptome_project") {
@@ -152,8 +153,7 @@ Allen_gene_logCPM_dataset <- MTG_gene_sum_count %>%
   # CPM normalize with log = T
   cpm(log = T) %>% as.data.frame() %>%
   # Add back in gene symbols
-  add_column(gene_symbol = MTG_gene_sum_count$gene_symbol,
-             WM = NA)
+  add_column(gene_symbol = MTG_gene_sum_count$gene_symbol)
 
 # Filtered data: CPM > 0.1
 Allen_gene_logCPM_filtered_dataset <- MTG_gene_sum_count %>%
@@ -213,7 +213,7 @@ Allen_logCPM_filtered_dataset %<>%
   map_df(log2) %>%
   select(L1, L2, L3, L4, L5, L6) %>%
   # Take z-score (for app)
-  t() %>% scale() %>% t() %>% 
+  t() %>% scale() %>% t() %>%
   as.data.frame() %>%
   add_column(gene_class = names, WM = NA) %>%
   separate(gene_class, into = c("gene_symbol", "class_label"),
@@ -228,4 +228,3 @@ save(Allen_gene_logCPM_filtered_dataset,
 save(Allen_logCPM_dataset, file = here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
 save(Allen_logCPM_filtered_dataset, 
      file = here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
-save(Allen_gene_logCPM_dataset, file = here("Data", "processed_data", "Allen_gene_logCPM_dataset.Rdata"))

@@ -25,6 +25,8 @@ load(here("Data", "processed_data", "He_DS1_logCPM_filtered_dataset.Rdata"))
 load(here("Data", "processed_data", "Maynard_logCPM_filtered_dataset.Rdata"))
 load(here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
 load(here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
+load(here("Data", "processed_data", "Allen_gene_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Allen_gene_logCPM_filtered_dataset.Rdata"))
 
 # Zeng markers
 load(here("Data", "processed_data", "Zeng_dataset_long.Rdata"))
@@ -115,8 +117,10 @@ for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
 }
 
 ## He et al. vs Allen - aggregated at gene level for AIBS
-
+# Mantel r: <>, n = 
 mantel_test(He_DS1_logCPM_dataset, Allen_gene_logCPM_dataset)
+# Mantel r: <>, n = 
+mantel_test(He_DS1_logCPM_filtered_dataset, Allen_gene_logCPM_filtered_dataset)
 
 
 ## Maynard et al vs. Allen ## ----
@@ -161,5 +165,9 @@ for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
   print(Maynard_AIBS_Zeng[[type]]$statistic)
 }
 
-
+## Maynard et al. vs Allen - aggregated at gene level for AIBS
+# Mantel r: <>, n = 
+mantel_test(Maynard_logCPM_dataset, Allen_gene_logCPM_dataset)
+# Mantel r: <>, n = 
+mantel_test(Maynard_logCPM_filtered_dataset, Allen_gene_filtered_logCPM_dataset)
 

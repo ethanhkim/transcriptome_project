@@ -82,7 +82,8 @@ Maynard_logCPM_dataset <- Maynard_dataset_averaged %>%
   # CPM normalize with log = T
   cpm(log = T) %>% as.data.frame() %>%
   # Add back in gene symbols
-  add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol)
+  add_column(gene_symbol = Maynard_dataset_averaged$gene_symbol) %>%
+  select(gene_symbol, everything())
 
 Maynard_logCPM_filtered_dataset <- Maynard_dataset_averaged %>%
   # Add one to counts to avoid taking cpm of 0
@@ -100,12 +101,10 @@ Maynard_logCPM_filtered_dataset %<>%
   map_df(log2) %>%
   select(L1, L2, L3, L4, L5, L6, WM) %>%
   # Take z-score (for app)
-  t() %>% scale() %>% t() %>% 
+  t() %>% scale() %>% t() %>%
   as.data.frame() %>%
   add_column(gene_symbol = names) %>%
   select(gene_symbol, everything())
-
-# Normalize Maynard UMI counts with CPM, log = T 
 
 # Clean up workspace
 rm(Maynard_dataset, Maynard_dataset_averaged, Maynard_dataset_subset,
