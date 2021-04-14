@@ -34,17 +34,25 @@ Zeng_marker_genes <- unique(Zeng_dataset_long$gene_symbol)
 
 mantel_test(He_DS1_logCPM_dataset, Maynard_logCPM_dataset)
 
-# Remove WM from He and Maynard
-He_DS1_logCPM_dataset %<>% select(-WM)
-He_DS1_logCPM_filtered_dataset %<>% select(-WM)
-Maynard_logCPM_dataset %<>% select(-WM)
-Maynard_logCPM_filtered_dataset %<>% select(-WM)
+# Remove WM from He and Maynard for AIBS comparisons
+He_DS1_logCPM_dataset_nonWM <- He_DS1_logCPM_dataset %>% select(-WM)
+He_DS1_logCPM_filtered_dataset_nonWM <- He_DS1_logCPM_filtered_dataset %>% select(-WM)
+Maynard_logCPM_dataset_nonWM <- Maynard_logCPM_dataset %>% select(-WM)
+Maynard_logCPM_filtered_dataset_nonWM <- Maynard_logCPM_filtered_dataset %>% select(-WM)
 
 # Subset He and Maynard by Zeng markers
 He_Zeng <- He_DS1_logCPM_dataset %>%
   filter(gene_symbol %in% Zeng_marker_genes)
 Maynard_Zeng <- Maynard_logCPM_dataset %>%
   filter(gene_symbol %in% Zeng_marker_genes)
+
+# Subset He and Maynard by Zeng markers
+He_Zeng_nonWM <- He_DS1_logCPM_dataset %>%
+  filter(gene_symbol %in% Zeng_marker_genes) %>%
+  select(-WM)
+Maynard_Zeng_nonWM <- Maynard_logCPM_dataset %>%
+  filter(gene_symbol %in% Zeng_marker_genes) %>%
+  select(-WM)
 
 # Cell-type specific AIBS
 Allen_cell_type_df <- list()
@@ -70,7 +78,9 @@ for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
     filter(gene_symbol %in% Zeng_marker_genes) %>%
     select(-class_label, -WM)
 }
-
+# Layer-aggregate AIBS filtered for Zeng
+AIBS_layer_Zeng <- Allen_gene_logCPM_dataset %>%
+  filter(gene_symbol %in% Zeng_marker_genes)
 
 
 # Mantel tests b/w He, Maynard, Allen ----
@@ -117,10 +127,12 @@ for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
 }
 
 ## He et al. vs Allen - aggregated at gene level for AIBS
-# Mantel r: <>, n = 
-mantel_test(He_DS1_logCPM_dataset, Allen_gene_logCPM_dataset)
-# Mantel r: <>, n = 
-mantel_test(He_DS1_logCPM_filtered_dataset, Allen_gene_logCPM_filtered_dataset)
+# Mantel r: 0.03536, n = 30,744
+mantel_test(He_DS1_logCPM_dataset_nonWM, Allen_gene_logCPM_dataset)
+# Mantel r: 0.09435, n = 15,072
+mantel_test(He_DS1_logCPM_filtered_dataset_nonWM, Allen_gene_logCPM_filtered_dataset)
+# Mantel r: 0.1756, n = 975
+mantel_test(He_Zeng_nonWM, AIBS_layer_Zeng)
 
 
 ## Maynard et al vs. Allen ## ----
@@ -166,8 +178,17 @@ for (type in c("GABAergic", "Glutamatergic", "Non-neuronal")) {
 }
 
 ## Maynard et al. vs Allen - aggregated at gene level for AIBS
-# Mantel r: <>, n = 
-mantel_test(Maynard_logCPM_dataset, Allen_gene_logCPM_dataset)
-# Mantel r: <>, n = 
-mantel_test(Maynard_logCPM_filtered_dataset, Allen_gene_filtered_logCPM_dataset)
+# Mantel r: 0.08748, n = 17,197 
+mantel_test(Maynard_logCPM_dataset_nonWM, Allen_gene_logCPM_dataset)
+# Mantel r: 0.1037, n = 15,024
+mantel_test(Maynard_logCPM_filtered_dataset_nonWM, Allen_gene_logCPM_filtered_dataset)
+# Mantel r: 0.1756, n = 975
+mantel_test(Maynard_Zeng_nonWM, AIBS_layer_Zeng)
+
+
+
+
+
+
+
 
