@@ -51,7 +51,9 @@ NONN_sampled_df <- rbindlist(NONN_sampled)
 AIBS_sampled_df <- rbind(GABA_sampled_df, GLUT_sampled_df, NONN_sampled_df)
 
 
+
 AIBS_sampled_cell_sum_count <- sum_gene_count(AIBS_sampled_df, "cell_type")
+
 
 write.csv(AIBS_sampled_cell_sum_count, 
           file = here("Data", "raw_data", "Allen", "AIBS_sampled_cell_sum_count.csv"))
