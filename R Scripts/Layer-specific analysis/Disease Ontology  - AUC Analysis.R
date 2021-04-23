@@ -12,6 +12,12 @@ library(here)
 library(dplyr)
 library(metaseqR)
 
+# Load data
+load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_logCPM_filtered_dataset.Rdata"))
+load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "He_DS1_logCPM_filtered_dataset.Rdata"))
+
 #Input parameters:
 maxGOgroupSize <- 200
 minGOgroupSize <- 10

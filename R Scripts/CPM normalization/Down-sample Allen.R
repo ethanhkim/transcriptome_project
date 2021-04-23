@@ -57,3 +57,54 @@ AIBS_sampled_cell_sum_count <- sum_gene_count(AIBS_sampled_df, "cell_type")
 
 write.csv(AIBS_sampled_cell_sum_count, 
           file = here("Data", "raw_data", "Allen", "AIBS_sampled_cell_sum_count.csv"))
+
+
+AIBS_sampled_cell_count <- fread(here("Data", "raw_data", "Allen", "AIBS_sampled_cell_count.csv")) %>%
+  select(-V1)
+
+AIBS_sampled_logCPM_dataset <- AIBS_sampled_cell_count %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class") %>%
+  cpm(log = T) %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "gene_class") %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  add_column(WM = NA) %>%
+  select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
+
+
+# Filtered data: CPM > 0.1
+AIBS_sampled_logCPM_filtered_dataset <- AIBS_sampled_cell_count %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class") %>%
+  cpm() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "gene_class") %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  # Filter out samples of CPM < 0.1
+  filter_at(vars(-gene_symbol, -class_label), all_vars(. > .1)) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class")
+names <- rownames(AIBS_sampled_logCPM_filtered_dataset)
+AIBS_sampled_logCPM_filtered_dataset %<>%
+  # Take log2 of CPM
+  map_df(log2) %>%
+  select(L1, L2, L3, L4, L5, L6) %>%
+  # Take z-score (for app)
+  t() %>% scale() %>% t() %>%
+  as.data.frame() %>%
+  add_column(gene_class = names, WM = NA) %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
+
+
+save(AIBS_sampled_logCPM_dataset, file = here("Data", "processed_data", "AIBS_sampled_logCPM_dataset.Rdata"))
+save(AIBS_sampled_logCPM_filtered_dataset, 
+     file = here("Data", "processed_data", "AIBS_sampled_logCPM_filtered_dataset.Rdata"))

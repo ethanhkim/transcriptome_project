@@ -29,9 +29,13 @@ conflict_prefer("strsplit", "base")
 conflict_prefer("content", "httr")
 
 # Load in datasets
-load(here("Data", "processed_data", "Allen", "MTG_matrix_scaled.Rdata"))
-load(here("Data", "processed_data", "He_DS1_Human_averaged.Rdata"))
-load(here("Data", "processed_data", "Maynard_dataset_average.Rdata"))
+load(here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "Maynard_logCPM_filtered_dataset.Rdata"))
+load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "He_DS1_logCPM_filtered_dataset.Rdata"))
+
 
 ###############################################################################
 
@@ -100,7 +104,7 @@ geneSets_tmod_GO <- function(dataset_geneBackground) {
 generate_AUC_genelist <- function(data, layer) {
   layer_label <- layer
   data %<>%
-    select(gene_symbol:Layer_6)
+    select(gene_symbol:L6)
   sorted_data <- data[order(data[,layer_label], decreasing = TRUE),]
   genelist <- sorted_data %>% pull(gene_symbol)
   return(genelist)
@@ -129,12 +133,6 @@ AUC_table <- function(AUC_genelist, geneSet) {
 # Widen scRNA-seq data by cell type
 widen_scRNA_seq <- function(dataset) {
   wide_data <- dataset %>%
-    mutate(cortical_layer_label = gsub("L", "Layer_", cortical_layer_label)) %>%
-    ungroup() %>%
-    pivot_wider(
-      names_from = cortical_layer_label,
-      values_from = mean_expression_scaled
-    ) %>%
     group_by(class_label) %>%
     nest()
   return(wide_data)
@@ -143,7 +141,7 @@ widen_scRNA_seq <- function(dataset) {
 # Function to generate a dataframe of sorted gene lists by layer for AUC
 AUC_genelist_fn <- function(dataset) {
   # List of layers to create AUC genelists and tables for
-  layer_list <- c("Layer_1", "Layer_2", "Layer_3", "Layer_4", "Layer_5", "Layer_6")
+  layer_list <- c("L1", "L2", "L3", "L4", "L5", "L6")
   
   AUC_genelist <- list()
   for (i in layer_list) {
@@ -163,9 +161,9 @@ AUC_table_list_fn <- function(AUC_genelist_df, geneSet) {
 }
 
 #Function to combine p-values across datasets joined by the same disease ontology term
-combine_pval_AUC_table <- function(Maynard_table, He_table, MTG_table = NULL) {
+combine_pval_AUC_table <- function(Maynard_table, He_table, Allen_table = NULL) {
   
-  if (is.null(MTG_table)) {
+  if (is.null(Allen_table)) {
     combined_table <- inner_join(Maynard_table, He_table, by = "MainTitle",
                                  suffix = c("_Maynard", "_He")) %>%
       column_to_rownames(var = "MainTitle") %>%
@@ -175,7 +173,7 @@ combine_pval_AUC_table <- function(Maynard_table, He_table, MTG_table = NULL) {
   } else {
     combined_table <- inner_join(Maynard_table, He_table, by = "MainTitle",
                                  suffix = c("_Maynard", "_He"))
-    combined_table <- inner_join(combined_table, MTG_table, by = "MainTitle") %>%
+    combined_table <- inner_join(combined_table, Allen_table, by = "MainTitle") %>%
       column_to_rownames(var = "MainTitle") %>%
       rename(P.Value_Allen = P.Value, AUC_Allen = AUC, N1_Allen = N1, adj.P.Val_Allen = adj.P.Val, ID_Allen = ID, aspect_Allen = aspect,
              otherNames_Allen = otherNames, rank_Allen = rank) %>%
@@ -358,6 +356,22 @@ run_revigo <- function(goID_and_pvalue_table, layer_number, gene_direction) {
 }
 
 
+print_ontology_terms <- function(cell_specific_AUC_table, layer_number, direction) {
+  if (direction == "positive") {
+    print(head(filter(cell_specific_AUC_table[[layer_number]], 
+                      (( (AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & 
+                         adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20) %>%
+            select(Disease_Ontology_Term:AUC_Allen, combined_p_value, adj_combined_p_value,
+                   rank))
+  } else if (direction == "negative") {
+    print(head(filter(cell_specific_AUC_table[[layer_number]], 
+                      (( (AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & 
+                         adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20),
+          select(Disease_Ontology_Term:AUC_Allen, combined_p_value, adj_combined_p_value,
+                 rank))
+  }
+}
+
 
 ################################################################################
 
@@ -370,22 +384,22 @@ goSource <- 'org.Hs.eg'
 ontology_type <- "disease" # input either "gene" or "disease" depending on if wanting to analyze gene/disease ontology
 
 # Genesets
-Maynard_background <- create_geneBackground(Maynard_dataset_average)
-DO_geneset <- geneSets_tmod(Maynard_background)
+Maynard_background <- create_geneBackground(Maynard_logCPM_filtered_dataset)
+DO_geneset <- geneSets_tmod_DO(Maynard_background)
 GO_geneset <- geneSets_tmod_GO(Maynard_background)
 
 # Create list of tables of AUC values for DO groups for Maynard
-Maynard_AUC_table_list <- dataset_AUC_summary(Maynard_dataset_average, ontology_type)
+Maynard_AUC_table_list <- dataset_AUC_summary(Maynard_logCPM_filtered_dataset, ontology_type)
 # Create list of tables of AUC values for DO groups for He
-He_AUC_table_list <- dataset_AUC_summary(He_DS1_Human_averaged, ontology_type)
+He_AUC_table_list <- dataset_AUC_summary(He_DS1_logCPM_filtered_dataset, ontology_type)
 
 # Widen and separate scRNA-seq data by cell type
-MTG_matrix_wide <- widen_scRNA_seq(MTG_matrix_scaled)
+Allen_matrix_wide <- widen_scRNA_seq(Allen_logCPM_filtered_dataset)
   
 # Create dataframes of genelists for each single cell dataset
-Allen_GABA_AUC_table_list <- dataset_AUC_summary(MTG_matrix_wide$data[[1]], ontology_type)
-Allen_GLUT_AUC_table_list <- dataset_AUC_summary(MTG_matrix_wide$data[[2]], ontology_type)
-Allen_NONN_AUC_table_list <- dataset_AUC_summary(MTG_matrix_wide$data[[3]], ontology_type)
+Allen_GABA_AUC_table_list <- dataset_AUC_summary(Allen_matrix_wide$data[[1]], ontology_type)
+Allen_GLUT_AUC_table_list <- dataset_AUC_summary(Allen_matrix_wide$data[[2]], ontology_type)
+Allen_NONN_AUC_table_list <- dataset_AUC_summary(Allen_matrix_wide$data[[3]], ontology_type)
 
 # Combined tables of p-values for both He, Maynard and Allen data
 combined_GABA_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, Allen_GABA_AUC_table_list)
@@ -398,12 +412,11 @@ GO_GLUT_AUC_table <- combined_GLUT_AUC_table_list
 GO_NONN_AUC_table <- combined_NONN_AUC_table_list
 
 
-
+# ReviGO - GABA
 ReviGO_GABA_list_up <- list()
 for (i in 1:6) {
   ReviGO_GABA_list_up[[i]] <- run_revigo(ReviGO_GABA, i, "positive")
 }
-
 ReviGO_GABA_list_down <- list()
 for (i in 1:6) {
   ReviGO_GABA_list_down[[i]] <- run_revigo(ReviGO_GABA, i, "negative")
@@ -449,7 +462,7 @@ DO_NONN <- extract_DO_and_pvalue(combined_NONN_AUC_table_list, 20) %>%
 
 common_DO_layer <- rbind(DO_GABA, DO_GLUT, DO_NONN)
 View(common_DO_layer %>%
-  filter(layer == 2 & direction == "positive" & rank < 20) %>%
+  filter(layer == 3 & direction == "positive" & rank < 20) %>%
   group_by(ID) %>%
   filter(n()>1))
 
@@ -462,16 +475,21 @@ GO_NONN <- extract_DO_and_pvalue(GO_NONN_AUC_table, 20) %>%
 
 common_GO_layer <- rbind(GO_GABA, GO_GLUT, GO_NONN)
 View(common_GO_layer %>%
-       filter(layer == 1 & direction == "positive", rank < 20) %>%
+       filter(layer == 4 & direction == "positive", rank < 20) %>%
        group_by(ID) %>%
        filter(n()>1))
   
 
 
-#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
-print(head(filter(combined_NONN_AUC_table_list[[2]], (( (AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20)) #insert combined tables
-#Summarize bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
-print(head(filter(combined_GLUT_AUC_table_list[[2]], (( (AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20)) #insert combined tables
+#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction ----
+print_ontology_terms(combined_NONN_AUC_table_list, 3, "positive")
+print_ontology_terms(combined_GABA_AUC_table_list, 3, "positive")
+print_ontology_terms(combined_GLUT_AUC_table_list, 3, "positive")
+
+#Summarize top and bottom 20 gene ontology terms over an AUC value of 0.5 for both datasets, and surviving correction ----
+print_ontology_terms(GO_GABA_AUC_table, 1, "positive")
+print_ontology_terms(GO_GLUT_AUC_table, 1, "positive")
+print_ontology_terms(GO_NONN_AUC_table, 1, "positive")
 
 
 #Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
