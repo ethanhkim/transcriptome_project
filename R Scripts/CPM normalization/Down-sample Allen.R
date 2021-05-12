@@ -1,20 +1,43 @@
-GABA <- MTG %>%
+## Script to create randomly downsampled data from the AIBS snRNA-seq data.
+
+# Load required libraries
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(tibble)
+library(purrr)
+library(data.table)
+library(moments)
+library(here)
+library(magrittr)
+library(edgeR)
+library(conflicted)
+
+# Set conflicts
+conflict_prefer("filter", "dplyr")
+conflict_prefer("select", "dplyr")
+conflict_prefer("transpose", "data.table")
+conflict_prefer("cpm", "edgeR")
+
+# Read in data
+MTG_cell_type_sum_count <- fread(here("Data", "raw_data", "Allen", "MTG_cell_type_sum_count.csv")) %>%
+  select(-V1)
+MTG_gene_sum_count <- fread(here("Data", "raw_data", "Allen", "MTG_gene_sum_count.csv")) %>%
+  select(-V1)
+
+GABA <- MTG_cell_type_sum_count %>%
   filter(class_label == 'GABAergic')
-
-GLUT <- MTG %>%
+GLUT <- MTG_cell_type_sum_count %>%
   filter(class_label == 'Glutamatergic')
-
-NONN <- MTG %>%
+NONN <- MTG_cell_type_sum_count %>%
   filter(class_label == 'Non-neuronal')
 
 GABA_layer_nuc_count <- GABA %>%
   group_by(cortical_layer_label) %>%
   count()
-
 GLUT_layer_nuc_count <- GLUT %>%
   group_by(cortical_layer_label) %>%
   count()
-
 NONN_layer_nuc_count <- NONN %>%
   group_by(cortical_layer_label) %>%
   count()
@@ -28,9 +51,7 @@ cell_type_nuc_count <- tibble(
 sample_nuclei <- function(df, layer_label, n_sample) {
   
   df %<>% filter(cortical_layer_label == layer_label)
-  
   sampled_layer <- df[sample(nrow(df), n_sample),]
-  
   return(sampled_layer)
 }
 
@@ -48,21 +69,18 @@ GABA_sampled_df <- rbindlist(GABA_sampled)
 GLUT_sampled_df <- rbindlist(GLUT_sampled)
 NONN_sampled_df <- rbindlist(NONN_sampled)
 
-AIBS_sampled_df <- rbind(GABA_sampled_df, GLUT_sampled_df, NONN_sampled_df)
+Allen_downsampledsampled_df <- rbind(GABA_sampled_df, GLUT_sampled_df, NONN_sampled_df)
+Allen_downsampled_cell_sum_count <- sum_gene_count(Allen_downsampled_df, "cell_type")
 
 
-
-AIBS_sampled_cell_sum_count <- sum_gene_count(AIBS_sampled_df, "cell_type")
-
-
-write.csv(AIBS_sampled_cell_sum_count, 
-          file = here("Data", "raw_data", "Allen", "AIBS_sampled_cell_sum_count.csv"))
+write.csv(Allen_downsampled_cell_sum_count, 
+          file = here("Data", "raw_data", "Allen", "Allen_downsampled_cell_sum_count.csv"))
 
 
-AIBS_sampled_cell_count <- fread(here("Data", "raw_data", "Allen", "AIBS_sampled_cell_count.csv")) %>%
+Allen_downsampled_cell_count <- fread(here("Data", "raw_data", "Allen", "Allen_downsampled_cell_count.csv")) %>%
   select(-V1)
 
-AIBS_sampled_logCPM_dataset <- AIBS_sampled_cell_count %>%
+Allen_downsampled_logCPM_dataset <- Allen_downsampled_cell_count %>%
   # Add one to counts to avoid taking cpm of 0
   mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
   unite(gene_class, c("gene_symbol", "class_label")) %>%
@@ -77,7 +95,7 @@ AIBS_sampled_logCPM_dataset <- AIBS_sampled_cell_count %>%
 
 
 # Filtered data: CPM > 0.1
-AIBS_sampled_logCPM_filtered_dataset <- AIBS_sampled_cell_count %>%
+Allen_downsampled_logCPM_filtered_dataset <- Allen_downsampled_cell_count %>%
   # Add one to counts to avoid taking cpm of 0
   mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
   unite(gene_class, c("gene_symbol", "class_label")) %>%
@@ -91,8 +109,8 @@ AIBS_sampled_logCPM_filtered_dataset <- AIBS_sampled_cell_count %>%
   filter_at(vars(-gene_symbol, -class_label), all_vars(. > .1)) %>%
   unite(gene_class, c("gene_symbol", "class_label")) %>%
   column_to_rownames(var = "gene_class")
-names <- rownames(AIBS_sampled_logCPM_filtered_dataset)
-AIBS_sampled_logCPM_filtered_dataset %<>%
+names <- rownames(Allen_downsampled_logCPM_filtered_dataset)
+Allen_downsampled_logCPM_filtered_dataset %<>%
   # Take log2 of CPM
   map_df(log2) %>%
   select(L1, L2, L3, L4, L5, L6) %>%
@@ -105,6 +123,6 @@ AIBS_sampled_logCPM_filtered_dataset %<>%
   select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
 
 
-save(AIBS_sampled_logCPM_dataset, file = here("Data", "processed_data", "AIBS_sampled_logCPM_dataset.Rdata"))
-save(AIBS_sampled_logCPM_filtered_dataset, 
-     file = here("Data", "processed_data", "AIBS_sampled_logCPM_filtered_dataset.Rdata"))
+save(Allen_downsampled_logCPM_dataset, file = here("Data", "processed_data", "Allen_downsampled_logCPM_dataset.Rdata"))
+save(Allen_downsampled_logCPM_filtered_dataset, 
+     file = here("Data", "processed_data", "Allen_downsampled_logCPM_filtered_dataset.Rdata"))

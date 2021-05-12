@@ -204,6 +204,15 @@ He_Human4_Zeng_logCPM <- He_Human4_logCPM %>%
 # Clean up remaining DS1 data
 rm(He_count_matrix, He_DS1_matrix, He_Human1, He_Human2, He_Human3, He_Human4)
 
+save(He_Human1_logCPM, He_Human1_logCPM_filtered, He_Human1_Zeng_logCPM,
+     file = here("Data", "processed_data", "He_Donor1.Rdata"))
+save(He_Human2_logCPM, He_Human2_logCPM_filtered, He_Human2_Zeng_logCPM,
+     file = here("Data", "processed_data", "He_Donor2.Rdata"))
+save(He_Human3_logCPM, He_Human3_logCPM_filtered, He_Human3_Zeng_logCPM,
+     file = here("Data", "processed_data", "He_Donor3.Rdata"))
+save(He_Human4_logCPM, He_Human4_logCPM_filtered, He_Human4_Zeng_logCPM,
+     file = here("Data", "processed_data", "He_Donor4.Rdata"))
+
 
 ### Mantel Testing ----
 
