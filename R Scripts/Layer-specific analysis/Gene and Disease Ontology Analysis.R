@@ -31,6 +31,8 @@ conflict_prefer("content", "httr")
 # Load in datasets
 load(here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
 load(here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
+load(here("Data", "processed_data", "AIBS_sampled_logCPM_dataset.Rdata"))
+load(here("Data", "processed_data", "AIBS_sampled_logCPM_filtered_dataset.Rdata"))
 load(here("Data", "processed_data", "Maynard_logCPM_dataset.Rdata"))
 load(here("Data", "processed_data", "Maynard_logCPM_filtered_dataset.Rdata"))
 load(here("Data", "processed_data", "He_DS1_logCPM_dataset.Rdata"))
@@ -39,10 +41,10 @@ load(here("Data", "processed_data", "He_DS1_logCPM_filtered_dataset.Rdata"))
 
 ###############################################################################
 
-# Functions to use in Analysis #
+# Functions to use in analysis ----
 
 # Adapted from Leon French - code to create gene sets from tmod using DisGeNet Disease Ontology annotations
-create_geneBackground <- function(source_data) {
+create_geneBackground_DO <- function(source_data) {
   geneBackground <- source_data %>%
     dplyr::select(gene_symbol) %>%
     pull ()
@@ -51,10 +53,10 @@ create_geneBackground <- function(source_data) {
 }
 
 # Create geneSetsTable for analysis using DisGeNet Disease Ontology annotations
-geneSets_tmod_DO <- function(dataset_geneBackground) {
+geneSets_tmod_DO <- function(dataset_geneBackground_DO) {
   disgenet <- read_tsv(paste0(here("Data", "genelists", "DisGeNet", "curated_gene_disease_associations.tsv"))) 
   disgenet %<>% dplyr::select(symbol = geneSymbol, name = diseaseName, ID = diseaseId)
-  disgenet %<>% filter(symbol %in% dataset_geneBackground)
+  disgenet %<>% filter(symbol %in% dataset_geneBackground_DO)
   geneLists <- group_by(disgenet, ID) %>% 
     dplyr::summarise(name = paste(unique(name), collapse = ","), genes = unique(list(symbol)), size = dplyr::n()) %>% 
     filter(size >= minGOgroupSize & size <= maxGOgroupSize) 
@@ -177,6 +179,7 @@ combine_pval_AUC_table <- function(Maynard_table, He_table, Allen_table = NULL) 
       column_to_rownames(var = "MainTitle") %>%
       rename(P.Value_Allen = P.Value, AUC_Allen = AUC, N1_Allen = N1, adj.P.Val_Allen = adj.P.Val, ID_Allen = ID, aspect_Allen = aspect,
              otherNames_Allen = otherNames, rank_Allen = rank) %>%
+      mutate(mean_AUC = (AUC_Maynard+AUC_He+AUC_Allen)/3) %>%
       dplyr::select(contains("P.value"), contains("AUC"), contains("ID")) %>%
       filter(P.Value_He <= 1) %>%
       filter(P.Value_Maynard <= 1) %>%
@@ -191,7 +194,7 @@ combine_pval_AUC_table <- function(Maynard_table, He_table, Allen_table = NULL) 
   combined_table$adj_combined_p_value <- p_value_fisher$adj_p_fdr
   
   combined_table <- combined_table %>%
-    rownames_to_column(var = "Disease_Ontology_Term") %>%
+    rownames_to_column(var = "Ontology_Term") %>%
     arrange(adj_combined_p_value)
   combined_table$rank <- 1:nrow(combined_table)
   return(combined_table)
@@ -208,7 +211,7 @@ combined_AUC_table_fn <- function(Maynard_AUC_table, He_AUC_table, Allen_AUC_tab
 
 # Function to take geneBackground, geneSets, genelist dataframe and create AUC value table
 dataset_AUC_summary <- function(source_dataset, ontology, geneBackground) {
-  geneBackground <- create_geneBackground(source_dataset)
+  geneBackground <- create_geneBackground_DO(source_dataset)
   if (ontology == "disease") {
     geneSets <- geneSets_tmod_DO(geneBackground)
   } else {
@@ -217,6 +220,37 @@ dataset_AUC_summary <- function(source_dataset, ontology, geneBackground) {
   AUC_genelist_df <- AUC_genelist_fn(source_dataset)
   AUC_table_list <- AUC_table_list_fn(AUC_genelist_df, geneSets)
   return(AUC_table_list)
+}
+
+# Create DO table for top 20 and bottom 20 DO terms
+extract_term_and_pvalue <- function(table, number_of_terms, layer_range = c(1:6)) {
+  table_list_up <- list()
+  table_list_down <- list()
+  for (i in layer_range) {
+    table_list_up[[i]] <- table[[i]] %>%
+      filter(((AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      # Filter for adj but send raw 
+      select(rank, Ontology_Term, mean_AUC, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "positive", layer = i) 
+  }
+  for (i in layer_range) {
+    table_list_down[[i]] <- table[[i]] %>%
+      filter(((AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
+      head(n = number_of_terms) %>%
+      # Filter for adj but send raw 
+      select(rank, Ontology_Term, mean_AUC, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
+      rename(ID = ID_Maynard) %>%
+      mutate(ID = gsub(",.*", "", ID)) %>%
+      add_column(direction = "negative", layer = i) 
+  }
+  table_list_up <- do.call(rbind, table_list_up)
+  table_list_down <- do.call(rbind, table_list_down)
+  
+  table_total_list <- rbind(table_list_up, table_list_down)
+  return(table_total_list) 
 }
 
 # Create ReviGO table
@@ -250,67 +284,7 @@ extract_GO_and_pvalue <- function(table, number_of_terms, layer_range = c(1:6)) 
   return(reviGO_table_total_list) 
 }
 
-# Create DO table for top 20 and bottom 20 DO terms
-extract_DO_and_pvalue <- function(table, number_of_terms, layer_range = c(1:6)) {
-  DO_table_list_up <- list()
-  DO_table_list_down <- list()
-  for (i in layer_range) {
-    DO_table_list_up[[i]] <- table[[i]] %>%
-      filter(((AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
-      head(n = number_of_terms) %>%
-      # Filter for adj but send raw 
-      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
-      rename(ID = ID_Maynard) %>%
-      mutate(ID = gsub(",.*", "", ID)) %>%
-      add_column(direction = "positive", layer = i) 
-  }
-  for (i in layer_range) {
-    DO_table_list_down[[i]] <- table[[i]] %>%
-      filter(((AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
-      head(n = number_of_terms) %>%
-      # Filter for adj but send raw 
-      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
-      rename(ID = ID_Maynard) %>%
-      mutate(ID = gsub(",.*", "", ID)) %>%
-      add_column(direction = "negative", layer = i) 
-  }
-  DO_table_list_up <- do.call(rbind, DO_table_list_up)
-  DO_table_list_down <- do.call(rbind, DO_table_list_down)
-  
-  DO_table_total_list <- rbind(DO_table_list_up, DO_table_list_down)
-  return(DO_table_total_list) 
-}
 
-# Create GO table for top 20 and bottom 20 GO terms
-extract_DO_and_pvalue <- function(table, number_of_terms, layer_range = c(1:6)) {
-  DO_table_list_up <- list()
-  DO_table_list_down <- list()
-  for (i in layer_range) {
-    DO_table_list_up[[i]] <- table[[i]] %>%
-      filter(((AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
-      head(n = number_of_terms) %>%
-      # Filter for adj but send raw 
-      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
-      rename(ID = ID_Maynard) %>%
-      mutate(ID = gsub(",.*", "", ID)) %>%
-      add_column(direction = "positive", layer = i) 
-  }
-  for (i in layer_range) {
-    DO_table_list_down[[i]] <- table[[i]] %>%
-      filter(((AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05) %>%
-      head(n = number_of_terms) %>%
-      # Filter for adj but send raw 
-      select(rank, Disease_Ontology_Term, AUC_Maynard, AUC_He, AUC_Allen, ID_Maynard, combined_p_value) %>%
-      rename(ID = ID_Maynard) %>%
-      mutate(ID = gsub(",.*", "", ID)) %>%
-      add_column(direction = "negative", layer = i) 
-  }
-  DO_table_list_up <- do.call(rbind, DO_table_list_up)
-  DO_table_list_down <- do.call(rbind, DO_table_list_down)
-  
-  DO_table_total_list <- rbind(DO_table_list_up, DO_table_list_down)
-  return(DO_table_total_list) 
-}
 
 # From Leon French - code to run ReviGO on localized table
 run_revigo <- function(goID_and_pvalue_table, layer_number, gene_direction) {
@@ -355,19 +329,19 @@ run_revigo <- function(goID_and_pvalue_table, layer_number, gene_direction) {
   extracted_data_frame %<>% add_column(layer = layer_number, direction = gene_direction)
 }
 
-
+# Print common ontology terms ---
 print_ontology_terms <- function(cell_specific_AUC_table, layer_number, direction) {
   if (direction == "positive") {
     print(head(filter(cell_specific_AUC_table[[layer_number]], 
                       (( (AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & 
                          adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20) %>%
-            select(Disease_Ontology_Term:AUC_Allen, combined_p_value, adj_combined_p_value,
+            select(Ontology_Term:AUC_Allen, mean_AUC, combined_p_value, adj_combined_p_value,
                    rank))
   } else if (direction == "negative") {
     print(head(filter(cell_specific_AUC_table[[layer_number]], 
                       (( (AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & 
                          adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20),
-          select(Disease_Ontology_Term:AUC_Allen, combined_p_value, adj_combined_p_value,
+          select(Ontology_Term:AUC_Allen, mean_AUC, combined_p_value, adj_combined_p_value,
                  rank))
   }
 }
@@ -375,26 +349,60 @@ print_ontology_terms <- function(cell_specific_AUC_table, layer_number, directio
 
 ################################################################################
 
-# Analysis script #
+# Analysis script ----
 
 # Input parameters:
 maxGOgroupSize <- 200
 minGOgroupSize <- 10
 goSource <- 'org.Hs.eg'
-ontology_type <- "disease" # input either "gene" or "disease" depending on if wanting to analyze gene/disease ontology
+ontology_type <- "gene" # input either "gene" or "disease" depending on if wanting to analyze gene/disease ontology
+CPM_filter <- TRUE
+downsampling <- TRUE
 
-# Genesets
-Maynard_background <- create_geneBackground(Maynard_logCPM_filtered_dataset)
-DO_geneset <- geneSets_tmod_DO(Maynard_background)
-GO_geneset <- geneSets_tmod_GO(Maynard_background)
+if (CPM_filter == FALSE) {
+  Maynard_df <- Maynard_logCPM_dataset
+  He_df <- He_DS1_logCPM_dataset
+  if (downsampling <- FALSE) {
+    Allen_df <- Allen_logCPM_dataset
+  } else {
+    Allen_df <- AIBS_sampled_logCPM_dataset
+  }
+} else {
+  Maynard_df <- Maynard_logCPM_filtered_dataset
+  He_df <- He_DS1_logCPM_filtered_dataset
+  if (downsampling <- FALSE) {
+    Allen_df <- Allen_logCPM_filtered_dataset
+  } else {
+    Allen_df <- AIBS_sampled_logCPM_filtered_dataset
+  }
+}
+
+# Sanity Check - are the right datasets being used?
+if (CPM_filter == FALSE) {
+  print(isTRUE(all.equal(Maynard_df, Maynard_logCPM_dataset)))
+  print(isTRUE(all.equal(He_df, He_DS1_logCPM_dataset)))
+  if (downsampling <- FALSE) {
+    print(isTRUE(all.equal(Allen_df, Allen_logCPM_dataset)))
+  } else {
+    print(isTRUE(all.equal(Allen_df, AIBS_sampled_logCPM_dataset)))
+  }
+} else {
+  print(isTRUE(all.equal(Maynard_df, Maynard_logCPM_filtered_dataset)))
+  print(isTRUE(all.equal(He_df, He_DS1_logCPM_filtered_dataset)))
+  if (downsampling <- FALSE) {
+    print(isTRUE(all.equal(Allen_df, Allen_logCPM_filtered_dataset)))
+  } else {
+    print(isTRUE(all.equal(Allen_df, AIBS_sampled_logCPM_filtered_dataset)))
+  }
+}
 
 # Create list of tables of AUC values for DO groups for Maynard
-Maynard_AUC_table_list <- dataset_AUC_summary(Maynard_logCPM_filtered_dataset, ontology_type)
+Maynard_AUC_table_list <- dataset_AUC_summary(Maynard_df, ontology_type)
 # Create list of tables of AUC values for DO groups for He
-He_AUC_table_list <- dataset_AUC_summary(He_DS1_logCPM_filtered_dataset, ontology_type)
+He_AUC_table_list <- dataset_AUC_summary(He_df, ontology_type)
 
 # Widen and separate scRNA-seq data by cell type
-Allen_matrix_wide <- widen_scRNA_seq(Allen_logCPM_filtered_dataset)
+Allen_matrix_wide <- widen_scRNA_seq(Allen_df)
   
 # Create dataframes of genelists for each single cell dataset
 Allen_GABA_AUC_table_list <- dataset_AUC_summary(Allen_matrix_wide$data[[1]], ontology_type)
@@ -406,13 +414,79 @@ combined_GABA_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He
 combined_GLUT_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, Allen_GLUT_AUC_table_list)
 combined_NONN_AUC_table_list <- combined_AUC_table_fn(Maynard_AUC_table_list, He_AUC_table_list, Allen_NONN_AUC_table_list)
 
-# Gene Ontology tables
-GO_GABA_AUC_table <- combined_GABA_AUC_table_list
-GO_GLUT_AUC_table <- combined_GLUT_AUC_table_list
-GO_NONN_AUC_table <- combined_NONN_AUC_table_list
+# Ontology tables
+GABA_ontology <- extract_term_and_pvalue(combined_GABA_AUC_table_list, 20) %>%
+  add_column(cell_type = "GABA")
+GLUT_ontology <- extract_term_and_pvalue(combined_GLUT_AUC_table_list, 20) %>%
+  add_column(cell_type = "GLUT")
+NONN_ontology <- extract_term_and_pvalue(combined_NONN_AUC_table_list, 20) %>%
+  add_column(cell_type = "NONN")
+# Create common layer ontology term table
+common_ontology_layer <- rbind(GABA_ontology, GLUT_ontology, NONN_ontology)
+
+# For each layer, print the enriched terms within the top 20 rank
+for (layer_number in c(1, 2, 3, 4, 5, 6)) {
+  print(common_ontology_layer %>%
+          filter(layer == layer_number & direction == "positive" & rank <= 20) %>%
+          group_by(ID) %>%
+          filter(n()>1) %>%
+          arrange(Ontology_Term))
+}
+# For each layer, print the depleted terms within the top 20 rank
+for (layer_number in c(1, 2, 3, 4, 5, 6)) {
+  print(common_ontology_layer %>%
+          filter(layer == layer_number & direction == "negative" & rank <= 20) %>%
+          group_by(ID) %>%
+          filter(n()>1) %>%
+          arrange(Ontology_Term))
+}
+
+# ReviGo
+for (layer_number in c(1, 2, 3, 4, 5, 6)) {
+  run_revigo(common_ontology_layer, layer_number, "positive")
+}
+run_revigo(GABA_ontology, layer_number = 1, "positive")
+
+run_revigo()
+View(common_ontology_layer %>%
+       filter(layer == 1 & direction == "positive" & rank <= 20) %>%
+       group_by(ID) %>%
+       filter(n()>1) %>%
+       arrange(Ontology_Term))
 
 
-# ReviGO - GABA
+#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction ----
+print_ontology_terms(combined_GABA_AUC_table_list, 3, "positive")
+print_ontology_terms(combined_GLUT_AUC_table_list, 3, "positive")
+print_ontology_terms(combined_NONN_AUC_table_list, 3, "positive")
+
+#Summarize top and bottom 20 gene ontology terms over an AUC value of 0.5 for both datasets, and surviving correction ----
+print_ontology_terms(combined_GABA_AUC_table_list, 3, "negative")
+print_ontology_terms(combined_GLUT_AUC_table_list, 3, "negative")
+print_ontology_terms(combined_NONN_AUC_table_list, 3, "negative")
+
+#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
+print(head(filter(GO_GABA_AUC_table[[3]], (( (AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20)) #insert combined tables
+#Summarize bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
+print(head(filter(GO_NONN_AUC_table[[2]], (( (AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20))
+
+ # Save .txt file of genes in "Mood Disorders" for gene ontology
+#mood_disorders_genelist <- geneSetsTable %>% filter(Title == "Mood Disorders") %>% pull(feature_id)
+#mood_disorder_genelist <- unlist(strsplit(mood_disorder_genelist, ","))
+#write.table(mood_disorder_genelist, file = here("Data", "genelists", "DO_mood.disorders.txt"), row.names = F, col.names = F, quote = F)
+
+# Save .txt file of genes in "Epileptic encephalopathy" for gene ontology
+#epileptic_encephalopathy_genelist <- geneSetsTable %>% filter(Title == "Epileptic encephalopathy") %>% pull(feature_id)
+#epileptic_encephalopathy_genelist <- unlist(strsplit(epileptic_encephalopathy_genelist, ","))
+#write.table(epileptic_encephalopathy_genelist, file = here("Data", "genelists", "DO_epileptic.encephalopathy.txt"), row.names = F, col.names = F, quote = F)
+
+# Save .txt file of genes in "Cocaine-related Disorders" for gene ontology
+#cocaine_related_disorders_genelist <- geneSetsTable %>% filter(Title == "Cocaine-Related Disorders") %>% pull(feature_id)
+#cocaine_related_disorders_genelist <- unlist(strsplit(cocaine_related_disorders_genelist, ","))
+#write.table(cocaine_related_disorders_genelist, file = here("Data", "genelists", "DO_cocaine.related.disorders.txt"), row.names = F, col.names = F, quote = F)
+
+
+## ReviGO Analyses ----
 ReviGO_GABA_list_up <- list()
 for (i in 1:6) {
   ReviGO_GABA_list_up[[i]] <- run_revigo(ReviGO_GABA, i, "positive")
@@ -451,66 +525,6 @@ for (i in 1:6) {
 ReviGO_NONN_up <- do.call(rbind, ReviGO_NONN_list_up)
 ReviGO_NONN_down <- do.call(rbind, ReviGO_NONN_list_down)
 ReviGO_NONN_complete <- rbind(ReviGO_NONN_up, ReviGO_NONN_down)
-
-
-DO_GABA <- extract_DO_and_pvalue(combined_GABA_AUC_table_list, 20) %>%
-  add_column(cell_type = "GABA")
-DO_GLUT <- extract_DO_and_pvalue(combined_GLUT_AUC_table_list, 20) %>%
-  add_column(cell_type = "GLUT")
-DO_NONN <- extract_DO_and_pvalue(combined_NONN_AUC_table_list, 20) %>%
-  add_column(cell_type = "NONN")
-
-common_DO_layer <- rbind(DO_GABA, DO_GLUT, DO_NONN)
-View(common_DO_layer %>%
-  filter(layer == 3 & direction == "positive" & rank < 20) %>%
-  group_by(ID) %>%
-  filter(n()>1))
-
-GO_GABA <- extract_DO_and_pvalue(GO_GABA_AUC_table, 20) %>%
-  add_column(cell_type = "GABA")
-GO_GLUT <- extract_DO_and_pvalue(GO_GLUT_AUC_table, 20) %>%
-  add_column(cell_type = "GLUT")
-GO_NONN <- extract_DO_and_pvalue(GO_NONN_AUC_table, 20) %>%
-  add_column(cell_type = "NONN")
-
-common_GO_layer <- rbind(GO_GABA, GO_GLUT, GO_NONN)
-View(common_GO_layer %>%
-       filter(layer == 4 & direction == "positive", rank < 20) %>%
-       group_by(ID) %>%
-       filter(n()>1))
-  
-
-
-#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction ----
-print_ontology_terms(combined_NONN_AUC_table_list, 3, "positive")
-print_ontology_terms(combined_GABA_AUC_table_list, 3, "positive")
-print_ontology_terms(combined_GLUT_AUC_table_list, 3, "positive")
-
-#Summarize top and bottom 20 gene ontology terms over an AUC value of 0.5 for both datasets, and surviving correction ----
-print_ontology_terms(GO_GABA_AUC_table, 1, "positive")
-print_ontology_terms(GO_GLUT_AUC_table, 1, "positive")
-print_ontology_terms(GO_NONN_AUC_table, 1, "positive")
-
-
-#Summarize top and bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
-print(head(filter(GO_GABA_AUC_table[[3]], (( (AUC_Maynard > 0.5) & (AUC_He > 0.5) & (AUC_Allen > 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20)) #insert combined tables
-#Summarize bottom 20 disease ontology terms over an AUC value of 0.5 for both datasets, and surviving correction
-print(head(filter(GO_NONN_AUC_table[[2]], (( (AUC_Maynard < 0.5) & (AUC_He < 0.5) & (AUC_Allen < 0.5)) & adj_combined_p_value < 0.05 & P.Value_Allen < 0.05)), n=20))
-
- # Save .txt file of genes in "Mood Disorders" for gene ontology
-#mood_disorders_genelist <- geneSetsTable %>% filter(Title == "Mood Disorders") %>% pull(feature_id)
-#mood_disorder_genelist <- unlist(strsplit(mood_disorder_genelist, ","))
-#write.table(mood_disorder_genelist, file = here("Data", "genelists", "DO_mood.disorders.txt"), row.names = F, col.names = F, quote = F)
-
-# Save .txt file of genes in "Epileptic encephalopathy" for gene ontology
-#epileptic_encephalopathy_genelist <- geneSetsTable %>% filter(Title == "Epileptic encephalopathy") %>% pull(feature_id)
-#epileptic_encephalopathy_genelist <- unlist(strsplit(epileptic_encephalopathy_genelist, ","))
-#write.table(epileptic_encephalopathy_genelist, file = here("Data", "genelists", "DO_epileptic.encephalopathy.txt"), row.names = F, col.names = F, quote = F)
-
-# Save .txt file of genes in "Cocaine-related Disorders" for gene ontology
-#cocaine_related_disorders_genelist <- geneSetsTable %>% filter(Title == "Cocaine-Related Disorders") %>% pull(feature_id)
-#cocaine_related_disorders_genelist <- unlist(strsplit(cocaine_related_disorders_genelist, ","))
-#write.table(cocaine_related_disorders_genelist, file = here("Data", "genelists", "DO_cocaine.related.disorders.txt"), row.names = F, col.names = F, quote = F)
 
 ReviGO_GABA[1]
 
