@@ -1,3 +1,7 @@
+
+
+
+
 GABA <- MTG %>%
   filter(class_label == 'GABAergic')
 
@@ -28,7 +32,6 @@ cell_type_nuc_count <- tibble(
 sample_nuclei <- function(df, layer_label, n_sample) {
   
   df %<>% filter(cortical_layer_label == layer_label)
-  
   sampled_layer <- df[sample(nrow(df), n_sample),]
   
   return(sampled_layer)
@@ -48,18 +51,13 @@ GABA_sampled_df <- rbindlist(GABA_sampled)
 GLUT_sampled_df <- rbindlist(GLUT_sampled)
 NONN_sampled_df <- rbindlist(NONN_sampled)
 
-AIBS_sampled_df <- rbind(GABA_sampled_df, GLUT_sampled_df, NONN_sampled_df)
+Allen_downsampledsampled_df <- rbind(GABA_sampled_df, GLUT_sampled_df, NONN_sampled_df)
+Allen_downsampled_cell_sum_count <- sum_gene_count(Allen_downsampled_df, "cell_type")
+write.csv(Allen_downsampled_cell_sum_count, 
+          file = here("Data", "raw_data", "Allen", "Allen_downsampled_cell_sum_count.csv"))
 
 
-
-AIBS_sampled_cell_sum_count <- sum_gene_count(AIBS_sampled_df, "cell_type")
-
-
-write.csv(AIBS_sampled_cell_sum_count, 
-          file = here("Data", "raw_data", "Allen", "AIBS_sampled_cell_sum_count.csv"))
-
-
-AIBS_sampled_cell_count <- fread(here("Data", "raw_data", "Allen", "AIBS_sampled_cell_count.csv")) %>%
+Allen_sampled_cell_count <- fread(here("Data", "raw_data", "Allen", "AIBS_sampled_cell_count.csv")) %>%
   select(-V1)
 
 AIBS_sampled_logCPM_dataset <- AIBS_sampled_cell_count %>%

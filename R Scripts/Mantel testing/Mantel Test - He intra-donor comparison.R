@@ -11,7 +11,7 @@ library(here)
 ## Functions to use ----
 
 # Mantel test function
-source(here("R Scripts", "Mantel Testing", "mantel_test.R"))
+source(here("R Scripts", "Mantel testing", "mantel_test.R"))
 
 # Function to select donor from count matrix using donor label
 select_donor <- function(df, donor_label) {
@@ -157,6 +157,7 @@ He_DS1_matrix %<>%
     make.names = names(He_DS1_matrix[1])
   ) %>% as.data.frame()
 
+
 # Create donor-separated matrices
 He_Human1 <- He_DS1_matrix %>%
   select("gene_symbol", "S01", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10",
@@ -206,65 +207,64 @@ rm(He_count_matrix, He_DS1_matrix, He_Human1, He_Human2, He_Human3, He_Human4)
 
 
 ### Mantel Testing ----
+for (donor in c("He_Donor1.Rdata", "He_Donor2.Rdata", 
+                "He_Donor3.Rdata", "He_Donor4.Rdata")) {
+  load(file = here("Data", "processed_data", donor))
+}
+
 
 ## Human 1 vs. Human 2
 H1_H2 <- list()
-for (type in c("logCPM", "logCPM_filtered", "Zeng_subset")) {
-  H1_H2[type] <- mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-  H1_H2[type] <- mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-  H1_H2[type] <- mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-}
-# logCPM
-H1_H2[logCPM] <-  mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-# logCPM filtered for CPM > 0.1
-mantel_test(He_Human_1_logCPM_filtered, He_Human2_logCPM_filtered)
-# logCPM filtered for Zeng
-H1_H2[['Zeng_subset']]<-  mantel_test(He_Human1_Zeng_logCPM, He_Human2_Zeng_logCPM)
-
+H1_H2[["logCPM"]] <- mantel_test(He_Human1_logCPM, He_Human2_logCPM)
+H1_H2[["logCPM_filtered"]]<- mantel_test(He_Human1_logCPM_filtered, 
+                                        He_Human2_logCPM_filtered)
+H1_H2[["logCPM_Zeng"]] <- mantel_test(He_Human1_Zeng_logCPM, 
+                                    He_Human2_Zeng_logCPM)
 
 ## Human 1 vs. Human 3
-# logCPM
-mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-# logCPM filtered for CPM > 0.1
-mantel_test(He_Human_1_logCPM_filtered, He_Human2_logCPM_filtered)
-# logCPM filtered for Zeng
-mantel_test(He_Human1_Zeng_logCPM, He_Human2_Zeng_logCPM)
+H1_H3 <- list()
+H1_H3[["logCPM"]] <- mantel_test(He_Human1_logCPM, He_Human3_logCPM)
+H1_H3[["logCPM_filtered"]]<- mantel_test(He_Human1_logCPM_filtered, 
+                                         He_Human3_logCPM_filtered)
+H1_H3[["logCPM_Zeng"]] <- mantel_test(He_Human1_Zeng_logCPM, 
+                                      He_Human3_Zeng_logCPM)
 
 ## Human 1 vs. Human 4
-# logCPM
-mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-# logCPM filtered for CPM > 0.1
-mantel_test(He_Human_1_logCPM_filtered, He_Human2_logCPM_filtered)
-# logCPM filtered for Zeng
-mantel_test(He_Human1_Zeng_logCPM, He_Human2_Zeng_logCPM)
+H1_H4 <- list()
+H1_H4[["logCPM"]] <- mantel_test(He_Human1_logCPM, He_Human4_logCPM)
+H1_H4[["logCPM_filtered"]]<- mantel_test(He_Human1_logCPM_filtered, 
+                                         He_Human4_logCPM_filtered)
+H1_H4[["logCPM_Zeng"]] <- mantel_test(He_Human1_Zeng_logCPM, 
+                                      He_Human4_Zeng_logCPM)
 
 
 ## Human 2 vs. Human 3
-# logCPM
-mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-# logCPM filtered for CPM > 0.1
-mantel_test(He_Human_1_logCPM_filtered, He_Human2_logCPM_filtered)
-# logCPM filtered for Zeng
-mantel_test(He_Human1_Zeng_logCPM, He_Human2_Zeng_logCPM)
+H2_H3 <- list()
+H2_H3[["logCPM"]] <- mantel_test(He_Human2_logCPM, He_Human3_logCPM)
+H2_H3[["logCPM_filtered"]]<- mantel_test(He_Human2_logCPM_filtered, 
+                                         He_Human3_logCPM_filtered)
+H2_H3[["logCPM_Zeng"]] <- mantel_test(He_Human2_Zeng_logCPM, 
+                                      He_Human3_Zeng_logCPM)
 
 
 ## Human 2 vs. Human 4
-# logCPM
-mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-# logCPM filtered for CPM > 0.1
-mantel_test(He_Human_1_logCPM_filtered, He_Human2_logCPM_filtered)
-# logCPM filtered for Zeng
-mantel_test(He_Human1_Zeng_logCPM, He_Human2_Zeng_logCPM)
+H2_H4 <- list()
+H2_H4[["logCPM"]] <- mantel_test(He_Human2_logCPM, He_Human4_logCPM)
+H2_H4[["logCPM_filtered"]]<- mantel_test(He_Human2_logCPM_filtered, 
+                                         He_Human4_logCPM_filtered)
+H2_H4[["logCPM_Zeng"]] <- mantel_test(He_Human2_Zeng_logCPM, 
+                                      He_Human4_Zeng_logCPM)
 
 
 
 ## Human 3 vs. Human 4
-# logCPM
-mantel_test(He_Human1_logCPM, He_Human2_logCPM)
-# logCPM filtered for CPM > 0.1
-mantel_test(He_Human_1_logCPM_filtered, He_Human2_logCPM_filtered)
-# logCPM filtered for Zeng
-mantel_test(He_Human1_Zeng_logCPM, He_Human2_Zeng_logCPM)
+H3_H4 <- list()
+H3_H4[["logCPM"]] <- mantel_test(He_Human3_logCPM, He_Human4_logCPM)
+H3_H4[["logCPM_filtered"]]<- mantel_test(He_Human3_logCPM_filtered, 
+                                         He_Human4_logCPM_filtered)
+H3_H4[["logCPM_Zeng"]] <- mantel_test(He_Human3_Zeng_logCPM, 
+                                      He_Human4_Zeng_logCPM)
+
 
 
 

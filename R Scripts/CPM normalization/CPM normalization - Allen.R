@@ -59,6 +59,16 @@ if (getwd() == "/external/mgmt3/genome/scratch/Neuroinformatics/ekim/transcripto
     return(matrix)
   }
   
+  # Downsample
+  sample_nuclei <- function(df, layer_label, n_sample) {
+    
+    set.seed(0)
+    df %<>% filter(cortical_layer_label == layer_label)
+    sampled_layer <- df[sample(nrow(df), n_sample),]
+    
+    return(sampled_layer)
+  }
+  
   # Summarize gene counts by layer and cell-type
   sum_gene_count <- function(region_separated_df, aggregate_level) {
     
@@ -118,6 +128,41 @@ if (getwd() == "/external/mgmt3/genome/scratch/Neuroinformatics/ekim/transcripto
     select(-region_label)
   rm(AIBS_cleaned_df)
   
+  # Downsample to lowest number of nuclei per cell type
+  cell_type_specific_data <- list()
+  cell_type_nuclei_count <- list()
+  for (cell_type in c('GABAergic', 'Glutamatergic', 'Non-neuronal')) {
+    cell_type_specific_data[[cell_type]] <- MTG %>%
+      filter(class_label == cell_type)
+    cell_type_nuclei_count[[cell_type]] <- cell_type_specific_data[[cell_type]] %>%
+      group_by(cortical_layer_label) %>%
+      count()
+  }
+  
+  cell_type_nuc_count <- tibble(
+    GABAergic = cell_type_nuclei_count[['GABAergic']] %>% pull(),
+    Glutamatergic = cell_type_nuclei_count[['Glutamatergic']] %>% pull(),
+    Non_neuronal = cell_type_nuclei_count[['Non-neuronal']] %>% pull()
+  )
+  
+  GABA_sampled <- list()
+  GLUT_sampled <- list()
+  NONN_sampled <- list()
+  for (layer in c("L1", "L2", "L3", "L4", "L5", "L6")) {
+    GABA_sampled[[layer]] <- sample_nuclei(cell_type_specific_data[['GABAergic']], layer, 381)
+    GLUT_sampled[[layer]] <- sample_nuclei(cell_type_specific_data[['Glutamatergic']], layer, 274)
+    NONN_sampled[[layer]] <- sample_nuclei(cell_type_specific_data[['Non-neuronal']], layer, 125)
+  }
+  
+  GABA_sampled_df <- rbindlist(GABA_sampled)
+  GLUT_sampled_df <- rbindlist(GLUT_sampled)
+  NONN_sampled_df <- rbindlist(NONN_sampled)
+  
+  Allen_downsampled_df <- rbind(GABA_sampled_df, GLUT_sampled_df, NONN_sampled_df)
+  Allen_downsampled_cell_sum_count <- sum_gene_count(Allen_downsampled_df, "cell_type")
+  write.csv(Allen_downsampled_cell_sum_count, 
+            file = here("Data", "raw_data", "Allen", "Allen_downsampled_cell_sum_count.csv"))
+  
   # Aggregate MTG data ----
   ## Aggregate at layer level across each cell types
   MTG_cell_type_sum_count <- sum_gene_count(MTG, "cell_type")
@@ -138,6 +183,8 @@ if (getwd() == "/external/mgmt3/genome/scratch/Neuroinformatics/ekim/transcripto
     select(-V1)
   MTG_gene_sum_count <- fread(here("Data", "raw_data", "Allen", "MTG_gene_sum_count.csv")) %>%
     select(-V1)
+  Allen_downsampled_df <- fread(here("Data", "raw_data", "Allen", "Allen_downsampled_cell_sum_count.csv
+                                     "))
   
 }
 
@@ -221,6 +268,63 @@ Allen_logCPM_filtered_dataset %<>%
   select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
 
 
+Allen_downsampled_logCPM_dataset <- Allen_downsampled_cell_count %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class") %>%
+  cpm(log = T) %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "gene_class") %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  add_column(WM = NA) %>%
+  select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
+
+## CPM normalize downsampled data ----
+
+Allen_downsampled_logCPM_dataset <- Allen_downsampled_cell_count %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class") %>%
+  cpm(log = T) %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "gene_class") %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  add_column(WM = NA) %>%
+  select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
+
+# Filtered data: CPM > 0.1
+Allen_downsampled_logCPM_filtered_dataset <- Allen_downsampled_cell_count %>%
+  # Add one to counts to avoid taking cpm of 0
+  mutate_at(c("L1", "L2", "L3", "L4", "L5", "L6"), ~. +1) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class") %>%
+  cpm() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "gene_class") %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  # Filter out samples of CPM < 0.1
+  filter_at(vars(-gene_symbol, -class_label), all_vars(. > .1)) %>%
+  unite(gene_class, c("gene_symbol", "class_label")) %>%
+  column_to_rownames(var = "gene_class")
+names <- rownames(Allen_downsampled_logCPM_filtered_dataset)
+Allen_downsampled_logCPM_filtered_dataset %<>%
+  # Take log2 of CPM
+  map_df(log2) %>%
+  select(L1, L2, L3, L4, L5, L6) %>%
+  # Take z-score (for app)
+  t() %>% scale() %>% t() %>%
+  as.data.frame() %>%
+  add_column(gene_class = names, WM = NA) %>%
+  separate(gene_class, into = c("gene_symbol", "class_label"),
+           sep = "_") %>%
+  select(gene_symbol, class_label, L1, L2, L3, L4, L5, L6, WM)
+
+
 # Save logCPM data ----
 save(Allen_gene_logCPM_dataset, file = here("Data", "processed_data", "Allen_gene_logCPM_dataset.Rdata"))
 save(Allen_gene_logCPM_filtered_dataset, 
@@ -228,3 +332,7 @@ save(Allen_gene_logCPM_filtered_dataset,
 save(Allen_logCPM_dataset, file = here("Data", "processed_data", "Allen_logCPM_dataset.Rdata"))
 save(Allen_logCPM_filtered_dataset, 
      file = here("Data", "processed_data", "Allen_logCPM_filtered_dataset.Rdata"))
+save(Allen_downsampled_logCPM_dataset, file = here("Data", "processed_data", "Allen_downsampled_logCPM_dataset.Rdata"))
+save(Allen_downsampled_logCPM_filtered_dataset, 
+     file = here("Data", "processed_data", "Allen_downsampled_logCPM_filtered_dataset.Rdata"))
+
