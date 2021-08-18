@@ -25,7 +25,7 @@ source(here("R Scripts", "Mantel testing", "mantel_test.R"))
 normalize_sample <- function(sample_df, CPM_filter = FALSE) {
   
   df <- sample_df
-  genes <- sample_df$gene_symbol
+  genes <- df$gene_symbol
   
   if (CPM_filter == TRUE) {
     logCPM_df <- df %>%
@@ -36,14 +36,14 @@ normalize_sample <- function(sample_df, CPM_filter = FALSE) {
       add_column(gene_symbol = genes) %>%
       # Filter out samples of CPM < 0.1
       filter_at(vars(-gene_symbol), all_vars(. > .1)) %>%
-      select(-gene_symbol)
+      column_to_rownames(var = "gene_symbol")
     names(logCPM_df) <- gsub(x = names(logCPM_df), pattern = ".*_", replacement = "") 
     names(logCPM_df) <- gsub(x = names(logCPM_df), pattern = "Layer", replacement = "L")
+    filtered_genes <- rownames(logCPM_df)
     logCPM_df %<>%
-      # Take log2 of CPM
       map_df(log2) %>%
-      select(L1, L2, L3, L4, L5, L6, WM) %>%
-      add_column(gene_symbol = genes) %>%
+      add_column(gene_symbol = filtered_genes) %>%
+      select(gene_symbol, L1, L2, L3, L4, L5, L6, WM) %>%
       select(gene_symbol, everything())
   } else {
     # Normalize data
@@ -53,11 +53,10 @@ normalize_sample <- function(sample_df, CPM_filter = FALSE) {
       # Add +1 to remove 0's for log transformation
       mutate_all(~. +1) %>%
       # CPM normalize with log = T
-      cpm(log = T, prior.count = 1) %>% as.data.frame()
-    
+      cpm(log = T) %>% as.data.frame()
     names(logCPM_df) <- gsub(x = names(logCPM_df), pattern = ".*_", replacement = "") 
     names(logCPM_df) <- gsub(x = names(logCPM_df), pattern = "Layer", replacement = "L")
-    
+    genes <- rownames(logCPM_df)
     logCPM_df %<>%
       # Add back in gene symbols
       add_column(gene_symbol = genes) %>%
@@ -87,6 +86,14 @@ for (sample in c("151507", "151508", "151509", "151510")) {
     normalize_sample()
 }
 
+Maynard_donor_1_CPM <- list()
+for (sample in c("151507", "151508", "151509", "151510")) {
+  Maynard_donor_1_CPM[[sample]] <- Maynard_layer_data %>%
+    select("gene_symbol", contains(sample)) %>%
+    normalize_sample(CPM_filter = TRUE)
+}
+
+
 
 # Create list of tibbles for donor 2, separated by sample
 Maynard_donor_2 <- list()
@@ -96,56 +103,119 @@ for (sample in c("151673", "151674", "151675", "151676")) {
     normalize_sample()
 }
 
+
+# Create list of tibbles for donor 2, separated by sample
+Maynard_donor_2_CPM <- list()
+for (sample in c("151673", "151674", "151675", "151676")) {
+  Maynard_donor_2_CPM[[sample]] <- Maynard_layer_data %>%
+    select("gene_symbol", contains(sample)) %>%
+    normalize_sample(CPM_filter = TRUE)
+}
+
+CPM_filter <- TRUE
+
 # Intra-donor 1 Mantel tests
-Maynard_507_508 <- mantel_test(Maynard_donor_1$'151507', 
-                               Maynard_donor_1$'151508') 
-Maynard_507_509 <- mantel_test(Maynard_donor_1$'151507', 
-                               Maynard_donor_1$'151509')
-Maynard_507_510 <- mantel_test(Maynard_donor_1$'151507', 
-                               Maynard_donor_1$'151510')
-Maynard_508_509 <- mantel_test(Maynard_donor_1$'151508', 
-                               Maynard_donor_1$'151509')
-Maynard_508_510 <- mantel_test(Maynard_donor_1$'151508', 
-                               Maynard_donor_1$'151510')
-Maynard_509_510 <- mantel_test(Maynard_donor_1$'151509', 
-                               Maynard_donor_1$'151510')
+if (CPM_filter == FALSE) {
+  Maynard_507_508 <- mantel_test(Maynard_donor_1$'151507', 
+                                 Maynard_donor_1$'151508') 
+  Maynard_507_509 <- mantel_test(Maynard_donor_1$'151507', 
+                                 Maynard_donor_1$'151509')
+  Maynard_507_510 <- mantel_test(Maynard_donor_1$'151507', 
+                                 Maynard_donor_1$'151510')
+  Maynard_508_509 <- mantel_test(Maynard_donor_1$'151508', 
+                                 Maynard_donor_1$'151509')
+  Maynard_508_510 <- mantel_test(Maynard_donor_1$'151508', 
+                                 Maynard_donor_1$'151510')
+  Maynard_509_510 <- mantel_test(Maynard_donor_1$'151509', 
+                                 Maynard_donor_1$'151510')
+  
+  donor_1_mantel <- tibble(
+    comparison = c("507_508", "507_509", "507_510", "508_509",
+                   "508_510", "509_510"),
+    statistic = c(Maynard_507_508$statistic, Maynard_507_509$statistic,
+                  Maynard_507_510$statistic, Maynard_508_509$statistic,
+                  Maynard_508_510$statistic, Maynard_509_510$statistic),
+    p_val = c(Maynard_507_508$signif, Maynard_507_509$signif,
+              Maynard_507_510$signif, Maynard_508_509$signif,
+              Maynard_508_510$signif, Maynard_509_510$signif)
+  )
+} else {
+  Maynard_507_508 <- mantel_test(Maynard_donor_1_CPM$'151507', 
+                                 Maynard_donor_1_CPM$'151508') 
+  Maynard_507_509 <- mantel_test(Maynard_donor_1_CPM$'151507', 
+                                 Maynard_donor_1_CPM$'151509')
+  Maynard_507_510 <- mantel_test(Maynard_donor_1_CPM$'151507', 
+                                 Maynard_donor_1_CPM$'151510')
+  Maynard_508_509 <- mantel_test(Maynard_donor_1_CPM$'151508', 
+                                 Maynard_donor_1_CPM$'151509')
+  Maynard_508_510 <- mantel_test(Maynard_donor_1_CPM$'151508', 
+                                 Maynard_donor_1_CPM$'151510')
+  Maynard_509_510 <- mantel_test(Maynard_donor_1_CPM$'151509', 
+                                 Maynard_donor_1_CPM$'151510')
+  
+  donor_1_mantel <- tibble(
+    comparison = c("507_508", "507_509", "507_510", "508_509",
+                   "508_510", "509_510"),
+    statistic = c(Maynard_507_508$statistic, Maynard_507_509$statistic,
+                  Maynard_507_510$statistic, Maynard_508_509$statistic,
+                  Maynard_508_510$statistic, Maynard_509_510$statistic),
+    p_val = c(Maynard_507_508$signif, Maynard_507_509$signif,
+              Maynard_507_510$signif, Maynard_508_509$signif,
+              Maynard_508_510$signif, Maynard_509_510$signif)
+  )
+}
 
-donor_1_mantel <- tibble(
-  comparison = c("507_508", "507_509", "507_510", "508_509",
-                 "508_510", "509_510"),
-  statistic = c(Maynard_507_508$statistic, Maynard_507_509$statistic,
-                Maynard_507_510$statistic, Maynard_508_509$statistic,
-                Maynard_508_510$statistic, Maynard_509_510$statistic),
-  p_val = c(Maynard_507_508$signif, Maynard_507_509$signif,
-            Maynard_507_510$signif, Maynard_508_509$signif,
-            Maynard_508_510$signif, Maynard_509_510$signif)
-)
+if (CPM_filter == FALSE) {
+  
+  # Intra-donor 2 Mantel tests
+  Maynard_673_674 <- mantel_test(Maynard_donor_2$'151673', 
+                                 Maynard_donor_2$'151674')
+  Maynard_673_675 <- mantel_test(Maynard_donor_2$'151673', 
+                                 Maynard_donor_2$'151675')
+  Maynard_673_676 <- mantel_test(Maynard_donor_2$'151673', 
+                                 Maynard_donor_2$'151676')
+  Maynard_674_675 <- mantel_test(Maynard_donor_2$'151674', 
+                                 Maynard_donor_2$'151675')
+  Maynard_674_676 <- mantel_test(Maynard_donor_2$'151674', 
+                                 Maynard_donor_2$'151676')
+  Maynard_675_676 <- mantel_test(Maynard_donor_2$'151675', 
+                                 Maynard_donor_2$'151676')
+  
+  donor_2_mantel <- tibble(
+    comparison = c("673_674", "673_675", "673_676", 
+                   "674_675", "674_676", "675_676"),
+    statistic = c(Maynard_673_674$statistic, Maynard_673_675$statistic,
+                  Maynard_673_676$statistic, Maynard_674_675$statistic,
+                  Maynard_674_676$statistic, Maynard_675_676$statistic)
+  )
+  
+} else {
+  
+  # Intra-donor 2 Mantel tests
+  Maynard_673_674 <- mantel_test(Maynard_donor_2_CPM$'151673', 
+                                 Maynard_donor_2_CPM$'151674')
+  Maynard_673_675 <- mantel_test(Maynard_donor_2_CPM$'151673', 
+                                 Maynard_donor_2_CPM$'151675')
+  Maynard_673_676 <- mantel_test(Maynard_donor_2_CPM$'151673', 
+                                 Maynard_donor_2_CPM$'151676')
+  Maynard_674_675 <- mantel_test(Maynard_donor_2_CPM$'151674', 
+                                 Maynard_donor_2_CPM$'151675')
+  Maynard_674_676 <- mantel_test(Maynard_donor_2_CPM$'151674', 
+                                 Maynard_donor_2_CPM$'151676')
+  Maynard_675_676 <- mantel_test(Maynard_donor_2_CPM$'151675', 
+                                 Maynard_donor_2_CPM$'151676')
+  
+  donor_2_mantel <- tibble(
+    comparison = c("673_674", "673_675", "673_676", 
+                   "674_675", "674_676", "675_676"),
+    statistic = c(Maynard_673_674$statistic, Maynard_673_675$statistic,
+                  Maynard_673_676$statistic, Maynard_674_675$statistic,
+                  Maynard_674_676$statistic, Maynard_675_676$statistic)
+  )
+  
+}
 
 
-# Intra-donor 2 Mantel tests
-Maynard_673_674 <- mantel_test(Maynard_donor_2$'151673', 
-                               Maynard_donor_2$'151674')
-Maynard_673_675 <- mantel_test(Maynard_donor_2$'151673', 
-                               Maynard_donor_2$'151675')
-Maynard_673_676 <- mantel_test(Maynard_donor_2$'151673', 
-                               Maynard_donor_2$'151676')
-Maynard_674_675 <- mantel_test(Maynard_donor_2$'151674', 
-                               Maynard_donor_2$'151675')
-Maynard_674_676 <- mantel_test(Maynard_donor_2$'151674', 
-                               Maynard_donor_2$'151676')
-Maynard_675_676 <- mantel_test(Maynard_donor_2$'151675', 
-                               Maynard_donor_2$'151676')
-
-donor_2_mantel <- tibble(
-  comparison = c("673_674", "673_675", "673_676", 
-                 "674_675", "674_676", "675_676"),
-  statistic = c(Maynard_673_674$statistic, Maynard_673_675$statistic,
-                Maynard_673_676$statistic, Maynard_674_675$statistic,
-                Maynard_674_676$statistic, Maynard_675_676$statistic)
-)
-
-rm(Maynard_673_674, Maynard_673_675, Maynard_673_676,
-   Maynard_674_675, Maynard_674_676, Maynard_675_676)
 
 ## Inter-donor testing
 # Sample 151507 vs. samples from donor 2
@@ -186,23 +256,7 @@ intra_donor_results <- tibble(
                 Maynard_510_673$statistic, Maynard_510_674$statistic, Maynard_510_675$statistic, Maynard_510_676$statistic)
 )
 
-Maynard_donor_1_filtered <- Maynard_layer_data %>%
-  select(contains("151507")) %>%
-  mutate_all(~. +1) %>%
-  cpm() %>%
-  as.data.frame() %>%
-  add_column(gene_symbol = genes) %>%
-  # Filter out samples of CPM < 0.1
-  filter_at(vars(-gene_symbol), all_vars(. > .1)) %>%
-  select(-gene_symbol)
-names(logCPM_df) <- gsub(x = names(logCPM_df), pattern = ".*_", replacement = "") 
-names(logCPM_df) <- gsub(x = names(logCPM_df), pattern = "Layer", replacement = "L")
-logCPM_df %<>%
-  # Take log2 of CPM
-  map_df(log2) %>%
-  select(L1, L2, L3, L4, L5, L6, WM) %>%
-  add_column(gene_symbol = genes) %>%
-  select(gene_symbol, everything())
+
   
 
 # Create list of tibbles for donor 1, separated by sample
