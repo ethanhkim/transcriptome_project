@@ -7,6 +7,7 @@ library(dplyr)
 library(purrr)
 library(stringr)
 library(here)
+library(tibble)
 
 # Read in raw count matrix
 He_count_matrix <- fread(file = here("Data", "raw_data", "He et al", "he_human_102_counts_matrix.csv"))
@@ -137,7 +138,7 @@ He_DS1_logCPM_filtered_dataset %<>%
   map_df(log2) %>%
   select(L1, L2, L3, L4, L5, L6, WM) %>%
   # Take z-score (for app)
-  t() %>% scale() %>% t() %>% 
+  t() %>% scale() %>% t() %>%
   as.data.frame() %>%
   add_column(gene_symbol = names) %>%
   select(gene_symbol, everything())
