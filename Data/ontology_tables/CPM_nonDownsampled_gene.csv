@@ -1,0 +1,48 @@
+,rank,Ontology_Term,ID,mean_AUC,AUC_Maynard,AUC_He,AUC_Allen,combined_p_value,direction,layer,cell_type
+1,2,cotranslational protein targeting to membrane,GO:0006613,0.69427375,0.769120444,0.700265581,0.613435226,0,positive,1,GABA
+3,2,cotranslational protein targeting to membrane,GO:0006613,0.689307498,0.769120444,0.700265581,0.598536469,0,positive,1,GLUT
+5,2,cotranslational protein targeting to membrane,GO:0006613,0.708971343,0.769120444,0.700265581,0.657528003,0,positive,1,NONN
+7,13,cytosolic large ribosomal subunit,GO:0022625,0.729216203,0.787491157,0.721526573,0.678630878,0,positive,1,GABA
+8,13,cytosolic large ribosomal subunit,GO:0022625,0.713730486,0.787491157,0.721526573,0.632173728,0,positive,1,GLUT
+9,13,cytosolic large ribosomal subunit,GO:0022625,0.727041891,0.787491157,0.721526573,0.672107942,0,positive,1,NONN
+11,4,cytosolic ribosome,GO:0022626,0.696217863,0.753773126,0.690785844,0.644094619,0,positive,1,GABA
+12,4,cytosolic ribosome,GO:0022626,0.681499968,0.753773126,0.690785844,0.599940934,0,positive,1,GLUT
+13,4,cytosolic ribosome,GO:0022626,0.700514376,0.753773126,0.690785844,0.656984158,0,positive,1,NONN
+15,8,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.660913958,0.712126024,0.654763556,0.615852295,0,positive,1,GABA
+16,8,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.646501206,0.712126024,0.654763556,0.572614039,0,positive,1,GLUT
+17,8,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.671817793,0.712126024,0.654763556,0.6485638,0,positive,1,NONN
+18,12,immune receptor activity,GO:0140375,0.710391132,0.715972193,0.741969126,0.673232078,0,positive,1,GLUT
+19,12,immune receptor activity,GO:0140375,0.684211448,0.715972193,0.741969126,0.594693025,0,positive,1,NONN
+22,7,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.663100299,0.719862151,0.659927378,0.609511368,0,positive,1,GABA
+23,7,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.665751492,0.719862151,0.659927378,0.617464947,0,positive,1,NONN
+25,11,positive regulation of angiogenesis,GO:0045766,0.669386046,0.682809305,0.71801589,0.607332943,0,positive,1,GLUT
+27,9,positive regulation of vasculature development,GO:1904018,0.668265973,0.675815786,0.714492946,0.614489186,0,positive,1,GLUT
+29,5,protein targeting to ER,GO:0045047,0.674175365,0.733043865,0.669798864,0.619683366,0,positive,1,GABA
+30,5,protein targeting to ER,GO:0045047,0.66155575,0.733043865,0.669798864,0.581824521,0,positive,1,GLUT
+31,5,protein targeting to ER,GO:0045047,0.684512692,0.733043865,0.669798864,0.650695347,0,positive,1,NONN
+32,18,regulation of ossification,GO:0030278,0.636181539,0.647068584,0.632135596,0.629340436,0,positive,1,GLUT
+33,18,regulation of ossification,GO:0030278,0.614454976,0.647068584,0.632135596,0.564160746,0,positive,1,NONN
+36,14,response to interferon-gamma,GO:0034341,0.662626992,0.656988026,0.709138348,0.621754601,0,positive,1,GLUT
+37,14,response to interferon-gamma,GO:0034341,0.647190006,0.656988026,0.709138348,0.575443645,0,positive,1,NONN
+38,1,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.69929797,0.776645453,0.709206462,0.612041996,0,positive,1,GABA
+40,1,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.695738166,0.776645453,0.709206462,0.601362585,0,positive,1,GLUT
+42,1,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.717824639,0.776645453,0.709206462,0.667622002,0,positive,1,NONN
+45,10,structural constituent of ribosome,GO:0003735,0.638395137,0.6836062,0.592182209,0.639397002,0,positive,1,GABA
+46,10,structural constituent of ribosome,GO:0003735,0.613633116,0.6836062,0.592182209,0.565110938,0,positive,1,GLUT
+47,10,structural constituent of ribosome,GO:0003735,0.629613608,0.6836062,0.592182209,0.613052415,0,positive,1,NONN
+2,12,cotranslational protein targeting to membrane,GO:0006613,0.240512819,0.293802707,0.19573922,0.231996529,0,negative,3,GABA
+4,12,cotranslational protein targeting to membrane,GO:0006613,0.217831578,0.293802707,0.19573922,0.163952807,0,negative,3,GLUT
+6,12,cotranslational protein targeting to membrane,GO:0006613,0.283333043,0.293802707,0.19573922,0.360457203,0,negative,3,NONN
+34,19,regulation of synaptic plasticity,GO:0048167,0.614985298,0.650651322,0.647650136,0.546654438,0,positive,3,GLUT
+35,19,regulation of synaptic plasticity,GO:0048167,0.627328419,0.650651322,0.647650136,0.583683798,0,positive,3,NONN
+39,14,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.237497583,0.292488715,0.188463625,0.231540411,0,negative,3,GABA
+41,14,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.214223365,0.292488715,0.188463625,0.161717755,0,negative,3,GLUT
+43,14,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.280933235,0.292488715,0.188463625,0.361847366,0,negative,3,NONN
+20,6,mitochondrial respirasome,GO:0005746,0.662062305,0.789647921,0.629590672,0.566948323,0,positive,4,GABA
+21,6,mitochondrial respirasome,GO:0005746,0.71513547,0.789647921,0.629590672,0.726167816,0,positive,4,GLUT
+10,14,cytosolic large ribosomal subunit,GO:0022625,0.312173782,0.317580505,0.223997067,0.394943774,0,negative,5,NONN
+14,10,cytosolic ribosome,GO:0022626,0.338399333,0.344911085,0.239300814,0.430986099,0,negative,5,NONN
+24,3,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.324532066,0.325560167,0.255794814,0.392241217,0,negative,5,NONN
+26,8,positive regulation of angiogenesis,GO:0045766,0.379467723,0.357357415,0.343984367,0.437061387,0,negative,5,GLUT
+28,7,positive regulation of vasculature development,GO:1904018,0.383445506,0.361542029,0.353528946,0.435265544,0,negative,5,GLUT
+44,4,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.314008176,0.309534522,0.203594702,0.428895303,0,negative,5,NONN

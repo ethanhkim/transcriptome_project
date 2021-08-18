@@ -1,0 +1,132 @@
+,rank,Ontology_Term,ID,mean_AUC,AUC_Maynard,AUC_He,AUC_Allen,combined_p_value,direction,layer,cell_type
+1,17,ATP synthesis coupled electron transport,GO:0042773,0.779176917,0.868573119,0.764818759,0.704138873,0,positive,1,GABA
+2,17,ATP synthesis coupled electron transport,GO:0042773,0.732102779,0.868573119,0.764818759,0.562916458,0,positive,1,GLUT
+5,17,ATP synthesis coupled electron transport,GO:0042773,0.783730751,0.868573119,0.764818759,0.717800375,0,positive,1,NONN
+7,19,cellular respiration,GO:0045333,0.692502346,0.757220404,0.710402489,0.609884144,0,positive,1,GABA
+10,19,cellular respiration,GO:0045333,0.694754291,0.757220404,0.710402489,0.61663998,0,positive,1,NONN
+11,8,cotranslational protein targeting to membrane,GO:0006613,0.811261508,0.909721309,0.910627988,0.613435226,0,positive,1,GABA
+13,8,cotranslational protein targeting to membrane,GO:0006613,0.806295255,0.909721309,0.910627988,0.598536469,0,positive,1,GLUT
+16,8,cotranslational protein targeting to membrane,GO:0006613,0.8259591,0.909721309,0.910627988,0.657528003,0,positive,1,NONN
+18,16,cytosolic large ribosomal subunit,GO:0022625,0.8423749,0.965973997,0.882519825,0.678630878,0,positive,1,GABA
+21,16,cytosolic large ribosomal subunit,GO:0022625,0.826889183,0.965973997,0.882519825,0.632173728,0,positive,1,GLUT
+24,16,cytosolic large ribosomal subunit,GO:0022625,0.840200588,0.965973997,0.882519825,0.672107942,0,positive,1,NONN
+26,4,cytosolic ribosome,GO:0022626,0.808109007,0.930496404,0.849735998,0.644094619,0,positive,1,GABA
+29,4,cytosolic ribosome,GO:0022626,0.793391112,0.930496404,0.849735998,0.599940934,0,positive,1,GLUT
+32,4,cytosolic ribosome,GO:0022626,0.81240552,0.930496404,0.849735998,0.656984158,0,positive,1,NONN
+34,6,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.80142023,0.893252315,0.89515608,0.615852295,0,positive,1,GABA
+36,6,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.787007478,0.893252315,0.89515608,0.572614039,0,positive,1,GLUT
+39,6,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.812324065,0.893252315,0.89515608,0.6485638,0,positive,1,NONN
+41,13,inner mitochondrial membrane protein complex,GO:0098800,0.75057263,0.830173125,0.745573143,0.675971621,0,positive,1,GABA
+44,13,inner mitochondrial membrane protein complex,GO:0098800,0.743477668,0.830173125,0.745573143,0.654686735,0,positive,1,NONN
+45,12,large ribosomal subunit,GO:0015934,0.758023915,0.851097961,0.762913947,0.660059838,0,positive,1,GABA
+47,12,large ribosomal subunit,GO:0015934,0.723762394,0.851097961,0.762913947,0.557275276,0,positive,1,GLUT
+50,12,large ribosomal subunit,GO:0015934,0.737478118,0.851097961,0.762913947,0.598422445,0,positive,1,NONN
+52,18,mitochondrial ATP synthesis coupled electron transport,GO:0042775,0.780764886,0.868759283,0.767500812,0.706034562,0,positive,1,GABA
+53,18,mitochondrial ATP synthesis coupled electron transport,GO:0042775,0.73301167,0.868759283,0.767500812,0.562774913,0,positive,1,GLUT
+56,18,mitochondrial ATP synthesis coupled electron transport,GO:0042775,0.784258162,0.868759283,0.767500812,0.716514391,0,positive,1,NONN
+58,9,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.789679493,0.876732297,0.882794816,0.609511368,0,positive,1,GABA
+63,9,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.792330686,0.876732297,0.882794816,0.617464947,0,positive,1,NONN
+65,14,oxidative phosphorylation,GO:0006119,0.743865916,0.820168695,0.731404684,0.68002437,0,positive,1,GABA
+66,14,oxidative phosphorylation,GO:0006119,0.703203046,0.820168695,0.731404684,0.55803576,0,positive,1,GLUT
+69,14,oxidative phosphorylation,GO:0006119,0.74609587,0.820168695,0.731404684,0.686714232,0,positive,1,NONN
+71,3,protein localization to endoplasmic reticulum,GO:0070972,0.783007919,0.8666371,0.868422464,0.613964194,0,positive,1,GABA
+73,3,protein localization to endoplasmic reticulum,GO:0070972,0.764614395,0.8666371,0.868422464,0.558783622,0,positive,1,GLUT
+76,3,protein localization to endoplasmic reticulum,GO:0070972,0.788612492,0.8666371,0.868422464,0.630777911,0,positive,1,NONN
+78,7,protein targeting to ER,GO:0045047,0.805214748,0.898797938,0.897162939,0.619683366,0,positive,1,GABA
+80,7,protein targeting to ER,GO:0045047,0.792595133,0.898797938,0.897162939,0.581824521,0,positive,1,GLUT
+83,7,protein targeting to ER,GO:0045047,0.815552075,0.898797938,0.897162939,0.650695347,0,positive,1,NONN
+85,20,respiratory electron transport chain,GO:0022904,0.744777371,0.828643681,0.740830938,0.664857494,0,positive,1,GABA
+86,20,respiratory electron transport chain,GO:0022904,0.709347762,0.828643681,0.740830938,0.558568666,0,positive,1,GLUT
+89,20,respiratory electron transport chain,GO:0022904,0.753461796,0.828643681,0.740830938,0.690910769,0,positive,1,NONN
+91,2,ribosomal subunit,GO:0044391,0.759442656,0.858212101,0.768015315,0.652100553,0,positive,1,GABA
+94,2,ribosomal subunit,GO:0044391,0.725341046,0.858212101,0.768015315,0.549795723,0,positive,1,GLUT
+97,2,ribosomal subunit,GO:0044391,0.745413969,0.858212101,0.768015315,0.610014492,0,positive,1,NONN
+99,10,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.810575242,0.908840291,0.910843441,0.612041996,0,positive,1,GABA
+101,10,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.807015439,0.908840291,0.910843441,0.601362585,0,positive,1,GLUT
+104,10,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.829101911,0.908840291,0.910843441,0.667622002,0,positive,1,NONN
+106,1,structural constituent of ribosome,GO:0003735,0.742873974,0.889739944,0.699484976,0.639397002,0,positive,1,GABA
+109,1,structural constituent of ribosome,GO:0003735,0.718111953,0.889739944,0.699484976,0.565110938,0,positive,1,GLUT
+112,1,structural constituent of ribosome,GO:0003735,0.734092445,0.889739944,0.699484976,0.613052415,0,positive,1,NONN
+114,5,translational initiation,GO:0006413,0.740055625,0.818358026,0.811913625,0.589895225,0,positive,1,GABA
+118,5,translational initiation,GO:0006413,0.747193142,0.818358026,0.811913625,0.611307775,0,positive,1,NONN
+120,11,viral gene expression,GO:0019080,0.717298286,0.770394908,0.791400321,0.590099629,0,positive,1,GABA
+124,11,viral gene expression,GO:0019080,0.724641651,0.770394908,0.791400321,0.612129725,0,positive,1,NONN
+126,15,viral transcription,GO:0019083,0.71324607,0.766517866,0.789761112,0.583459232,0,positive,1,GABA
+130,15,viral transcription,GO:0019083,0.724402831,0.766517866,0.789761112,0.616929514,0,positive,1,NONN
+12,8,cotranslational protein targeting to membrane,GO:0006613,0.816070539,0.906555919,0.905372736,0.636282961,0,positive,2,GABA
+19,16,cytosolic large ribosomal subunit,GO:0022625,0.823112383,0.965813584,0.876598887,0.626924677,0,positive,2,GABA
+27,4,cytosolic ribosome,GO:0022626,0.793671387,0.926482115,0.842918097,0.61161395,0,positive,2,GABA
+35,6,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.799893414,0.892721822,0.891864707,0.615093713,0,positive,2,GABA
+59,9,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.792345614,0.877383245,0.876187526,0.623466071,0,positive,2,GABA
+72,3,protein localization to endoplasmic reticulum,GO:0070972,0.776424944,0.869200698,0.866588055,0.593486079,0,positive,2,GABA
+79,7,protein targeting to ER,GO:0045047,0.805881162,0.896744169,0.893820943,0.627078373,0,positive,2,GABA
+92,2,ribosomal subunit,GO:0044391,0.730637567,0.856172292,0.779770838,0.55596957,0,positive,2,GABA
+100,10,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.815423563,0.906166833,0.906350248,0.633753609,0,positive,2,GABA
+107,1,structural constituent of ribosome,GO:0003735,0.726533037,0.886227117,0.717449939,0.575922055,0,positive,2,GABA
+115,5,translational initiation,GO:0006413,0.737836449,0.816609327,0.807626507,0.589273512,0,positive,2,GABA
+121,13,viral gene expression,GO:0019080,0.711008591,0.765346733,0.782576552,0.585102489,0,positive,2,GABA
+127,15,viral transcription,GO:0019083,0.713288927,0.761827642,0.780334354,0.597704786,0,positive,2,GABA
+3,16,ATP synthesis coupled electron transport,GO:0042773,0.788448959,0.875264559,0.782120904,0.707961415,0,positive,4,GLUT
+8,19,cellular respiration,GO:0045333,0.708250817,0.762073065,0.724561818,0.638117568,0,positive,4,GLUT
+14,8,cotranslational protein targeting to membrane,GO:0006613,0.828735002,0.905149308,0.880395709,0.70065999,0,positive,4,GLUT
+20,17,cytosolic large ribosomal subunit,GO:0022625,0.800918998,0.963646691,0.861260211,0.577850092,0,positive,4,GABA
+22,17,cytosolic large ribosomal subunit,GO:0022625,0.844013997,0.963646691,0.861260211,0.70713509,0,positive,4,GLUT
+28,4,cytosolic ribosome,GO:0022626,0.775289097,0.928577986,0.831362229,0.565927076,0,positive,4,GABA
+30,4,cytosolic ribosome,GO:0022626,0.819938385,0.928577986,0.831362229,0.699874939,0,positive,4,GLUT
+37,6,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.813845918,0.89257796,0.871083035,0.67787676,0,positive,4,GLUT
+42,11,inner mitochondrial membrane protein complex,GO:0098800,0.766514599,0.838858774,0.764233162,0.696451861,0,positive,4,GLUT
+46,12,large ribosomal subunit,GO:0015934,0.732023642,0.856984987,0.769479854,0.569606084,0,positive,4,GABA
+48,12,large ribosomal subunit,GO:0015934,0.780139911,0.856984987,0.769479854,0.713954893,0,positive,4,GLUT
+54,18,mitochondrial ATP synthesis coupled electron transport,GO:0042775,0.789980554,0.875572622,0.783992972,0.710376067,0,positive,4,GLUT
+60,9,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.766349465,0.871181695,0.863873399,0.563993302,0,positive,4,GABA
+61,9,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.793083033,0.871181695,0.863873399,0.644194006,0,positive,4,GLUT
+67,13,oxidative phosphorylation,GO:0006119,0.744475347,0.824079647,0.741350581,0.667995812,0,positive,4,GLUT
+74,3,protein localization to endoplasmic reticulum,GO:0070972,0.791021189,0.870303579,0.849821267,0.652938721,0,positive,4,GLUT
+81,7,protein targeting to ER,GO:0045047,0.817212216,0.89581588,0.870624638,0.68519613,0,positive,4,GLUT
+87,20,respiratory electron transport chain,GO:0022904,0.75576716,0.833627297,0.758593978,0.675080206,0,positive,4,GLUT
+93,1,ribosomal subunit,GO:0044391,0.728114367,0.861631443,0.769934034,0.552777624,0,positive,4,GABA
+95,1,ribosomal subunit,GO:0044391,0.77920848,0.861631443,0.769934034,0.706059964,0,positive,4,GLUT
+102,10,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.828107186,0.904501353,0.880494431,0.699325775,0,positive,4,GLUT
+108,2,structural constituent of ribosome,GO:0003735,0.71081266,0.889102852,0.693531998,0.549803129,0,positive,4,GABA
+110,2,structural constituent of ribosome,GO:0003735,0.764884128,0.889102852,0.693531998,0.712017532,0,positive,4,GLUT
+116,5,translational initiation,GO:0006413,0.75422233,0.817603519,0.802389973,0.642673498,0,positive,4,GLUT
+122,14,viral gene expression,GO:0019080,0.71539679,0.765412903,0.772407288,0.608370178,0,positive,4,GLUT
+128,15,viral transcription,GO:0019083,0.715016961,0.761625707,0.769670607,0.61375457,0,positive,4,GLUT
+4,17,ATP synthesis coupled electron transport,GO:0042773,0.765790337,0.872748625,0.777256119,0.647366268,0,positive,5,GLUT
+9,19,cellular respiration,GO:0045333,0.691525042,0.759497818,0.722974978,0.592102331,0,positive,5,GLUT
+15,8,cotranslational protein targeting to membrane,GO:0006613,0.841736331,0.906045483,0.884758223,0.734405287,0,positive,5,GLUT
+23,16,cytosolic large ribosomal subunit,GO:0022625,0.86403832,0.965369161,0.863253366,0.763492432,0,positive,5,GLUT
+31,4,cytosolic ribosome,GO:0022626,0.83636006,0.928763662,0.832004503,0.748312016,0,positive,5,GLUT
+38,6,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.827039756,0.893354817,0.875038721,0.71272573,0,positive,5,GLUT
+43,11,inner mitochondrial membrane protein complex,GO:0098800,0.737341444,0.83488475,0.759786449,0.617353134,0,positive,5,GLUT
+49,12,large ribosomal subunit,GO:0015934,0.77532023,0.853497841,0.766212386,0.706250463,0,positive,5,GLUT
+55,18,mitochondrial ATP synthesis coupled electron transport,GO:0042775,0.767245065,0.872857872,0.779440014,0.649437308,0,positive,5,GLUT
+62,9,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.802471208,0.872991273,0.86430349,0.670118859,0,positive,5,GLUT
+68,14,oxidative phosphorylation,GO:0006119,0.721347238,0.821018759,0.73815248,0.604870475,0,positive,5,GLUT
+75,3,protein localization to endoplasmic reticulum,GO:0070972,0.801371747,0.869301049,0.851932631,0.682881561,0,positive,5,GLUT
+82,7,protein targeting to ER,GO:0045047,0.829956463,0.895907035,0.874674889,0.719287465,0,positive,5,GLUT
+88,20,respiratory electron transport chain,GO:0022904,0.734219675,0.831489528,0.755789008,0.615380487,0,positive,5,GLUT
+96,1,ribosomal subunit,GO:0044391,0.780378906,0.858139265,0.766362429,0.716635025,0,positive,5,GLUT
+103,10,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.841554341,0.905463029,0.885038366,0.734161627,0,positive,5,GLUT
+111,2,structural constituent of ribosome,GO:0003735,0.770866653,0.887484119,0.692489775,0.732626064,0,positive,5,GLUT
+117,5,translational initiation,GO:0006413,0.761978481,0.817278287,0.803556888,0.665100267,0,positive,5,GLUT
+123,13,viral gene expression,GO:0019080,0.719230015,0.767390623,0.7746418,0.615657622,0,positive,5,GLUT
+129,15,viral transcription,GO:0019083,0.718371808,0.763401032,0.77188538,0.619829013,0,positive,5,GLUT
+6,17,ATP synthesis coupled electron transport,GO:0042773,0.737415685,0.866931547,0.765267215,0.580048294,0,positive,6,NONN
+17,8,cotranslational protein targeting to membrane,GO:0006613,0.806997458,0.905661799,0.906859443,0.608471133,0,positive,6,NONN
+25,16,cytosolic large ribosomal subunit,GO:0022625,0.822967746,0.964096374,0.877344857,0.627462007,0,positive,6,NONN
+33,4,cytosolic ribosome,GO:0022626,0.788423046,0.926976107,0.847186603,0.591106429,0,positive,6,NONN
+40,6,establishment of protein localization to endoplasmic reticulum,GO:0072599,0.793914321,0.892641499,0.893287567,0.595813895,0,positive,6,NONN
+51,13,large ribosomal subunit,GO:0015934,0.743591873,0.846165158,0.765016789,0.619593674,0,positive,6,NONN
+57,18,mitochondrial ATP synthesis coupled electron transport,GO:0042775,0.737995095,0.867186307,0.767615122,0.579183855,0,positive,6,NONN
+64,9,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",GO:0000184,0.783394575,0.872962738,0.880610285,0.596610702,0,positive,6,NONN
+70,14,oxidative phosphorylation,GO:0006119,0.702049262,0.816555375,0.728735115,0.560857294,0,positive,6,NONN
+77,3,protein localization to endoplasmic reticulum,GO:0070972,0.774987355,0.86756816,0.865398328,0.591995578,0,positive,6,NONN
+84,7,protein targeting to ER,GO:0045047,0.794792445,0.895371889,0.894285753,0.594719694,0,positive,6,NONN
+90,20,respiratory electron transport chain,GO:0022904,0.712874053,0.826297193,0.746763939,0.565561026,0,positive,6,NONN
+98,2,ribosomal subunit,GO:0044391,0.738013003,0.852669426,0.769252651,0.592116933,0,positive,6,NONN
+105,10,SRP-dependent cotranslational protein targeting to membrane,GO:0006614,0.804589705,0.905064824,0.90686448,0.601839812,0,positive,6,NONN
+113,1,structural constituent of ribosome,GO:0003735,0.724189569,0.882202573,0.696024168,0.594341966,0,positive,6,NONN
+119,5,translational initiation,GO:0006413,0.738859268,0.81705864,0.81353661,0.585982555,0,positive,6,NONN
+125,11,viral gene expression,GO:0019080,0.709577261,0.768753586,0.789860423,0.570117775,0,positive,6,NONN
+131,15,viral transcription,GO:0019083,0.709041703,0.76485828,0.788690056,0.573576774,0,positive,6,NONN
